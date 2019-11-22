@@ -13,7 +13,7 @@ namespace CookBook.Installers
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "CookBook",
+                    Title = "server",
                     Version = "v1"
                 });
 
