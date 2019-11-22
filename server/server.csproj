@@ -31,6 +31,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="API\Responses" />
     <Folder Include="Options\" />
     <Folder Include="Installers\" />
     <Folder Include="Data\" />

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CookBook.Domain;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookBook.Data
@@ -8,5 +9,7 @@ namespace CookBook.Data
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
         }
+
+        public DbSet<JWTRefreshToken> RefreshTokens { get; set; }
     }
 }
