@@ -19,7 +19,7 @@ namespace CookBook.Installers
 
                 var security = new Dictionary<string, IEnumerable<string>>
                 {
-                    {"Bearer", new string[] { }},
+                    {"Bearer", new string[] { }}
                 };
 
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -30,17 +30,20 @@ namespace CookBook.Installers
                     Type = SecuritySchemeType.ApiKey
                 });
 
-                x.AddSecurityRequirement(new OpenApiSecurityRequirement {{
-                    new OpenApiSecurityScheme
+                x.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
                     {
-                        Reference = new OpenApiReference
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                     new string[] { }
-                }});
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
             });
         }
     }

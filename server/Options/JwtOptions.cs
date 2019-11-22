@@ -1,5 +1,4 @@
-﻿using System;
-namespace CookBook.Options
+﻿namespace CookBook.Options
 {
     public class JwtOptions
     {

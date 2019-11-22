@@ -1,5 +1,4 @@
-﻿using System;
-using CookBook.Data;
+﻿using CookBook.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +12,7 @@ namespace CookBook.Installers
         {
             services.AddDbContext<DatabaseContext>(options =>
             {
-                options.UseMySql(configuration.GetConnectionString("DefaultConnection")); 
+                options.UseMySql(configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<DatabaseContext>();

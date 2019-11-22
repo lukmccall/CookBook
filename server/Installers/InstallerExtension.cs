@@ -7,7 +7,6 @@ namespace CookBook.Installers
 {
     public static class InstallerExtension
     {
-
         public static void InstallServicesFromAsembly(this IServiceCollection services, IConfiguration configuration)
         {
             var installers = typeof(Startup).Assembly.ExportedTypes
