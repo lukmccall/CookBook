@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace CookBook.Domain
+namespace CookBook.Models
 {
-    public class JWTRefreshToken
+    public class JwtRefreshToken
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

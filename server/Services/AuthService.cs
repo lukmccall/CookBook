@@ -7,10 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using CookBook.Data;
 using CookBook.Domain;
+using CookBook.Models;
 using CookBook.Options;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using CookBook.Extensions;
 
 namespace CookBook.Services
 {
@@ -20,32 +22,36 @@ namespace CookBook.Services
         private readonly JwtOptions _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly DatabaseContext _context;
+        private readonly ICacheService _cache;
 
         public AuthService(UserManager<IdentityUser> userManager, JwtOptions jwtSettings,
-            TokenValidationParameters tokenValidationParameters, DatabaseContext context)
+            TokenValidationParameters tokenValidationParameters, DatabaseContext context, ICacheService cache)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings;
             _tokenValidationParameters = tokenValidationParameters;
             _context = context;
+            _cache = cache;
         }
 
         public async Task<AuthResult> RegisterAsync(string email, string password)
         {
-            if (await _userManager.FindByEmailAsync(email) == null)
+            if (await _userManager.FindByEmailAsync(email) != null)
             {
-                var newUser = new IdentityUser
-                {
-                    Email = email,
-                    UserName = email
-                };
+                return AuthResult.CreateWithSingleError("This user already exists.");
+            }
 
-                var createdUser = await _userManager.CreateAsync(newUser, password);
+            var newUser = new IdentityUser
+            {
+                Email = email,
+                UserName = email
+            };
 
-                if (createdUser.Succeeded)
-                {
-                    return await GenerateAuthenticationResultForUserAsync(newUser);
-                }
+            var createdUser = await _userManager.CreateAsync(newUser, password);
+
+            if (createdUser.Succeeded)
+            {
+                return await GenerateAuthenticationResultForUserAsync(newUser);
             }
 
             return AuthResult.CreateWithSingleError("Couldn't create a new user.");
@@ -60,6 +66,25 @@ namespace CookBook.Services
             }
 
             return AuthResult.CreateWithSingleError("Couldn't login.");
+        }
+
+        public async Task<AuthResult> LogoutAsync(string token)
+        {
+            var validatedToken = GetPrincipalFromToken(token);
+            
+            if (validatedToken == null)
+            {
+                return AuthResult.CreateWithSingleError("Invalid token format.");
+            }
+            
+            var jti = validatedToken.Claims.Single(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
+            
+            await _cache.PutStringAsync(jti, DateTime.UtcNow.Add(_jwtSettings.TokenLifetime).GetTimeSpan(), "0");
+            
+            return new AuthResult
+            {
+                Success = true
+            };
         }
 
         public async Task<AuthResult> RefreshTokenAsync(string token, string refreshToken)
@@ -111,7 +136,7 @@ namespace CookBook.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            var refreshToken = new JWTRefreshToken
+            var refreshToken = new JwtRefreshToken
             {
                 JwtId = token.Id,
                 UserId = user.Id,
@@ -154,7 +179,7 @@ namespace CookBook.Services
                        StringComparison.InvariantCultureIgnoreCase);
         }
 
-        private static bool ValidateRefreshToken(JWTRefreshToken token, string jti)
+        private static bool ValidateRefreshToken(JwtRefreshToken token, string jti)
         {
             return token != null &&
                    DateTime.UtcNow <= token.ExpiryDate &&

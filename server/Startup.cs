@@ -1,3 +1,4 @@
+using CookBook.Extensions;
 using CookBook.Installers;
 using CookBook.Options;
 using Microsoft.AspNetCore.Builder;
@@ -22,7 +23,7 @@ namespace CookBook
         {
             services.AddControllers();
 
-            services.InstallServicesFromAsembly(Configuration);
+            services.InstallServicesFromAssembly(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,6 +9,8 @@ namespace CookBook.Services
 
         Task<AuthResult> LoginAsync(string email, string password);
 
+        Task<AuthResult> LogoutAsync(string token);
+
         Task<AuthResult> RefreshTokenAsync(string token, string refreshToken);
     }
 }

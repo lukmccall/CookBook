@@ -1,7 +1,9 @@
 ﻿using System.Text;
+using CookBook.Jwt;
 using CookBook.Options;
 using CookBook.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -41,6 +43,16 @@ namespace CookBook.Installers
                     x.TokenValidationParameters = jwtValidationParameters;
                 });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("JWTToken", policy =>
+                {
+                    policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                    policy.RequireAuthenticatedUser();
+                    policy.AddRequirements(new JwtRequirement());
+                });
+            });
+            services.AddSingleton<IAuthorizationHandler, JwtHandler>();
             services.AddScoped<IAuthService, AuthService>();
         }
     }
