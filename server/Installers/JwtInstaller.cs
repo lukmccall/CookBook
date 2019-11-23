@@ -50,10 +50,13 @@ namespace CookBook.Installers
                     policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
                     policy.RequireAuthenticatedUser();
                     policy.AddRequirements(new JwtRequirement());
+                 
                 });
             });
-            services.AddSingleton<IAuthorizationHandler, JwtHandler>();
+
+            services.AddScoped<IJwtManager, JwtManager>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthorizationHandler, JwtHandler>();
         }
     }
 }
