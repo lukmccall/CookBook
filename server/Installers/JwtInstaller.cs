@@ -1,6 +1,9 @@
 ﻿using System.Text;
+using CookBook.Jwt;
 using CookBook.Options;
+using CookBook.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -16,6 +19,18 @@ namespace CookBook.Installers
 
             services.AddSingleton(jwtOptions);
 
+            var jwtValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.Secret)),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                RequireExpirationTime = false,
+                ValidateLifetime = true
+            };
+
+            services.AddSingleton(jwtValidationParameters);
+
             services.AddAuthentication(x =>
                 {
                     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -25,16 +40,23 @@ namespace CookBook.Installers
                 .AddJwtBearer(x =>
                 {
                     x.SaveToken = true;
-                    x.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.Secret)),
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        RequireExpirationTime = false,
-                        ValidateLifetime = true
-                    };
+                    x.TokenValidationParameters = jwtValidationParameters;
                 });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("JWTToken", policy =>
+                {
+                    policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+                    policy.RequireAuthenticatedUser();
+                    policy.AddRequirements(new JwtRequirement());
+                 
+                });
+            });
+
+            services.AddScoped<IJwtManager, JwtManager>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthorizationHandler, JwtHandler>();
         }
     }
 }

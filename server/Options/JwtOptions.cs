@@ -1,7 +1,11 @@
-﻿namespace CookBook.Options
+﻿using System;
+
+namespace CookBook.Options
 {
     public class JwtOptions
     {
         public string Secret { get; set; }
+
+        public TimeSpan TokenLifetime { get; set; }
     }
 }
