@@ -1,5 +1,5 @@
 ﻿using CookBook.Data;
-using Microsoft.AspNetCore.Identity;
+using CookBook.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +14,15 @@ namespace CookBook.Installers
             {
                 options.UseMySql(configuration.GetConnectionString("DefaultConnection"));
             });
-            services.AddDefaultIdentity<IdentityUser>()
+
+            services.AddDefaultIdentity<ApplicationUser>(options =>
+                {
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
                 .AddEntityFrameworkStores<DatabaseContext>();
         }
     }

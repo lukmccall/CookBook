@@ -9,7 +9,6 @@ using CookBook.Data;
 using CookBook.Extensions;
 using CookBook.Models;
 using CookBook.Options;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -55,7 +54,7 @@ namespace CookBook.Services
             }
         }
 
-        public SecurityToken GenerateTokenForUser(IdentityUser user)
+        public SecurityToken GenerateTokenForUser(ApplicationUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
@@ -84,7 +83,7 @@ namespace CookBook.Services
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
 
-        public async Task<JwtRefreshToken> GenerateRefreshTokenForJwtTokenAsync(IdentityUser user, SecurityToken token)
+        public async Task<JwtRefreshToken> GenerateRefreshTokenForJwtTokenAsync(ApplicationUser user, SecurityToken token)
         {
             var refreshToken = new JwtRefreshToken
             {
