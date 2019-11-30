@@ -1,11 +1,12 @@
-
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Threading.Tasks;
+using CookBook.API.Models;
 
 namespace CookBook.API.Requests.External
 {
         public interface IRecipeRepository
     {
-        //Task<User> GetUserAsync(int userId);
+        Task<RecipePriceBreakdown> GetRecipePriceBreakdown(long id);
     }
 
 }

@@ -7,7 +7,11 @@ namespace CookBook.API
         public const string Version = "v1";
 
         public const string Base = Root + "/" + Version;
-        
+
+        public const string ServiceUrl = "https://api.spoonacular.com";
+
+        public const string ApiKey = "?apiKey=0d0a33fa92c74436ac2a6a799c097a49";
+
         public static class Auth
         {
             public const string Login = Base + "/auth/login";
