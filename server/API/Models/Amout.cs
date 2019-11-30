@@ -2,7 +2,8 @@ namespace CookBook.API.Models
 {
     public class Amount
     {
-        public Metric metric {get; set;}
-        public Us us {get; set;}
+        public Metric Metric { get; set; }
+
+        public Us Us { get; set; }
     }
 }

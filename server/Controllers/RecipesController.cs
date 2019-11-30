@@ -5,7 +5,8 @@ using CookBook.Services;
 using CookBook.API.Requests.External;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CookBook.Controllers{
+namespace CookBook.Controllers
+{
     [ApiController]
     public class RecipesController : Controller
     {
@@ -17,8 +18,9 @@ namespace CookBook.Controllers{
         }
 
         [HttpGet("/recipePriceBreakdown/{id}")]
-        public IActionResult Get(long id){
-            var model = _recipeRepo.GetRecipePriceBreakdown(id);
+        public async Task<IActionResult> Get(long id)
+        {
+            var model = await _recipeRepo.GetRecipePriceBreakdown(id);
 
             if (model == null)
                 return Forbid(); //or any other error code accordingly. Bad request is a strong candidate also.
