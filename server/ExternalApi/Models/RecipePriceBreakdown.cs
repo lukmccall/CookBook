@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CookBook.API.Models
+namespace CookBook.ExternalApi.Models
 {
     public class RecipePriceBreakdown
     {

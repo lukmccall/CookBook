@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CookBook.ExternalApi;
 
 namespace CookBook.Installers
 {
@@ -16,6 +17,8 @@ namespace CookBook.Installers
             });
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<DatabaseContext>();
+                
+            services.AddSingleton<IRecipeRepository, RecipeRepository>();
         }
     }
 }

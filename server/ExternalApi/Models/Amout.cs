@@ -1,4 +1,4 @@
-namespace CookBook.API.Models
+namespace CookBook.ExternalApi.Models
 {
     public class Amount
     {

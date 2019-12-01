@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using CookBook.API.Models;
+using CookBook.ExternalApi.Models;
 
-namespace CookBook.API.Requests.External
+namespace CookBook.ExternalApi
 {
     public interface IRecipeRepository
     {

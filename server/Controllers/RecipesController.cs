@@ -1,9 +1,7 @@
 using System.Threading.Tasks;
-using CookBook.API;
-using CookBook.API.Requests;
-using CookBook.Services;
-using CookBook.API.Requests.External;
+using CookBook.ExternalApi;
 using Microsoft.AspNetCore.Mvc;
+using CookBook.API;
 
 namespace CookBook.Controllers
 {
@@ -17,8 +15,8 @@ namespace CookBook.Controllers
             _recipeRepo = recipeRepo;
         }
 
-        [HttpGet("/recipePriceBreakdown/{id}")]
-        public async Task<IActionResult> Get(long id)
+        [HttpGet(Urls.Recipe.priceBreakdown)]
+        public async Task<IActionResult> GetRecipePriceBreakdown(long id)
         {
             var model = await _recipeRepo.GetRecipePriceBreakdown(id);
 
