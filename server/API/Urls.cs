@@ -22,6 +22,9 @@ namespace CookBook.API
         public static class User
         {
             public const string GetCurrentUser = Base + "/users/me";
+            
+            public const string UpdateCurrentUser = Base + "/users/me";
+
         }
     }
 }
