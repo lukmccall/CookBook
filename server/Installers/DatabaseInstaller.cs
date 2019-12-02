@@ -17,6 +17,7 @@ namespace CookBook.Installers
 
             services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
+                    options.ClaimsIdentity.UserIdClaimType = "id";
                     options.Password.RequiredLength = 4;
                     options.Password.RequireDigit = false;
                     options.Password.RequireLowercase = false;

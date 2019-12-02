@@ -17,7 +17,11 @@ namespace CookBook.API
             public const string Register = Base + "/auth/register";
             
             public const string Refresh = Base + "/auth/refresh";
-            
+        }
+        
+        public static class User
+        {
+            public const string GetCurrentUser = Base + "/users/me";
         }
     }
 }
