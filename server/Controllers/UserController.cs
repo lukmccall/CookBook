@@ -46,7 +46,26 @@ namespace CookBook.Controllers
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
-                return Ok();
+                return NoContent();
+            }
+
+            return BadRequest();
+        }
+        
+        [HttpPatch(Urls.User.ChangeCurrentUserPassword)]
+        public async Task<IActionResult> ChangeCurrentUserPassword([FromBody] ChangeCurrentUserPasswordRequest passwordRequest)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, passwordRequest.OldPassword, passwordRequest.NewPassword);
+
+            if (result.Succeeded)
+            {
+                return NoContent();
             }
 
             return BadRequest();
