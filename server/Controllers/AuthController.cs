@@ -19,7 +19,7 @@ namespace CookBook.Controllers
         [HttpPost(Urls.Auth.Register)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
-            var authResponse = await _authService.RegisterAsync(request.Email, request.Password);
+            var authResponse = await _authService.RegisterAsync(request.Email, request.UserName, request.Password);
             if (authResponse.Success)
             {
                 return Ok(authResponse);

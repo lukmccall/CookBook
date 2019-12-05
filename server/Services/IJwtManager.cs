@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CookBook.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CookBook.Services
@@ -12,11 +11,11 @@ namespace CookBook.Services
 
         ClaimsPrincipal GetPrincipalFromToken(string token);
 
-        SecurityToken GenerateTokenForUser(IdentityUser user);
+        SecurityToken GenerateTokenForUser(ApplicationUser user);
 
         string SecurityTokenToString(SecurityToken securityToken);
 
-        Task<JwtRefreshToken> GenerateRefreshTokenForJwtTokenAsync(IdentityUser user, SecurityToken token);
+        Task<JwtRefreshToken> GenerateRefreshTokenForJwtTokenAsync(ApplicationUser user, SecurityToken token);
 
         Task RevokeTokenAsync(ClaimsPrincipal principal);
 

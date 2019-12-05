@@ -12,5 +12,7 @@ namespace CookBook.Data
         }
 
         public DbSet<JwtRefreshToken> RefreshTokens { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }

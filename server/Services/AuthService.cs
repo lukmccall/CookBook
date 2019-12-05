@@ -1,31 +1,31 @@
 using System.Threading.Tasks;
 using CookBook.Domain;
+using CookBook.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace CookBook.Services
 {
     class AuthService : IAuthService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IJwtManager _jwtManager;
 
-        public AuthService(IJwtManager jwtManager, UserManager<IdentityUser> userManager)
+        public AuthService(IJwtManager jwtManager, UserManager<ApplicationUser> userManager)
         {
             _jwtManager = jwtManager;
             _userManager = userManager;
         }
 
-        public async Task<AuthResult> RegisterAsync(string email, string password)
+        public async Task<AuthResult> RegisterAsync(string email, string userName, string password)
         {
             if (await _userManager.FindByEmailAsync(email) != null)
             {
                 return AuthResult.CreateWithSingleError("This user already exists.");
             }
-
-            var newUser = new IdentityUser
+            var newUser = new ApplicationUser
             {
                 Email = email,
-                UserName = email
+                UserName = userName
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, password);
@@ -90,7 +90,7 @@ namespace CookBook.Services
             return await GeneraAuthResultAsync(user);
         }
 
-        private async Task<AuthResult> GeneraAuthResultAsync(IdentityUser user)
+        private async Task<AuthResult> GeneraAuthResultAsync(ApplicationUser user)
         {
             var newToken = _jwtManager.GenerateTokenForUser(user);
             var newRefreshToken = await _jwtManager.GenerateRefreshTokenForJwtTokenAsync(user, newToken);

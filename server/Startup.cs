@@ -1,6 +1,9 @@
+using System.Threading.Tasks;
 using CookBook.Extensions;
 using CookBook.Installers;
+using CookBook.Middleware;
 using CookBook.Options;
+using CookBook.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +35,7 @@ namespace CookBook
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMiddleware<AdminInjectMiddleware>();
             }
 
             app.UseHttpsRedirection();
