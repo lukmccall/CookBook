@@ -1,0 +1,96 @@
+@import './variable';
+
+$gutter-compensation: $gutter-width * 0.5 * -1;
+$half-gutter-width: $gutter-width * 0.5;
+
+.container {
+  box-sizing: border-box;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $outer-margin;
+  padding-left: $outer-margin;
+}
+
+.row {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: $gutter-compensation;
+  margin-left: $gutter-compensation;
+}
+
+.col {
+  box-sizing: border-box;
+  flex: 1 0 auto;
+  padding-right: $half-gutter-width;
+  padding-left: $half-gutter-width;
+}
+
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    box-sizing: border-box;
+
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100% / $grid-columns * $i;
+    max-width: 100% / $grid-columns * $i;
+
+    padding-right: $half-gutter-width;
+    padding-left: $half-gutter-width;
+  }
+}
+
+@for $i from 1 through $grid-columns {
+  .col-offset-#{$i} {
+    flex: 0 0 auto;
+    margin-left: 100% / $grid-columns * $i;
+  }
+}
+
+@each $breakpoint in $breakpoints {
+  $name: nth($breakpoint, 1);
+  $size: nth($breakpoint, 2);
+  $container: nth($breakpoint, 3);
+
+  @media only screen and (min-width: $size) {
+    .col-#{$name} {
+      box-sizing: border-box;
+      flex: 1 0 auto;
+      padding-right: $half-gutter-width;
+      padding-left: $half-gutter-width;
+    }
+
+    @for $i from 1 through $grid-columns {
+      .col-#{$name}-#{$i} {
+        box-sizing: border-box;
+
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 100% / $grid-columns * $i;
+        max-width: 100% / $grid-columns * $i;
+
+        padding-right: $half-gutter-width;
+        padding-left: $half-gutter-width;
+      }
+    }
+
+    @for $i from 1 through $grid-columns {
+      .col-#{$name}-offset-#{$i} {
+        flex: 0 0 auto;
+        margin-left: 100% / $grid-columns * $i;
+      }
+    }
+    .col-#{$name} {
+      flex-grow: 1;
+      flex-basis: 0;
+      max-width: 100%;
+    }
+  }
+}
