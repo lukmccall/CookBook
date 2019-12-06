@@ -1,8 +1,8 @@
 namespace CookBook.ExternalApi.Models
 {
-    public class Ingredients
+    public class Photo
     {
-        public Amount Amout { get; set; }
+        public long Id { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }
     }

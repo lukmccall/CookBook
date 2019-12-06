@@ -22,7 +22,27 @@ namespace CookBook.API
 
         public static class Recipe
         {
-            public const string priceBreakdown = "/recipePriceBreakdown/{id}";
+            public const string PriceBreakdown = "/recipePriceBreakdown/{id}";
+
+            public const string RecipeIngredients = "/recipeIngredients/{id}";
+
+            public const string SearchByIngredients = "/searchByIngredients";
+            
+            public const string RecipeInstructions = "/recipeInstructions/{id}";
+
+        }
+
+         public static class Widget
+        {
+            public const string RecipeVisualization = "/recipeVisualization/{id}";
+
+            public const string EquipmentVisualization = "/equipmentVisualization/{id}";
+
+            public const string PriceBreakDownVisualization = "/priceBreakdownVisualization/{id}";
+
+            public const string NutrionVisualization = "/nutrionVisualization/{id}";
+
+
         }
     }
 }

@@ -1,8 +1,8 @@
 namespace CookBook.ExternalApi.Models
 {
-    public class Us
+    public class Temperature
     {
+        public float Number { get; set; }
         public string Unit { get; set; }
-        public float Value { get; set; }
     }
 }
