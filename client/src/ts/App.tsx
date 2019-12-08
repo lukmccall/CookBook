@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
+import Navbar from './components/Navbar';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Home from './components/Home';
+import Contact from './components/Contact';
 
 export class App extends Component {
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 col-lg-3">eclo</div>
-          <div className="col-12 col-lg-3">dsad</div>
-          <div className="col-12 col-lg-3">dasd</div>
-          <div className="col-12 col-lg-3">sad</div>
+      <Router>
+        <div className="main">
+        <Navbar/>
+            <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/contact" component={Contact}/>
+        </Switch>
         </div>
-      </div>
+      </Router>
     );
   }
 }
+
