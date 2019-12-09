@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import '../../css/Navbar.scss';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
-  state={
+  state = {
       isOpen: false
   }
 
-  handleClick=()=>{
+  handleClick = () => {
     this.setState({
         isOpen: !this.state.isOpen
     })
