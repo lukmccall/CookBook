@@ -8,6 +8,9 @@ namespace CookBook.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddCors(options =>
+                options.AddPolicy("cors",
+                    builder => { builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin(); }));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
