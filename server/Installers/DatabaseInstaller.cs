@@ -3,6 +3,7 @@ using CookBook.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CookBook.ExternalApi;
 
 namespace CookBook.Installers
 {
@@ -25,6 +26,10 @@ namespace CookBook.Installers
                     options.Password.RequireNonAlphanumeric = false;
                 })
                 .AddEntityFrameworkStores<DatabaseContext>();
+                
+            services.AddSingleton<IRecipeRepository, RecipeRepository>();
+            services.AddSingleton<IWidgetRepository, WidgetRepository>();
+
         }
     }
 }

@@ -2,6 +2,7 @@
 using CookBook.Jwt;
 using CookBook.Options;
 using CookBook.Services;
+using CookBook.ExternalApi;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -57,6 +58,7 @@ namespace CookBook.Installers
             services.AddScoped<IJwtManager, JwtManager>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAuthorizationHandler, JwtHandler>();
+
         }
     }
 }
