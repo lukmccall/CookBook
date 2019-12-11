@@ -1,0 +1,55 @@
+.image {
+    background-image: url(https://www.weightwatchers.com/ca/sites/ca/files/styles/wwvs_default_image/public/article_masthead/protein_low_down_masthead.jpg?itok=eJueJpRl);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+}
+
+.image .overlay {
+    position: absolute;
+    background-color: rgb(0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.3;
+}
+
+.top {
+    height: 100%;
+    width: 35%;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    color: #fff;
+    font-size: 17px;
+    padding: 30% 20px 20px 20px;
+    background-color: rgba(255,255,255,.1);
+    word-wrap: break-word;
+    height: 100%;
+    text-align: center;
+}
+
+.shine{
+    font-weight: bold;
+    font-size: 19px;
+}
+
+@media screen and (max-width: 640px){
+    .top{
+        width: 100%;
+    }
+
+    .image .overlay {
+        opacity: 0.6;
+    }
+
+    .text{
+        padding: 5% 20px 20px 20px;
+    }
+}
