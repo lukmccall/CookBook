@@ -1,0 +1,123 @@
+.logo {
+  padding: 10px;
+}
+.signIn {
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  display: none;
+  cursor: pointer;
+}
+
+.signIn a {
+  text-decoration: none;
+  color: white;
+}
+
+.signIn-text {
+  padding-right: 5px;
+}
+
+.logoBtn {
+  color: white;
+  font-size: 18px;
+}
+
+.title {
+  padding-left: 10px;
+}
+
+.bar {
+  width: 30px;
+  margin: 4px;
+  height: 4px;
+  color: wheat;
+  background: grey;
+}
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  padding-right: 5px;
+  padding: 10px;
+}
+
+.btn a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logoBtn {
+  background: #424242;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid orange;
+}
+
+ul {
+  list-style: none;
+  height: 0px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.showNav {
+  height: 190px;
+}
+
+ul li a {
+  background: #42424242;
+  display: block;
+  color: #fff;
+  padding: 10px;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+ul li a:hover {
+  background: #35353535;
+  color: orange;
+  padding-left: 10px;
+}
+
+@media screen and (min-width: 640px) {
+  nav {
+    background: #424242;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .btn {
+    display: none;
+  }
+
+  .showNav {
+    height: auto;
+  }
+
+  .signIn {
+    display: block;
+  }
+
+  ul {
+    display: flex;
+    height: auto;
+  }
+  nav ul a {
+    background: transparent;
+  }
+
+  .logoBtn {
+    border: none;
+  }
+
+  ul li a:hover {
+    background: none;
+    color: orange;
+    padding-left: none;
+  }
+}
