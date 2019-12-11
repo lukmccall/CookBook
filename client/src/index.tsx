@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/grid/grid-system.scss';
+import './css/index.scss';
 import { App } from './ts/App';
 
 import * as serviceWorker from './serviceWorker';

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass');
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid'; // fas
+@import '~@fortawesome/fontawesome-free/scss/regular'; // far
+@import '~@fortawesome/fontawesome-free/scss/brands'; // fab
+
+* {
+  box-sizing: border-box;
+  font-family: 'Overpass', sans-serif;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+@import 'grid/grid-system';

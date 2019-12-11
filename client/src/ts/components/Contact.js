@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-export default class Contact extends Component{
-    render(){
-        return(
-            <h1>CONTACT</h1>
-        )
-    }
+export default class Contact extends Component {
+  render() {
+    return <h1>CONTACT</h1>;
+  }
 }
