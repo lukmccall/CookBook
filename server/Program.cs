@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using CookBook.Attributes;
 using CookBook.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +14,7 @@ namespace CookBook
         public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
+            
             using (var serviceScope = host.Services.CreateScope())
             {
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();

@@ -1,7 +1,11 @@
 using System.Collections.Generic;
+using CookBook.API.Responses.AuthController;
+using CookBook.Attributes;
 
 namespace CookBook.Domain
 {
+    [Mappable(To = typeof(AuthSuccessResponse))]
+    [Mappable(To = typeof(AuthFailedResponse))]
     public class AuthResult
     {
         public string Token { get; set; }
