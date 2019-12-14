@@ -63,7 +63,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "./src/ts/Api/Client.ts"
+      "output": "./src/ts/api/client.ts"
     },
     "openApiToCSharpClient": {
       "clientBaseClass": null,

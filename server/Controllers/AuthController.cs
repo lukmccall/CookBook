@@ -47,7 +47,7 @@ namespace CookBook.Controllers
                 return Ok(_mapper.Map<AuthSuccessResponse>(authResponse));
             }
 
-            return BadRequest(_mapper.Map<AuthSuccessResponse>(authResponse));
+            return BadRequest(_mapper.Map<AuthFailedResponse>(authResponse));
         }
 
         [HttpPost(Urls.Auth.Logout)]
@@ -61,7 +61,7 @@ namespace CookBook.Controllers
                 return NoContent();
             }
 
-            return BadRequest(_mapper.Map<AuthSuccessResponse>(authResponse));
+            return BadRequest(_mapper.Map<AuthFailedResponse>(authResponse));
         }
 
         [HttpPost(Urls.Auth.Refresh)]
@@ -74,7 +74,7 @@ namespace CookBook.Controllers
                 return Ok(_mapper.Map<AuthSuccessResponse>(authResponse));
             }
 
-            return BadRequest(_mapper.Map<AuthSuccessResponse>(authResponse));
+            return BadRequest(_mapper.Map<AuthFailedResponse>(authResponse));
         }
     }
 }
