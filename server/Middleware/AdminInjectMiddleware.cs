@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using CookBook.Domain.AuthController;
 using CookBook.Services;
 using Microsoft.AspNetCore.Http;
 
@@ -15,7 +16,11 @@ namespace CookBook.Middleware
 
         public async Task Invoke(HttpContext httpContext, IAuthService authService)
         {
-            var response = await authService.LoginAsync("admin@admin.com", "root");
+            var response = await authService.LoginAsync(new LoginData
+            {
+                Email = "admin@admin.com",
+                Password = "root"
+            });
             httpContext.Request.Headers["Authorization"] = "bearer " + response.Token;
             await _next(httpContext);
         }

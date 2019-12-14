@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CookBook.API.Requests
+namespace CookBook.API.Requests.AuthController
 {
     public class LoginRequest
     {

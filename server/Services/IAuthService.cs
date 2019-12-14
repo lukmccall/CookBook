@@ -1,16 +1,17 @@
 using System.Threading.Tasks;
 using CookBook.Domain;
+using CookBook.Domain.AuthController;
 
 namespace CookBook.Services
 {
     public interface IAuthService
     {
-        Task<AuthResult> RegisterAsync(string email, string userName, string password);
+        Task<AuthResult> RegisterAsync(RegisterData registerData);
 
-        Task<AuthResult> LoginAsync(string email, string password);
+        Task<AuthResult> LoginAsync(LoginData loginData);
 
-        Task<AuthResult> LogoutAsync(string token);
+        Task<AuthResult> LogoutAsync(LogoutData logoutData);
 
-        Task<AuthResult> RefreshTokenAsync(string token, string refreshToken);
+        Task<AuthResult> RefreshTokenAsync(RefreshData refreshData);
     }
 }

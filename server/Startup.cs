@@ -1,14 +1,12 @@
-using System.Threading.Tasks;
 using CookBook.Extensions;
-using CookBook.Installers;
 using CookBook.Middleware;
 using CookBook.Options;
-using CookBook.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
 
 namespace CookBook
 {
@@ -27,6 +25,8 @@ namespace CookBook
             services.AddControllers();
 
             services.InstallServicesFromAssembly(Configuration);
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
