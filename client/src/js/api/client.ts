@@ -8,1412 +8,1436 @@
 // ReSharper disable InconsistentNaming
 
 export class Client {
-  private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
-  private baseUrl: string;
-  protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-  constructor(
-    baseUrl?: string,
-    http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }
-  ) {
-    this.http = http ? http : <any>window;
-    this.baseUrl = baseUrl ? baseUrl : '';
-  }
-
-  /**
-   * @param body (optional)
-   * @return Success
-   */
-  register(body: RegisterRequest | undefined): Promise<AuthSuccessResponse> {
-    let url_ = this.baseUrl + '/api/v1/auth/register';
-    url_ = url_.replace(/[?&]$/, '');
-
-    const content_ = JSON.stringify(body);
-
-    let options_ = <RequestInit>{
-      body: content_,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'text/plain',
-      },
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processRegister(_response);
-    });
-  }
-
-  protected processRegister(response: Response): Promise<AuthSuccessResponse> {
-    console.log(response);
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
+        this.http = http ? http : <any>window;
+        this.baseUrl = baseUrl ? baseUrl : "";
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        let result200: any = null;
-        let resultData200 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result200 = AuthSuccessResponse.fromJS(resultData200);
-        console.log(result200);
-        return result200;
-      });
-    } else if (status === 400) {
-      return response.text().then(_responseText => {
-        let result400: any = null;
-        let resultData400 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result400 = AuthFailedResponse.fromJS(resultData400);
-        return throwException('Bad Request', status, _responseText, _headers, result400);
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    register(body: RegisterRequest | undefined): Promise<AuthSuccessResponse> {
+        let url_ = this.baseUrl + "/api/v1/auth/register";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <RequestInit>{
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processRegister(_response);
+        });
     }
-    return Promise.resolve<AuthSuccessResponse>(<any>null);
-  }
 
-  /**
-   * @param body (optional)
-   * @return Success
-   */
-  login(body: LoginRequest | undefined): Promise<AuthSuccessResponse> {
-    let url_ = this.baseUrl + '/api/v1/auth/login';
-    url_ = url_.replace(/[?&]$/, '');
-
-    const content_ = JSON.stringify(body);
-    let options_ = <RequestInit>{
-      body: content_,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'text/plain',
-      },
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processLogin(_response);
-    });
-  }
-
-  protected processLogin(response: Response): Promise<AuthSuccessResponse> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processRegister(response: Response): Promise<AuthSuccessResponse> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = AuthSuccessResponse.fromJS(resultData200);
+            return result200;
+            });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = AuthFailedResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+            });
+        } else if (status === 422) {
+            return response.text().then((_responseText) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ValidationFailedResponse.fromJS(resultData422);
+            return throwException("Client Error", status, _responseText, _headers, result422);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<AuthSuccessResponse>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        let result200: any = null;
-        let resultData200 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result200 = AuthSuccessResponse.fromJS(resultData200);
-        return result200;
-      });
-    } else if (status === 400) {
-      return response.text().then(_responseText => {
-        let result400: any = null;
-        let resultData400 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result400 = AuthFailedResponse.fromJS(resultData400);
-        return throwException('Bad Request', status, _responseText, _headers, result400);
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    login(body: LoginRequest | undefined): Promise<AuthSuccessResponse> {
+        let url_ = this.baseUrl + "/api/v1/auth/login";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <RequestInit>{
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processLogin(_response);
+        });
     }
-    return Promise.resolve<AuthSuccessResponse>(<any>null);
-  }
 
-  /**
-   * @param body (optional)
-   * @return Success
-   */
-  logout(body: LogoutRequest | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/api/v1/auth/logout';
-    url_ = url_.replace(/[?&]$/, '');
-
-    const content_ = JSON.stringify(body);
-
-    let options_ = <RequestInit>{
-      body: content_,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processLogout(_response);
-    });
-  }
-
-  protected processLogout(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processLogin(response: Response): Promise<AuthSuccessResponse> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = AuthSuccessResponse.fromJS(resultData200);
+            return result200;
+            });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = AuthFailedResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+            });
+        } else if (status === 422) {
+            return response.text().then((_responseText) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ValidationFailedResponse.fromJS(resultData422);
+            return throwException("Client Error", status, _responseText, _headers, result422);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<AuthSuccessResponse>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status === 400) {
-      return response.text().then(_responseText => {
-        let result400: any = null;
-        let resultData400 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result400 = AuthFailedResponse.fromJS(resultData400);
-        return throwException('Bad Request', status, _responseText, _headers, result400);
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    logout(body: LogoutRequest | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/v1/auth/logout";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <RequestInit>{
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processLogout(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @param body (optional)
-   * @return Success
-   */
-  refresh(body: RefreshRequest | undefined): Promise<AuthSuccessResponse> {
-    let url_ = this.baseUrl + '/api/v1/auth/refresh';
-    url_ = url_.replace(/[?&]$/, '');
-
-    const content_ = JSON.stringify(body);
-
-    let options_ = <RequestInit>{
-      body: content_,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'text/plain',
-      },
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processRefresh(_response);
-    });
-  }
-
-  protected processRefresh(response: Response): Promise<AuthSuccessResponse> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processLogout(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = AuthFailedResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+            });
+        } else if (status === 422) {
+            return response.text().then((_responseText) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ValidationFailedResponse.fromJS(resultData422);
+            return throwException("Client Error", status, _responseText, _headers, result422);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        let result200: any = null;
-        let resultData200 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result200 = AuthSuccessResponse.fromJS(resultData200);
-        return result200;
-      });
-    } else if (status === 400) {
-      return response.text().then(_responseText => {
-        let result400: any = null;
-        let resultData400 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result400 = AuthFailedResponse.fromJS(resultData400);
-        return throwException('Bad Request', status, _responseText, _headers, result400);
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    refresh(body: RefreshRequest | undefined): Promise<AuthSuccessResponse> {
+        let url_ = this.baseUrl + "/api/v1/auth/refresh";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <RequestInit>{
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processRefresh(_response);
+        });
     }
-    return Promise.resolve<AuthSuccessResponse>(<any>null);
-  }
 
-  /**
-   * @return Success
-   */
-  recipePriceBreakdown(id: number): Promise<void> {
-    let url_ = this.baseUrl + '/recipePriceBreakdown/{id}';
-    if (id === undefined || id === null) throw new Error("The parameter 'id' must be defined.");
-    url_ = url_.replace('{id}', encodeURIComponent('' + id));
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_ = <RequestInit>{
-      method: 'GET',
-      headers: {},
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processRecipePriceBreakdown(_response);
-    });
-  }
-
-  protected processRecipePriceBreakdown(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processRefresh(response: Response): Promise<AuthSuccessResponse> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = AuthSuccessResponse.fromJS(resultData200);
+            return result200;
+            });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = AuthFailedResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+            });
+        } else if (status === 422) {
+            return response.text().then((_responseText) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ValidationFailedResponse.fromJS(resultData422);
+            return throwException("Client Error", status, _responseText, _headers, result422);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<AuthSuccessResponse>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @return Success
+     */
+    recipePriceBreakdown(id: number): Promise<void> {
+        let url_ = this.baseUrl + "/recipePriceBreakdown/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processRecipePriceBreakdown(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @return Success
-   */
-  recipeIngredients(id: number): Promise<RecipeIngredients> {
-    let url_ = this.baseUrl + '/recipeIngredients/{id}';
-    if (id === undefined || id === null) throw new Error("The parameter 'id' must be defined.");
-    url_ = url_.replace('{id}', encodeURIComponent('' + id));
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_ = <RequestInit>{
-      method: 'GET',
-      headers: {
-        Accept: 'text/plain',
-      },
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processRecipeIngredients(_response);
-    });
-  }
-
-  protected processRecipeIngredients(response: Response): Promise<RecipeIngredients> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processRecipePriceBreakdown(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        let result200: any = null;
-        let resultData200 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result200 = RecipeIngredients.fromJS(resultData200);
-        return result200;
-      });
-    } else if (status === 404) {
-      return response.text().then(_responseText => {
-        let result404: any = null;
-        let resultData404 =
-          _responseText === '' ? null : JSON.parse(_responseText, this.jsonParseReviver);
-        result404 = FailRequest.fromJS(resultData404);
-        return throwException('Not Found', status, _responseText, _headers, result404);
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @return Success
+     */
+    recipeIngredients(id: number): Promise<RecipeIngredients> {
+        let url_ = this.baseUrl + "/recipeIngredients/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+                "Accept": "text/plain"
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processRecipeIngredients(_response);
+        });
     }
-    return Promise.resolve<RecipeIngredients>(<any>null);
-  }
 
-  /**
-   * @param body (optional)
-   * @return Success
-   */
-  searchByIngredients(body: IngredientsQuery | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/searchByIngredients';
-    url_ = url_.replace(/[?&]$/, '');
-
-    const content_ = JSON.stringify(body);
-
-    let options_ = <RequestInit>{
-      body: content_,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processSearchByIngredients(_response);
-    });
-  }
-
-  protected processSearchByIngredients(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processRecipeIngredients(response: Response): Promise<RecipeIngredients> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = RecipeIngredients.fromJS(resultData200);
+            return result200;
+            });
+        } else if (status === 404) {
+            return response.text().then((_responseText) => {
+            let result404: any = null;
+            let resultData404 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result404 = FailRequest.fromJS(resultData404);
+            return throwException("Not Found", status, _responseText, _headers, result404);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<RecipeIngredients>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    searchByIngredients(body: IngredientsQuery | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/searchByIngredients";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <RequestInit>{
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processSearchByIngredients(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @param stepBreakdown (optional)
-   * @return Success
-   */
-  recipeInstructions(id: number, stepBreakdown: boolean | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/recipeInstructions/{id}?';
-    if (id === undefined || id === null) throw new Error("The parameter 'id' must be defined.");
-    url_ = url_.replace('{id}', encodeURIComponent('' + id));
-    if (stepBreakdown === null) throw new Error("The parameter 'stepBreakdown' cannot be null.");
-    else if (stepBreakdown !== undefined)
-      url_ += 'stepBreakdown=' + encodeURIComponent('' + stepBreakdown) + '&';
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_ = <RequestInit>{
-      method: 'GET',
-      headers: {},
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processRecipeInstructions(_response);
-    });
-  }
-
-  protected processRecipeInstructions(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processSearchByIngredients(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param stepBreakdown (optional) 
+     * @return Success
+     */
+    recipeInstructions(id: number, stepBreakdown: boolean | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/recipeInstructions/{id}?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        if (stepBreakdown === null)
+            throw new Error("The parameter 'stepBreakdown' cannot be null.");
+        else if (stepBreakdown !== undefined)
+            url_ += "stepBreakdown=" + encodeURIComponent("" + stepBreakdown) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processRecipeInstructions(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @return Success
-   */
-  me(): Promise<void> {
-    let url_ = this.baseUrl + '/api/v1/users/me';
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_ = <RequestInit>{
-      method: 'GET',
-      headers: {},
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processMe(_response);
-    });
-  }
-
-  protected processMe(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processRecipeInstructions(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @return Success
+     */
+    me(): Promise<void> {
+        let url_ = this.baseUrl + "/api/v1/users/me";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processMe(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @param body (optional)
-   * @return Success
-   */
-  me2(body: UpdateCurrentUserRequest | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/api/v1/users/me';
-    url_ = url_.replace(/[?&]$/, '');
-
-    const content_ = JSON.stringify(body);
-
-    let options_ = <RequestInit>{
-      body: content_,
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processMe2(_response);
-    });
-  }
-
-  protected processMe2(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processMe(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    me2(body: UpdateCurrentUserRequest | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/v1/users/me";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <RequestInit>{
+            body: content_,
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processMe2(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @param body (optional)
-   * @return Success
-   */
-  changePassword(body: ChangeCurrentUserPasswordRequest | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/api/v1/user/me/change-password';
-    url_ = url_.replace(/[?&]$/, '');
-
-    const content_ = JSON.stringify(body);
-
-    let options_ = <RequestInit>{
-      body: content_,
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processChangePassword(_response);
-    });
-  }
-
-  protected processChangePassword(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processMe2(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    changePassword(body: ChangeCurrentUserPasswordRequest | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/v1/user/me/change-password";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ = <RequestInit>{
+            body: content_,
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processChangePassword(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @param defaultCss (optional)
-   * @return Success
-   */
-  recipeVisualization(id: number, defaultCss: boolean | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/recipeVisualization/{id}?';
-    if (id === undefined || id === null) throw new Error("The parameter 'id' must be defined.");
-    url_ = url_.replace('{id}', encodeURIComponent('' + id));
-    if (defaultCss === null) throw new Error("The parameter 'defaultCss' cannot be null.");
-    else if (defaultCss !== undefined)
-      url_ += 'defaultCss=' + encodeURIComponent('' + defaultCss) + '&';
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_ = <RequestInit>{
-      method: 'GET',
-      headers: {},
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processRecipeVisualization(_response);
-    });
-  }
-
-  protected processRecipeVisualization(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processChangePassword(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param defaultCss (optional) 
+     * @return Success
+     */
+    recipeVisualization(id: number, defaultCss: boolean | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/recipeVisualization/{id}?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        if (defaultCss === null)
+            throw new Error("The parameter 'defaultCss' cannot be null.");
+        else if (defaultCss !== undefined)
+            url_ += "defaultCss=" + encodeURIComponent("" + defaultCss) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processRecipeVisualization(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @param defaultCss (optional)
-   * @return Success
-   */
-  equipmentVisualization(id: number, defaultCss: boolean | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/equipmentVisualization/{id}?';
-    if (id === undefined || id === null) throw new Error("The parameter 'id' must be defined.");
-    url_ = url_.replace('{id}', encodeURIComponent('' + id));
-    if (defaultCss === null) throw new Error("The parameter 'defaultCss' cannot be null.");
-    else if (defaultCss !== undefined)
-      url_ += 'defaultCss=' + encodeURIComponent('' + defaultCss) + '&';
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_ = <RequestInit>{
-      method: 'GET',
-      headers: {},
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processEquipmentVisualization(_response);
-    });
-  }
-
-  protected processEquipmentVisualization(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processRecipeVisualization(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param defaultCss (optional) 
+     * @return Success
+     */
+    equipmentVisualization(id: number, defaultCss: boolean | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/equipmentVisualization/{id}?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        if (defaultCss === null)
+            throw new Error("The parameter 'defaultCss' cannot be null.");
+        else if (defaultCss !== undefined)
+            url_ += "defaultCss=" + encodeURIComponent("" + defaultCss) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processEquipmentVisualization(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @param defaultCss (optional)
-   * @return Success
-   */
-  priceBreakdownVisualization(id: number, defaultCss: boolean | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/priceBreakdownVisualization/{id}?';
-    if (id === undefined || id === null) throw new Error("The parameter 'id' must be defined.");
-    url_ = url_.replace('{id}', encodeURIComponent('' + id));
-    if (defaultCss === null) throw new Error("The parameter 'defaultCss' cannot be null.");
-    else if (defaultCss !== undefined)
-      url_ += 'defaultCss=' + encodeURIComponent('' + defaultCss) + '&';
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_ = <RequestInit>{
-      method: 'GET',
-      headers: {},
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processPriceBreakdownVisualization(_response);
-    });
-  }
-
-  protected processPriceBreakdownVisualization(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processEquipmentVisualization(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param defaultCss (optional) 
+     * @return Success
+     */
+    priceBreakdownVisualization(id: number, defaultCss: boolean | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/priceBreakdownVisualization/{id}?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        if (defaultCss === null)
+            throw new Error("The parameter 'defaultCss' cannot be null.");
+        else if (defaultCss !== undefined)
+            url_ += "defaultCss=" + encodeURIComponent("" + defaultCss) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processPriceBreakdownVisualization(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
 
-  /**
-   * @param defaultCss (optional)
-   * @return Success
-   */
-  nutrionVisualization(id: number, defaultCss: boolean | undefined): Promise<void> {
-    let url_ = this.baseUrl + '/nutrionVisualization/{id}?';
-    if (id === undefined || id === null) throw new Error("The parameter 'id' must be defined.");
-    url_ = url_.replace('{id}', encodeURIComponent('' + id));
-    if (defaultCss === null) throw new Error("The parameter 'defaultCss' cannot be null.");
-    else if (defaultCss !== undefined)
-      url_ += 'defaultCss=' + encodeURIComponent('' + defaultCss) + '&';
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_ = <RequestInit>{
-      method: 'GET',
-      headers: {},
-    };
-
-    return this.http.fetch(url_, options_).then((_response: Response) => {
-      return this.processNutrionVisualization(_response);
-    });
-  }
-
-  protected processNutrionVisualization(response: Response): Promise<void> {
-    const status = response.status;
-    let _headers: any = {};
-    if (response.headers && response.headers.forEach) {
-      response.headers.forEach((v: any, k: any) => (_headers[k] = v));
+    protected processPriceBreakdownVisualization(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
     }
-    if (status === 200) {
-      return response.text().then(_responseText => {
-        return;
-      });
-    } else if (status !== 200 && status !== 204) {
-      return response.text().then(_responseText => {
-        return throwException(
-          'An unexpected server error occurred.',
-          status,
-          _responseText,
-          _headers
-        );
-      });
+
+    /**
+     * @param defaultCss (optional) 
+     * @return Success
+     */
+    nutrionVisualization(id: number, defaultCss: boolean | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/nutrionVisualization/{id}?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        if (defaultCss === null)
+            throw new Error("The parameter 'defaultCss' cannot be null.");
+        else if (defaultCss !== undefined)
+            url_ += "defaultCss=" + encodeURIComponent("" + defaultCss) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processNutrionVisualization(_response);
+        });
     }
-    return Promise.resolve<void>(<any>null);
-  }
+
+    protected processNutrionVisualization(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(<any>null);
+    }
 }
 
 export class RegisterRequest implements IRegisterRequest {
-  email?: string | undefined;
-  userName?: string | undefined;
-  password?: string | undefined;
+    email?: string | undefined;
+    userName?: string | undefined;
+    password?: string | undefined;
 
-  constructor(data?: IRegisterRequest) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IRegisterRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.email = _data['email'];
-      this.userName = _data['userName'];
-      this.password = _data['password'];
+    init(_data?: any) {
+        if (_data) {
+            this.email = _data["email"];
+            this.userName = _data["userName"];
+            this.password = _data["password"];
+        }
     }
-  }
 
-  static fromJS(data: any): RegisterRequest {
-    data = typeof data === 'object' ? data : {};
-    let result = new RegisterRequest();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): RegisterRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new RegisterRequest();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['email'] = this.email;
-    data['userName'] = this.userName;
-    data['password'] = this.password;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["email"] = this.email;
+        data["userName"] = this.userName;
+        data["password"] = this.password;
+        return data; 
+    }
 }
 
 export interface IRegisterRequest {
-  email?: string | undefined;
-  userName?: string | undefined;
-  password?: string | undefined;
+    email?: string | undefined;
+    userName?: string | undefined;
+    password?: string | undefined;
 }
 
 export class AuthSuccessResponse implements IAuthSuccessResponse {
-  token?: string | undefined;
-  refreshToken?: string | undefined;
-  success?: boolean;
+    token?: string | undefined;
+    refreshToken?: string | undefined;
+    success?: boolean;
 
-  constructor(data?: IAuthSuccessResponse) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IAuthSuccessResponse) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.token = _data['token'];
-      this.refreshToken = _data['refreshToken'];
-      this.success = _data['success'];
+    init(_data?: any) {
+        if (_data) {
+            this.token = _data["token"];
+            this.refreshToken = _data["refreshToken"];
+            this.success = _data["success"];
+        }
     }
-  }
 
-  static fromJS(data: any): AuthSuccessResponse {
-    data = typeof data === 'object' ? data : {};
-    let result = new AuthSuccessResponse();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): AuthSuccessResponse {
+        data = typeof data === 'object' ? data : {};
+        let result = new AuthSuccessResponse();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['token'] = this.token;
-    data['refreshToken'] = this.refreshToken;
-    data['success'] = this.success;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["token"] = this.token;
+        data["refreshToken"] = this.refreshToken;
+        data["success"] = this.success;
+        return data; 
+    }
 }
 
 export interface IAuthSuccessResponse {
-  token?: string | undefined;
-  refreshToken?: string | undefined;
-  success?: boolean;
+    token?: string | undefined;
+    refreshToken?: string | undefined;
+    success?: boolean;
 }
 
 export class AuthFailedResponse implements IAuthFailedResponse {
-  success?: boolean;
-  errors?: string[] | undefined;
+    success?: boolean;
+    errors?: string[] | undefined;
 
-  constructor(data?: IAuthFailedResponse) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IAuthFailedResponse) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.success = _data['success'];
-      if (Array.isArray(_data['errors'])) {
-        this.errors = [] as any;
-        for (let item of _data['errors']) this.errors!.push(item);
-      }
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            if (Array.isArray(_data["errors"])) {
+                this.errors = [] as any;
+                for (let item of _data["errors"])
+                    this.errors!.push(item);
+            }
+        }
     }
-  }
 
-  static fromJS(data: any): AuthFailedResponse {
-    data = typeof data === 'object' ? data : {};
-    let result = new AuthFailedResponse();
-    result.init(data);
-    return result;
-  }
-
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['success'] = this.success;
-    if (Array.isArray(this.errors)) {
-      data['errors'] = [];
-      for (let item of this.errors) data['errors'].push(item);
+    static fromJS(data: any): AuthFailedResponse {
+        data = typeof data === 'object' ? data : {};
+        let result = new AuthFailedResponse();
+        result.init(data);
+        return result;
     }
-    return data;
-  }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        if (Array.isArray(this.errors)) {
+            data["errors"] = [];
+            for (let item of this.errors)
+                data["errors"].push(item);
+        }
+        return data; 
+    }
 }
 
 export interface IAuthFailedResponse {
-  success?: boolean;
-  errors?: string[] | undefined;
+    success?: boolean;
+    errors?: string[] | undefined;
+}
+
+export class FiledErrors implements IFiledErrors {
+    field?: string | undefined;
+    messages?: string[] | undefined;
+
+    constructor(data?: IFiledErrors) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.field = _data["field"];
+            if (Array.isArray(_data["messages"])) {
+                this.messages = [] as any;
+                for (let item of _data["messages"])
+                    this.messages!.push(item);
+            }
+        }
+    }
+
+    static fromJS(data: any): FiledErrors {
+        data = typeof data === 'object' ? data : {};
+        let result = new FiledErrors();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["field"] = this.field;
+        if (Array.isArray(this.messages)) {
+            data["messages"] = [];
+            for (let item of this.messages)
+                data["messages"].push(item);
+        }
+        return data; 
+    }
+}
+
+export interface IFiledErrors {
+    field?: string | undefined;
+    messages?: string[] | undefined;
+}
+
+export class ValidationFailedResponse implements IValidationFailedResponse {
+    readonly status?: boolean;
+    errors?: FiledErrors[] | undefined;
+
+    constructor(data?: IValidationFailedResponse) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            (<any>this).status = _data["status"];
+            if (Array.isArray(_data["errors"])) {
+                this.errors = [] as any;
+                for (let item of _data["errors"])
+                    this.errors!.push(FiledErrors.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ValidationFailedResponse {
+        data = typeof data === 'object' ? data : {};
+        let result = new ValidationFailedResponse();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["status"] = this.status;
+        if (Array.isArray(this.errors)) {
+            data["errors"] = [];
+            for (let item of this.errors)
+                data["errors"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IValidationFailedResponse {
+    status?: boolean;
+    errors?: FiledErrors[] | undefined;
 }
 
 export class LoginRequest implements ILoginRequest {
-  email?: string | undefined;
-  password?: string | undefined;
+    email?: string | undefined;
+    password?: string | undefined;
 
-  constructor(data?: ILoginRequest) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: ILoginRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.email = _data['email'];
-      this.password = _data['password'];
+    init(_data?: any) {
+        if (_data) {
+            this.email = _data["email"];
+            this.password = _data["password"];
+        }
     }
-  }
 
-  static fromJS(data: any): LoginRequest {
-    data = typeof data === 'object' ? data : {};
-    let result = new LoginRequest();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): LoginRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new LoginRequest();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['email'] = this.email;
-    data['password'] = this.password;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["email"] = this.email;
+        data["password"] = this.password;
+        return data; 
+    }
 }
 
 export interface ILoginRequest {
-  email?: string | undefined;
-  password?: string | undefined;
+    email?: string | undefined;
+    password?: string | undefined;
 }
 
 export class LogoutRequest implements ILogoutRequest {
-  token?: string | undefined;
+    token?: string | undefined;
 
-  constructor(data?: ILogoutRequest) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: ILogoutRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.token = _data['token'];
+    init(_data?: any) {
+        if (_data) {
+            this.token = _data["token"];
+        }
     }
-  }
 
-  static fromJS(data: any): LogoutRequest {
-    data = typeof data === 'object' ? data : {};
-    let result = new LogoutRequest();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): LogoutRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new LogoutRequest();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['token'] = this.token;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["token"] = this.token;
+        return data; 
+    }
 }
 
 export interface ILogoutRequest {
-  token?: string | undefined;
+    token?: string | undefined;
 }
 
 export class RefreshRequest implements IRefreshRequest {
-  token?: string | undefined;
-  refreshToken?: string | undefined;
+    token?: string | undefined;
+    refreshToken?: string | undefined;
 
-  constructor(data?: IRefreshRequest) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IRefreshRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.token = _data['token'];
-      this.refreshToken = _data['refreshToken'];
+    init(_data?: any) {
+        if (_data) {
+            this.token = _data["token"];
+            this.refreshToken = _data["refreshToken"];
+        }
     }
-  }
 
-  static fromJS(data: any): RefreshRequest {
-    data = typeof data === 'object' ? data : {};
-    let result = new RefreshRequest();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): RefreshRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new RefreshRequest();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['token'] = this.token;
-    data['refreshToken'] = this.refreshToken;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["token"] = this.token;
+        data["refreshToken"] = this.refreshToken;
+        return data; 
+    }
 }
 
 export interface IRefreshRequest {
-  token?: string | undefined;
-  refreshToken?: string | undefined;
+    token?: string | undefined;
+    refreshToken?: string | undefined;
 }
 
 export class Metric implements IMetric {
-  unit?: string | undefined;
-  value?: number;
+    unit?: string | undefined;
+    value?: number;
 
-  constructor(data?: IMetric) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IMetric) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.unit = _data['unit'];
-      this.value = _data['value'];
+    init(_data?: any) {
+        if (_data) {
+            this.unit = _data["unit"];
+            this.value = _data["value"];
+        }
     }
-  }
 
-  static fromJS(data: any): Metric {
-    data = typeof data === 'object' ? data : {};
-    let result = new Metric();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): Metric {
+        data = typeof data === 'object' ? data : {};
+        let result = new Metric();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['unit'] = this.unit;
-    data['value'] = this.value;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["unit"] = this.unit;
+        data["value"] = this.value;
+        return data; 
+    }
 }
 
 export interface IMetric {
-  unit?: string | undefined;
-  value?: number;
+    unit?: string | undefined;
+    value?: number;
 }
 
 export class Us implements IUs {
-  unit?: string | undefined;
-  value?: number;
+    unit?: string | undefined;
+    value?: number;
 
-  constructor(data?: IUs) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IUs) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.unit = _data['unit'];
-      this.value = _data['value'];
+    init(_data?: any) {
+        if (_data) {
+            this.unit = _data["unit"];
+            this.value = _data["value"];
+        }
     }
-  }
 
-  static fromJS(data: any): Us {
-    data = typeof data === 'object' ? data : {};
-    let result = new Us();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): Us {
+        data = typeof data === 'object' ? data : {};
+        let result = new Us();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['unit'] = this.unit;
-    data['value'] = this.value;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["unit"] = this.unit;
+        data["value"] = this.value;
+        return data; 
+    }
 }
 
 export interface IUs {
-  unit?: string | undefined;
-  value?: number;
+    unit?: string | undefined;
+    value?: number;
 }
 
 export class Amount implements IAmount {
-  metric?: Metric;
-  us?: Us;
+    metric?: Metric;
+    us?: Us;
 
-  constructor(data?: IAmount) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IAmount) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.metric = _data['metric'] ? Metric.fromJS(_data['metric']) : <any>undefined;
-      this.us = _data['us'] ? Us.fromJS(_data['us']) : <any>undefined;
+    init(_data?: any) {
+        if (_data) {
+            this.metric = _data["metric"] ? Metric.fromJS(_data["metric"]) : <any>undefined;
+            this.us = _data["us"] ? Us.fromJS(_data["us"]) : <any>undefined;
+        }
     }
-  }
 
-  static fromJS(data: any): Amount {
-    data = typeof data === 'object' ? data : {};
-    let result = new Amount();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): Amount {
+        data = typeof data === 'object' ? data : {};
+        let result = new Amount();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['metric'] = this.metric ? this.metric.toJSON() : <any>undefined;
-    data['us'] = this.us ? this.us.toJSON() : <any>undefined;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["metric"] = this.metric ? this.metric.toJSON() : <any>undefined;
+        data["us"] = this.us ? this.us.toJSON() : <any>undefined;
+        return data; 
+    }
 }
 
 export interface IAmount {
-  metric?: Metric;
-  us?: Us;
+    metric?: Metric;
+    us?: Us;
 }
 
 export class Ingredients implements IIngredients {
-  amout?: Amount;
-  image?: string | undefined;
-  name?: string | undefined;
+    amout?: Amount;
+    image?: string | undefined;
+    name?: string | undefined;
 
-  constructor(data?: IIngredients) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IIngredients) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.amout = _data['amout'] ? Amount.fromJS(_data['amout']) : <any>undefined;
-      this.image = _data['image'];
-      this.name = _data['name'];
+    init(_data?: any) {
+        if (_data) {
+            this.amout = _data["amout"] ? Amount.fromJS(_data["amout"]) : <any>undefined;
+            this.image = _data["image"];
+            this.name = _data["name"];
+        }
     }
-  }
 
-  static fromJS(data: any): Ingredients {
-    data = typeof data === 'object' ? data : {};
-    let result = new Ingredients();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): Ingredients {
+        data = typeof data === 'object' ? data : {};
+        let result = new Ingredients();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['amout'] = this.amout ? this.amout.toJSON() : <any>undefined;
-    data['image'] = this.image;
-    data['name'] = this.name;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["amout"] = this.amout ? this.amout.toJSON() : <any>undefined;
+        data["image"] = this.image;
+        data["name"] = this.name;
+        return data; 
+    }
 }
 
 export interface IIngredients {
-  amout?: Amount;
-  image?: string | undefined;
-  name?: string | undefined;
+    amout?: Amount;
+    image?: string | undefined;
+    name?: string | undefined;
 }
 
 export class RecipeIngredients implements IRecipeIngredients {
-  ingredients?: Ingredients[] | undefined;
+    ingredients?: Ingredients[] | undefined;
 
-  constructor(data?: IRecipeIngredients) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IRecipeIngredients) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      if (Array.isArray(_data['ingredients'])) {
-        this.ingredients = [] as any;
-        for (let item of _data['ingredients']) this.ingredients!.push(Ingredients.fromJS(item));
-      }
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["ingredients"])) {
+                this.ingredients = [] as any;
+                for (let item of _data["ingredients"])
+                    this.ingredients!.push(Ingredients.fromJS(item));
+            }
+        }
     }
-  }
 
-  static fromJS(data: any): RecipeIngredients {
-    data = typeof data === 'object' ? data : {};
-    let result = new RecipeIngredients();
-    result.init(data);
-    return result;
-  }
-
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    if (Array.isArray(this.ingredients)) {
-      data['ingredients'] = [];
-      for (let item of this.ingredients) data['ingredients'].push(item.toJSON());
+    static fromJS(data: any): RecipeIngredients {
+        data = typeof data === 'object' ? data : {};
+        let result = new RecipeIngredients();
+        result.init(data);
+        return result;
     }
-    return data;
-  }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.ingredients)) {
+            data["ingredients"] = [];
+            for (let item of this.ingredients)
+                data["ingredients"].push(item.toJSON());
+        }
+        return data; 
+    }
 }
 
 export interface IRecipeIngredients {
-  ingredients?: Ingredients[] | undefined;
+    ingredients?: Ingredients[] | undefined;
 }
 
 export class FailRequest implements IFailRequest {
-  constructor(data?: IFailRequest) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+
+    constructor(data?: IFailRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {}
+    init(_data?: any) {
+    }
 
-  static fromJS(data: any): FailRequest {
-    data = typeof data === 'object' ? data : {};
-    let result = new FailRequest();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): FailRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new FailRequest();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        return data; 
+    }
 }
 
-export interface IFailRequest {}
+export interface IFailRequest {
+}
 
 export class IngredientsQuery implements IIngredientsQuery {
-  number?: number | undefined;
-  limitLicense?: boolean | undefined;
-  ranking?: number | undefined;
-  ignorePantry?: boolean | undefined;
-  ingredients?: string[] | undefined;
+    number?: number | undefined;
+    limitLicense?: boolean | undefined;
+    ranking?: number | undefined;
+    ignorePantry?: boolean | undefined;
+    ingredients?: string[] | undefined;
 
-  constructor(data?: IIngredientsQuery) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IIngredientsQuery) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.number = _data['number'];
-      this.limitLicense = _data['limitLicense'];
-      this.ranking = _data['ranking'];
-      this.ignorePantry = _data['ignorePantry'];
-      if (Array.isArray(_data['ingredients'])) {
-        this.ingredients = [] as any;
-        for (let item of _data['ingredients']) this.ingredients!.push(item);
-      }
+    init(_data?: any) {
+        if (_data) {
+            this.number = _data["number"];
+            this.limitLicense = _data["limitLicense"];
+            this.ranking = _data["ranking"];
+            this.ignorePantry = _data["ignorePantry"];
+            if (Array.isArray(_data["ingredients"])) {
+                this.ingredients = [] as any;
+                for (let item of _data["ingredients"])
+                    this.ingredients!.push(item);
+            }
+        }
     }
-  }
 
-  static fromJS(data: any): IngredientsQuery {
-    data = typeof data === 'object' ? data : {};
-    let result = new IngredientsQuery();
-    result.init(data);
-    return result;
-  }
-
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['number'] = this.number;
-    data['limitLicense'] = this.limitLicense;
-    data['ranking'] = this.ranking;
-    data['ignorePantry'] = this.ignorePantry;
-    if (Array.isArray(this.ingredients)) {
-      data['ingredients'] = [];
-      for (let item of this.ingredients) data['ingredients'].push(item);
+    static fromJS(data: any): IngredientsQuery {
+        data = typeof data === 'object' ? data : {};
+        let result = new IngredientsQuery();
+        result.init(data);
+        return result;
     }
-    return data;
-  }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["number"] = this.number;
+        data["limitLicense"] = this.limitLicense;
+        data["ranking"] = this.ranking;
+        data["ignorePantry"] = this.ignorePantry;
+        if (Array.isArray(this.ingredients)) {
+            data["ingredients"] = [];
+            for (let item of this.ingredients)
+                data["ingredients"].push(item);
+        }
+        return data; 
+    }
 }
 
 export interface IIngredientsQuery {
-  number?: number | undefined;
-  limitLicense?: boolean | undefined;
-  ranking?: number | undefined;
-  ignorePantry?: boolean | undefined;
-  ingredients?: string[] | undefined;
+    number?: number | undefined;
+    limitLicense?: boolean | undefined;
+    ranking?: number | undefined;
+    ignorePantry?: boolean | undefined;
+    ingredients?: string[] | undefined;
 }
 
 export class UpdateCurrentUserRequest implements IUpdateCurrentUserRequest {
-  userName?: string | undefined;
-  userSurname?: string | undefined;
-  age?: number | undefined;
-  description?: string | undefined;
-  phoneNumber?: string | undefined;
+    userName?: string | undefined;
+    userSurname?: string | undefined;
+    age?: number | undefined;
+    description?: string | undefined;
+    phoneNumber?: string | undefined;
 
-  constructor(data?: IUpdateCurrentUserRequest) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IUpdateCurrentUserRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.userName = _data['userName'];
-      this.userSurname = _data['userSurname'];
-      this.age = _data['age'];
-      this.description = _data['description'];
-      this.phoneNumber = _data['phoneNumber'];
+    init(_data?: any) {
+        if (_data) {
+            this.userName = _data["userName"];
+            this.userSurname = _data["userSurname"];
+            this.age = _data["age"];
+            this.description = _data["description"];
+            this.phoneNumber = _data["phoneNumber"];
+        }
     }
-  }
 
-  static fromJS(data: any): UpdateCurrentUserRequest {
-    data = typeof data === 'object' ? data : {};
-    let result = new UpdateCurrentUserRequest();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): UpdateCurrentUserRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateCurrentUserRequest();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['userName'] = this.userName;
-    data['userSurname'] = this.userSurname;
-    data['age'] = this.age;
-    data['description'] = this.description;
-    data['phoneNumber'] = this.phoneNumber;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["userName"] = this.userName;
+        data["userSurname"] = this.userSurname;
+        data["age"] = this.age;
+        data["description"] = this.description;
+        data["phoneNumber"] = this.phoneNumber;
+        return data; 
+    }
 }
 
 export interface IUpdateCurrentUserRequest {
-  userName?: string | undefined;
-  userSurname?: string | undefined;
-  age?: number | undefined;
-  description?: string | undefined;
-  phoneNumber?: string | undefined;
+    userName?: string | undefined;
+    userSurname?: string | undefined;
+    age?: number | undefined;
+    description?: string | undefined;
+    phoneNumber?: string | undefined;
 }
 
 export class ChangeCurrentUserPasswordRequest implements IChangeCurrentUserPasswordRequest {
-  oldPassword?: string | undefined;
-  newPassword?: string | undefined;
+    oldPassword?: string | undefined;
+    newPassword?: string | undefined;
 
-  constructor(data?: IChangeCurrentUserPasswordRequest) {
-    if (data) {
-      for (var property in data) {
-        if (data.hasOwnProperty(property)) (<any>this)[property] = (<any>data)[property];
-      }
+    constructor(data?: IChangeCurrentUserPasswordRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
     }
-  }
 
-  init(_data?: any) {
-    if (_data) {
-      this.oldPassword = _data['oldPassword'];
-      this.newPassword = _data['newPassword'];
+    init(_data?: any) {
+        if (_data) {
+            this.oldPassword = _data["oldPassword"];
+            this.newPassword = _data["newPassword"];
+        }
     }
-  }
 
-  static fromJS(data: any): ChangeCurrentUserPasswordRequest {
-    data = typeof data === 'object' ? data : {};
-    let result = new ChangeCurrentUserPasswordRequest();
-    result.init(data);
-    return result;
-  }
+    static fromJS(data: any): ChangeCurrentUserPasswordRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new ChangeCurrentUserPasswordRequest();
+        result.init(data);
+        return result;
+    }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data['oldPassword'] = this.oldPassword;
-    data['newPassword'] = this.newPassword;
-    return data;
-  }
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["oldPassword"] = this.oldPassword;
+        data["newPassword"] = this.newPassword;
+        return data; 
+    }
 }
 
 export interface IChangeCurrentUserPasswordRequest {
-  oldPassword?: string | undefined;
-  newPassword?: string | undefined;
+    oldPassword?: string | undefined;
+    newPassword?: string | undefined;
 }
 
 export class ApiException extends Error {
-  message: string;
-  status: number;
-  response: string;
-  headers: { [key: string]: any };
-  result: any;
+    message: string;
+    status: number; 
+    response: string; 
+    headers: { [key: string]: any; };
+    result: any; 
 
-  constructor(
-    message: string,
-    status: number,
-    response: string,
-    headers: { [key: string]: any },
-    result: any
-  ) {
-    super();
+    constructor(message: string, status: number, response: string, headers: { [key: string]: any; }, result: any) {
+        super();
 
-    this.message = message;
-    this.status = status;
-    this.response = response;
-    this.headers = headers;
-    this.result = result;
-  }
+        this.message = message;
+        this.status = status;
+        this.response = response;
+        this.headers = headers;
+        this.result = result;
+    }
 
-  protected isApiException = true;
+    protected isApiException = true;
 
-  static isApiException(obj: any): obj is ApiException {
-    return obj.isApiException === true;
-  }
+    static isApiException(obj: any): obj is ApiException {
+        return obj.isApiException === true;
+    }
 }
 
-function throwException(
-  message: string,
-  status: number,
-  response: string,
-  headers: { [key: string]: any },
-  result?: any
-): any {
-  if (result !== null && result !== undefined) throw result;
-  else throw new ApiException(message, status, response, headers, null);
+function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): any {
+    if (result !== null && result !== undefined)
+        throw result;
+    else
+        throw new ApiException(message, status, response, headers, null);
 }

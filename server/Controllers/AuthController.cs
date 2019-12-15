@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CookBook.Controllers
 {
     [ApiController]
+    [Consumes("application/json")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(AuthSuccessResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(AuthFailedResponse), StatusCodes.Status400BadRequest)]
