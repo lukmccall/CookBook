@@ -28,6 +28,7 @@ $blue_theme: #70a1ff;
 }
 
 .box-controller {
+    background-color: white;
     visibility: visible;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -55,6 +56,7 @@ $blue_theme: #70a1ff;
 }
 
 .box-container {
+    background-color: white;
     display: flex;
     flex-direction: column;
     max-width: 24em;

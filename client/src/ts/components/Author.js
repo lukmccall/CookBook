@@ -15,9 +15,9 @@ export default class Author extends Component {
                 <div class="social">
                     <a href={this.props.linkedin}><i class="fab fa-linkedin"></i></a>
                     <a href={this.props.fb}><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter-square"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-spotify"></i></a>
+                    <a href={this.props.git}><i class="fab fa-github"></i></a>
+                    <a href={this.props.insta}><i class="fab fa-instagram"></i></a>
+                    <a href={this.props.spotify}><i class="fab fa-spotify"></i></a>
                 </div>
 
             </div>
