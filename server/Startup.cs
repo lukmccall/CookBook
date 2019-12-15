@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using CookBook.API.Validators;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CookBook
 {
@@ -22,8 +25,14 @@ namespace CookBook
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
+            services.AddControllers(options => { options.Filters.Add<ValidatorFilter>(); })
+                .AddFluentValidation(
+                    configuration =>
+                    {
+                        configuration.RunDefaultMvcValidationAfterFluentValidationExecutes = true;
+                        configuration.RegisterValidatorsFromAssemblyContaining<Startup>();
+                    });
+            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.InstallServicesFromAssembly(Configuration);
 
             services.AddAutoMapper(typeof(Startup));

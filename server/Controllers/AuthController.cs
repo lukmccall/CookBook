@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CookBook.API;
 using CookBook.API.Requests.AuthController;
+using CookBook.API.Responses;
 using CookBook.API.Responses.AuthController;
 using CookBook.Domain.AuthController;
 using CookBook.Services;
@@ -11,8 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace CookBook.Controllers
 {
     [ApiController]
+    [Produces("application/json")]
     [ProducesResponseType(typeof(AuthSuccessResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(AuthFailedResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ValidationFailedResponse), StatusCodes.Status422UnprocessableEntity)]
     public class AuthController : Controller
     {
         private readonly IAuthService _authService;

@@ -1,3 +1,4 @@
+using CookBook.API.Validators;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
