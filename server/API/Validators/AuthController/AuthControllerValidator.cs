@@ -9,12 +9,10 @@ namespace CookBook.API.Validators.AuthController
         {
             RuleFor(request => request.Email)
                 .EmailAddress()
-                .NotEmpty()
-                .NotNull();
+                .NotEmpty();
 
             RuleFor(request => request.Password)
-                .NotEmpty()
-                .NotNull();
+                .NotEmpty();
         }
     }
 }

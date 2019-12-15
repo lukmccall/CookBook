@@ -29,7 +29,7 @@ namespace CookBook
                 .AddFluentValidation(
                     configuration =>
                     {
-                        configuration.RunDefaultMvcValidationAfterFluentValidationExecutes = true;
+                        configuration.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                         configuration.RegisterValidatorsFromAssemblyContaining<Startup>();
                     });
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);

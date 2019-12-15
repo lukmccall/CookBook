@@ -547,33 +547,38 @@
       "RegisterRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "email",
+          "password",
+          "userName"
+        ],
         "properties": {
           "email": {
             "type": "string",
-            "format": "email",
-            "nullable": true
+            "format": "email"
           },
           "userName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       },
       "AuthSuccessResponse": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "refreshToken",
+          "success",
+          "token"
+        ],
         "properties": {
           "token": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "refreshToken": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "success": {
             "type": "boolean"
@@ -583,13 +588,16 @@
       "AuthFailedResponse": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "errors",
+          "success"
+        ],
         "properties": {
           "success": {
             "type": "boolean"
           },
           "errors": {
             "type": "array",
-            "nullable": true,
             "items": {
               "type": "string"
             }
@@ -599,14 +607,16 @@
       "FiledErrors": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "field",
+          "messages"
+        ],
         "properties": {
           "field": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "messages": {
             "type": "array",
-            "nullable": true,
             "items": {
               "type": "string"
             }
@@ -616,6 +626,10 @@
       "ValidationFailedResponse": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "errors",
+          "status"
+        ],
         "properties": {
           "status": {
             "type": "boolean",
@@ -623,7 +637,6 @@
           },
           "errors": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/FiledErrors"
             }
@@ -633,39 +646,45 @@
       "LoginRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "email",
+          "password"
+        ],
         "properties": {
           "email": {
             "type": "string",
-            "format": "email",
-            "nullable": true
+            "format": "email"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       },
       "LogoutRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "token"
+        ],
         "properties": {
           "token": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       },
       "RefreshRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "refreshToken",
+          "token"
+        ],
         "properties": {
           "token": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "refreshToken": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       },
@@ -804,14 +823,16 @@
       "ChangeCurrentUserPasswordRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "newPassword",
+          "oldPassword"
+        ],
         "properties": {
           "oldPassword": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "newPassword": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       }

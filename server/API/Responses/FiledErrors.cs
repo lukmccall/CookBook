@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace CookBook.API.Responses.AuthController
+namespace CookBook.API.Responses
 {
-    public class AuthFailedResponse
+    public class FiledErrors
     {
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
-        public bool Success { get; set; }
+        public string Field { get; set; }
 
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
-        public IEnumerable<string> Errors { get; set; }
+        public IEnumerable<string> Messages { get; set; }
     }
 }

@@ -674,9 +674,9 @@ export class Client {
 }
 
 export class RegisterRequest implements IRegisterRequest {
-    email?: string | undefined;
-    userName?: string | undefined;
-    password?: string | undefined;
+    email!: string;
+    userName!: string;
+    password!: string;
 
     constructor(data?: IRegisterRequest) {
         if (data) {
@@ -712,15 +712,15 @@ export class RegisterRequest implements IRegisterRequest {
 }
 
 export interface IRegisterRequest {
-    email?: string | undefined;
-    userName?: string | undefined;
-    password?: string | undefined;
+    email: string;
+    userName: string;
+    password: string;
 }
 
 export class AuthSuccessResponse implements IAuthSuccessResponse {
-    token?: string | undefined;
-    refreshToken?: string | undefined;
-    success?: boolean;
+    token!: string;
+    refreshToken!: string;
+    success!: boolean;
 
     constructor(data?: IAuthSuccessResponse) {
         if (data) {
@@ -756,14 +756,14 @@ export class AuthSuccessResponse implements IAuthSuccessResponse {
 }
 
 export interface IAuthSuccessResponse {
-    token?: string | undefined;
-    refreshToken?: string | undefined;
-    success?: boolean;
+    token: string;
+    refreshToken: string;
+    success: boolean;
 }
 
 export class AuthFailedResponse implements IAuthFailedResponse {
-    success?: boolean;
-    errors?: string[] | undefined;
+    success!: boolean;
+    errors!: string[];
 
     constructor(data?: IAuthFailedResponse) {
         if (data) {
@@ -771,6 +771,9 @@ export class AuthFailedResponse implements IAuthFailedResponse {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
+        }
+        if (!data) {
+            this.errors = [];
         }
     }
 
@@ -805,13 +808,13 @@ export class AuthFailedResponse implements IAuthFailedResponse {
 }
 
 export interface IAuthFailedResponse {
-    success?: boolean;
-    errors?: string[] | undefined;
+    success: boolean;
+    errors: string[];
 }
 
 export class FiledErrors implements IFiledErrors {
-    field?: string | undefined;
-    messages?: string[] | undefined;
+    field!: string;
+    messages!: string[];
 
     constructor(data?: IFiledErrors) {
         if (data) {
@@ -819,6 +822,9 @@ export class FiledErrors implements IFiledErrors {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
+        }
+        if (!data) {
+            this.messages = [];
         }
     }
 
@@ -853,13 +859,13 @@ export class FiledErrors implements IFiledErrors {
 }
 
 export interface IFiledErrors {
-    field?: string | undefined;
-    messages?: string[] | undefined;
+    field: string;
+    messages: string[];
 }
 
 export class ValidationFailedResponse implements IValidationFailedResponse {
-    readonly status?: boolean;
-    errors?: FiledErrors[] | undefined;
+    readonly status!: boolean;
+    errors!: FiledErrors[];
 
     constructor(data?: IValidationFailedResponse) {
         if (data) {
@@ -867,6 +873,9 @@ export class ValidationFailedResponse implements IValidationFailedResponse {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
+        }
+        if (!data) {
+            this.errors = [];
         }
     }
 
@@ -901,13 +910,13 @@ export class ValidationFailedResponse implements IValidationFailedResponse {
 }
 
 export interface IValidationFailedResponse {
-    status?: boolean;
-    errors?: FiledErrors[] | undefined;
+    status: boolean;
+    errors: FiledErrors[];
 }
 
 export class LoginRequest implements ILoginRequest {
-    email?: string | undefined;
-    password?: string | undefined;
+    email!: string;
+    password!: string;
 
     constructor(data?: ILoginRequest) {
         if (data) {
@@ -941,12 +950,12 @@ export class LoginRequest implements ILoginRequest {
 }
 
 export interface ILoginRequest {
-    email?: string | undefined;
-    password?: string | undefined;
+    email: string;
+    password: string;
 }
 
 export class LogoutRequest implements ILogoutRequest {
-    token?: string | undefined;
+    token!: string;
 
     constructor(data?: ILogoutRequest) {
         if (data) {
@@ -978,12 +987,12 @@ export class LogoutRequest implements ILogoutRequest {
 }
 
 export interface ILogoutRequest {
-    token?: string | undefined;
+    token: string;
 }
 
 export class RefreshRequest implements IRefreshRequest {
-    token?: string | undefined;
-    refreshToken?: string | undefined;
+    token!: string;
+    refreshToken!: string;
 
     constructor(data?: IRefreshRequest) {
         if (data) {
@@ -1017,8 +1026,8 @@ export class RefreshRequest implements IRefreshRequest {
 }
 
 export interface IRefreshRequest {
-    token?: string | undefined;
-    refreshToken?: string | undefined;
+    token: string;
+    refreshToken: string;
 }
 
 export class Metric implements IMetric {
@@ -1372,8 +1381,8 @@ export interface IUpdateCurrentUserRequest {
 }
 
 export class ChangeCurrentUserPasswordRequest implements IChangeCurrentUserPasswordRequest {
-    oldPassword?: string | undefined;
-    newPassword?: string | undefined;
+    oldPassword!: string;
+    newPassword!: string;
 
     constructor(data?: IChangeCurrentUserPasswordRequest) {
         if (data) {
@@ -1407,8 +1416,8 @@ export class ChangeCurrentUserPasswordRequest implements IChangeCurrentUserPassw
 }
 
 export interface IChangeCurrentUserPasswordRequest {
-    oldPassword?: string | undefined;
-    newPassword?: string | undefined;
+    oldPassword: string;
+    newPassword: string;
 }
 
 export class ApiException extends Error {
