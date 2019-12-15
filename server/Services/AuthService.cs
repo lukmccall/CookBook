@@ -3,6 +3,7 @@ using CookBook.Domain;
 using CookBook.Domain.AuthController;
 using CookBook.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace CookBook.Services
 {
@@ -23,6 +24,7 @@ namespace CookBook.Services
             {
                 return AuthResult.CreateWithSingleError("This user already exists.");
             }
+
             var newUser = new ApplicationUser
             {
                 Email = registerData.Email,
@@ -33,7 +35,11 @@ namespace CookBook.Services
 
             if (!createdUser.Succeeded)
             {
-                return AuthResult.CreateWithSingleError("Couldn't create a new user.");
+                return new AuthResult
+                {
+                    Success = false,
+                    Errors = createdUser.Errors.Select(x => x.Description)
+                };
             }
 
             return await GeneraAuthResultAsync(newUser);
@@ -44,7 +50,7 @@ namespace CookBook.Services
             var user = await _userManager.FindByEmailAsync(loginData.Email);
             if (user == null || !await _userManager.CheckPasswordAsync(user, loginData.Password))
             {
-                return AuthResult.CreateWithSingleError("Couldn't login.");
+                return AuthResult.CreateWithSingleError("Invalid `Email` or `Password`.");
             }
 
             return await GeneraAuthResultAsync(user);

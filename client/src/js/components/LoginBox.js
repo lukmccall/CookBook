@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { userLogged } from '../actions/auth';
-import { ApiClient } from '../api';
+import { ApiClient, AuthControllerWrapper } from '../api';
 import ErrorList from './ErrorList';
 import { validateEmail } from '../utils';
 
@@ -24,11 +24,11 @@ class LoginBox extends React.Component {
 
     let errors = [];
     if (!validateEmail(this.state.email)) {
-      errors.push('Invalid email format.');
+      errors.push('`Email` must be valid.');
     }
 
     if (this.state.password.length === 0) {
-      errors.push('Password can not be empty.');
+      errors.push('`Password` must not be empty.');
     }
 
     if (errors.length > 0) {
@@ -39,11 +39,13 @@ class LoginBox extends React.Component {
       return;
     }
 
-    ApiClient.login({
-      email: this.state.email,
-      password: this.state.password,
-    })
-      .then(user => {
+    AuthControllerWrapper(
+      () =>
+        ApiClient.login({
+          email: this.state.email,
+          password: this.state.password,
+        }),
+      user => {
         this.setState({
           email: '',
           password: '',
@@ -52,13 +54,9 @@ class LoginBox extends React.Component {
         this.props.userLogged(user);
         console.log(user);
         // TODO: redirect
-      })
-      .catch(({ errors }) => {
-        this.setState({
-          errors: errors,
-        });
-        console.log(errors);
-      });
+      },
+      errors => this.setState({ errors })
+    );
   };
 
   render() {
@@ -72,6 +70,7 @@ class LoginBox extends React.Component {
             <div className="input-group">
               <label htmlFor="email">Email</label>
               <input
+                noValidate
                 type="email"
                 name="email"
                 className="login-input"
@@ -84,6 +83,7 @@ class LoginBox extends React.Component {
             <div className="input-group">
               <label htmlFor="password">Password</label>
               <input
+                noValidate
                 type="password"
                 name="password"
                 className="login-input"

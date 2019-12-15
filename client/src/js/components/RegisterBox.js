@@ -1,6 +1,6 @@
 import React from 'react';
 import { validateEmail } from '../utils';
-import { ApiClient } from '../api';
+import { ApiClient, AuthControllerWrapper } from '../api';
 import { connect } from 'react-redux';
 import { userLogged } from '../actions/auth';
 import ErrorList from './ErrorList';
@@ -62,12 +62,14 @@ class RegisterBox extends React.Component {
       return;
     }
 
-    ApiClient.register({
-      email: this.state.email,
-      password: this.state.password,
-      userName: this.state.username,
-    })
-      .then(user => {
+    AuthControllerWrapper(
+      () =>
+        ApiClient.register({
+          email: this.state.email,
+          password: this.state.password,
+          userName: this.state.username,
+        }),
+      user => {
         this.setState({
           email: '',
           password: '',
@@ -80,12 +82,9 @@ class RegisterBox extends React.Component {
         console.log(user);
 
         // TODO: redirect
-      })
-      .catch(({ errors }) => {
-        this.setState({
-          errors: errors,
-        });
-      });
+      },
+      errors => this.setState({ errors })
+    );
   };
 
   render() {

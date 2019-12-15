@@ -25,8 +25,8 @@
   box-sizing: content-box;
   visibility: visible;
   display: flex;
-  max-width: 24em;
-  min-width: 21em;
+  max-width: 27em;
+  min-width: 25em;
   padding-top: 5px;
   box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
   margin-bottom: 30px;
@@ -48,8 +48,8 @@
 .box-container {
   display: flex;
   flex-direction: column;
-  max-width: 24em;
-  min-width: 21em;
+  max-width: 27em;
+  min-width: 25em;
   box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
   border-radius: 6px;
   padding: 24px;
@@ -83,7 +83,7 @@
   transition: border 0.4s ease-out;
   padding: 10px;
   font-family: Oxygen, sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   color: #3e3e42;
   background: rgba(15, 15, 15, 0.01);
 }
@@ -107,7 +107,7 @@
   display: block;
   padding: 5px 30px;
   border: 0;
-  font-size: 17px;
+  font-size: 16px;
   border-radius: 3px;
   background-color: rgba(15, 15, 15, 0.03);
   margin-top: 30px;
