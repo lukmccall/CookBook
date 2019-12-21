@@ -13,12 +13,18 @@ export default class Contact extends Component {
             name="ŁUKASZ KOSMATY"
             linkedin="https://bit.ly/2YFoZNc"
             fb="https://bit.ly/2PxtfKn"
+            insta="https://instagram.com"
+            git="https://github.com/lukmcall"
+            spotify="https://spotify.com"
           />
           <Author
             photo="https://bit.ly/35bAbDp"
             name="NIKODEM KWAŚNIAK"
             linkedin="https://bit.ly/35amiWe"
             fb="https://bit.ly/38uJ39A"
+            insta="https://instagram.com"
+            git="https://github.com/nkwasniak"
+            spotify="https://spotify.com"
           />
         </section>
         <section class="strap static">

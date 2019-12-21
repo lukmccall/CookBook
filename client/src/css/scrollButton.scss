@@ -1,0 +1,35 @@
+a {
+  color: white;
+}
+  
+.long {
+  width: 100%;
+  background-color: #010e19;
+}
+ 
+.container {
+  height: 400px;
+}
+  
+.scroll {
+    z-index: 2;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    height: 50px;
+    width: 50px;
+    background: none;
+    filter: invert(100%);
+    cursor: pointer;
+    border-radius: 2rem;
+    border: none;
+    opacity: 0.4;
+  &:hover {
+    opacity: 0.8;
+  }
+  i{
+      font-size: 45px;
+      color: #fff;
+  }
+}
+  
