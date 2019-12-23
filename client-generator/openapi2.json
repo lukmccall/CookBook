@@ -1,0 +1,25 @@
+﻿{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "server",
+    "version": "v1"
+  },
+  "paths": {
+    "/dsadas": {
+      "test": [{
+        "$ref": "dsadsa"
+      }]
+    },
+    "/dsadsadsadas": {
+      "test": [{
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }]
+    }
+  }
+}
