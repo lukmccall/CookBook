@@ -23,6 +23,7 @@ namespace client_generator
             };
 
             var jsonString = File.ReadAllText("/Users/lukasz/studies/cis/CookBook/client-generator/openapi.json");
+//            var jsonString = "{\"name\": \"id\",\"in\": \"path\",\"required\": true,\"schema\": {\"type\": \"integer\",\"format\": \"int64\"}}";
             var openApiFile = new Deserializer301(new JsonSerializerSettings()).Deserialize(jsonString);
 
             var result = JsonConvert.SerializeObject(openApiFile, Formatting.Indented, new JsonSerializerSettings

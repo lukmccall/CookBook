@@ -5,21 +5,29 @@
     "version": "v1"
   },
   "paths": {
-    "/dsadas": {
-      "test": [{
-        "$ref": "dsadsa"
-      }]
-    },
-    "/dsadsadsadas": {
-      "test": [{
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "schema": {
-          "type": "integer",
-          "format": "int64"
+    "/recipePriceBreakdown/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "operationId": "recipePriceBreakdown",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
         }
-      }]
+      }
     }
   }
 }

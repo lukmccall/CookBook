@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using client_generator.Models;
 using client_generator.OpenApi._3._0._1.JsonConverters;
 using client_generator.OpenApi._3._0._1.Referable;
 

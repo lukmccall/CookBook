@@ -1,3 +1,4 @@
+using client_generator.Models;
 using client_generator.OpenApi._3._0._1.JsonConverters;
 using Newtonsoft.Json;
 
@@ -12,6 +13,10 @@ namespace client_generator.OpenApi._3._0._1.Referable
         {
             return null;
         }
-        
+
+        public string GetRef()
+        {
+            return Ref;
+        }
     }
 }

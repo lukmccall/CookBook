@@ -1,8 +1,9 @@
-namespace client_generator.OpenApi._3._0._1.Referable
+namespace client_generator.Models
 {
-    
     public interface IReferable<out T>
-    { 
+    {
         T GetObject();
+
+        string GetRef();
     }
 }

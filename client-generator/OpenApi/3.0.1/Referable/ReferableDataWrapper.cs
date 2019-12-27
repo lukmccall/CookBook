@@ -1,4 +1,4 @@
-using client_generator.OpenApi._3._0._1.JsonConverters;
+using client_generator.Models;
 
 namespace client_generator.OpenApi._3._0._1.Referable
 {
@@ -15,6 +15,11 @@ namespace client_generator.OpenApi._3._0._1.Referable
         public T GetObject()
         {
             return _parameter;
+        }
+
+        public string GetRef()
+        {
+            return null;
         }
     }
 }
