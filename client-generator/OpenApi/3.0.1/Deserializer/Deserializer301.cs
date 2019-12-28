@@ -3,7 +3,8 @@ using System.IO;
 using System.Linq;
 using client_generator.Deserializer;
 using client_generator.Models;
-using client_generator.OpenApi._3._0._1.Converters;
+using client_generator.OpenApi._3._0._1.Builders;
+using client_generator.OpenApi._3._0._1.Builders.Schema;
 using client_generator.OpenApi._3._0._1.JsonConverters;
 using client_generator.OpenApi._3._0._1.Referable;
 using Newtonsoft.Json;
@@ -38,76 +39,58 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
             versionedModel.Accept("#", collector);
             collector.Validate();
 
-            var set = new Dictionary<string, ISchema>();
-            var inProggres = new Dictionary<string, ISuspendBuilder<ISchema>>();
-            var schemats = collector.GetObjectOfType<Schema>();
-
-            foreach (var (key, schema) in schemats)
-            {
-                switch (schema.Type)
+            var buildManager = new SuspendBuildsManager<Schema, ISchema>(collector.GetObjectOfType<Schema>(),
+                (key, schema, created, inProgress) =>
                 {
-                    case "integer":
-                        set.Add(key, new SimpleSchema(FieldType.Int));
-                        break;
-                    case "string":
-                        set.Add(key, new SimpleSchema(FieldType.String));
-                        break;
-                    case "number":
-                        set.Add(key, new SimpleSchema(FieldType.Number));
-                        break;
-                    case "array":
+                    switch (schema.Type)
                     {
-                        var builder = new ArraySchemaBuilder(schema.Items?.GetRef() ?? $"{key}/items", set);
-                        builder.Parse();
-                        if (builder.CanCreate())
+                        case "integer":
+                            created.Add(key, new SimpleSchema(FieldType.Int));
+                            break;
+                        case "string":
+                            created.Add(key, new SimpleSchema(FieldType.String));
+                            break;
+                        case "number":
+                            created.Add(key, new SimpleSchema(FieldType.Number));
+                            break;
+                        case "array":
                         {
-                            set.Add(key, builder.Create());
+                            var builder = new ArraySchemaBuilder(schema.Items?.GetRef() ?? $"{key}/items", created);
+                            builder.Parse();
+                            if (builder.CanCreate())
+                            {
+                                created.Add(key, builder.Create());
+                            }
+                            else
+                            {
+                                inProgress.Add(key, builder);
+                            }
+
+                            break;
                         }
-                        else
+                        case "boolean":
+                            created.Add(key, new SimpleSchema(FieldType.Bool));
+                            break;
+
+                        case "object":
                         {
-                            inProggres.Add(key, builder);
+                            var builder = new ClassSchemaBuilder(key.Split('/').Last(), key, schema, created);
+                            builder.Parse();
+                            if (builder.CanCreate())
+                            {
+                                created.Add(key, builder.Create());
+                            }
+                            else
+                            {
+                                inProgress.Add(key, builder);
+                            }
+
+                            break;
                         }
-
-                        break;
                     }
-                    case "boolean":
-                        set.Add(key, new SimpleSchema(FieldType.Bool));
-                        break;
-
-                    case "object":
-                    {
-                        var builder = new ClassSchemaBuilder(key.Split('/').Last(), key, schema, set);
-                        builder.Parse();
-                        if (builder.CanCreate())
-                        {
-                            set.Add(key, builder.Create());
-                        }
-                        else
-                        {
-                            inProggres.Add(key, builder);
-                        }
-
-                        break;
-                    }
-                }
-            }
-
-            while (inProggres.Count != 0)
-            {
-                foreach (var (key, builder) in inProggres)
-                {
-                    if (builder.CanCreate())
-                    {
-                        set.Add(key, builder.Create());
-                        inProggres.Remove(key);
-                    }
-                    else
-                    {
-                        builder.Parse();
-                    }
-                }
-            }
-
+                });
+            buildManager.Build();
+            var schematas = buildManager.GetResult();
             throw new System.NotImplementedException();
         }
     }

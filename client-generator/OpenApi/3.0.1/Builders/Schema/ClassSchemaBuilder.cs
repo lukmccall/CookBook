@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using client_generator.Models;
 
-namespace client_generator.OpenApi._3._0._1.Converters
+namespace client_generator.OpenApi._3._0._1.Builders.Schema
 {
     public class ClassSchemaBuilder : ISuspendBuilder<ISchema>
     {
@@ -12,7 +12,7 @@ namespace client_generator.OpenApi._3._0._1.Converters
         private readonly string _path;
         private readonly Dictionary<string, ISchema> _schemata;
 
-        public ClassSchemaBuilder(string name, string path, Schema model, Dictionary<string, ISchema> schemata)
+        public ClassSchemaBuilder(string name, string path, _1.Schema model, Dictionary<string, ISchema> schemata)
         {
             _name = name;
             _path = path;

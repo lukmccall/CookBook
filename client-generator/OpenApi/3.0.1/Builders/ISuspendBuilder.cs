@@ -1,4 +1,4 @@
-namespace client_generator.OpenApi._3._0._1.Converters
+namespace client_generator.OpenApi._3._0._1.Builders
 {
     public interface ISuspendBuilder<T>
     {
