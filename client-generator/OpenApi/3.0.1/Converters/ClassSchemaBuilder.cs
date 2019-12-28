@@ -4,7 +4,7 @@ using client_generator.Models;
 
 namespace client_generator.OpenApi._3._0._1.Converters
 {
-    public class ClassSchemaBuilder
+    public class ClassSchemaBuilder : ISuspendBuilder<ISchema>
     {
         private readonly Dictionary<string, ISchema> _properties = new Dictionary<string, ISchema>();
         private List<KeyValuePair<string, string>> _propertiesToParse;
@@ -28,13 +28,23 @@ namespace client_generator.OpenApi._3._0._1.Converters
                 _propertiesToParse = new List<KeyValuePair<string, string>>();
             }
         }
+        
+        public bool CanCreate()
+        {
+            return _propertiesToParse.Count == 0;
+        }
 
-        public void ParseProperties()
+        public ISchema Create()
+        {
+            return new ClassSchema(_name, _properties);
+        }
+
+        public void Parse()
         {
             var newProperiesToParse = new List<KeyValuePair<string, string>>();
             foreach (var (key, @ref) in _propertiesToParse)
             {
-                ISchema schema;
+                ISchema schema; 
                 if (@ref != null && _schemata.TryGetValue(@ref, out schema))
                 {
                     _properties.Add(key, schema);
@@ -52,15 +62,5 @@ namespace client_generator.OpenApi._3._0._1.Converters
             _propertiesToParse = newProperiesToParse;
         }
 
-
-        public ISchema Create()
-        {
-            return new ClassSchema(_name, _properties);
-        }
-
-        public bool CanCreate()
-        {
-            return _propertiesToParse.Count == 0;
-        }
     }
 }

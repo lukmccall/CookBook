@@ -39,7 +39,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
             collector.Validate();
 
             var set = new Dictionary<string, ISchema>();
-            var inProggres = new Dictionary<string, ClassSchemaBuilder>();
+            var inProggres = new Dictionary<string, ISuspendBuilder<ISchema>>();
             var schemats = collector.GetObjectOfType<Schema>();
 
             foreach (var (key, schema) in schemats)
@@ -56,16 +56,9 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                         set.Add(key, new SimpleSchema(FieldType.Number));
                         break;
                     case "array":
-                        set.Add(key, new SimpleSchema(FieldType.Array));
-                        break;
-                    case "boolean":
-                        set.Add(key, new SimpleSchema(FieldType.Bool));
-                        break;
-
-                    case "object":
                     {
-                        var builder = new ClassSchemaBuilder(key.Split('/').Last(), key, schema, set);
-                        builder.ParseProperties();
+                        var builder = new ArraySchemaBuilder(schema.Items?.GetRef() ?? $"{key}/items", set);
+                        builder.Parse();
                         if (builder.CanCreate())
                         {
                             set.Add(key, builder.Create());
@@ -74,8 +67,28 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                         {
                             inProggres.Add(key, builder);
                         }
-                    }
+
                         break;
+                    }
+                    case "boolean":
+                        set.Add(key, new SimpleSchema(FieldType.Bool));
+                        break;
+
+                    case "object":
+                    {
+                        var builder = new ClassSchemaBuilder(key.Split('/').Last(), key, schema, set);
+                        builder.Parse();
+                        if (builder.CanCreate())
+                        {
+                            set.Add(key, builder.Create());
+                        }
+                        else
+                        {
+                            inProggres.Add(key, builder);
+                        }
+
+                        break;
+                    }
                 }
             }
 
@@ -90,7 +103,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                     }
                     else
                     {
-                        builder.ParseProperties();
+                        builder.Parse();
                     }
                 }
             }
