@@ -29,9 +29,19 @@ namespace client_generator.OpenApi._3._0._1.Referable
 
         public bool Validate()
         {
+            foreach (var (key, @ref) in _missingReferences)
+            {
+                if (_register.Exists(@ref))
+                {
+                    _missingReferences.Remove(key);
+                }
+            }
             return _missingReferences.Count == 0;
         }
-        
-        
+
+        public Dictionary<string, T> GetObjectOfType<T>()
+        {
+            return _register.GetObjectOfType<T>();
+        }
     }
 }

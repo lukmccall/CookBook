@@ -20,5 +20,20 @@ namespace client_generator.Deserializer
         {
             return _objectRegister.ContainsKey(reference);
         }
+
+        public Dictionary<string, T> GetObjectOfType<T>()
+        {
+            var result = new Dictionary<string, T>();
+
+            foreach (var (key, obj) in _objectRegister)
+            {
+                if (obj.GetType() == typeof(T))
+                {
+                    result[key] = (T) obj;
+                }
+            }
+
+            return result;
+        }
     }
 }
