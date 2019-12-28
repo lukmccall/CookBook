@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using client_generator.OpenApi._3._0._1.Builders;
 
-namespace client_generator.OpenApi._3._0._1.Builders
+namespace client_generator.Deserializer
 {
     public class SuspendBuildsManager<T, U>
     {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using client_generator.Deserializer;
 using client_generator.Models;
 
 namespace client_generator.OpenApi._3._0._1.Builders.Schema
