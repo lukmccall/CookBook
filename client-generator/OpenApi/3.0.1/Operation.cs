@@ -36,16 +36,17 @@ namespace client_generator.OpenApi._3._0._1
             {
                 foreach (var parameter in Parameters)
                 {
-                    collector.Visit($"{path}/{parameter.GetName()}", parameter);
+                    collector.Visit($"{path}/parameters/{parameter.GetName()}", parameter);
                     parameter.GetObject()?.Accept($"{path}/{parameter.GetName()}", collector);
                 }
             }
 
             if (RequestBody != null)
             {
-                collector.Visit($"{path}/requestBody", RequestBody);    
+                collector.Visit($"{path}/requestBody", RequestBody);
+                RequestBody.GetObject().Accept($"{path}/requestBody", collector);
             }
-            
+
             if (Responses != null)
             {
                 foreach (var (key, response) in Responses)

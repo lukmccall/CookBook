@@ -44,8 +44,7 @@ namespace client_generator.OpenApi._3._0._1
                 foreach (var parameter in Parameters)
                 {
                     collector.Visit($"{path}/parameters/{parameter.GetName()}", parameter);
-                    
-//                    collector.Visit($"{path}/parameters/{parameter.GetName()}/schema", parameter.GetObject().Schema);
+                    parameter.GetObject()?.Accept($"{path}/parameters/{parameter.GetName()}", collector);
                 }
             }
 

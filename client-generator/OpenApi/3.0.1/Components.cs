@@ -31,6 +31,7 @@ namespace client_generator.OpenApi._3._0._1
                 foreach (var (key, value) in Schemas)
                 {
                     referenceCollector.Visit($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", value);
+                    value.GetObject()?.Accept($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", referenceCollector);
                 }
             }
 
@@ -39,6 +40,7 @@ namespace client_generator.OpenApi._3._0._1
                 foreach (var (key, value) in Responses)
                 {
                     referenceCollector.Visit($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", value);
+                    value.GetObject()?.Accept($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", referenceCollector);
                 }
             }
 

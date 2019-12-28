@@ -1,6 +1,9 @@
+using client_generator.Models;
+using client_generator.OpenApi._3._0._1.Referable;
+
 namespace client_generator.OpenApi._3._0._1
 {
-    public class Header
+    public class Header : ICollectable<IReferenceCollector>
     {
         public string Description { get; set; }
         public bool Required { get; set; }
@@ -9,6 +12,12 @@ namespace client_generator.OpenApi._3._0._1
         public string Style { get; set; }
         public bool Explode { get; set; }
         public bool AllowReserved { get; set; }
-        public Schema Schema { get; set; }
+        public IReferable<Schema> Schema { get; set; }
+
+        public void Accept(string path, IReferenceCollector collector)
+        {
+            collector.Visit($"{path}/schema", Schema);
+            Schema?.GetObject()?.Accept($"{path}/schema", collector);
+        }
     }
 }

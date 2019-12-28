@@ -6,7 +6,7 @@ using client_generator.OpenApi._3._0._1.Referable;
 
 namespace client_generator.OpenApi._3._0._1
 {
-    public class Response
+    public class Response : ICollectable<IReferenceCollector>
     {
         public string Description { get; set; }
         public Dictionary<string, IReferable<Header>> Headers { get; set; }
@@ -14,6 +14,24 @@ namespace client_generator.OpenApi._3._0._1
 //        public Object Links { get; set; } // currently not supported
 //        public Object Callbacks { get; set; } // currently not supported
         public bool Deprecated { get; set; }
-        
+
+        public void Accept(string path, IReferenceCollector collector)
+        {
+            if (Headers != null)
+            {
+                foreach (var (key, header) in Headers)
+                {
+                    collector.Visit($"{path}/headers/{key}", header);
+                    header.GetObject()?.Accept($"{path}/headers/{key}", collector);
+                }
+            }
+            if (Content != null)
+            {
+                foreach (var (key, content) in Content)
+                {
+                    content.Accept($"{path}/contetn/{key}", collector);
+                }
+            }
+        }
     }
 }

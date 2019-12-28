@@ -25,6 +25,7 @@ namespace client_generator.OpenApi._3._0._1
             if (Schema != null)
             {
                 collector.Visit($"{path}/schema", Schema);
+                Schema.GetObject()?.Accept($"{path}/schema", collector);
             }
         }
     }
