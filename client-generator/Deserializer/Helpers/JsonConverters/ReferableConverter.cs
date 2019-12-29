@@ -1,13 +1,14 @@
 using System;
-using client_generator.Models;
-using client_generator.OpenApi._3._0._1.Referable;
+using client_generator.Deserializer.Helpers.References;
+using client_generator.OpenApi.Deserializer.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace client_generator.OpenApi._3._0._1.JsonConverters
+namespace client_generator.Deserializer.Helpers.JsonConverters
 {
     public class ReferableConverter<T> : JsonConverter<IReferable<T>> where T : class
     {
+
         public override void WriteJson(JsonWriter writer, IReferable<T> value, JsonSerializer serializer)
         {
             serializer.Serialize(writer, value.GetHashCode());
@@ -25,8 +26,9 @@ namespace client_generator.OpenApi._3._0._1.JsonConverters
                     Ref = item["$ref"].ToString()
                 };
             }
-            
+
             return new ReferableDataWrapper<T>(item.ToObject<T>(serializer));
         }
+
     }
 }

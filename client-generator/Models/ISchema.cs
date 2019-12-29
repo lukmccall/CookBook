@@ -2,6 +2,7 @@ namespace client_generator.Models
 {
     public interface ISchema
     {
+
         string GetName();
 
         FieldType GetFieldType();
@@ -9,5 +10,6 @@ namespace client_generator.Models
         bool WasGenerated();
 
         void Generate();
+
     }
 }

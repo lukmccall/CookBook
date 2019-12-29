@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
-using client_generator.Deserializer;
+using client_generator.Deserializer.Helpers.Builders;
 using client_generator.Models;
 using client_generator.OpenApi._3._0._1.Builders.Schema;
 
 namespace client_generator.OpenApi._3._0._1.Builders
 {
-    public static class Builderinitializers
+    public static class BuilderInitializers
     {
-        public static void SchemaMap(string key, _3._0._1.Schema schema, Dictionary<string, ISchema> created,
+
+        public static void SchemaMap(string key, _1.Schema schema, Dictionary<string, ISchema> created,
             Dictionary<string, ISuspendBuilder<ISchema>> inProgress)
         {
             switch (schema.Type)
@@ -57,5 +58,6 @@ namespace client_generator.OpenApi._3._0._1.Builders
                 }
             }
         }
+
     }
 }

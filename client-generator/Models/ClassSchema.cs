@@ -4,9 +4,12 @@ namespace client_generator.Models
 {
     public class ClassSchema : ISchema
     {
-        private bool _wasGenerated = false;
+
         private readonly string _name;
+
         private readonly Dictionary<string, ISchema> _properties;
+
+        private bool _wasGenerated;
 
         public ClassSchema(string name, Dictionary<string, ISchema> properties)
         {
@@ -31,9 +34,8 @@ namespace client_generator.Models
 
         public void Generate()
         {
-
-
             _wasGenerated = true;
         }
+
     }
 }

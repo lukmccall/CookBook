@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 
-namespace client_generator.Deserializer
+namespace client_generator.OpenApi._3._0._1.Deserializer
 {
     public class ReferencesRegister
     {
+
         private readonly Dictionary<string, object> _objectRegister;
 
         public ReferencesRegister()
@@ -35,5 +36,6 @@ namespace client_generator.Deserializer
 
             return result;
         }
+
     }
 }

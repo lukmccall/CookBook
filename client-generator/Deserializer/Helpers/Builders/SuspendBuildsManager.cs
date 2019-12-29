@@ -1,25 +1,25 @@
 using System;
 using System.Collections.Generic;
-using client_generator.OpenApi._3._0._1.Builders;
 
-namespace client_generator.Deserializer
+namespace client_generator.Deserializer.Helpers.Builders
 {
-    public class SuspendBuildsManager<T, U>
+    public class SuspendBuildsManager<T, TU>
     {
-        private readonly Dictionary<string, T> _toCreate;
 
-        private readonly Dictionary<string, ISuspendBuilder<U>> _inProgress =
-            new Dictionary<string, ISuspendBuilder<U>>();
+        private readonly Dictionary<string, TU> _done = new Dictionary<string, TU>();
 
-        private readonly Dictionary<string, U> _done = new Dictionary<string, U>();
-
-        private readonly Action<string, T, Dictionary<string, U>, Dictionary<string, ISuspendBuilder<U>>>
+        private readonly Action<string, T, Dictionary<string, TU>, Dictionary<string, ISuspendBuilder<TU>>>
             _initialMethod;
+
+        private readonly Dictionary<string, ISuspendBuilder<TU>> _inProgress =
+            new Dictionary<string, ISuspendBuilder<TU>>();
 
         private readonly int _maxIteration;
 
+        private readonly Dictionary<string, T> _toCreate;
+
         public SuspendBuildsManager(Dictionary<string, T> toCreate,
-            Action<string, T, Dictionary<string, U>, Dictionary<string, ISuspendBuilder<U>>> initialMethod,
+            Action<string, T, Dictionary<string, TU>, Dictionary<string, ISuspendBuilder<TU>>> initialMethod,
             int maxIteration = 100)
         {
             _toCreate = toCreate;
@@ -57,9 +57,10 @@ namespace client_generator.Deserializer
         }
 
 
-        public Dictionary<string, U> GetResult()
+        public Dictionary<string, TU> GetResult()
         {
             return _done;
         }
+
     }
 }

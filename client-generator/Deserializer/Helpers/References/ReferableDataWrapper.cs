@@ -1,10 +1,9 @@
-using client_generator.Models;
-
-namespace client_generator.OpenApi._3._0._1.Referable
+namespace client_generator.Deserializer.Helpers.References
 {
     public class ReferableDataWrapper<T> : IReferable<T>
 
     {
+
         private readonly T _parameter;
 
         public ReferableDataWrapper(T parameter)
@@ -21,5 +20,6 @@ namespace client_generator.OpenApi._3._0._1.Referable
         {
             return null;
         }
+
     }
 }

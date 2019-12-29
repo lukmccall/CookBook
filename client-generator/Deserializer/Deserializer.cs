@@ -6,6 +6,7 @@ namespace client_generator.Deserializer
 {
     public abstract class Deserializer<T>
     {
+
         protected readonly JsonSerializerSettings _settings;
 
         protected Deserializer(JsonSerializerSettings settings)
@@ -26,5 +27,6 @@ namespace client_generator.Deserializer
             var versionedModel = JsonConvert.DeserializeObject<T>(json, _settings);
             return Convert(versionedModel);
         }
+
     }
 }

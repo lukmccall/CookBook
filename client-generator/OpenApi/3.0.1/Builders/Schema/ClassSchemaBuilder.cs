@@ -1,17 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
-using client_generator.Deserializer;
+using client_generator.Deserializer.Helpers.Builders;
 using client_generator.Models;
 
 namespace client_generator.OpenApi._3._0._1.Builders.Schema
 {
     public class ClassSchemaBuilder : ISuspendBuilder<ISchema>
     {
-        private readonly Dictionary<string, ISchema> _properties = new Dictionary<string, ISchema>();
-        private List<KeyValuePair<string, string>> _propertiesToParse;
+
         private readonly string _name;
+
         private readonly string _path;
+
+        private readonly Dictionary<string, ISchema> _properties = new Dictionary<string, ISchema>();
+
         private readonly Dictionary<string, ISchema> _schemata;
+
+        private List<KeyValuePair<string, string>> _propertiesToParse;
 
         public ClassSchemaBuilder(string name, string path, _1.Schema model, Dictionary<string, ISchema> schemata)
         {
@@ -29,7 +34,7 @@ namespace client_generator.OpenApi._3._0._1.Builders.Schema
                 _propertiesToParse = new List<KeyValuePair<string, string>>();
             }
         }
-        
+
         public bool CanCreate()
         {
             return _propertiesToParse.Count == 0;
@@ -45,7 +50,7 @@ namespace client_generator.OpenApi._3._0._1.Builders.Schema
             var newProperiesToParse = new List<KeyValuePair<string, string>>();
             foreach (var (key, @ref) in _propertiesToParse)
             {
-                ISchema schema; 
+                ISchema schema;
                 if (@ref != null && _schemata.TryGetValue(@ref, out schema))
                 {
                     _properties.Add(key, schema);

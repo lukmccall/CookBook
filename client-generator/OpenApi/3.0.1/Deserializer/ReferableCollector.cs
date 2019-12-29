@@ -1,14 +1,15 @@
 using System.Collections.Generic;
-using client_generator.Deserializer;
-using client_generator.Models;
+using client_generator.Deserializer.Helpers.Collectors;
+using client_generator.Deserializer.Helpers.References;
 
-namespace client_generator.OpenApi._3._0._1.Referable
+namespace client_generator.OpenApi._3._0._1.Deserializer
 {
     public class ReferableCollector : IReferenceCollector
     {
-        private readonly ReferencesRegister _register;
-        
+
         private readonly Dictionary<string, string> _missingReferences;
+
+        private readonly ReferencesRegister _register;
 
         public ReferableCollector()
         {
@@ -36,6 +37,7 @@ namespace client_generator.OpenApi._3._0._1.Referable
                     _missingReferences.Remove(key);
                 }
             }
+
             return _missingReferences.Count == 0;
         }
 
@@ -43,5 +45,6 @@ namespace client_generator.OpenApi._3._0._1.Referable
         {
             return _register.GetObjectOfType<T>();
         }
+
     }
 }

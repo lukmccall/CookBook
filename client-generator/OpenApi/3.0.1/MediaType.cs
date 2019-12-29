@@ -1,13 +1,12 @@
-using System;
 using System.Collections.Generic;
-using client_generator.Models;
-using client_generator.OpenApi._3._0._1.JsonConverters;
-using client_generator.OpenApi._3._0._1.Referable;
+using client_generator.Deserializer.Helpers.Collectors;
+using client_generator.Deserializer.Helpers.References;
 
 namespace client_generator.OpenApi._3._0._1
 {
     public class MediaType : ICollectable<IReferenceCollector>
     {
+
         public IReferable<Schema> Schema { get; set; }
 
         public Dictionary<string, Encoding> Encoding { get; set; }
@@ -27,5 +26,6 @@ namespace client_generator.OpenApi._3._0._1
                 }
             }
         }
+
     }
 }

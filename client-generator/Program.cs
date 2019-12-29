@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using client_generator.Deserializer.Helpers.JsonConverters;
 using client_generator.OpenApi._3._0._1;
 using client_generator.OpenApi._3._0._1.Deserializer;
-using client_generator.OpenApi._3._0._1.JsonConverters;
 using Newtonsoft.Json;
 
 namespace client_generator
 {
-    static class Program
+    internal static class Program
     {
-        static void Main()
+
+        private static void Main()
         {
             var converters = new List<JsonConverter>
             {
@@ -19,7 +20,6 @@ namespace client_generator
                 new ReferableConverter<Request>(),
                 new ReferableConverter<Response>(),
                 new ReferableConverter<Header>()
-
             };
 
             var jsonString = File.ReadAllText("/Users/lukasz/studies/cis/CookBook/client-generator/openapi.json");
@@ -34,5 +34,6 @@ namespace client_generator
 
             Console.WriteLine(result);
         }
+
     }
 }

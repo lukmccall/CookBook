@@ -2,6 +2,7 @@ namespace client_generator.Models
 {
     public class ArraySchema : ISchema
     {
+
         private readonly ISchema _schema;
 
         public ArraySchema(ISchema schema)
@@ -28,5 +29,6 @@ namespace client_generator.Models
         {
             _schema.Generate();
         }
+
     }
 }

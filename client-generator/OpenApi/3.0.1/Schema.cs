@@ -1,16 +1,20 @@
 using System.Collections.Generic;
-using client_generator.Models;
-using client_generator.OpenApi._3._0._1.Referable;
+using client_generator.Deserializer.Helpers.Collectors;
+using client_generator.Deserializer.Helpers.References;
 
 namespace client_generator.OpenApi._3._0._1
 {
     public class Schema : ICollectable<IReferenceCollector>
     {
+
         public string Type { get; set; }
+
         public IEnumerable<string> Required { get; set; }
+
         public Dictionary<string, IReferable<Schema>> Properties { get; set; }
+
         public IReferable<Schema> Items { get; set; }
-        
+
         public void Accept(string path, IReferenceCollector collector)
         {
             if (Items != null)
@@ -28,5 +32,6 @@ namespace client_generator.OpenApi._3._0._1
                 }
             }
         }
+
     }
 }

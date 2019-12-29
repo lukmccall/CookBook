@@ -1,7 +1,18 @@
+using System.Collections.Generic;
+
 namespace client_generator.Models
 {
-    class SimpleSchema : ISchema
+    internal class SimpleSchema : ISchema
     {
+
+        private static readonly Dictionary<FieldType, string> TypeToName = new Dictionary<FieldType, string>
+        {
+            {FieldType.Int, "number"},
+            {FieldType.Number, "number"},
+            {FieldType.Bool, "bool"},
+            {FieldType.String, "string"}
+        };
+
         private readonly FieldType _type;
 
         public SimpleSchema(FieldType type)
@@ -11,7 +22,7 @@ namespace client_generator.Models
 
         public string GetName()
         {
-            return "dsad";
+            return TypeToName.ContainsKey(_type) ? TypeToName[_type] : "any";
         }
 
         public FieldType GetFieldType()
@@ -26,6 +37,8 @@ namespace client_generator.Models
 
         public void Generate()
         {
+            // we don't have to generate code 
         }
+
     }
 }

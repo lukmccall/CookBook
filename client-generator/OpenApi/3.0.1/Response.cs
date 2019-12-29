@@ -1,16 +1,18 @@
-using System;
 using System.Collections.Generic;
-using client_generator.Models;
-using client_generator.OpenApi._3._0._1.JsonConverters;
-using client_generator.OpenApi._3._0._1.Referable;
+using client_generator.Deserializer.Helpers.Collectors;
+using client_generator.Deserializer.Helpers.References;
 
 namespace client_generator.OpenApi._3._0._1
 {
     public class Response : ICollectable<IReferenceCollector>
     {
+
         public string Description { get; set; }
+
         public Dictionary<string, IReferable<Header>> Headers { get; set; }
+
         public Dictionary<string, MediaType> Content { get; set; }
+
 //        public Object Links { get; set; } // currently not supported
 //        public Object Callbacks { get; set; } // currently not supported
         public bool Deprecated { get; set; }
@@ -25,6 +27,7 @@ namespace client_generator.OpenApi._3._0._1
                     header.GetObject()?.Accept($"{path}/headers/{key}", collector);
                 }
             }
+
             if (Content != null)
             {
                 foreach (var (key, content) in Content)
@@ -33,5 +36,6 @@ namespace client_generator.OpenApi._3._0._1
                 }
             }
         }
+
     }
 }

@@ -1,8 +1,10 @@
+using client_generator.Deserializer;
+using client_generator.Deserializer.Helpers;
+using client_generator.Deserializer.Helpers.References;
 using client_generator.Models;
-using client_generator.OpenApi._3._0._1.JsonConverters;
 using Newtonsoft.Json;
 
-namespace client_generator.OpenApi._3._0._1.Referable
+namespace client_generator.OpenApi.Deserializer.Helpers
 {
     public class Reference<T> : IReferable<T> where T : class
     {

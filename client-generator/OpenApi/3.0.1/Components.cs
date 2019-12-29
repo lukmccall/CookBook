@@ -1,11 +1,12 @@
 using System.Collections.Generic;
-using client_generator.Models;
-using client_generator.OpenApi._3._0._1.Referable;
+using client_generator.Deserializer.Helpers.Collectors;
+using client_generator.Deserializer.Helpers.References;
 
 namespace client_generator.OpenApi._3._0._1
 {
     public class Components : ICollectable<IReferenceCollector>
     {
+
         public Dictionary<string, IReferable<Schema>> Schemas { get; set; }
 
         public Dictionary<string, IReferable<Response>> Responses { get; set; }
@@ -30,8 +31,8 @@ namespace client_generator.OpenApi._3._0._1
             {
                 foreach (var (key, value) in Schemas)
                 {
-                    referenceCollector.Visit($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", value);
-                    value.GetObject()?.Accept($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", referenceCollector);
+                    referenceCollector.Visit($"{path}/schemas/{key}", value);
+                    value.GetObject()?.Accept($"{path}/schemas/{key}", referenceCollector);
                 }
             }
 
@@ -39,8 +40,8 @@ namespace client_generator.OpenApi._3._0._1
             {
                 foreach (var (key, value) in Responses)
                 {
-                    referenceCollector.Visit($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", value);
-                    value.GetObject()?.Accept($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", referenceCollector);
+                    referenceCollector.Visit($"{path}/responses/{key}", value);
+                    value.GetObject()?.Accept($"{path}/responses/{key}", referenceCollector);
                 }
             }
 
@@ -48,8 +49,8 @@ namespace client_generator.OpenApi._3._0._1
             {
                 foreach (var (key, value) in Parameters)
                 {
-                    referenceCollector.Visit($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", value);
-                    value.GetObject()?.Accept($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}",
+                    referenceCollector.Visit($"{path}/parameters/{key}", value);
+                    value.GetObject()?.Accept($"{path}/parameters/{key}",
                         referenceCollector);
                 }
             }
@@ -58,7 +59,7 @@ namespace client_generator.OpenApi._3._0._1
             {
                 foreach (var (key, value) in RequestBodies)
                 {
-                    referenceCollector.Visit($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", value);
+                    referenceCollector.Visit($"{path}/requestBodies/{key}", value);
                 }
             }
 
@@ -66,9 +67,10 @@ namespace client_generator.OpenApi._3._0._1
             {
                 foreach (var (key, value) in Headers)
                 {
-                    referenceCollector.Visit($"{path}/{ReferableList.GetRefMap()[typeof(Schema)]}/{key}", value);
+                    referenceCollector.Visit($"{path}/requestBodies/{key}", value);
                 }
             }
         }
+
     }
 }

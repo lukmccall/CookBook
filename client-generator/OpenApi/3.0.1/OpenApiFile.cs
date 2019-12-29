@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using client_generator.OpenApi._3._0._1.Referable;
+using client_generator.Deserializer.Helpers.Collectors;
 
 namespace client_generator.OpenApi._3._0._1
 {
     public class OpenApiFile : ICollectable<IReferenceCollector>
     {
+
         public string OpenApi { get; set; }
 
         public Info Info { get; set; }
@@ -33,5 +34,6 @@ namespace client_generator.OpenApi._3._0._1
                 }
             }
         }
+
     }
 }
