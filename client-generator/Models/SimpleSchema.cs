@@ -1,21 +1,22 @@
 using System.Collections.Generic;
+using client_generator.Generators;
 
 namespace client_generator.Models
 {
     internal class SimpleSchema : ISchema
     {
 
-        private static readonly Dictionary<FieldType, string> TypeToName = new Dictionary<FieldType, string>
+        private static readonly Dictionary<SchemaType, string> TypeToName = new Dictionary<SchemaType, string>
         {
-            {FieldType.Int, "number"},
-            {FieldType.Number, "number"},
-            {FieldType.Bool, "bool"},
-            {FieldType.String, "string"}
+            {SchemaType.Int, "number"},
+            {SchemaType.Number, "number"},
+            {SchemaType.Bool, "bool"},
+            {SchemaType.String, "string"}
         };
 
-        private readonly FieldType _type;
+        private readonly SchemaType _type;
 
-        public SimpleSchema(FieldType type)
+        public SimpleSchema(SchemaType type)
         {
             _type = type;
         }
@@ -25,19 +26,19 @@ namespace client_generator.Models
             return TypeToName.ContainsKey(_type) ? TypeToName[_type] : "any";
         }
 
-        public FieldType GetFieldType()
+        public SchemaType GetSchemaType()
         {
             return _type;
         }
 
-        public bool WasGenerated()
+        public IEnumerable<ISchema> GetRelatedSchemes()
         {
-            return false;
+            return new List<ISchema>();
         }
 
-        public void Generate()
+        public ITransformable CodeModel()
         {
-            // we don't have to generate code 
+            return null;
         }
 
     }

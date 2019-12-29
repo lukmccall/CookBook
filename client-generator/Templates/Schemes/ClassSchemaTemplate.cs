@@ -5,7 +5,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace client_generator.Templates
+namespace client_generator.Templates.Schemes
 {
     using System;
     
@@ -13,9 +13,9 @@ namespace client_generator.Templates
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/cos.tt"
+    #line 1 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("JetBrains.ForTea.TextTemplating", "42.42.42.42")]
-    public partial class cos : cosBase
+    public partial class ClassSchemaTemplate : ClassSchemaTemplateBase
     {
 #line hidden
         /// <summary>
@@ -24,7 +24,45 @@ namespace client_generator.Templates
         public virtual string TransformText()
         {
             
-            this.Write("<html><body>\n<h1>Sales for January</h2>\n<!-- table to be inserted here -->\nThis report is Company Confidential.\n</body></html>");
+            this.Write("class ");
+            
+            #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
+            
+            #line default
+            #line hidden
+            this.Write(" {  \n");
+            #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+    foreach (var (name, type) in _properties)
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("    ");
+            
+            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write(": ");
+            
+            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(type));
+            
+            #line default
+            #line hidden
+            this.Write("\n");
+            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("}");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -36,7 +74,7 @@ namespace client_generator.Templates
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("JetBrains.ForTea.TextTemplating", "42.42.42.42")]
-    public class cosBase
+    public class ClassSchemaTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

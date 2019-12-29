@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using client_generator.Generators;
+using client_generator.OpenApi._3._0._1;
+
 namespace client_generator.Models
 {
     public interface ISchema
@@ -5,11 +9,11 @@ namespace client_generator.Models
 
         string GetName();
 
-        FieldType GetFieldType();
+        SchemaType GetSchemaType();
 
-        bool WasGenerated();
+        IEnumerable<ISchema> GetRelatedSchemes();
 
-        void Generate();
+        ITransformable CodeModel();
 
     }
 }

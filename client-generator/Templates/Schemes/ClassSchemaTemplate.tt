@@ -1,0 +1,11 @@
+<#@ template language="C#" #>
+class <#= _name #> {  
+<#
+    foreach (var (name, type) in _properties)
+    {
+#>
+    <#= name #>: <#= type #>
+<#
+    }
+#>
+}

@@ -1,6 +1,6 @@
 namespace client_generator.Models
 {
-    public enum FieldType
+    public enum SchemaType
     {
 
         Int,

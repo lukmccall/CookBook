@@ -1,6 +1,0 @@
-<#@ template language="C#"  #>
-<html><body>
-<h1>Sales for January</h2>
-<!-- table to be inserted here -->
-This report is Company Confidential.
-</body></html>

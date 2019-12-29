@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using client_generator.Generators;
+
 namespace client_generator.Models
 {
     public class ArraySchema : ISchema
@@ -15,19 +18,22 @@ namespace client_generator.Models
             return $"Array<{_schema.GetName()}>";
         }
 
-        public FieldType GetFieldType()
+        public SchemaType GetSchemaType()
         {
-            return FieldType.Array;
+            return SchemaType.Array;
         }
 
-        public bool WasGenerated()
+        public IEnumerable<ISchema> GetRelatedSchemes()
         {
-            return _schema.WasGenerated();
+            return new[]
+            {
+                _schema
+            };
         }
 
-        public void Generate()
+        public ITransformable CodeModel()
         {
-            _schema.Generate();
+            return null;
         }
 
     }

@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using client_generator.Generators;
+using client_generator.Templates.Schemes;
 
 namespace client_generator.Models
 {
@@ -8,8 +11,6 @@ namespace client_generator.Models
         private readonly string _name;
 
         private readonly Dictionary<string, ISchema> _properties;
-
-        private bool _wasGenerated;
 
         public ClassSchema(string name, Dictionary<string, ISchema> properties)
         {
@@ -22,19 +23,25 @@ namespace client_generator.Models
             return _name;
         }
 
-        public FieldType GetFieldType()
+        public SchemaType GetSchemaType()
         {
-            return FieldType.Object;
+            return SchemaType.Object;
         }
 
-        public bool WasGenerated()
+        public IEnumerable<ISchema> GetRelatedSchemes()
         {
-            return _wasGenerated;
+            return _properties.Select(x => x.Value).ToList();
         }
 
-        public void Generate()
+        public ITransformable CodeModel()
         {
-            _wasGenerated = true;
+            var props = new Dictionary<string, string>();
+            foreach (var (key, value) in _properties)
+            {
+                props.Add(key, value.GetName());
+            }
+
+            return new ClassSchemaTemplate(_name, props);
         }
 
     }

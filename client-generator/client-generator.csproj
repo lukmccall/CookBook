@@ -12,15 +12,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Templates\cos.tt">
+      <None Update="Templates\Schemes\ClassSchemaTemplate.tt">
         <Generator>TextTemplatingFilePreprocessor</Generator>
-        <LastGenOutput>cos.cs</LastGenOutput>
+        <LastGenOutput>ClassSchemaTemplate.cs</LastGenOutput>
       </None>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Templates\cos.cs">
-        <DependentUpon>cos.tt</DependentUpon>
+      <Compile Update="Templates\Schemes\ClassSchemaTemplate.cs">
+        <DependentUpon>ClassSchemaTemplate.tt</DependentUpon>
       </Compile>
     </ItemGroup>
 

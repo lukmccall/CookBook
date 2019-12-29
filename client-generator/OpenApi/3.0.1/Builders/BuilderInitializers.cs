@@ -15,13 +15,13 @@ namespace client_generator.OpenApi._3._0._1.Builders
             switch (schema.Type)
             {
                 case "integer":
-                    created.Add(key, new SimpleSchema(FieldType.Int));
+                    created.Add(key, new SimpleSchema(SchemaType.Int));
                     break;
                 case "string":
-                    created.Add(key, new SimpleSchema(FieldType.String));
+                    created.Add(key, new SimpleSchema(SchemaType.String));
                     break;
                 case "number":
-                    created.Add(key, new SimpleSchema(FieldType.Number));
+                    created.Add(key, new SimpleSchema(SchemaType.Number));
                     break;
                 case "array":
                 {
@@ -39,7 +39,7 @@ namespace client_generator.OpenApi._3._0._1.Builders
                     break;
                 }
                 case "boolean":
-                    created.Add(key, new SimpleSchema(FieldType.Bool));
+                    created.Add(key, new SimpleSchema(SchemaType.Bool));
                     break;
                 case "object":
                 {
