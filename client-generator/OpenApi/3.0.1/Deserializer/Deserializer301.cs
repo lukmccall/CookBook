@@ -5,6 +5,7 @@ using client_generator.Deserializer.Helpers.Builders;
 using client_generator.Deserializer.Helpers.JsonConverters;
 using client_generator.Models;
 using client_generator.OpenApi._3._0._1.Builders;
+using client_generator.Templates;
 using Newtonsoft.Json;
 
 namespace client_generator.OpenApi._3._0._1.Deserializer
@@ -42,6 +43,8 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                 BuilderInitializers.SchemaMap);
             buildManager.Build();
             var schematas = buildManager.GetResult();
+            var c = new cos();
+            var s = c.TransformText();
             throw new NotImplementedException();
         }
 

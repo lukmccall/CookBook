@@ -8,6 +8,20 @@
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+      <PackageReference Include="System.CodeDom" Version="4.7.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Templates\cos.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>cos.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Templates\cos.cs">
+        <DependentUpon>cos.tt</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>
