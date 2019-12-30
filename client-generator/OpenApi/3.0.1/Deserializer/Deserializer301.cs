@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using client_generator.Deserializer;
 using client_generator.Deserializer.Helpers.Builders;
 using client_generator.Deserializer.Helpers.JsonConverters;
@@ -9,6 +8,7 @@ using client_generator.Models;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Parameters;
 using client_generator.Models.Requests;
+using client_generator.Models.Responses;
 using client_generator.Models.Schemas;
 using client_generator.OpenApi._3._0._1.Builders;
 using Newtonsoft.Json;
@@ -54,6 +54,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
             MapHeaders(openApiBuilder, collector.GetObjectOfType<Header>());
             MapRequestBodies(openApiBuilder, collector.GetObjectOfType<Request>());
             MapParameters(openApiBuilder, collector.GetObjectOfType<Parameter>());
+            MapResponses(openApiBuilder, collector.GetObjectOfType<Response>());
             MapEndpoints(openApiBuilder, versionedModel.Paths);
 
             return openApiBuilder.Create();
@@ -123,6 +124,34 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                 }
 
                 openApiModelBuilder.AttachRequestBody(path, new RequestBody(schemas, isRequired));
+            }
+        }
+
+        private void MapResponses(OpenApiModel.OpenApiModelBuilder openApiModelBuilder,
+            Dictionary<string, Response> versionedResponses)
+        {
+            foreach (var (path, response) in versionedResponses)
+            {
+                var schemas = new Dictionary<string, ISchema>();
+
+                if (response.Content != null)
+                {
+                    foreach (var (type, mediaType) in response.Content)
+                    {
+                        var schemaPath = mediaType.Schema.GetRef() ?? $"{path}/content/{type}/schema";
+                        var schema = openApiModelBuilder.GetSchemaForPath(schemaPath);
+
+                        if (schema == null)
+                        {
+                            throw new ArgumentException(
+                                $"Couldn't create response - missing schema {schemaPath}. Pleas validate them earlier.");
+                        }
+
+                        schemas.Add(type, schema);
+                    }
+                }
+
+                openApiModelBuilder.AttachResponse(path, new Models.Responses.Response(schemas));
             }
         }
 
@@ -209,6 +238,16 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                         }
                     }
 
+                    var endpointResponses = new List<IHttpResponse>();
+                    foreach (var (status, @ref) in operation.Responses)
+                    {
+                        var responsePath =
+                            @ref.GetRef() ?? $"{path}/{type.ToString().ToLower()}/responses/{status}";
+                        var response = openApiModelBuilder.GetResponseForPath(responsePath);
+                        endpointResponses.Add(new HttpResponse(int.Parse(status),
+                            response)); // todo: check if parse was successful 
+                    }
+
                     IRequestBody requestBody = null;
                     if (operation.RequestBody != null)
                     {
@@ -221,7 +260,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                                       throw new ArgumentException($"Missing operationId - {path}/{type}");
                     openApiModelBuilder.AttachEndpoint(new Endpoint(operationId, $"{path}/{type.ToString().ToLower()}",
                         type,
-                        endpointParameters, requestBody));
+                        endpointParameters, requestBody, endpointResponses));
                 }
             }
         }

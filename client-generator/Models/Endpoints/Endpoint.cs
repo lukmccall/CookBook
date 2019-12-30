@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using client_generator.Models.Parameters;
 using client_generator.Models.Requests;
+using client_generator.Models.Responses;
 
 namespace client_generator.Models.Endpoints
 {
@@ -17,15 +18,17 @@ namespace client_generator.Models.Endpoints
 
         private readonly IRequestBody _requestBody;
 
+        private readonly IEnumerable<IHttpResponse> _responses;
 
         public Endpoint(string operationId, string path, EndpointType type, HashSet<IParameter> parameters,
-            IRequestBody requestBody)
+            IRequestBody requestBody, IEnumerable<IHttpResponse> responses)
         {
             _operationId = operationId;
             _path = path;
             _type = type;
             _parameters = parameters;
             _requestBody = requestBody;
+            _responses = responses;
         }
 
         public string GetId()
@@ -51,6 +54,11 @@ namespace client_generator.Models.Endpoints
         public IRequestBody GetRequestBody()
         {
             return _requestBody;
+        }
+
+        public IEnumerable<IHttpResponse> GetResponses()
+        {
+            return _responses;
         }
 
     }

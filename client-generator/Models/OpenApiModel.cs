@@ -3,6 +3,7 @@ using client_generator.Models.Endpoints;
 using client_generator.Models.Headers;
 using client_generator.Models.Parameters;
 using client_generator.Models.Requests;
+using client_generator.Models.Responses;
 using client_generator.Models.Schemas;
 
 namespace client_generator.Models
@@ -28,6 +29,8 @@ namespace client_generator.Models
             private readonly Dictionary<string, IHeader> _headers = new Dictionary<string, IHeader>();
 
             private readonly Dictionary<string, IRequestBody> _requestBodies = new Dictionary<string, IRequestBody>();
+
+            private readonly Dictionary<string, IResponse> _responses = new Dictionary<string, IResponse>();
 
             private readonly Dictionary<string, IParameter> _parameters = new Dictionary<string, IParameter>();
 
@@ -61,6 +64,12 @@ namespace client_generator.Models
                 return this;
             }
 
+            public OpenApiModelBuilder AttachResponse(string path, IResponse response)
+            {
+                _responses.Add(path, response);
+                return this;
+            }
+
             public OpenApiModelBuilder AttachParameter(string path, IParameter parameter)
             {
                 _parameters.Add(path, parameter);
@@ -86,6 +95,11 @@ namespace client_generator.Models
             public IRequestBody GetRequestBodyForPath(string path)
             {
                 return _requestBodies[path];
+            }
+
+            public IResponse GetResponseForPath(string path)
+            {
+                return _responses[path];
             }
 
             public IParameter GetParameterForPath(string path)
