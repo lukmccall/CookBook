@@ -3,7 +3,7 @@ using System.Linq;
 using client_generator.Generators;
 using client_generator.Templates.Schemes;
 
-namespace client_generator.Models
+namespace client_generator.Models.Schemas
 {
     public class ClassSchema : ISchema
     {

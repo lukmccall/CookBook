@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using client_generator.Deserializer.Helpers.Builders;
 using client_generator.Models;
+using client_generator.Models.Schemas;
 
 namespace client_generator.OpenApi._3._0._1.Builders.Schema
 {

@@ -471,9 +471,6 @@
             "schema": {
               "type": "boolean"
             }
-          },
-          {
-            "$ref": "dsadsada"
           }
         ],
         "responses": {

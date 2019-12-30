@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using client_generator.Generators;
-using client_generator.OpenApi._3._0._1;
 
-namespace client_generator.Models
+namespace client_generator.Models.Schemas
 {
     public interface ISchema
     {

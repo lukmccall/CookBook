@@ -10,7 +10,7 @@ namespace client_generator.OpenApi._3._0._1
 
         public Dictionary<string, MediaType> Content { get; set; }
 
-        public bool Required { get; set; }
+        public bool? Required { get; set; }
 
         public void Accept(string path, IReferenceCollector collector)
         {

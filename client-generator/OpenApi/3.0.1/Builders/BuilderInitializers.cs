@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using client_generator.Deserializer.Helpers.Builders;
 using client_generator.Models;
+using client_generator.Models.Schemas;
 using client_generator.OpenApi._3._0._1.Builders.Schema;
 
 namespace client_generator.OpenApi._3._0._1.Builders

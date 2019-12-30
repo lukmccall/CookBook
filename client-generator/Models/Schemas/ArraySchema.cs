@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using client_generator.Generators;
 
-namespace client_generator.Models
+namespace client_generator.Models.Schemas
 {
     public class ArraySchema : ISchema
     {

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using client_generator.Models;
+using client_generator.Models.Schemas;
 
 namespace client_generator.Generators
 {
@@ -12,9 +13,9 @@ namespace client_generator.Generators
 
         private static readonly string MainFile = "main";
 
-        private HashSet<string> _generatedSchemes = new HashSet<string>();
+        private readonly HashSet<string> _generatedSchemes = new HashSet<string>();
 
-        private Dictionary<string, TsFile> _generatedCode = new Dictionary<string, TsFile>();
+        private readonly Dictionary<string, TsFile> _generatedCode = new Dictionary<string, TsFile>();
 
         private readonly GeneratorSetting _generatorSetting;
 
