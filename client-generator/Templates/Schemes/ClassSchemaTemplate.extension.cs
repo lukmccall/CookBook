@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using client_generator.Generators;
 
 namespace client_generator.Templates.Schemes
 {
-    public partial class ClassSchemaTemplate : ITransformable
+    public partial class ClassSchemaTemplate : ITemplate
     {
 
         private readonly Dictionary<string, string> _properties;

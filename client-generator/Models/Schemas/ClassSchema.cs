@@ -5,10 +5,12 @@ using client_generator.Templates.Schemes;
 
 namespace client_generator.Models.Schemas
 {
-    public class ClassSchema : ISchema
+    public class ClassSchema : TemplateHolder, ISchema
     {
 
         private readonly string _name;
+
+        private bool _needsToBeGenerated = true;
 
         private readonly Dictionary<string, ISchema> _properties;
 
@@ -33,15 +35,36 @@ namespace client_generator.Models.Schemas
             return _properties.Select(x => x.Value).ToList();
         }
 
-        public ITransformable CodeModel()
+        public override bool NeedsToBeGenerated()
         {
-            var props = new Dictionary<string, string>();
-            foreach (var (key, value) in _properties)
+            return _needsToBeGenerated;
+        }
+
+        public override void Generate(IGeneratorContext generator)
+        {
+            if (_properties != null)
             {
-                props.Add(key, value.GetName());
+                foreach (var prop in _properties.Values)
+                {
+                    // if needed, generates prop schema
+                    if (prop.NeedsToBeGenerated())
+                    {
+                        prop.Generate(generator);
+                    }
+                }
             }
 
-            return new ClassSchemaTemplate(_name, props);
+            var currentTemplate = Template;
+            if (currentTemplate == null)
+            {
+                // todo: get this from generator context
+                currentTemplate = new ClassSchemaTemplate(GetName(),
+                    _properties?.ToDictionary(pair => pair.Key, pair => pair.Value.GetName()));
+            }
+
+            var code = currentTemplate.TransformText();
+            generator.AddType(GetName(), code, _properties?.Values);
+            _needsToBeGenerated = false;
         }
 
     }

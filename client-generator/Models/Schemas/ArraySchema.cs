@@ -3,7 +3,7 @@ using client_generator.Generators;
 
 namespace client_generator.Models.Schemas
 {
-    public class ArraySchema : ISchema
+    public class ArraySchema : TemplateHolder, ISchema
     {
 
         private readonly ISchema _schema;
@@ -31,9 +31,14 @@ namespace client_generator.Models.Schemas
             };
         }
 
-        public ITransformable CodeModel()
+        public override bool NeedsToBeGenerated()
         {
-            return null;
+            return _schema.NeedsToBeGenerated();
+        }
+
+        public override void Generate(IGeneratorContext generator)
+        {
+            _schema.Generate(generator);
         }
 
     }

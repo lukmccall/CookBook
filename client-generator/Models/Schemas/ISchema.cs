@@ -3,7 +3,7 @@ using client_generator.Generators;
 
 namespace client_generator.Models.Schemas
 {
-    public interface ISchema
+    public interface ISchema : IGenerable
     {
 
         string GetName();
@@ -11,8 +11,6 @@ namespace client_generator.Models.Schemas
         SchemaType GetSchemaType();
 
         IEnumerable<ISchema> GetRelatedSchemes();
-
-        ITransformable CodeModel();
 
     }
 }

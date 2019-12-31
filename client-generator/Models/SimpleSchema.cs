@@ -4,7 +4,7 @@ using client_generator.Models.Schemas;
 
 namespace client_generator.Models
 {
-    internal class SimpleSchema : ISchema
+    internal class SimpleSchema : TemplateHolder, ISchema
     {
 
         private static readonly Dictionary<SchemaType, string> TypeToName = new Dictionary<SchemaType, string>
@@ -36,10 +36,15 @@ namespace client_generator.Models
         {
             return new List<ISchema>();
         }
-
-        public ITransformable CodeModel()
+        
+        public override bool NeedsToBeGenerated()
         {
-            return null;
+            return false;
+        }
+
+        public override void Generate(IGeneratorContext generator)
+        {
+            // we don't have to generate this 
         }
 
     }
