@@ -258,7 +258,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
 
                     var operationId = operation.OperationId ??
                                       throw new ArgumentException($"Missing operationId - {path}/{type}");
-                    openApiModelBuilder.AttachEndpoint(new Endpoint(operationId, $"{path}/{type.ToString().ToLower()}",
+                    openApiModelBuilder.AttachEndpoint(new Endpoint(operationId, url,
                         type,
                         endpointParameters, requestBody, endpointResponses));
                 }

@@ -1,0 +1,23 @@
+<#@ template language="C#" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#= _operationId #>(<#= string.Join(", ", _signature) #>) {
+    let _url = this.baseUrl + <#= _url #>;
+<#
+    foreach (var code in _parameterParsingCodes)
+    {
+#>
+        <#
+        foreach (var line in code.Split("\n"))
+        {
+#>
+    <#= line #>
+<#
+        }
+#> 
+
+<#
+    }
+#> 
+}

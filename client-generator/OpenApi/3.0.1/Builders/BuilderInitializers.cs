@@ -44,7 +44,7 @@ namespace client_generator.OpenApi._3._0._1.Builders
                     break;
                 case "object":
                 {
-                    var builder = new ClassSchemaBuilder(key.Split('/').Last(), key, schema, created);
+                    var builder = new ClassSchemaBuilder(key.Split('/').Last(), key, schema.Required, schema, created);
                     builder.Parse();
                     if (builder.CanCreate())
                     {

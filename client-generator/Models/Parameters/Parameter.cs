@@ -1,9 +1,12 @@
 #nullable enable
+using System.Text;
+using client_generator.Generators;
 using client_generator.Models.Schemas;
+using client_generator.Templates.Parameters;
 
 namespace client_generator.Models.Parameters
 {
-    class Parameter : IParameter
+    class Parameter : TemplateHolder, IParameter
     {
 
         private readonly ParameterType _parameterType;
@@ -72,6 +75,30 @@ namespace client_generator.Models.Parameters
         public override int GetHashCode()
         {
             return GetParameterType().GetHashCode() * GetName().GetHashCode();
+        }
+
+        public override bool NeedsToBeGenerated()
+        {
+            return true;
+        }
+
+        public override void Generate(IGeneratorContext generator)
+        {
+            if (_schema.NeedsToBeGenerated())
+            {
+                _schema.Generate(generator);
+            }
+
+            generator.GetCurrentEndpointContext()?.UseSchema(_schema);
+
+            var req = _isRequired ? "" : "| undefined";
+            generator.GetCurrentEndpointContext()
+                ?.AddParameter(_name, $"{_name}: {_schema.GetName()}{req}", GetParseCode(), _parameterType);
+        }
+
+        private string GetParseCode()
+        {
+            return new ParameterParserTemplate(GetName(), IsRequired(), AllowEmptyValue(), GetParameterType()).TransformText();
         }
 
     }

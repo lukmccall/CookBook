@@ -16,11 +16,28 @@
         <Generator>TextTemplatingFilePreprocessor</Generator>
         <LastGenOutput>ClassSchemaTemplate.cs</LastGenOutput>
       </None>
+      <None Update="Templates\Endpoints\FunctionEndpointTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>FunctionEndpointTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Parameters\ParameterParserTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ParameterParserTemplate.cs</LastGenOutput>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
       <Compile Update="Templates\Schemes\ClassSchemaTemplate.cs">
         <DependentUpon>ClassSchemaTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Endpoints\FunctionEnpointTemplate.cs">
+        <DependentUpon>FunctionEnpointTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Endpoints\FunctionEndpointTemplate.cs">
+        <DependentUpon>FunctionEndpointTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Parameters\ParameterParserTemplate.cs">
+        <DependentUpon>ParameterParserTemplate.tt</DependentUpon>
       </Compile>
     </ItemGroup>
 

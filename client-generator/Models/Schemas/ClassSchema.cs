@@ -14,10 +14,13 @@ namespace client_generator.Models.Schemas
 
         private readonly Dictionary<string, ISchema> _properties;
 
-        public ClassSchema(string name, Dictionary<string, ISchema> properties)
+        private readonly IEnumerable<string> _requiredProperties;
+
+        public ClassSchema(string name, Dictionary<string, ISchema> properties, IEnumerable<string> requiredProperties)
         {
             _name = name;
             _properties = properties;
+            _requiredProperties = requiredProperties;
         }
 
         public string GetName()
@@ -59,7 +62,7 @@ namespace client_generator.Models.Schemas
             {
                 // todo: get this from generator context
                 currentTemplate = new ClassSchemaTemplate(GetName(),
-                    _properties?.ToDictionary(pair => pair.Key, pair => pair.Value.GetName()));
+                    _properties, _requiredProperties);
             }
 
             var code = currentTemplate.TransformText();

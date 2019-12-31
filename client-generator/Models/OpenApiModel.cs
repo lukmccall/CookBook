@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using client_generator.Generators;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Headers;
 using client_generator.Models.Parameters;
@@ -35,6 +36,8 @@ namespace client_generator.Models
             private readonly Dictionary<string, IParameter> _parameters = new Dictionary<string, IParameter>();
 
             private readonly List<IEndpoint> _endpoints = new List<IEndpoint>();
+
+            private readonly IGeneratorContext _generatorContext = new GeneratorContext(new TsGenerator());
 
             public OpenApiModelBuilder AttachScheme(string path, ISchema schema)
             {
@@ -79,6 +82,7 @@ namespace client_generator.Models
             public OpenApiModelBuilder AttachEndpoint(IEndpoint endpoint)
             {
                 _endpoints.Add(endpoint);
+                endpoint.Generate(_generatorContext);
                 return this;
             }
 

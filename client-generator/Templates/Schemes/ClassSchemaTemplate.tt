@@ -1,11 +1,15 @@
 <#@ template language="C#" #>
+<#@ import namespace="System.Linq" #>
 class <#= _name #> {  
 <#
-    foreach (var (name, type) in _properties)
+    foreach (var (name, schema) in _properties)
     {
 #>
-    <#= name #>: <#= type #>
+<#= name #>: <#= schema.GetName() #> <#
+        if (!_requiredProperties.Contains(name))
+        {
+#> ? <#
+        } #>
 <#
-    }
-#>
+    } #>
 }

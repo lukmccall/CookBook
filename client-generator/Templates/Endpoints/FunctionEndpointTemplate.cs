@@ -5,10 +5,18 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace client_generator.Templates.Schemes
+namespace client_generator.Templates.Endpoints
 {
     using System;
-    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+using System.Text;
+    #line default
+    #line hidden
+    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+using System.Collections.Generic;
+    #line default
+    #line hidden
+    #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 using System.Linq;
     #line default
     #line hidden
@@ -17,9 +25,9 @@ using System.Linq;
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+    #line 1 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("JetBrains.ForTea.TextTemplating", "42.42.42.42")]
-    public partial class ClassSchemaTemplate : ClassSchemaTemplateBase
+    public partial class FunctionEndpointTemplate : FunctionEndpointTemplateBase
     {
 #line hidden
         /// <summary>
@@ -28,58 +36,68 @@ using System.Linq;
         public virtual string TransformText()
         {
             
-            this.Write("class ");
             
-            #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
+            #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_operationId));
             
             #line default
             #line hidden
-            this.Write(" {  \n");
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write("(");
+            
+            #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", _signature)));
+            
+            #line default
+            #line hidden
+            this.Write(") {\n    let _url = this.baseUrl + ");
+            
+            #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_url));
+            
+            #line default
+            #line hidden
+            this.Write(";\n");
+            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
-    foreach (var (name, schema) in _properties)
+    foreach (var code in _parameterParsingCodes)
     {
 
             
             #line default
             #line hidden
-            
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(name));
-            
-            #line default
-            #line hidden
-            this.Write(": ");
-            
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(schema.GetName()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write("        ");
+            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
-        if (!_requiredProperties.Contains(name))
+        foreach (var line in code.Split("\n"))
         {
 
             
             #line default
             #line hidden
-            this.Write(" ? ");
-            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-
-        } 
+            this.Write("    ");
+            
+            #line 15 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(line));
             
             #line default
             #line hidden
-            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write("\n");
+            #line 16 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
-    } 
+        }
+
             
             #line default
             #line hidden
-            this.Write("}");
+            this.Write(" \n\n");
+            #line 20 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write(" \n}");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -91,7 +109,7 @@ using System.Linq;
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("JetBrains.ForTea.TextTemplating", "42.42.42.42")]
-    public class ClassSchemaTemplateBase
+    public class FunctionEndpointTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

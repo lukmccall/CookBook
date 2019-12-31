@@ -19,11 +19,15 @@ namespace client_generator.OpenApi._3._0._1.Builders.Schema
 
         private List<KeyValuePair<string, string>> _propertiesToParse;
 
-        public ClassSchemaBuilder(string name, string path, _1.Schema model, Dictionary<string, ISchema> schemata)
+        private readonly IEnumerable<string> _requiredProperties;
+
+        public ClassSchemaBuilder(string name, string path, IEnumerable<string> requiredProperties, _1.Schema model,
+            Dictionary<string, ISchema> schemata)
         {
             _name = name;
             _path = path;
             _schemata = schemata;
+            _requiredProperties = requiredProperties ?? new List<string>();
 
             if (model.Properties != null)
             {
@@ -43,7 +47,7 @@ namespace client_generator.OpenApi._3._0._1.Builders.Schema
 
         public ISchema Create()
         {
-            return new ClassSchema(_name, _properties);
+            return new ClassSchema(_name, _properties, _requiredProperties);
         }
 
         public void Parse()

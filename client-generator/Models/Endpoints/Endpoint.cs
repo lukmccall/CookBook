@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using client_generator.Generators;
 using client_generator.Models.Parameters;
 using client_generator.Models.Requests;
 using client_generator.Models.Responses;
+using client_generator.Templates.Endpoints;
 
 namespace client_generator.Models.Endpoints
 {
-    class Endpoint : IEndpoint
+    class Endpoint : TemplateHolder, IEndpoint
     {
 
         private readonly string _operationId;
@@ -19,6 +21,8 @@ namespace client_generator.Models.Endpoints
         private readonly IRequestBody _requestBody;
 
         private readonly IEnumerable<IHttpResponse> _responses;
+
+        private bool _needsToBeGenerated = true;
 
         public Endpoint(string operationId, string path, EndpointType type, HashSet<IParameter> parameters,
             IRequestBody requestBody, IEnumerable<IHttpResponse> responses)
@@ -59,6 +63,30 @@ namespace client_generator.Models.Endpoints
         public IEnumerable<IHttpResponse> GetResponses()
         {
             return _responses;
+        }
+
+        public override bool NeedsToBeGenerated()
+        {
+            return _needsToBeGenerated;
+        }
+
+        public override void Generate(IGeneratorContext generator)
+        {
+            generator.CreateNewEndpointContext();
+            foreach (var param in _parameters ?? new HashSet<IParameter>())
+            {
+                if (param.NeedsToBeGenerated())
+                {
+                    param.Generate(generator);
+                }
+            }
+
+            var currentEndpointContext = generator.GetCurrentEndpointContext();
+
+            var functionBody = new FunctionEndpointTemplate(_path, _operationId,
+                currentEndpointContext.GetSignatureCode(), currentEndpointContext.GetParameterParsingCode()).TransformText();
+            
+            _needsToBeGenerated = false;
         }
 
     }

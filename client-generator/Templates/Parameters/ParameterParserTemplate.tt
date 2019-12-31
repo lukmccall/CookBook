@@ -1,0 +1,62 @@
+<#@ template language="C#" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="client_generator.Models.Parameters" #>
+<#
+    if (_isRequired)
+    {
+#>
+if (<#= _name #> === undefined || <#= _name #> === null) {
+    throw new Error("`<#= _name #>` is required." );
+}
+<#
+    }
+
+#>
+
+<#
+    if (!_allowEmptyValue)
+    {
+#>
+if (<#= _name #> === "") {
+    throw new Error("`<#= _name #>` cound't be empty." );
+}
+<#
+    }
+#>
+
+<#
+    if (!_isRequired)
+    {
+#>
+if (<#= _name #> !== undefined) {
+<#
+    }
+#>
+<#
+    switch (_type)
+    {
+        case ParameterType.Path:
+#>
+    _url = _url.replace({<#= _name #>}, encodeURIComponent("" +  <#= _name #>));
+<#
+            break;
+#>
+<#
+        case ParameterType.Query:
+#>
+    _url += "<#= _name #>=" + encodeURIComponent("" + <#= _name #>) + "&"; 
+<#
+            break;
+#>
+<#
+    }
+#>
+<#
+    if (!_isRequired)
+    {
+#>
+}
+<#
+    }
+#>

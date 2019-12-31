@@ -1,6 +1,6 @@
 namespace client_generator.Generators
 {
-    public class GeneratorSetting
+    public class GeneratorSettings
     {
 
         public SchemeGeneratePlace SchemePlace { get; set; }
