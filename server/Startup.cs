@@ -1,14 +1,15 @@
-using System.Threading.Tasks;
 using CookBook.Extensions;
-using CookBook.Installers;
 using CookBook.Middleware;
 using CookBook.Options;
-using CookBook.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
+using CookBook.API.Validators;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CookBook
 {
@@ -24,9 +25,17 @@ namespace CookBook
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
+            services.AddControllers(options => { options.Filters.Add<ValidatorFilter>(); })
+                .AddFluentValidation(
+                    configuration =>
+                    {
+                        configuration.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                        configuration.RegisterValidatorsFromAssemblyContaining<Startup>();
+                    });
+            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.InstallServicesFromAssembly(Configuration);
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

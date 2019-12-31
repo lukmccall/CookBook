@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -16,11 +15,6 @@ namespace CookBook.Installers
                     Title = "server",
                     Version = "v1"
                 });
-
-                var security = new Dictionary<string, IEnumerable<string>>
-                {
-                    {"Bearer", new string[] { }}
-                };
 
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

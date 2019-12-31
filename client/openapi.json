@@ -17,22 +17,39 @@
               "schema": {
                 "$ref": "#/components/schemas/RegisterRequest"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RegisterRequest"
-              }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthFailedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Client Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -49,22 +66,39 @@
               "schema": {
                 "$ref": "#/components/schemas/LoginRequest"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
-              }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthFailedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Client Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -81,22 +115,32 @@
               "schema": {
                 "$ref": "#/components/schemas/LogoutRequest"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LogoutRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/LogoutRequest"
-              }
             }
           }
         },
         "responses": {
           "200": {
             "description": "Success"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthFailedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Client Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -113,22 +157,39 @@
               "schema": {
                 "$ref": "#/components/schemas/RefreshRequest"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshRequest"
-              }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthFailedResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Client Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -486,58 +547,144 @@
       "RegisterRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "email",
+          "password",
+          "userName"
+        ],
         "properties": {
           "email": {
             "type": "string",
-            "format": "email",
-            "nullable": true
+            "format": "email"
           },
           "userName": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
+          }
+        }
+      },
+      "AuthSuccessResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "refreshToken",
+          "success",
+          "token"
+        ],
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "refreshToken": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AuthFailedResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "errors",
+          "success"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "FiledErrors": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "messages"
+        ],
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ValidationFailedResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "errors",
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FiledErrors"
+            }
           }
         }
       },
       "LoginRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "email",
+          "password"
+        ],
         "properties": {
           "email": {
             "type": "string",
-            "format": "email",
-            "nullable": true
+            "format": "email"
           },
           "password": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       },
       "LogoutRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "token"
+        ],
         "properties": {
           "token": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       },
       "RefreshRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "refreshToken",
+          "token"
+        ],
         "properties": {
           "token": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "refreshToken": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       },
@@ -676,14 +823,16 @@
       "ChangeCurrentUserPasswordRequest": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "newPassword",
+          "oldPassword"
+        ],
         "properties": {
           "oldPassword": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "newPassword": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           }
         }
       }

@@ -1,10 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace CookBook.API.Requests
+namespace CookBook.Domain.AuthController
 {
-    public class RegisterRequest
+    public class RegisterData
     {
-        [EmailAddress]
         public string Email { get; set; }
 
         public string UserName { get; set; }

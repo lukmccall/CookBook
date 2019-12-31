@@ -1,6 +1,6 @@
-namespace CookBook.API.Requests
+namespace CookBook.Domain.AuthController
 {
-    public class RefreshRequest
+    public class RefreshData
     {
         public string Token { get; set; }
 

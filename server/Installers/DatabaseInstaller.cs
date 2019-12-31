@@ -26,10 +26,9 @@ namespace CookBook.Installers
                     options.Password.RequireNonAlphanumeric = false;
                 })
                 .AddEntityFrameworkStores<DatabaseContext>();
-                
+
             services.AddSingleton<IRecipeRepository, RecipeRepository>();
             services.AddSingleton<IWidgetRepository, WidgetRepository>();
-
         }
     }
 }

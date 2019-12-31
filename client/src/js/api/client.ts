@@ -21,7 +21,7 @@ export class Client {
      * @param body (optional) 
      * @return Success
      */
-    register(body: RegisterRequest | undefined): Promise<void> {
+    register(body: RegisterRequest | undefined): Promise<AuthSuccessResponse> {
         let url_ = this.baseUrl + "/api/v1/auth/register";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -32,6 +32,7 @@ export class Client {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Accept": "application/json"
             }
         };
 
@@ -40,26 +41,43 @@ export class Client {
         });
     }
 
-    protected processRegister(response: Response): Promise<void> {
+    protected processRegister(response: Response): Promise<AuthSuccessResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            return;
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = AuthSuccessResponse.fromJS(resultData200);
+            return result200;
+            });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = AuthFailedResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+            });
+        } else if (status === 422) {
+            return response.text().then((_responseText) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ValidationFailedResponse.fromJS(resultData422);
+            return throwException("Client Error", status, _responseText, _headers, result422);
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<AuthSuccessResponse>(<any>null);
     }
 
     /**
      * @param body (optional) 
      * @return Success
      */
-    login(body: LoginRequest | undefined): Promise<void> {
+    login(body: LoginRequest | undefined): Promise<AuthSuccessResponse> {
         let url_ = this.baseUrl + "/api/v1/auth/login";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -70,6 +88,7 @@ export class Client {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Accept": "application/json"
             }
         };
 
@@ -78,19 +97,36 @@ export class Client {
         });
     }
 
-    protected processLogin(response: Response): Promise<void> {
+    protected processLogin(response: Response): Promise<AuthSuccessResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            return;
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = AuthSuccessResponse.fromJS(resultData200);
+            return result200;
+            });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = AuthFailedResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+            });
+        } else if (status === 422) {
+            return response.text().then((_responseText) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ValidationFailedResponse.fromJS(resultData422);
+            return throwException("Client Error", status, _responseText, _headers, result422);
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<AuthSuccessResponse>(<any>null);
     }
 
     /**
@@ -123,6 +159,20 @@ export class Client {
             return response.text().then((_responseText) => {
             return;
             });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = AuthFailedResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+            });
+        } else if (status === 422) {
+            return response.text().then((_responseText) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ValidationFailedResponse.fromJS(resultData422);
+            return throwException("Client Error", status, _responseText, _headers, result422);
+            });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -135,7 +185,7 @@ export class Client {
      * @param body (optional) 
      * @return Success
      */
-    refresh(body: RefreshRequest | undefined): Promise<void> {
+    refresh(body: RefreshRequest | undefined): Promise<AuthSuccessResponse> {
         let url_ = this.baseUrl + "/api/v1/auth/refresh";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -146,6 +196,7 @@ export class Client {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Accept": "application/json"
             }
         };
 
@@ -154,19 +205,36 @@ export class Client {
         });
     }
 
-    protected processRefresh(response: Response): Promise<void> {
+    protected processRefresh(response: Response): Promise<AuthSuccessResponse> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            return;
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = AuthSuccessResponse.fromJS(resultData200);
+            return result200;
+            });
+        } else if (status === 400) {
+            return response.text().then((_responseText) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = AuthFailedResponse.fromJS(resultData400);
+            return throwException("Bad Request", status, _responseText, _headers, result400);
+            });
+        } else if (status === 422) {
+            return response.text().then((_responseText) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ValidationFailedResponse.fromJS(resultData422);
+            return throwException("Client Error", status, _responseText, _headers, result422);
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<AuthSuccessResponse>(<any>null);
     }
 
     /**
@@ -606,9 +674,9 @@ export class Client {
 }
 
 export class RegisterRequest implements IRegisterRequest {
-    email?: string | undefined;
-    userName?: string | undefined;
-    password?: string | undefined;
+    email!: string;
+    userName!: string;
+    password!: string;
 
     constructor(data?: IRegisterRequest) {
         if (data) {
@@ -644,14 +712,211 @@ export class RegisterRequest implements IRegisterRequest {
 }
 
 export interface IRegisterRequest {
-    email?: string | undefined;
-    userName?: string | undefined;
-    password?: string | undefined;
+    email: string;
+    userName: string;
+    password: string;
+}
+
+export class AuthSuccessResponse implements IAuthSuccessResponse {
+    token!: string;
+    refreshToken!: string;
+    success!: boolean;
+
+    constructor(data?: IAuthSuccessResponse) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.token = _data["token"];
+            this.refreshToken = _data["refreshToken"];
+            this.success = _data["success"];
+        }
+    }
+
+    static fromJS(data: any): AuthSuccessResponse {
+        data = typeof data === 'object' ? data : {};
+        let result = new AuthSuccessResponse();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["token"] = this.token;
+        data["refreshToken"] = this.refreshToken;
+        data["success"] = this.success;
+        return data; 
+    }
+}
+
+export interface IAuthSuccessResponse {
+    token: string;
+    refreshToken: string;
+    success: boolean;
+}
+
+export class AuthFailedResponse implements IAuthFailedResponse {
+    success!: boolean;
+    errors!: string[];
+
+    constructor(data?: IAuthFailedResponse) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+        if (!data) {
+            this.errors = [];
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            if (Array.isArray(_data["errors"])) {
+                this.errors = [] as any;
+                for (let item of _data["errors"])
+                    this.errors!.push(item);
+            }
+        }
+    }
+
+    static fromJS(data: any): AuthFailedResponse {
+        data = typeof data === 'object' ? data : {};
+        let result = new AuthFailedResponse();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        if (Array.isArray(this.errors)) {
+            data["errors"] = [];
+            for (let item of this.errors)
+                data["errors"].push(item);
+        }
+        return data; 
+    }
+}
+
+export interface IAuthFailedResponse {
+    success: boolean;
+    errors: string[];
+}
+
+export class FiledErrors implements IFiledErrors {
+    field!: string;
+    messages!: string[];
+
+    constructor(data?: IFiledErrors) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+        if (!data) {
+            this.messages = [];
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.field = _data["field"];
+            if (Array.isArray(_data["messages"])) {
+                this.messages = [] as any;
+                for (let item of _data["messages"])
+                    this.messages!.push(item);
+            }
+        }
+    }
+
+    static fromJS(data: any): FiledErrors {
+        data = typeof data === 'object' ? data : {};
+        let result = new FiledErrors();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["field"] = this.field;
+        if (Array.isArray(this.messages)) {
+            data["messages"] = [];
+            for (let item of this.messages)
+                data["messages"].push(item);
+        }
+        return data; 
+    }
+}
+
+export interface IFiledErrors {
+    field: string;
+    messages: string[];
+}
+
+export class ValidationFailedResponse implements IValidationFailedResponse {
+    readonly status!: boolean;
+    errors!: FiledErrors[];
+
+    constructor(data?: IValidationFailedResponse) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+        if (!data) {
+            this.errors = [];
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            (<any>this).status = _data["status"];
+            if (Array.isArray(_data["errors"])) {
+                this.errors = [] as any;
+                for (let item of _data["errors"])
+                    this.errors!.push(FiledErrors.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ValidationFailedResponse {
+        data = typeof data === 'object' ? data : {};
+        let result = new ValidationFailedResponse();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["status"] = this.status;
+        if (Array.isArray(this.errors)) {
+            data["errors"] = [];
+            for (let item of this.errors)
+                data["errors"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IValidationFailedResponse {
+    status: boolean;
+    errors: FiledErrors[];
 }
 
 export class LoginRequest implements ILoginRequest {
-    email?: string | undefined;
-    password?: string | undefined;
+    email!: string;
+    password!: string;
 
     constructor(data?: ILoginRequest) {
         if (data) {
@@ -685,12 +950,12 @@ export class LoginRequest implements ILoginRequest {
 }
 
 export interface ILoginRequest {
-    email?: string | undefined;
-    password?: string | undefined;
+    email: string;
+    password: string;
 }
 
 export class LogoutRequest implements ILogoutRequest {
-    token?: string | undefined;
+    token!: string;
 
     constructor(data?: ILogoutRequest) {
         if (data) {
@@ -722,12 +987,12 @@ export class LogoutRequest implements ILogoutRequest {
 }
 
 export interface ILogoutRequest {
-    token?: string | undefined;
+    token: string;
 }
 
 export class RefreshRequest implements IRefreshRequest {
-    token?: string | undefined;
-    refreshToken?: string | undefined;
+    token!: string;
+    refreshToken!: string;
 
     constructor(data?: IRefreshRequest) {
         if (data) {
@@ -761,8 +1026,8 @@ export class RefreshRequest implements IRefreshRequest {
 }
 
 export interface IRefreshRequest {
-    token?: string | undefined;
-    refreshToken?: string | undefined;
+    token: string;
+    refreshToken: string;
 }
 
 export class Metric implements IMetric {
@@ -1116,8 +1381,8 @@ export interface IUpdateCurrentUserRequest {
 }
 
 export class ChangeCurrentUserPasswordRequest implements IChangeCurrentUserPasswordRequest {
-    oldPassword?: string | undefined;
-    newPassword?: string | undefined;
+    oldPassword!: string;
+    newPassword!: string;
 
     constructor(data?: IChangeCurrentUserPasswordRequest) {
         if (data) {
@@ -1151,8 +1416,8 @@ export class ChangeCurrentUserPasswordRequest implements IChangeCurrentUserPassw
 }
 
 export interface IChangeCurrentUserPasswordRequest {
-    oldPassword?: string | undefined;
-    newPassword?: string | undefined;
+    oldPassword: string;
+    newPassword: string;
 }
 
 export class ApiException extends Error {

@@ -1,10 +1,9 @@
-using System.Linq;
 using System.Threading.Tasks;
 using CookBook.API;
 using CookBook.API.Requests;
-using CookBook.Extensions;
+using CookBook.API.Requests.AuthController;
+using CookBook.API.Requests.UserController;
 using CookBook.Models;
-using CookBook.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

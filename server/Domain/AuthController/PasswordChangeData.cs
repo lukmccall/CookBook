@@ -1,6 +1,6 @@
-namespace CookBook.API.Requests
+namespace CookBook.Domain.AuthController
 {
-    public class ChangeCurrentUserPasswordRequest
+    public class PasswordChangeData
     {
         public string OldPassword { get; set; }
 
