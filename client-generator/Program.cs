@@ -27,8 +27,7 @@ namespace client_generator
             var openApiFile = new Deserializer301(new JsonSerializerSettings()).Deserialize(jsonString);
 
             var generator = new Generator();
-            generator.ParseSchemas(openApiFile.Schemas);
-            generator.ParseEndpoints(openApiFile.Endpoints);
+            generator.Generate(openApiFile);
         }
 
     }

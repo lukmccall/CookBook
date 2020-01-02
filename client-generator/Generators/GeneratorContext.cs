@@ -18,7 +18,7 @@ namespace client_generator.Generators
         {
             return _types.ContainsKey(typeName);
         }
-        
+
         public void AddType(string typeName, string code, IEnumerable<ISchema> relatedSchemas)
         {
             if (_types.ContainsKey(typeName))
@@ -50,6 +50,16 @@ namespace client_generator.Generators
         public ITemplateFactory GetTemplateFactory()
         {
             return new TemplatesFactory();
+        }
+
+        public Dictionary<string, Type> GetTypesToGenerate()
+        {
+            return _types;
+        }
+
+        public Dictionary<string, Function> GetFunctionsToGenerate()
+        {
+            return _functions;
         }
 
     }

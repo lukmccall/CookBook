@@ -1,9 +1,14 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using client_generator.Extensions;
 using client_generator.Models;
 using client_generator.Models.Endpoints;
+using client_generator.Models.Generators;
 using client_generator.Models.Schemas;
+using Type = client_generator.Models.Generators.Type;
 
 namespace client_generator.Generators
 {
@@ -11,6 +16,13 @@ namespace client_generator.Generators
     {
 
         protected readonly IGeneratorContext GeneratorContext = new GeneratorContext();
+
+        public void Generate(OpenApiModel openApiModel)
+        {
+            ParseSchemas(openApiModel.Schemas);
+            ParseEndpoints(openApiModel.Endpoints);
+            CreateFiles(GeneratorContext.GetTypesToGenerate(), GeneratorContext.GetFunctionsToGenerate());
+        }
 
         public void ParseSchemas(IEnumerable<ISchema> schemas)
         {
@@ -28,8 +40,23 @@ namespace client_generator.Generators
             }
         }
 
-        void CreateFiles(IEnumerable<TsFile> files)
+        public void CreateFiles(Dictionary<string, Type> types, Dictionary<string, Function> functions)
         {
+            var sb = new StringBuilder();
+
+            foreach (var (name, type) in types)
+            {
+                sb.AppendLine(type.Code).AppendLine();
+            }
+
+            sb.AppendLine();
+
+            foreach (var (name, function) in functions)
+            {
+                sb.AppendLine(function.Code).AppendLine();
+            }
+
+            Console.WriteLine(sb.ToString());
         }
 
         private void ParseEndpoint(IEndpoint endpoint)
@@ -114,7 +141,7 @@ namespace client_generator.Generators
         void ParseSchema(ISchema schema)
         {
             if (schema.GetSchemaType() == SchemaType.Object && !GeneratorContext.TypeExists(schema.GetName()))
-            {   
+            {
                 var template = schema.GetTemplate(GeneratorContext.GetTemplateFactory());
                 GeneratorContext.AddType(schema.GetName(), template.TransformText(), schema.GetRelatedSchemes());
             }
