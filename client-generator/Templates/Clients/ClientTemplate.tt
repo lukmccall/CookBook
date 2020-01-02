@@ -1,0 +1,29 @@
+<#@ template language="C#" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+    foreach (var line in _imports)
+    {
+#>
+<#= line #>
+<#
+    }
+#>
+export class Client {
+    baseUrl = "<#= _baseUrl #>";
+
+<#
+    foreach (var function in _functions)
+    {
+        foreach (var line in function.Split("\n"))
+        {
+#>
+    <#= line #>
+<#
+        }
+#>
+
+<#
+    }
+#>
+}

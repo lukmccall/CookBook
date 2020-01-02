@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using client_generator.Extensions;
@@ -40,24 +39,57 @@ namespace client_generator.Generators
             }
         }
 
+
         public void CreateFiles(Dictionary<string, Type> types, Dictionary<string, Function> functions)
         {
-            var sb = new StringBuilder();
+            var typeFile = new TsFile("types");
 
-            foreach (var (name, type) in types)
+            var relatedSchemas = types.Select(x => x.Value.RelatedSchemas)
+                .SelectMany(x => x)
+                .Distinct();
+
+            var imports = GetImportsString(typeFile, relatedSchemas);
+
+            typeFile.Write(imports);
+
+            foreach (var (_, type) in types)
             {
-                sb.AppendLine(type.Code).AppendLine();
+                typeFile.Write(type.Code);
             }
 
-            sb.AppendLine();
+            var exports = types.Select(x => x.Key).StrJoin(", ");
 
-            foreach (var (name, function) in functions)
-            {
-                sb.AppendLine(function.Code).AppendLine();
-            }
+            typeFile.Write("export { " + exports + " };");
+            typeFile.Write("");
+            
+            var mainFile = new TsFile("main");
 
-            Console.WriteLine(sb.ToString());
+            relatedSchemas = functions.Select(x => x.Value.RelatedSchemas)
+                .SelectMany(x => x)
+                .Distinct();
+
+            imports = GetImportsString(mainFile, relatedSchemas);
+
+            var template = GeneratorContext.GetTemplateFactory()
+                .CreateClientTemplate("adres", functions.Select(x => x.Value.Code), imports);
+
+            mainFile.Write(template.TransformText());
         }
+
+        public IEnumerable<string> GetImportsString(TsFile fromFile, IEnumerable<ISchema> schemas)
+        {
+            if (fromFile.FileName == "types")
+            {
+                return new List<string>();
+            }
+
+
+            return new List<string>
+            {
+                "import { " + schemas.Select(x => x.GetName()).StrJoin(", ") + " } from \"./types\";"
+            };
+        }
+
 
         private void ParseEndpoint(IEndpoint endpoint)
         {

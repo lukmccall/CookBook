@@ -36,6 +36,10 @@
         <Generator>TextTemplatingFilePreprocessor</Generator>
         <LastGenOutput>ResponseParserTemplate.cs</LastGenOutput>
       </None>
+      <None Update="Templates\Clients\ClientTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ClientTemplate.cs</LastGenOutput>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -59,6 +63,9 @@
       </Compile>
       <Compile Update="Templates\Responses\ResponseParserTemplate.cs">
         <DependentUpon>ResponseParserTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Clients\ClientTemplate.cs">
+        <DependentUpon>ClientTemplate.tt</DependentUpon>
       </Compile>
     </ItemGroup>
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Parameters;
+using client_generator.Templates.Clients;
 using client_generator.Templates.Endpoints;
 using client_generator.Templates.Parameters;
 using client_generator.Templates.Responses;
@@ -18,6 +19,8 @@ namespace client_generator.Templates
         private readonly IResponseTemplateFactory _responseTemplateFactory = new ResponseTemplateFactory();
 
         private readonly IEndpointTemplateFactory _endpointTemplateFactory = new EndpointTemplateFactory();
+
+        private readonly IClientTemplateFactory _clientTemplateFactory = new ClientTemplateFactory();
 
         public ITemplate CreateClassSchemaTemplate(string name, Dictionary<string, string> properties,
             IEnumerable<string> requiredProperties)
@@ -47,6 +50,11 @@ namespace client_generator.Templates
             return _endpointTemplateFactory.CreateEndpointTemplate(url, functionName, signature, returnsTypes,
                 parametersParsingCode, type, haveBody,
                 responses);
+        }
+
+        public ITemplate CreateClientTemplate(string baseUrl, IEnumerable<string> functions, IEnumerable<string> imports)
+        {
+            return _clientTemplateFactory.CreateClientTemplate(baseUrl, functions, imports);
         }
 
     }
