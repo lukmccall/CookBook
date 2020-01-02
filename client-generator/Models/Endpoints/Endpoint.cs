@@ -7,7 +7,7 @@ using client_generator.Templates.Endpoints;
 
 namespace client_generator.Models.Endpoints
 {
-    class Endpoint : TemplateHolder, IEndpoint
+    public class Endpoint : IEndpoint
     {
 
         private readonly string _operationId;
@@ -63,43 +63,6 @@ namespace client_generator.Models.Endpoints
         public IEnumerable<IHttpResponse> GetResponses()
         {
             return _responses;
-        }
-
-        public override bool NeedsToBeGenerated()
-        {
-            return _needsToBeGenerated;
-        }
-
-        public override void Generate(IGeneratorContext generator)
-        {
-            generator.CreateNewEndpointContext();
-            foreach (var param in _parameters ?? new HashSet<IParameter>())
-            {
-                if (param.NeedsToBeGenerated())
-                {
-                    param.Generate(generator);
-                }
-            }
-
-            _requestBody?.Generate(generator);
-
-            if (_responses != null)
-            {
-                foreach (var response in _responses)
-                {
-                    response.Generate(generator);
-                }
-            }
-
-            var currentEndpointContext = generator.GetCurrentEndpointContext();
-
-            var functionBody = new FunctionEndpointTemplate(_path, _operationId,
-                currentEndpointContext.GetSignatureCode(), currentEndpointContext.GetParameterParsingCode(), _type,
-                _requestBody != null, currentEndpointContext.GetResponseParseCodes(),
-                currentEndpointContext.GetReturnType()).TransformText();
-
-            generator.AddFunction(GetId(), functionBody);
-            _needsToBeGenerated = false;
         }
 
     }

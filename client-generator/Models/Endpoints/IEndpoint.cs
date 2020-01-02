@@ -6,7 +6,7 @@ using client_generator.Models.Responses;
 
 namespace client_generator.Models.Endpoints
 {
-    public interface IEndpoint : IGenerable
+    public interface IEndpoint
     {
 
         string GetId();

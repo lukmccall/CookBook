@@ -2,7 +2,7 @@ using client_generator.Models.Parameters;
 
 namespace client_generator.Templates.Parameters
 {
-    public partial class ParameterParserTemplate
+    public partial class ParameterParserTemplate : ITemplate
     {
 
         private readonly string _name;

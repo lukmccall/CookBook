@@ -7,9 +7,8 @@ namespace client_generator.Templates.Endpoints
     public partial class FunctionEndpointTemplate : ITemplate
     {
 
-        private readonly string _operationId;
-
-
+        private readonly string _functionName;
+        
         private readonly IEnumerable<string> _signature;
 
         private readonly string _url;
@@ -22,20 +21,19 @@ namespace client_generator.Templates.Endpoints
 
         private readonly Dictionary<int, string> _responses;
 
-        private readonly string _returnType;
+        private readonly IEnumerable<string> _returnTypes;
 
-        public FunctionEndpointTemplate(string url,
-            string operationId, IEnumerable<string> signature,
-            IEnumerable<string> parameterParsingCodes, EndpointType type, bool haveBody, Dictionary<int, string> responses, string returnType)
+        public FunctionEndpointTemplate(string url, string functionName, IEnumerable<string> signature, IEnumerable<string> returnsTypes,
+            IEnumerable<string> parametersParsingCode, EndpointType type, bool haveBody, Dictionary<int, string> responses)
         {
-            _operationId = operationId;
+            _functionName = functionName;
             _signature = signature;
             _url = url;
-            _parameterParsingCodes = parameterParsingCodes;
+            _parameterParsingCodes = parametersParsingCode;
             _type = type;
             _haveBody = haveBody;
             _responses = responses;
-            _returnType = returnType;
+            _returnTypes =  returnsTypes;
         }
 
     }

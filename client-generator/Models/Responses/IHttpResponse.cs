@@ -1,8 +1,6 @@
-using client_generator.Generators;
-
 namespace client_generator.Models.Responses
 {
-    public interface IHttpResponse : IResponse, IGenerable
+    public interface IHttpResponse : IResponse
     {
 
         int GetStatus();

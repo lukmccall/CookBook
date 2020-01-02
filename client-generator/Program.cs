@@ -25,11 +25,10 @@ namespace client_generator
             var jsonString = File.ReadAllText("/Users/lukasz/studies/cis/CookBook/client-generator/openapi.json");
 //            var jsonString = "{\"name\": \"id\",\"in\": \"path\",\"required\": true,\"schema\": {\"type\": \"integer\",\"format\": \"int64\"}}";
             var openApiFile = new Deserializer301(new JsonSerializerSettings()).Deserialize(jsonString);
-            
-            var generator = new GeneratorContext(new TsGenerator());
-            openApiFile.Generate(generator);
-            
-            
+
+            var generator = new Generator();
+            generator.ParseSchemas(openApiFile.Schemas);
+            generator.ParseEndpoints(openApiFile.Endpoints);
         }
 
     }

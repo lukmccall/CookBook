@@ -3,7 +3,7 @@ using client_generator.Models.Schemas;
 
 namespace client_generator.Models.Parameters
 {
-    public interface IParameter : IGenerable
+    public interface IParameter 
     {
 
         ParameterType GetParameterType();

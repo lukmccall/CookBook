@@ -3,7 +3,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="client_generator.Extensions" #>
-async <#= _operationId #>(<#= string.Join(", ", _signature) #>): Promise<<#= _returnType #>> {
+async <#= _functionName #>(<#= string.Join(", ", _signature) #>): Promise<<#= _returnTypes.StrJoin(" | ") #>> {
     let _url = this.baseUrl + <#= _url #>;
 <#
     foreach (var code in _parameterParsingCodes)

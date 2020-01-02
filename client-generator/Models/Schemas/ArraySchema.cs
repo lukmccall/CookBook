@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using client_generator.Generators;
+using client_generator.Templates;
 
 namespace client_generator.Models.Schemas
 {
-    public class ArraySchema : TemplateHolder, ISchema
+    public class ArraySchema : ISchema
     {
 
         private readonly ISchema _schema;
@@ -31,14 +32,9 @@ namespace client_generator.Models.Schemas
             };
         }
 
-        public override bool NeedsToBeGenerated()
+        public ITemplate GetTemplate(ITemplateFactory templateFactory)
         {
-            return _schema.NeedsToBeGenerated();
-        }
-
-        public override void Generate(IGeneratorContext generator)
-        {
-            _schema.Generate(generator);
+            return null;
         }
 
     }

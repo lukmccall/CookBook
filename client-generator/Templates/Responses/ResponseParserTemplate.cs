@@ -5,11 +5,15 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace client_generator.Templates.Schemes
+namespace client_generator.Templates.Responses
 {
     using System;
-    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-using System.Linq;
+    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+using System.Text;
+    #line default
+    #line hidden
+    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+using System.Collections.Generic;
     #line default
     #line hidden
     
@@ -17,9 +21,9 @@ using System.Linq;
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+    #line 1 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("JetBrains.ForTea.TextTemplating", "42.42.42.42")]
-    public partial class ClassSchemaTemplate : ClassSchemaTemplateBase
+    public partial class ResponseParserTemplate : ResponseParserTemplateBase
     {
 #line hidden
         /// <summary>
@@ -28,74 +32,21 @@ using System.Linq;
         public virtual string TransformText()
         {
             
-            this.Write("class ");
+            this.Write("let _data");
             
-            #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
-            
-            #line default
-            #line hidden
-            this.Write(" {  \n");
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-
-    foreach (var (name, type) in _properties)
-    {
-
+            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_status));
             
             #line default
             #line hidden
-            this.Write("    ");
+            this.Write(" = ");
             
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(name));
-            
-            #line default
-            #line hidden
-            this.Write(": ");
-            
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type));
+            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_type));
             
             #line default
             #line hidden
-            this.Write(" ");
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-
-        if (!_requiredProperties.Contains(name))
-        {
-
-            
-            #line default
-            #line hidden
-            this.Write(" ? ");
-            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-
-        } 
-            
-            #line default
-            #line hidden
-            this.Write("\n");
-            #line 14 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-
-    } 
-            
-            #line default
-            #line hidden
-            this.Write("    \n    static fromResponse(data?: any): ");
-            
-            #line 17 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
-            
-            #line default
-            #line hidden
-            this.Write(" {\n        const _data = typeof data === 'object' ? data : {};\n        const _response = new ");
-            
-            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
-            
-            #line default
-            #line hidden
-            this.Write("();\n        \n        for (let _attr in _data) {\n            if (_data.hasOwnProperty(_attr)) {\n                if (Array.isArray(_data[_attr])) {\n                    _response[_attr] = [] as any;\n                    for (let _item of _data[_attr]) {\n                        _response[_attr].push(_item);\n                    }\n                } else {\n                    _response[_attr] = _data[_attr];\n                }\n            }\n        }\n\n        return _response;\n    }\n}");
+            this.Write(">.fromResponse(await _response.json());");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -107,7 +58,7 @@ using System.Linq;
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("JetBrains.ForTea.TextTemplating", "42.42.42.42")]
-    public class ClassSchemaTemplateBase
+    public class ResponseParserTemplateBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

@@ -5,7 +5,7 @@ using client_generator.OpenApi._3._0._1;
 
 namespace client_generator.Models.Requests
 {
-    class RequestBody : TemplateHolder, IRequestBody
+    class RequestBody : IRequestBody
     {
 
         private readonly bool _isRequired;
@@ -31,29 +31,6 @@ namespace client_generator.Models.Requests
         public ISchema GetSchemaForType(string type)
         {
             return _schemasMap[type];
-        }
-
-        public override bool NeedsToBeGenerated()
-        {
-            return true;
-        }
-
-        public override void Generate(IGeneratorContext generator)
-        {
-            // todo: handle other types
-            if (_schemasMap.ContainsKey("application/json"))
-            {
-                var schema = _schemasMap["application/json"];
-                if (schema.NeedsToBeGenerated())
-                {
-                    schema.Generate(generator);
-                }
-
-                var req = _isRequired ? "" : " | undefined";
-                generator.GetCurrentEndpointContext().UseSchema(schema);
-                generator.GetCurrentEndpointContext()
-                    .AddBody($"body: {schema.GetName()}{req}", "let _body = JSON.stringify(body);\n");
-            }
         }
 
     }

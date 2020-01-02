@@ -4,7 +4,6 @@ namespace client_generator.Generators
     {
 
         public SchemeGeneratePlace SchemePlace { get; set; }
-        
 
     }
 }

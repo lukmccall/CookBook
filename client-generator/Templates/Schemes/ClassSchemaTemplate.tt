@@ -2,10 +2,10 @@
 <#@ import namespace="System.Linq" #>
 class <#= _name #> {  
 <#
-    foreach (var (name, schema) in _properties)
+    foreach (var (name, type) in _properties)
     {
 #>
-    <#= name #>: <#= schema.GetName() #> <#
+    <#= name #>: <#= type #> <#
         if (!_requiredProperties.Contains(name))
         {
 #> ? <#

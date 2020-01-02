@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using client_generator.Generators;
 using client_generator.Models.Schemas;
+using client_generator.Templates;
 
 namespace client_generator.Models
 {
-    internal class SimpleSchema : TemplateHolder, ISchema
+    internal class SimpleSchema : ISchema
     {
 
         private static readonly Dictionary<SchemaType, string> TypeToName = new Dictionary<SchemaType, string>
@@ -36,15 +37,10 @@ namespace client_generator.Models
         {
             return new List<ISchema>();
         }
-        
-        public override bool NeedsToBeGenerated()
-        {
-            return false;
-        }
 
-        public override void Generate(IGeneratorContext generator)
+        public ITemplate GetTemplate(ITemplateFactory templateFactory)
         {
-            // we don't have to generate this 
+            return null;
         }
 
     }

@@ -5,11 +5,15 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace client_generator.Templates.Schemes
+namespace client_generator.Templates.TsFiles
 {
     using System;
-    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-using System.Linq;
+    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+using System.Text;
+    #line default
+    #line hidden
+    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+using System.Collections.Generic;
     #line default
     #line hidden
     
@@ -17,9 +21,9 @@ using System.Linq;
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+    #line 1 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("JetBrains.ForTea.TextTemplating", "42.42.42.42")]
-    public partial class ClassSchemaTemplate : ClassSchemaTemplateBase
+    public partial class MainFile : MainFileBase
     {
 #line hidden
         /// <summary>
@@ -28,17 +32,23 @@ using System.Linq;
         public virtual string TransformText()
         {
             
-            this.Write("class ");
             
-            #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
+            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_imports));
             
             #line default
             #line hidden
-            this.Write(" {  \n");
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write("\n\nclass Client {\n    baseUrl = \"");
+            
+            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_baseUrl));
+            
+            #line default
+            #line hidden
+            this.Write("\";\n    \n");
+            #line 9 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
 
-    foreach (var (name, type) in _properties)
+    foreach (var line in _content.Split("\n"))
     {
 
             
@@ -46,56 +56,26 @@ using System.Linq;
             #line hidden
             this.Write("    ");
             
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(name));
-            
-            #line default
-            #line hidden
-            this.Write(": ");
-            
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-
-        if (!_requiredProperties.Contains(name))
-        {
-
-            
-            #line default
-            #line hidden
-            this.Write(" ? ");
-            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-
-        } 
+            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(line));
             
             #line default
             #line hidden
             this.Write("\n");
-            #line 14 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 14 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
 
-    } 
+    }
+
             
             #line default
             #line hidden
-            this.Write("    \n    static fromResponse(data?: any): ");
+            this.Write("}\n\n");
             
-            #line 17 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
-            
-            #line default
-            #line hidden
-            this.Write(" {\n        const _data = typeof data === 'object' ? data : {};\n        const _response = new ");
-            
-            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
+            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_exports));
             
             #line default
             #line hidden
-            this.Write("();\n        \n        for (let _attr in _data) {\n            if (_data.hasOwnProperty(_attr)) {\n                if (Array.isArray(_data[_attr])) {\n                    _response[_attr] = [] as any;\n                    for (let _item of _data[_attr]) {\n                        _response[_attr].push(_item);\n                    }\n                } else {\n                    _response[_attr] = _data[_attr];\n                }\n            }\n        }\n\n        return _response;\n    }\n}");
             return this.GenerationEnvironment.ToString();
         }
     }
@@ -107,7 +87,7 @@ using System.Linq;
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("JetBrains.ForTea.TextTemplating", "42.42.42.42")]
-    public class ClassSchemaTemplateBase
+    public class MainFileBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

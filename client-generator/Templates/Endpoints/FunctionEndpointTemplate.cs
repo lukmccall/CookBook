@@ -43,7 +43,7 @@ using client_generator.Extensions;
             this.Write("async ");
             
             #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_operationId));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_functionName));
             
             #line default
             #line hidden
@@ -57,7 +57,7 @@ using client_generator.Extensions;
             this.Write("): Promise<");
             
             #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_returnType));
+            this.Write(this.ToStringHelper.ToStringWithCulture(_returnTypes.StrJoin(" | ")));
             
             #line default
             #line hidden

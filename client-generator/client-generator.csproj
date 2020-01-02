@@ -24,6 +24,18 @@
         <Generator>TextTemplatingFilePreprocessor</Generator>
         <LastGenOutput>ParameterParserTemplate.cs</LastGenOutput>
       </None>
+      <None Update="Templates\TsFiles\MainFile.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>MainFile.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Parameters\ParameterSignatureTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ParameterSignatureTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Responses\ResponseParserTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ResponseParserTemplate.cs</LastGenOutput>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -38,6 +50,15 @@
       </Compile>
       <Compile Update="Templates\Parameters\ParameterParserTemplate.cs">
         <DependentUpon>ParameterParserTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\TsFiles\MainFile.cs">
+        <DependentUpon>MainFile.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Parameters\ParameterSignatureTemplate.cs">
+        <DependentUpon>ParameterSignatureTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Responses\ResponseParserTemplate.cs">
+        <DependentUpon>ResponseParserTemplate.tt</DependentUpon>
       </Compile>
     </ItemGroup>
 

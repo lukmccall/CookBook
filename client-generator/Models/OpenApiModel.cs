@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using client_generator.Generators;
+using System.Linq;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Headers;
 using client_generator.Models.Parameters;
@@ -14,18 +14,14 @@ namespace client_generator.Models
 
         public IEnumerable<IEndpoint> Endpoints { get; }
 
-        public OpenApiModel(IEnumerable<IEndpoint> endpoints)
+        public IEnumerable<ISchema> Schemas { get; }
+
+        public OpenApiModel(IEnumerable<IEndpoint> endpoints, IEnumerable<ISchema> schemas)
         {
             Endpoints = endpoints;
+            Schemas = schemas;
         }
 
-        public void Generate(IGeneratorContext generatorContext)
-        {
-            foreach (var endpoint in Endpoints)
-            {
-                endpoint.Generate(generatorContext);
-            }
-        }
 
         public class OpenApiModelBuilder
         {
@@ -115,7 +111,7 @@ namespace client_generator.Models
 
             public OpenApiModel Create()
             {
-                return new OpenApiModel(_endpoints);
+                return new OpenApiModel(_endpoints, _schemas.Select(x => x.Value));
             }
 
         }
