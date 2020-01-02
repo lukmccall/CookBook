@@ -20,7 +20,7 @@ namespace client_generator.Models.Responses
 
         public ISchema GetSchemaForType(string type)
         {
-            return _schemasMap[type];
+            return _schemasMap.GetValueOrDefault(type, null);
         }
 
     }

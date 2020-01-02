@@ -2,22 +2,67 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Linq" #>
-<#= _operationId #>(<#= string.Join(", ", _signature) #>) {
+<#@ import namespace="client_generator.Extensions" #>
+async <#= _operationId #>(<#= string.Join(", ", _signature) #>): Promise<<#= _returnType #>> {
     let _url = this.baseUrl + <#= _url #>;
 <#
     foreach (var code in _parameterParsingCodes)
     {
-#>
-        <#
         foreach (var line in code.Split("\n"))
         {
 #>
     <#= line #>
 <#
         }
-#> 
-
-<#
     }
 #> 
+    _url = _url.replace(/[?&]$/, "");
+
+    let _options = {
+<#
+    if (_haveBody)
+    {
+#>
+        body: _body,
+<#
+    }
+#>
+        method: "<#= _type.ToString().ToUpper() #>",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+    };
+
+    let _response = await fetch(_url, _options);
+
+<#
+    foreach (var (status, response) in _responses)
+    {
+#>
+    if (_response.status === <#= status #>) {
+        <#= response #>
+<#
+        if (status.WasSuccessful())
+        {
+#>
+        return _data<#= status #>;
+<#
+        }
+        else
+        {
+#>
+        throw _data<#= status #>;
+    }
+<#
+        }
+    }
+#>
+
+    // handling undefinded response
+    if (_response.status !== 200 && _response.status !== 204) {
+        throw new Error("An unexpected server error occurred.");
+    }
+
+    return null;
 }

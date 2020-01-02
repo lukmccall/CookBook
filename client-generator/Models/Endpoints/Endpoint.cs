@@ -81,11 +81,24 @@ namespace client_generator.Models.Endpoints
                 }
             }
 
+            _requestBody?.Generate(generator);
+
+            if (_responses != null)
+            {
+                foreach (var response in _responses)
+                {
+                    response.Generate(generator);
+                }
+            }
+
             var currentEndpointContext = generator.GetCurrentEndpointContext();
 
             var functionBody = new FunctionEndpointTemplate(_path, _operationId,
-                currentEndpointContext.GetSignatureCode(), currentEndpointContext.GetParameterParsingCode()).TransformText();
-            
+                currentEndpointContext.GetSignatureCode(), currentEndpointContext.GetParameterParsingCode(), _type,
+                _requestBody != null, currentEndpointContext.GetResponseParseCodes(),
+                currentEndpointContext.GetReturnType()).TransformText();
+
+            generator.AddFunction(GetId(), functionBody);
             _needsToBeGenerated = false;
         }
 

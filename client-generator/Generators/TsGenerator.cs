@@ -11,7 +11,7 @@ namespace client_generator.Generators
         private static readonly string MainFile = "main";
 
         private readonly Dictionary<string, TsFile> _generatedCode = new Dictionary<string, TsFile>();
-
+        
         private readonly GeneratorSettings _generatorSettings;
 
         public TsGenerator()
@@ -40,6 +40,12 @@ namespace client_generator.Generators
                 }
                     break;
             }
+        }
+
+        public void AddFunction(string name, string body)
+        {
+            var mainFile = GetFile(MainFile);
+            mainFile.Write(body);
         }
 
         private TsFile GetFile(string name)

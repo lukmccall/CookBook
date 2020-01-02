@@ -44,6 +44,7 @@ using System.Linq;
             
             #line default
             #line hidden
+            this.Write("    ");
             
             #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
@@ -73,13 +74,28 @@ using System.Linq;
             
             #line default
             #line hidden
-            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write("\n");
+            #line 14 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
     } 
             
             #line default
             #line hidden
-            this.Write("}");
+            this.Write("    \n    static fromResponse(data?: any): ");
+            
+            #line 17 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
+            
+            #line default
+            #line hidden
+            this.Write(" {\n        const _data = typeof data === 'object' ? data : {};\n        const _response = new ");
+            
+            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
+            
+            #line default
+            #line hidden
+            this.Write("();\n        \n        for (let _attr in _data) {\n            if (_data.hasOwnProperty(_attr)) {\n                if (Array.isArray(_data[_attr])) {\n                    _response[_attr] = [] as any;\n                    for (let _item of _data[_attr]) {\n                        _response[_attr].push(_item);\n                    }\n                } else {\n                    _response[_attr] = _data[_attr];\n                }\n            }\n        }\n\n        return _response;\n    }\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

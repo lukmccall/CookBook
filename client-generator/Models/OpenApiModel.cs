@@ -12,14 +12,19 @@ namespace client_generator.Models
     public class OpenApiModel
     {
 
-        private readonly Dictionary<string, ISchema> _schemas;
+        public IEnumerable<IEndpoint> Endpoints { get; }
 
-        private readonly Dictionary<string, IHeader> _headers;
-
-        public OpenApiModel(Dictionary<string, ISchema> schemas, Dictionary<string, IHeader> headers)
+        public OpenApiModel(IEnumerable<IEndpoint> endpoints)
         {
-            _schemas = schemas;
-            _headers = headers;
+            Endpoints = endpoints;
+        }
+
+        public void Generate(IGeneratorContext generatorContext)
+        {
+            foreach (var endpoint in Endpoints)
+            {
+                endpoint.Generate(generatorContext);
+            }
         }
 
         public class OpenApiModelBuilder
@@ -36,8 +41,6 @@ namespace client_generator.Models
             private readonly Dictionary<string, IParameter> _parameters = new Dictionary<string, IParameter>();
 
             private readonly List<IEndpoint> _endpoints = new List<IEndpoint>();
-
-            private readonly IGeneratorContext _generatorContext = new GeneratorContext(new TsGenerator());
 
             public OpenApiModelBuilder AttachScheme(string path, ISchema schema)
             {
@@ -82,7 +85,6 @@ namespace client_generator.Models
             public OpenApiModelBuilder AttachEndpoint(IEndpoint endpoint)
             {
                 _endpoints.Add(endpoint);
-                endpoint.Generate(_generatorContext);
                 return this;
             }
 
@@ -113,7 +115,7 @@ namespace client_generator.Models
 
             public OpenApiModel Create()
             {
-                return new OpenApiModel(_schemas, _headers);
+                return new OpenApiModel(_endpoints);
             }
 
         }

@@ -8,6 +8,8 @@ namespace client_generator.Generators
 
         void AddType(string typeName, string code, IEnumerable<ISchema> relatedSchemas);
 
+        void AddFunction(string name, string body);
+        
         void CreateNewEndpointContext();
 
         IEndpointContext GetCurrentEndpointContext();

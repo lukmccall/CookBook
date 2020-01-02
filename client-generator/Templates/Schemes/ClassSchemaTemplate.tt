@@ -5,11 +5,32 @@ class <#= _name #> {
     foreach (var (name, schema) in _properties)
     {
 #>
-<#= name #>: <#= schema.GetName() #> <#
+    <#= name #>: <#= schema.GetName() #> <#
         if (!_requiredProperties.Contains(name))
         {
 #> ? <#
         } #>
+
 <#
     } #>
+    
+    static fromResponse(data?: any): <#= _name #> {
+        const _data = typeof data === 'object' ? data : {};
+        const _response = new <#= _name #>();
+        
+        for (let _attr in _data) {
+            if (_data.hasOwnProperty(_attr)) {
+                if (Array.isArray(_data[_attr])) {
+                    _response[_attr] = [] as any;
+                    for (let _item of _data[_attr]) {
+                        _response[_attr].push(_item);
+                    }
+                } else {
+                    _response[_attr] = _data[_attr];
+                }
+            }
+        }
+
+        return _response;
+    }
 }

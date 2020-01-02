@@ -91,14 +91,15 @@ namespace client_generator.Models.Parameters
 
             generator.GetCurrentEndpointContext()?.UseSchema(_schema);
 
-            var req = _isRequired ? "" : "| undefined";
+            var req = _isRequired ? "" : " | undefined";
             generator.GetCurrentEndpointContext()
                 ?.AddParameter(_name, $"{_name}: {_schema.GetName()}{req}", GetParseCode(), _parameterType);
         }
 
         private string GetParseCode()
         {
-            return new ParameterParserTemplate(GetName(), IsRequired(), AllowEmptyValue(), GetParameterType()).TransformText();
+            return new ParameterParserTemplate(GetName(), IsRequired(), AllowEmptyValue(), GetParameterType())
+                .TransformText();
         }
 
     }
