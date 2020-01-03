@@ -51,6 +51,7 @@ namespace client_generator.Generators
             var imports = GetImportsString(typeFile, relatedSchemas);
 
             typeFile.Write(imports);
+            typeFile.Write("");
 
             foreach (var (_, type) in types)
             {
@@ -61,7 +62,7 @@ namespace client_generator.Generators
 
             typeFile.Write("export { " + exports + " };");
             typeFile.Write("");
-            
+
             var mainFile = new TsFile("main");
 
             relatedSchemas = functions.Select(x => x.Value.RelatedSchemas)
@@ -74,6 +75,9 @@ namespace client_generator.Generators
                 .CreateClientTemplate("adres", functions.Select(x => x.Value.Code), imports);
 
             mainFile.Write(template.TransformText());
+
+            typeFile.ToSystemFile();
+            mainFile.ToSystemFile();
         }
 
         public IEnumerable<string> GetImportsString(TsFile fromFile, IEnumerable<ISchema> schemas)

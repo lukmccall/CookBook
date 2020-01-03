@@ -38,7 +38,7 @@ if (<#= _name #> !== undefined) {
     {
         case ParameterType.Path:
 #>
-    _url = _url.replace({<#= _name #>}, encodeURIComponent("" +  <#= _name #>));
+    _url = _url.replace("{<#= _name #>}", encodeURIComponent("" +  <#= _name #>));
 <#
             break;
 #>

@@ -5,12 +5,11 @@ class <#= _name #> {
     foreach (var (name, type) in _properties)
     {
 #>
-    <#= name #>: <#= type #> <#
+    <#= name #><#
         if (!_requiredProperties.Contains(name))
         {
-#> ? <#
-        } #>
-
+#>?<#
+        } #>: <#= type #>;
 <#
     } #>
     

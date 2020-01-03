@@ -12,7 +12,7 @@ namespace client_generator.Models
         {
             {SchemaType.Int, "number"},
             {SchemaType.Number, "number"},
-            {SchemaType.Bool, "bool"},
+            {SchemaType.Bool, "boolean"},
             {SchemaType.String, "string"}
         };
 

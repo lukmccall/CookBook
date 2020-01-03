@@ -51,14 +51,6 @@ using System.Linq;
             
             #line default
             #line hidden
-            this.Write(": ");
-            
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
             #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
         if (!_requiredProperties.Contains(name))
@@ -67,15 +59,22 @@ using System.Linq;
             
             #line default
             #line hidden
-            this.Write(" ? ");
+            this.Write("?");
             #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
         } 
             
             #line default
             #line hidden
-            this.Write("\n");
-            #line 14 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(": ");
+            
+            #line 12 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(type));
+            
+            #line default
+            #line hidden
+            this.Write(";\n");
+            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
     } 
             
@@ -83,14 +82,14 @@ using System.Linq;
             #line hidden
             this.Write("    \n    static fromResponse(data?: any): ");
             
-            #line 17 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 16 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(" {\n        const _data = typeof data === 'object' ? data : {};\n        const _response = new ");
             
-            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 18 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default

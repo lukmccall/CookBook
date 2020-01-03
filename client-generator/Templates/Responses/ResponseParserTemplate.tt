@@ -1,4 +1,4 @@
 <#@ template language="C#" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-let _data<#= _status #> = <#= _type #>>.fromResponse(await _response.json());
+let _data<#= _status #> = <#= _type #>.fromResponse(await _response.json());

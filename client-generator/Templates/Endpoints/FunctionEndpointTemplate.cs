@@ -61,14 +61,14 @@ using client_generator.Extensions;
             
             #line default
             #line hidden
-            this.Write("> {\n    let _url = this.baseUrl + ");
+            this.Write("> {\n    let _url = this.baseUrl + \"");
             
             #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_url));
             
             #line default
             #line hidden
-            this.Write(";\n");
+            this.Write("\";\n");
             #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
     foreach (var code in _parameterParsingCodes)
@@ -175,10 +175,17 @@ using client_generator.Extensions;
             
             #line default
             #line hidden
-            this.Write(";\n    }\n");
-            #line 57 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            this.Write(";\n");
+            #line 56 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
         }
+
+            
+            #line default
+            #line hidden
+            this.Write("    }\n");
+            #line 60 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+
     }
 
             

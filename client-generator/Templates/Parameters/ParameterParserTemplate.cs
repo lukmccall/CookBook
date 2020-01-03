@@ -138,14 +138,14 @@ using client_generator.Models.Parameters;
             
             #line default
             #line hidden
-            this.Write("    _url = _url.replace({");
+            this.Write("    _url = _url.replace(\"{");
             
             #line 41 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
-            this.Write("}, encodeURIComponent(\"\" +  ");
+            this.Write("}\", encodeURIComponent(\"\" +  ");
             
             #line 41 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));

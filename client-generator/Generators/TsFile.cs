@@ -28,5 +28,10 @@ namespace client_generator.Generators
             }
         }
 
+        public void ToSystemFile()
+        {
+            System.IO.File.WriteAllText($"{FileName}.ts", _stringBuilder.ToString());
+        }
+
     }
 }

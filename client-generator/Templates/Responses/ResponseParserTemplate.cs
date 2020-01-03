@@ -46,7 +46,7 @@ using System.Collections.Generic;
             
             #line default
             #line hidden
-            this.Write(">.fromResponse(await _response.json());");
+            this.Write(".fromResponse(await _response.json());");
             return this.GenerationEnvironment.ToString();
         }
     }
