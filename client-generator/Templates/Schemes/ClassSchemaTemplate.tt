@@ -1,5 +1,6 @@
 <#@ template language="C#" #>
 <#@ import namespace="System.Linq" #>
+<#@ import namespace="client_generator.Models" #>
 class <#= _name #> {  
 <#
     foreach (var (name, type) in _properties)
@@ -9,27 +10,44 @@ class <#= _name #> {
         if (!_requiredProperties.Contains(name))
         {
 #>?<#
-        } #>: <#= type #>;
+        } #>: <#= type.GetName() #>;
 <#
     } #>
     
+<#
+    if (_properties.Any())
+    {
+#>
     static fromResponse(data?: any): <#= _name #> {
         const _data = typeof data === 'object' ? data : {};
         const _response = new <#= _name #>();
         
-        for (let _attr in _data) {
-            if (_data.hasOwnProperty(_attr)) {
-                if (Array.isArray(_data[_attr])) {
-                    _response[_attr] = [] as any;
-                    for (let _item of _data[_attr]) {
-                        _response[_attr].push(_item);
-                    }
-                } else {
-                    _response[_attr] = _data[_attr];
-                }
+<#
+        foreach (var (name, type) in _properties)
+        {
+            if (type.GetSchemaType() != SchemaType.Array)
+            {
+#>
+        _response["<#= name #>"] = _data["<#= name #>"];
+<#
+            }
+            else
+            {
+#>
+        if (Array.isArray(_data["<#= name #>"])) {
+            _response["<#= name #>"] = [] as any;
+            for (let _item of _data["<#= name #>"]) {
+                _response["<#= name #>"].push(_item);
             }
         }
+<#
+            }
+        }
+#>
 
         return _response;
     }
+<#
+    }
+#>
 }

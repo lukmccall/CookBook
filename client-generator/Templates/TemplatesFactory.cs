@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Parameters;
+using client_generator.Models.Schemas;
 using client_generator.Templates.Clients;
 using client_generator.Templates.Endpoints;
 using client_generator.Templates.Parameters;
@@ -22,7 +23,7 @@ namespace client_generator.Templates
 
         private readonly IClientTemplateFactory _clientTemplateFactory = new ClientTemplateFactory();
 
-        public ITemplate CreateClassSchemaTemplate(string name, Dictionary<string, string> properties,
+        public ITemplate CreateClassSchemaTemplate(string name, Dictionary<string, ISchema> properties,
             IEnumerable<string> requiredProperties)
         {
             return _schemaTemplateFactory.CreateClassSchemaTemplate(name, properties, requiredProperties);

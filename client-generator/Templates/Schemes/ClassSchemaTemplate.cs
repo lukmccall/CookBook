@@ -12,6 +12,10 @@ namespace client_generator.Templates.Schemes
 using System.Linq;
     #line default
     #line hidden
+    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+using client_generator.Models;
+    #line default
+    #line hidden
     
     /// <summary>
     /// Class to produce the template output
@@ -30,13 +34,13 @@ using System.Linq;
             
             this.Write("class ");
             
-            #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(" {  \n");
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
     foreach (var (name, type) in _properties)
     {
@@ -46,12 +50,12 @@ using System.Linq;
             #line hidden
             this.Write("    ");
             
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 9 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 9 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
         if (!_requiredProperties.Contains(name))
         {
@@ -60,7 +64,7 @@ using System.Linq;
             #line default
             #line hidden
             this.Write("?");
-            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 12 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
         } 
             
@@ -68,33 +72,122 @@ using System.Linq;
             #line hidden
             this.Write(": ");
             
-            #line 12 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type));
+            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
             
             #line default
             #line hidden
             this.Write(";\n");
-            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 14 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
     } 
             
             #line default
             #line hidden
-            this.Write("    \n    static fromResponse(data?: any): ");
+            this.Write("    \n");
+            #line 17 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+    if (_properties.Any())
+    {
+
             
-            #line 16 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line default
+            #line hidden
+            this.Write("    static fromResponse(data?: any): ");
+            
+            #line 21 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(" {\n        const _data = typeof data === 'object' ? data : {};\n        const _response = new ");
             
-            #line 18 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 23 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
-            this.Write("();\n        \n        for (let _attr in _data) {\n            if (_data.hasOwnProperty(_attr)) {\n                if (Array.isArray(_data[_attr])) {\n                    _response[_attr] = [] as any;\n                    for (let _item of _data[_attr]) {\n                        _response[_attr].push(_item);\n                    }\n                } else {\n                    _response[_attr] = _data[_attr];\n                }\n            }\n        }\n\n        return _response;\n    }\n}");
+            this.Write("();\n        \n");
+            #line 25 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+        foreach (var (name, type) in _properties)
+        {
+            if (type.GetSchemaType() != SchemaType.Array)
+            {
+
+            
+            #line default
+            #line hidden
+            this.Write("        _response[\"");
+            
+            #line 31 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write("\"] = _data[\"");
+            
+            #line 31 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write("\"];\n");
+            #line 32 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+            }
+            else
+            {
+
+            
+            #line default
+            #line hidden
+            this.Write("        if (Array.isArray(_data[\"");
+            
+            #line 37 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write("\"])) {\n            _response[\"");
+            
+            #line 38 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write("\"] = [] as any;\n            for (let _item of _data[\"");
+            
+            #line 39 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write("\"]) {\n                _response[\"");
+            
+            #line 40 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write("\"].push(_item);\n            }\n        }\n");
+            #line 43 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+            }
+        }
+
+            
+            #line default
+            #line hidden
+            this.Write("\n        return _response;\n    }\n");
+            #line 50 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
+            this.Write("}");
             return this.GenerationEnvironment.ToString();
         }
     }

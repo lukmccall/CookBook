@@ -9,8 +9,6 @@ namespace client_generator.Models.Schemas
 
         private readonly string _name;
 
-        private bool _needsToBeGenerated = true;
-
         private readonly Dictionary<string, ISchema> _properties;
 
         private readonly IEnumerable<string> _requiredProperties;
@@ -40,7 +38,7 @@ namespace client_generator.Models.Schemas
         public ITemplate GetTemplate(ITemplateFactory templateFactory)
         {
             return templateFactory.CreateClassSchemaTemplate(_name,
-                _properties.ToDictionary(pair => pair.Key, pair => pair.Value.GetName()), _requiredProperties);
+                _properties, _requiredProperties);
         }
 
     }

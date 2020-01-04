@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using client_generator.Extensions;
 using client_generator.Models;
 using client_generator.Models.Endpoints;
@@ -48,20 +46,22 @@ namespace client_generator.Generators
                 .SelectMany(x => x)
                 .Distinct();
 
-            var imports = GetImportsString(typeFile, relatedSchemas);
-
-            typeFile.Write(imports);
-            typeFile.Write("");
+            var imports = GetImportsString(typeFile, relatedSchemas).ToList();
+            if (imports.Any())
+            {
+                typeFile.Write(imports);
+                typeFile.Write("");
+            }
 
             foreach (var (_, type) in types)
             {
                 typeFile.Write(type.Code);
+                typeFile.Write("");
             }
 
             var exports = types.Select(x => x.Key).StrJoin(", ");
 
             typeFile.Write("export { " + exports + " };");
-            typeFile.Write("");
 
             var mainFile = new TsFile("main");
 
@@ -69,7 +69,7 @@ namespace client_generator.Generators
                 .SelectMany(x => x)
                 .Distinct();
 
-            imports = GetImportsString(mainFile, relatedSchemas);
+            imports = GetImportsString(mainFile, relatedSchemas).ToList();
 
             var template = GeneratorContext.GetTemplateFactory()
                 .CreateClientTemplate("adres", functions.Select(x => x.Value.Code), imports);
