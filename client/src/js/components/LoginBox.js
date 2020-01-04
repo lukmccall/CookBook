@@ -62,12 +62,12 @@ class LoginBox extends React.Component {
   render() {
     return (
       <div className="login-box">
-        <div className="header">Login</div>
-        <div className="box">
+        <div className="login header">Login</div>
+        <div className="login box">
           <form onSubmit={this.submitLogin}>
             {this.state.errors.length > 0 && <ErrorList errors={this.state.errors} />}
 
-            <div className="input-group">
+            <div className="login input-group">
               <label htmlFor="email">Email</label>
               <input
                 noValidate
@@ -80,7 +80,7 @@ class LoginBox extends React.Component {
               />
             </div>
 
-            <div className="input-group">
+            <div className="login input-group">
               <label htmlFor="password">Password</label>
               <input
                 noValidate

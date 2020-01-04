@@ -1,27 +1,5 @@
-*{
-  box-sizing: border-box;
-}
-
-html,
-body{
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
-.container{
+.recipe-details {
   margin-top: 10px;
-}
-  
-  
-h1 {
-    margin: 0px;
-  padding: 10px;
-  color: #333;
-  font-size: 26px;
-  background: #ddd;
-  border-bottom: 1px solid #ccc;
 }
   
 .accor
@@ -30,7 +8,7 @@ h1 {
     padding: 0 8%;
   transition: 0.4s;
   
-  .head{
+  .accor-title {
     background: #eee;
     padding: 10px 20px;
     cursor: pointer;
@@ -41,7 +19,7 @@ h1 {
   }
   }
   
-  .body{
+  .accor-details {
        background: white;
     padding: 0 20px;
     max-height: 0;
@@ -49,14 +27,82 @@ h1 {
     transition: 200ms ease-in-out;
   }
      
-  &.active > .body{
+  &.active > .accor-details {
       padding: 10px 20px;
     max-height: 100%;
   }
  }
 
- .accor:first-child{
+ .accor:first-child {
    margin-top: 0;
+ }
+
+ .btn-back-to-recipe-list {
+    padding: 10px;
+    background: #b5babd;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    position: fixed;
+    left: 0;
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari prior 9.0 */
+    transform: rotate(90deg); /* Standard syntax */
+    left: -55px;
+    margin-top: 55px;
+    opacity: 0.6;
+    transition: all .3s ease;
+    z-index: 3;
+    &:hover {
+      opacity: 1;
+    }
+ }
+
+ .side {
+    z-index: 1;
+    width: 50%;
+    position: absolute;
+    overflow: scroll;
+    height: 100vh;
+    -ms-overflow-style: none;
+    padding-top: 2px;
+ }
+
+ .side::-webkit-scrollbar {
+    display: none;
+ }
+
+ .recipe-details-left-side {
+    left: 0;
+ }
+
+ .recipe-details-right-side {
+   right: 0;
+   margin-right: 5%;
+ }
+
+ .recipe-details-image-block {
+   width: 91%;
+   margin-left: 20%;
+ }
+
+ .recipe-details-title {
+    text-align: center;
+    width: 80%;
+    background-color: #424242;
+    height: 50px;
+    padding: 10px;
+    font-size: 95%;
+    color: white;
+ }
+
+ .steps-title {
+   text-align: center;
+   font-weight: bold;
+ }
+
+ .instruction{
+   font-size: 15px;
  }
 
  #spoonacularMeasure{
@@ -87,78 +133,9 @@ h1 {
      display: none;
  }
 
- .button-back{
-    padding: 10px;
-    background: #b5babd;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-    position: fixed;
-    left: 0;
-    -ms-transform: rotate(90deg); /* IE 9 */
-    -webkit-transform: rotate(90deg); /* Safari prior 9.0 */
-    transform: rotate(90deg); /* Standard syntax */
-    left: -55px;
-    margin-top: 55px;
-    opacity: 0.6;
-    transition: all .3s ease;
-    z-index: 3;
-    &:hover {
-      opacity: 1;
-    }
- }
-
- .side{
-    z-index: 1;
-    width: 50%;
-    position: absolute;
-    overflow: scroll;
-    height: 100vh;
-    -ms-overflow-style: none;
-    padding-top: 2px;
- }
-
- .side::-webkit-scrollbar {
-    display: none;
- }
-
- .left-side{
-    left: 0;
- }
-
- .right-side{
-   right: 0;
-   margin-right: 5%;
-
- }
-
- .block{
-   width: 91%;
-    margin-left: 20%;
- }
-
- .recipe-title{
-    text-align: center;
-    width: 80%;
-    background-color: #424242;
-    height: 50px;
-    padding: 10px;
-    font-size: 95%;
-    color: white;
- }
-
- .steps-title {
-   text-align: center;
-   font-weight: bold;
- }
-
- .instruction{
-   font-size: 15px;
- }
-
  @media screen and (max-width: 640px) {
    .accor{
-     padding: 0;
+     padding: 0 2%;
    }
 
  }

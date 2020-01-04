@@ -15,41 +15,40 @@ import '../../css/home.scss';
 import { throwStatement } from '@babel/types';
 
 export default class Home extends Component {
-  state = {
-    tags: [],
-    pageIndex: 2,
-    recipedId: ''
-  }
+	state = {
+		tags: [],
+		pageIndex: 2,
+		recipedId: ''
+	}
 
 
-  handleSubmit = (tags) => {
-    this.setState({
-      tags: tags,
-      pageIndex: 0
-    });
-    //TODO ladowanie rzeczy
-  }
+	handleSubmit = (tags) => {
+		this.setState({
+			tags: tags,
+			pageIndex: 0
+		});
+	}
 
-  handleRecipeDetails = (id) => {
-    recipe.ingridients = ingrid.ingredients;
-    this.setState({
-      recipedId: id,
-      pageIndex: 1
-    });
-  }
+	handleRecipeDetails = (id) => {
+		recipe.ingridients = ingrid.ingredients;
+		this.setState({
+			recipedId: id,
+			pageIndex: 1
+		});
+	}
 
-  handleIndex = (index) => {
-    this.setState({
-      pageIndex: index
-    })
-  }
+	handleIndex = (index) => {
+		this.setState({
+			pageIndex: index
+		})
+	}
 
-  loadSteps = () => {
-    return steps;
-  }
+	loadSteps = () => {
+		return steps;
+	}
 
-  loadIngridients = () => {
-    return `<style type="text/css">
+	loadIngridients = () => {
+		return `<style type="text/css">
 	.spoonacular-switch .slide-button,
 	.toggle p span {
 		display: none
@@ -769,10 +768,10 @@ export default class Home extends Component {
 																					Widget by <a
 																						href="https://spoonacular.com">spoonacular.com</a>
 																				</div>`
-  }
+	}
 
-  loadEquipment = () => {
-    return `<style type="text/css">
+	loadEquipment = () => {
+		return `<style type="text/css">
 	.spoonacular-switch .slide-button,
 	.toggle p span {
 		display: none
@@ -1301,17 +1300,24 @@ export default class Home extends Component {
 														<div style="margin-top:3px;margin-right:10px;text-align:right;">
 															Widget by <a
 																href="https://spoonacular.com">spoonacular.com</a></div>`
-  }
+	}
 
-  render() {
-    console.log(this.state.pageIndex);
-    return (
-      <React.Fragment>
-        <InputTag handleSubmit={this.handleSubmit} />
-        {this.state.pageIndex === 0 ? <RecipeList recipes={recipes} handleRecipeDetails={this.handleRecipeDetails} /> : ""}
-        {this.state.pageIndex === 1 ? <RecipeDetails recipe={recipe} handleIndex={this.handleIndex} loadSteps={this.loadSteps} loadEquipment={this.loadEquipment} loadIngridients={this.loadIngridients} /> : ""}
-        <ScrollButton />
-      </React.Fragment>
-    );
-  }
+	render() {
+		return (
+			<React.Fragment>
+				<InputTag handleSubmit={this.handleSubmit} />
+
+				{this.state.pageIndex === 0 ? <RecipeList recipes={recipes}
+					handleRecipeDetails={this.handleRecipeDetails} /> : ""}
+
+				{this.state.pageIndex === 1 ? <RecipeDetails recipe={recipe}
+					handleIndex={this.handleIndex}
+					loadSteps={this.loadSteps}
+					loadEquipment={this.loadEquipment}
+					loadIngridients={this.loadIngridients} /> : ""}
+
+				<ScrollButton />
+			</React.Fragment>
+		);
+	}
 }

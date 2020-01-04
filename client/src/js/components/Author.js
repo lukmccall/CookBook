@@ -5,28 +5,28 @@ import '../../css/author.scss';
 export default class Author extends Component {
   render() {
     return (
-      <div className="author ">
-        <div className="image-cropper">
-          <img src={this.props.photo} alt="avatar" class="profile-pic" />
+      <div className="author">
+        <div className="author-image-circle">
+          <img src={this.props.photo} alt="avatar" className="author-profile-image" />
         </div>
         <br />
-        <span className="name">{this.props.name}</span>
+        <span className="author-name">{this.props.name}</span>
         <br />
-        <div class="social">
+        <div className="author-social-media-links">
           <a href={this.props.linkedin}>
-            <i class="fab fa-linkedin"></i>
+            <i className="fab fa-linkedin"></i>
           </a>
           <a href={this.props.fb}>
-            <i class="fab fa-facebook"></i>
+            <i className="fab fa-facebook"></i>
           </a>
-          <a href="#">
-            <i class="fab fa-twitter-square"></i>
+          <a href={this.props.git}>
+            <i className="fab fa-github"></i>
           </a>
-          <a href="#">
-            <i class="fab fa-instagram"></i>
+          <a href={this.props.insta}>
+            <i className="fab fa-instagram"></i>
           </a>
-          <a href="#">
-            <i class="fab fa-spotify"></i>
+          <a href={this.props.spotify}>
+            <i className="fab fa-spotify"></i>
           </a>
         </div>
       </div>

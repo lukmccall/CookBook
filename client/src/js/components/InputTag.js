@@ -36,24 +36,26 @@ export default class InputTag extends React.Component {
 
   render() {
     return (
-      <div className="tags-content">
-        <div className="tags-input">
+      <div className="input-tags-content">
+        <div className="search">
           <input
             type="text"
             onKeyUp={e => this.onKeyUp(e)}
             placeholder="Press enter to add ingridients"
           />
-          <button type="submit" onClick={() => {
-            if (this.state.tags.length > 0) {
-              this.props.handleSubmit(this.state.tags);
-              this.searchClick();
-            }
-          }} value={this.state.tags}>
+          <button type="submit"
+            onClick={() => {
+              if (this.state.tags.length > 0) {
+                this.props.handleSubmit(this.state.tags);
+                this.searchClick();
+              }
+            }}
+            value={this.state.tags}>
             <i className="fas fa-search" style={{ pointerEvents: "none" }}></i>
           </button>
         </div>
-        <div className="tags-container">
-          <ul id="tags">
+        <div className="input-tags-container">
+          <ul id="input-tags-list">
             {this.state.tags.map((tag, index) => (
               <li key={index} className="tag">
                 <span className="tag-title">{tag}</span>

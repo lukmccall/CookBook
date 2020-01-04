@@ -13,7 +13,7 @@ export default class CommentForm extends React.Component {
                 </div>
             </form>
         );
-    } // end render
+    }
 
     _handleSubmit(event) {
         event.preventDefault();   // prevents page from reloading on submit
@@ -21,4 +21,4 @@ export default class CommentForm extends React.Component {
         let body = this._body;
         this.props.addComment(author.value, body.value);
     }
-} // end CommentForm component
+}

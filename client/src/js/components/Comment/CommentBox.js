@@ -42,7 +42,7 @@ export default class CommentBox extends React.Component {
                 {commentNodes}
             </div>
         );
-    } // end render
+    }
 
     _addComment(author, body) {
         const comment = {
@@ -79,4 +79,4 @@ export default class CommentBox extends React.Component {
             return `${commentCount} comments`;
         }
     }
-} // end CommentBox component
+} 

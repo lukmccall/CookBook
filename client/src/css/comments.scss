@@ -3,10 +3,6 @@ $nc-blue: #00BDFC;
 $nc-bl-dark: #0093C4;
 $red: #FC3F00;
 
-body {
-  font-family: 'PT Sans', sans-serif;
-  padding: 2rem;
-}
 button {
   border: none;
   border-radius: 0.25rem;
@@ -56,27 +52,30 @@ button {
     font-style: italic;
   }
 }
-.comment-form-actions {
-  
-}
+
 .comment-count {
   color: $dark-grey;
 }
+
 #comment-reveal {
   float: right;
   background-color: $nc-blue;
   color: #fff;
 }
+
 .comment {
   border-top: 0.125rem solid $dark-grey;
 }
+
 .comment-body {
   font-style: italic;
   margin-left: 1rem;
 }
+
 .comment-footer {
   margin-bottom: 1rem;
 }
+
 .comment-footer-delete {
   padding: 0.2rem 0;
   color: $dark-grey;

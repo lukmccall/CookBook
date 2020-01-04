@@ -5,18 +5,14 @@ import '../../css/recipeList.scss';
 export default class RecipeList extends Component {
 
     render() {
-        return (<div className="container my-5">
-            {/* title */}
-            <div className="row">
-                <div className="text-recipes">
-                    <h1 className="text-slanted">Recipes recommended for your ingridients: </h1>
+        return (<div className="recipes-list-head">
+            <div className="recipe-list-row">
+                <div className="recipes-list-text">
+                    <h1>Recipes recommended for your ingridients:</h1>
                 </div>
             </div>
-            {/* end of title */}
-            <div className="row">
-                {/* <section class="cards"> */}
-                {(
-
+            <div className="row recipe-list-row">
+                {
                     this.props.recipes.map(recipe => {
                         return (
                             <Recipe
@@ -29,8 +25,7 @@ export default class RecipeList extends Component {
                             />
                         );
                     })
-                )}
-                {/* </section> */}
+                }
             </div>
         </div>)
     }

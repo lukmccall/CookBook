@@ -1,4 +1,4 @@
-.image-cropper {
+.author-image-circle {
     width: 170px;
     height: 170px;
     position: relative;
@@ -8,11 +8,11 @@
     margin-left: auto;
     margin-right: auto;
 }
-.profile-pic {
+
+.author-profile-image {
   display: inline;
   margin: 0 auto;
   height: 100%;
-  width: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -23,12 +23,12 @@
     padding: 0 15%;
 }
 
-.name{
+.author-name {
     font-size: 20px;
     font-weight: bold;
 }
 
-.social{
+.author-social-media-links {
     font-size: 25px;
     padding-top: 10px;
 
@@ -38,8 +38,7 @@
     padding-left: 10px;
     }
 
-    a:hover 
-    {
+    a:hover {
         color:#00A0C6; 
         text-decoration:none; 
         cursor:pointer;  
@@ -47,25 +46,9 @@
 }
 
 @media screen and (max-width: 640px){
-    .author{
-        height: 50%;
-        padding: 10% 15%;
-    }
-
-    .map{
-        width: 450px;
-        height: 200px;
-        display: flex;
-        padding: 20% 0;
-    }
-
-    .section{
-        align-items: flex-start;
-        display: block;
-    }
-
-    .flex{
-        display: flex;
-    }
+.author {
+    height: 50%;
+    padding: 10% 15%;
+}
 
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../../css/Navbar.scss';
+import '../../css/navbar.scss';
 
 export default class Navbar extends Component {
   state = {
@@ -22,21 +22,21 @@ export default class Navbar extends Component {
   render() {
     return (
       <nav>
-        <div className="logoBtn">
-          <div className="btn" onClick={this.handleClick}>
+        <div className="navbar-buttons">
+          <div className="navbar-btn" onClick={this.handleClick}>
             <i className="fas fa-caret-square-down"></i>
           </div>
-          <div className="logo">
+          <div className="navbar-logo">
             <i className="fas fa-utensils"></i>
-            <span className="title">CookBook</span>
+            <span className="navbar-title">CookBook</span>
           </div>
-          <div className="btn">
+          <div className="navbar-btn">
             <Link to="/signIn" onClick={this.closeNavbar}>
               <i className="fas fa-sign-in-alt"></i>
             </Link>
           </div>
         </div>
-        <ul className={this.state.isOpen ? 'showNav' : 'undefined'}>
+        <ul className={this.state.isOpen ? 'navbar-show' : 'undefined'}>
           <li>
             <Link to="/" onClick={this.closeNavbar}>
               HOME
@@ -58,7 +58,7 @@ export default class Navbar extends Component {
             </Link>
           </li>
         </ul>
-        <div className="signIn">
+        <div className="navbar-signIn">
           <Link to="/signIn">
             <span className="signIn-text">Sign in</span>
             <i className="fas fa-sign-in-alt"></i>

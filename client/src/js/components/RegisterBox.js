@@ -31,7 +31,8 @@ class RegisterBox extends React.Component {
     let pwdState = 'weak';
     if (e.target.value.length > 8) {
       pwdState = 'medium';
-    } else if (e.target.value.length > 12) {
+    }
+    if (e.target.value.length > 12) {
       pwdState = 'strong';
     }
 
@@ -105,12 +106,12 @@ class RegisterBox extends React.Component {
 
     return (
       <div className="register-box">
-        <div className="header">Register</div>
-        <div className="box">
+        <div className="register header">Register</div>
+        <div className="register box">
           <form onSubmit={this.submitRegister}>
             {this.state.errors.length > 0 && <ErrorList errors={this.state.errors} />}
 
-            <div className="input-group">
+            <div className="register input-group">
               <label htmlFor="username">Username</label>
               <input
                 type="text"
@@ -122,7 +123,7 @@ class RegisterBox extends React.Component {
               />
             </div>
 
-            <div className="input-group">
+            <div className="register input-group">
               <label htmlFor="email">Email</label>
               <input
                 type="text"
@@ -134,7 +135,7 @@ class RegisterBox extends React.Component {
               />
             </div>
 
-            <div className="input-group">
+            <div className="register input-group">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -147,9 +148,9 @@ class RegisterBox extends React.Component {
 
               {this.state.password && (
                 <div className="password-state">
-                  <div className={'pwd pwd-weak ' + (pwdWeak ? 'show' : '')}></div>
-                  <div className={'pwd pwd-medium ' + (pwdMedium ? 'show' : '')}></div>
-                  <div className={'pwd pwd-strong ' + (pwdStrong ? 'show' : '')}></div>
+                  <div className={'pwd pwd-weak ' + (pwdWeak ? 'show-login-register-form-panel' : '')}></div>
+                  <div className={'pwd pwd-medium ' + (pwdMedium ? 'show-login-register-form-panel' : '')}></div>
+                  <div className={'pwd pwd-strong ' + (pwdStrong ? 'show-login-register-form-panel' : '')}></div>
                 </div>
               )}
             </div>

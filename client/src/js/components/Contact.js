@@ -6,8 +6,8 @@ import Author from './Author';
 export default class Contact extends Component {
   render() {
     return (
-      <div class="wrapper">
-        <section class="section parallax bg1">
+      <div className="contact-wrapper">
+        <section className="contact-section contact-parallax bg1">
           <Author
             photo="https://bit.ly/36nPrNK"
             name="ŁUKASZ KOSMATY"
@@ -27,18 +27,18 @@ export default class Contact extends Component {
             spotify="https://spotify.com"
           />
         </section>
-        <section class="strap static">
-          <h1>Where to find us?</h1>
+        <section className="contact-bar">
+          <h2>Where to find us?</h2>
         </section>
-        <section class="section parallax bg2 flex">
+        <section className="contact-section contact-parallax bg2 flex">
           <div className="map">
             <iframe
               title="googleMaps"
-              frameborder="0"
+              frameBorder="0"
               height="525"
               width="625"
-              marginheight="0"
-              marginwidth="0"
+              marginHeight="0"
+              marginWidth="0"
               scrolling="no"
               src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=pl&amp;msa=0&amp;msid=112445874310938452608.000481d91fcd4650ee5d1&amp;ll=50.030488,19.910231&amp;spn=0.005858,0.011265&amp;z=16&amp;output=embed"></iframe>
           </div>

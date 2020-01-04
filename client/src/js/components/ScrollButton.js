@@ -23,7 +23,7 @@ export default class ScrollButton extends React.Component {
     }
 
     render() {
-        return <button title='Back to top' className='scroll'
+        return <button title='Back to top' className="scroll-btn"
             onClick={() => { this.scrollToTop(); }}>
             <i className="fas fa-chevron-circle-up"></i>
         </button>;

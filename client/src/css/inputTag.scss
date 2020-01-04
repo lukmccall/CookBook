@@ -1,10 +1,15 @@
-.tags-input {
+.input-tags-content {
+	text-align: -webkit-center;
+	padding-top: 20px;
+
+	.search {
 	display: flex;
 	align-items: flex-start;
 	flex-wrap: wrap;
 	min-height: 48px;
 	width: 480px;
 	border: 1px solid rgb(214, 216, 218);
+
 	&:focus-within {
 		border: 1px solid #0052cc;
 	}
@@ -21,7 +26,7 @@
 			outline: transparent;
 		}
 	}
-	button{
+	button {
 		float: left;
 		width: 20%;
 		padding: 10px;
@@ -32,25 +37,21 @@
 		cursor: pointer;
 		border: none;
 	}
-	button:hover{
+	button:hover {
 		  background: #0b7dda;
+	}
 	}
 }
 
-.tags-content{
-	text-align: -webkit-center;
-	padding-top: 20px;
-}
-
-#tags {
+#input-tags-list {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 0;
 	margin: 8px 0 0 0;
 	width: 480px;
-}
+	height: 100%;
 
-.tag {
+	.tag {
 	width: auto;
 	height: 32px;
 	display: flex;
@@ -63,9 +64,11 @@
 	border-radius: 6px;
 	margin: 0 8px 8px 0;
 	background: #0052cc;
+
 	.tag-title {
 		margin-top: 3px;
 	}
+
 	.tag-close-icon {
 		display: block;
 		width: 16px;
@@ -78,11 +81,14 @@
 		border-radius: 50%;
 		background: #fff;
 		cursor: pointer;
+		}
 	}
 }
 
 @media screen and (max-width: 567px) {
-	.tags-input {
-		width: calc(100vw - 32px);
+	.input-tags-content {
+		.search {
+			width: calc(100vw - 32px);
+		}
 	}
 }

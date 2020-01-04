@@ -1,16 +1,15 @@
-.text-recipes{
+.recipes-list-text {
     text-align: center;
+    h1{
+      border: none;
+      background-color: transparent;
+    }
 }
 
-.row{
+.recipe-list-row {
     justify-content: center;
 }
 
-.container .my-5{
+.recipes-list-head {
     z-index: 1;
-}
-
-.text-slanted{
-    border: none;
-    background-color: transparent;
 }
