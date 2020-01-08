@@ -1,14 +1,15 @@
 ﻿using CookBook.Data;
-using CookBook.Models;
+using CookBook.Domain;
+using CookBook.ExternalApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CookBook.ExternalApi;
 
 namespace CookBook.Installers
 {
     public class DataBaseInstaller : IInstaller
     {
+
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DatabaseContext>(options =>
@@ -30,5 +31,6 @@ namespace CookBook.Installers
             services.AddSingleton<IRecipeRepository, RecipeRepository>();
             services.AddSingleton<IWidgetRepository, WidgetRepository>();
         }
+
     }
 }

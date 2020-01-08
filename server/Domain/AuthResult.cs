@@ -8,6 +8,7 @@ namespace CookBook.Domain
     [Mappable(To = typeof(AuthFailedResponse))]
     public class AuthResult
     {
+
         public string Token { get; set; }
 
         public string RefreshToken { get; set; }
@@ -23,5 +24,6 @@ namespace CookBook.Domain
                 Errors = new[] {error}
             };
         }
+
     }
 }

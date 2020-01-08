@@ -4,6 +4,6 @@ namespace CookBook.Jwt
 {
     public class JwtRequirement : IAuthorizationRequirement
     {
-        
+
     }
 }

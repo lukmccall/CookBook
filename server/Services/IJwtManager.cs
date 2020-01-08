@@ -1,12 +1,13 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
-using CookBook.Models;
+using CookBook.Domain;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CookBook.Services
 {
     public interface IJwtManager
     {
+
         string GetUserId(ClaimsPrincipal principal);
 
         ClaimsPrincipal GetPrincipalFromToken(string token);
@@ -23,8 +24,9 @@ namespace CookBook.Services
 
         Task UseRefreshToken(JwtRefreshToken refreshToken);
 
-        Task<bool> CheckIfUserUsedVActiveTokenAsync(ClaimsPrincipal principal);
+        Task<bool> CheckIfUserUsedActiveTokenAsync(ClaimsPrincipal principal);
 
         bool ValidateRefreshToken(JwtRefreshToken refreshToken, ClaimsPrincipal claimsPrincipal);
+
     }
 }

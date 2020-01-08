@@ -1,19 +1,23 @@
-
 using System;
 
-public class WebserviceException : Exception
+namespace CookBook.ExternalApi
 {
-    public WebserviceException()
+    public class WebserviceException : Exception
     {
-    }
 
-    public WebserviceException(string message)
-        : base(message)
-    {
-    }
+        public WebserviceException()
+        {
+        }
 
-    public WebserviceException(string message, Exception inner)
-        : base(message, inner)
-    {
+        public WebserviceException(string message)
+            : base(message)
+        {
+        }
+
+        public WebserviceException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+
     }
 }

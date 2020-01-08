@@ -10,6 +10,7 @@ namespace CookBook.API.Validators
 {
     public class ValidatorFilter : IAsyncActionFilter
     {
+
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             if (!context.ModelState.IsValid)
@@ -39,5 +40,6 @@ namespace CookBook.API.Validators
 
             await next();
         }
+
     }
 }

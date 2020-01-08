@@ -1,16 +1,17 @@
+using System.Linq;
 using System.Threading.Tasks;
 using CookBook.Domain;
 using CookBook.Domain.AuthController;
-using CookBook.Models;
 using Microsoft.AspNetCore.Identity;
-using System.Linq;
 
 namespace CookBook.Services
 {
-    class AuthService : IAuthService
+    internal class AuthService : IAuthService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+
         private readonly IJwtManager _jwtManager;
+
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public AuthService(IJwtManager jwtManager, UserManager<ApplicationUser> userManager)
         {
@@ -114,5 +115,6 @@ namespace CookBook.Services
                 RefreshToken = newRefreshToken.Token
             };
         }
+
     }
 }

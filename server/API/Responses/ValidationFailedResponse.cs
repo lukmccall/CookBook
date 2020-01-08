@@ -6,6 +6,7 @@ namespace CookBook.API.Responses
 {
     public class ValidationFailedResponse
     {
+
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
         public bool Status => false;
@@ -13,5 +14,6 @@ namespace CookBook.API.Responses
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
         public List<FiledErrors> Errors { get; set; }
+
     }
 }

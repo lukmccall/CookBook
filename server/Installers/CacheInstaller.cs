@@ -7,6 +7,7 @@ namespace CookBook.Installers
 {
     public class CacheInstaller : IInstaller
     {
+
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             var redisCacheOptions = new RedisCacheOptions();
@@ -23,5 +24,6 @@ namespace CookBook.Installers
 
             services.AddSingleton<ICacheService, CacheService>();
         }
+
     }
 }

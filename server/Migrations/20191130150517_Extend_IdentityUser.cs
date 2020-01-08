@@ -4,46 +4,47 @@ namespace CookBook.Migrations
 {
     public partial class Extend_IdentityUser : Migration
     {
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "Age",
-                table: "AspNetUsers",
+                "Age",
+                "AspNetUsers",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Description",
-                table: "AspNetUsers",
+                "Description",
+                "AspNetUsers",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "UserSurname",
-                table: "AspNetUsers",
+                "UserSurname",
+                "AspNetUsers",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Discriminator",
-                table: "AspNetUsers",
-                nullable: false);
+                "Discriminator",
+                "AspNetUsers");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Age",
-                table: "AspNetUsers");
+                "Age",
+                "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "Description",
-                table: "AspNetUsers");
+                "Description",
+                "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "UserSurname",
-                table: "AspNetUsers");
+                "UserSurname",
+                "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "Discriminator",
-                table: "AspNetUsers");
+                "Discriminator",
+                "AspNetUsers");
         }
+
     }
 }

@@ -1,70 +1,55 @@
 using System.Threading.Tasks;
-using CookBook.ExternalApi;
-using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 using CookBook.API;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-using System.Collections.Generic;
-using System;
+using CookBook.API.Responses.WidgetController;
+using CookBook.ExternalApi;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CookBook.Controllers
 {
     [ApiController]
-    public class WidgetsController : Controller
+    [ProducesResponseType(typeof(WidgetResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public class WidgetsController : BaseExternalApiController
     {
+
         private readonly IWidgetRepository _widgetRepo;
 
-        public WidgetsController(IWidgetRepository widgetRepo)
+        public WidgetsController(IWidgetRepository widgetRepo, IMapper mapper) : base(mapper)
         {
             _widgetRepo = widgetRepo;
         }
 
-        [HttpGet]
-        [Route(Urls.Widget.RecipeVisualization)]
+        [HttpGet(Urls.Widget.RecipeVisualization)]
         public async Task<IActionResult> RecipeVisualization(long id, bool? defaultCss = null)
         {
-          try {
-                var model = await _widgetRepo.IngredientsById(id, defaultCss);
-                return Ok(model);
-            } catch (Exception e) {
-                return new FailRequest(e.GetType(), e.Message);
-            }
+            return await WrapExternalRepositoryCall<Widget, WidgetResponse>(() =>
+                _widgetRepo.IngredientsById(id, defaultCss));
         }
 
-        [HttpGet]
-        [Route(Urls.Widget.EquipmentVisualization)]
+        [HttpGet(Urls.Widget.EquipmentVisualization)]
         public async Task<IActionResult> EquipmentVisualization(long id, bool? defaultCss = null)
         {
-            try {
-                var model = await _widgetRepo.EquipmentbyId(id, defaultCss);
-                return Ok(model);
-            } catch (Exception e) {
-                return new FailRequest(e.GetType(), e.Message);
-            }
+            return await WrapExternalRepositoryCall<Widget, WidgetResponse>(() =>
+                _widgetRepo.EquipmentById(id, defaultCss));
         }
 
-        [HttpGet]
-        [Route(Urls.Widget.PriceBreakDownVisualization)]
-        public async Task<IActionResult> PriceBrakdownVisualization(long id, bool? defaultCss = null)
+        [HttpGet(Urls.Widget.PriceBreakDownVisualization)]
+        public async Task<IActionResult> PriceBreakdownVisualization(long id, bool? defaultCss = null)
         {
-            try {
-                var model = await _widgetRepo.PriceBreakdownbyId(id, defaultCss);
-                return Ok(model);
-            } catch (Exception e) {
-                return new FailRequest(e.GetType(), e.Message);
-            }
+            return await WrapExternalRepositoryCall<Widget, WidgetResponse>(() =>
+                _widgetRepo.PriceBreakdownById(id, defaultCss));
         }
 
-        [HttpGet]
-        [Route(Urls.Widget.NutrionVisualization)]
+        [HttpGet(Urls.Widget.NutrionVisualization)]
         public async Task<IActionResult> NutrionVisualization(long id, bool? defaultCss = null)
         {
-            try {
-                var model = await _widgetRepo.NutrionbyId(id, defaultCss);
-                return Ok(model);
-            } catch (Exception e) {
-                return new FailRequest(e.GetType(), e.Message);
-            }
+            return await WrapExternalRepositoryCall<Widget, WidgetResponse>(() =>
+                _widgetRepo.NutrionById(id, defaultCss));
         }
+
     }
 }

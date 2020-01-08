@@ -8,6 +8,7 @@ namespace CookBook.API.Requests.AuthController
     [Mappable(To = typeof(RegisterData))]
     public class RegisterRequest
     {
+
         [EmailAddress]
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
@@ -20,5 +21,6 @@ namespace CookBook.API.Requests.AuthController
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
         public string Password { get; set; }
+
     }
 }

@@ -1,72 +1,73 @@
-using System.Threading.Tasks;
-using CookBook.ExternalApi;
-using System.Net.Http;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using CookBook.Options;
 
-public class WidgetRepository : IWidgetRepository
+namespace CookBook.ExternalApi
 {
-    private readonly ApiOptions _apiOptions;
-
-    public WidgetRepository(ApiOptions apiOptions){
-        _apiOptions = apiOptions;
-    }
-    public async Task<string> IngredientsById(long id, bool? defaultCss)
+    public class WidgetRepository : IWidgetRepository
     {
-        var recipeVisualization =
-            await GetStringAsync(_apiOptions.Server + "/recipes/" + id + "/ingredientWidget?"
-            + QueryParam(defaultCss, "defaultCss")
-            + _apiOptions.ApiKey);
 
-        return recipeVisualization;
-    }
+        private readonly ApiOptions _apiOptions;
 
-    public async Task<string> EquipmentbyId(long id, bool? defaultCss)
-    {
-        var recipeVisualization =
-            await GetStringAsync(_apiOptions.Server + "/recipes/" + id + "/equipmentWidget?"
-            + QueryParam(defaultCss, "defaultCss")
-            + _apiOptions.ApiKey);
-
-        return recipeVisualization;
-    }
-
-    public async Task<string> PriceBreakdownbyId(long id, bool? defaultCss)
-    {
-        var recipeVisualization =
-            await GetStringAsync(_apiOptions.Server + "/recipes/" + id + "/priceBreakdownWidget?"
-            + QueryParam(defaultCss, "defaultCss")
-            + _apiOptions.ApiKey);
-
-        return recipeVisualization;
-    }
-
-       public async Task<string> NutrionbyId(long id, bool? defaultCss)
-    {
-        var recipeVisualization =
-            await GetStringAsync(_apiOptions.Server + "/recipes/" + id + "/nutritionWidget?"
-            + QueryParam(defaultCss, "defaultCss")
-            + _apiOptions.ApiKey);
-
-        return recipeVisualization;
-    }
-    private static async Task<string> GetStringAsync(string url)
-    {
-        using var httpClient = new HttpClient();
-        HttpResponseMessage response = await httpClient.GetAsync(url);
-         if(response.StatusCode == HttpStatusCode.OK)
+        public WidgetRepository(ApiOptions apiOptions)
         {
-            return await httpClient.GetStringAsync(url);
-        }
-        else if(response.StatusCode == HttpStatusCode.NotFound)
-        {
-            throw new RepositoryException ("Widget endpoint does not exist");
+            _apiOptions = apiOptions;
         }
 
-        throw new WebserviceException("Unexpected status from web service ");
-    }
+        public async Task<Widget> IngredientsById(long id, bool? defaultCss)
+        {
+            return await GetWidget("ingredientWidget", id, defaultCss);
+        }
 
-    private string QueryParam(dynamic obj, string param){
-        return obj != null ? param + "=" + obj.ToString() + "&" : "";
+        public async Task<Widget> EquipmentById(long id, bool? defaultCss)
+        {
+            return await GetWidget("equipmentWidget", id, defaultCss);
+        }
+
+
+        public async Task<Widget> PriceBreakdownById(long id, bool? defaultCss)
+        {
+            return await GetWidget("priceBreakdownWidget", id, defaultCss);
+        }
+
+        public async Task<Widget> NutrionById(long id, bool? defaultCss)
+        {
+            return await GetWidget("nutritionWidget", id, defaultCss);
+        }
+
+        private static async Task<string> GetStringAsync(string url)
+        {
+            // todo: use flyweight to get httpClient instance
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(url);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                return await httpClient.GetStringAsync(url);
+            }
+
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                throw new RepositoryException("Widget endpoint does not exist");
+            }
+
+            throw new WebserviceException("Unexpected status from web service ");
+        }
+
+        private async Task<Widget> GetWidget(string type, long id, bool? defaultCss)
+        {
+            return new Widget
+            {
+                Code = await GetStringAsync(
+                    $"{_apiOptions.Server}/recipes/{id}/{type}?{QueryParam(defaultCss, "defaultCss")}{_apiOptions.ApiKey}"),
+                DefaultCss = defaultCss ?? false
+            };
+        }
+
+        private string QueryParam(dynamic obj, string param)
+        {
+            return obj != null ? param + "=" + obj.ToString() + "&" : "";
+        }
+
     }
 }

@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
 using CookBook.API;
-using CookBook.API.Requests;
 using CookBook.API.Requests.AuthController;
 using CookBook.API.Requests.UserController;
-using CookBook.Models;
+using CookBook.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +13,7 @@ namespace CookBook.Controllers
     [Authorize(Policy = "JWTToken")]
     public class UserController : Controller
     {
+
         private readonly UserManager<ApplicationUser> _userManager;
 
         public UserController(UserManager<ApplicationUser> userManager)
@@ -50,9 +50,10 @@ namespace CookBook.Controllers
 
             return BadRequest();
         }
-        
+
         [HttpPatch(Urls.User.ChangeCurrentUserPassword)]
-        public async Task<IActionResult> ChangeCurrentUserPassword([FromBody] ChangeCurrentUserPasswordRequest passwordRequest)
+        public async Task<IActionResult> ChangeCurrentUserPassword(
+            [FromBody] ChangeCurrentUserPasswordRequest passwordRequest)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if (user == null)
@@ -60,7 +61,8 @@ namespace CookBook.Controllers
                 return NotFound();
             }
 
-            var result = await _userManager.ChangePasswordAsync(user, passwordRequest.OldPassword, passwordRequest.NewPassword);
+            var result =
+                await _userManager.ChangePasswordAsync(user, passwordRequest.OldPassword, passwordRequest.NewPassword);
 
             if (result.Succeeded)
             {
@@ -69,5 +71,6 @@ namespace CookBook.Controllers
 
             return BadRequest();
         }
+
     }
 }

@@ -1,20 +1,21 @@
+using AutoMapper;
+using CookBook.API.Validators;
 using CookBook.Extensions;
 using CookBook.Middleware;
 using CookBook.Options;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
-using CookBook.API.Validators;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CookBook
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -67,5 +68,6 @@ namespace CookBook
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
+
     }
 }

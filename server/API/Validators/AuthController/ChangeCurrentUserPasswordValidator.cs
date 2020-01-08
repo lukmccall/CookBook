@@ -5,6 +5,7 @@ namespace CookBook.API.Validators.AuthController
 {
     public class ChangeCurrentUserPasswordValidator : AbstractValidator<ChangeCurrentUserPasswordRequest>
     {
+
         public ChangeCurrentUserPasswordValidator()
         {
             RuleFor(x => x.NewPassword)
@@ -13,5 +14,6 @@ namespace CookBook.API.Validators.AuthController
             RuleFor(x => x.OldPassword)
                 .NotEmpty();
         }
+
     }
 }

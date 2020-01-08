@@ -8,7 +8,7 @@ namespace CookBook.API.Requests.AuthController
     [Mappable(To = typeof(RefreshData))]
     public class RefreshRequest
     {
-        
+
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
         public string Token { get; set; }
@@ -16,5 +16,6 @@ namespace CookBook.API.Requests.AuthController
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
         public string RefreshToken { get; set; }
+
     }
 }

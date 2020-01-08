@@ -6,8 +6,8 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CookBook.Data;
+using CookBook.Domain;
 using CookBook.Extensions;
-using CookBook.Models;
 using CookBook.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -16,12 +16,16 @@ namespace CookBook.Services
 {
     public class JwtManager : IJwtManager
     {
-        private readonly TokenValidationParameters _tokenValidationParameters;
-        private readonly JwtOptions _jwtSettings;
-        private readonly DatabaseContext _context;
-        private readonly ICacheService _cache;
 
         private const string UserIdKey = "id";
+
+        private readonly ICacheService _cache;
+
+        private readonly DatabaseContext _context;
+
+        private readonly JwtOptions _jwtSettings;
+
+        private readonly TokenValidationParameters _tokenValidationParameters;
 
         public JwtManager(TokenValidationParameters tokenValidationParameters, JwtOptions jwtSettings,
             DatabaseContext context, ICacheService cache)
@@ -83,7 +87,8 @@ namespace CookBook.Services
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
 
-        public async Task<JwtRefreshToken> GenerateRefreshTokenForJwtTokenAsync(ApplicationUser user, SecurityToken token)
+        public async Task<JwtRefreshToken> GenerateRefreshTokenForJwtTokenAsync(ApplicationUser user,
+            SecurityToken token)
         {
             var refreshToken = new JwtRefreshToken
             {
@@ -117,7 +122,7 @@ namespace CookBook.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> CheckIfUserUsedVActiveTokenAsync(ClaimsPrincipal principal)
+        public async Task<bool> CheckIfUserUsedActiveTokenAsync(ClaimsPrincipal principal)
         {
             var jti = principal.FindFirstValue(JwtRegisteredClaimNames.Jti);
             return jti != null && await _cache.HasKeyAsync(jti);
@@ -139,5 +144,6 @@ namespace CookBook.Services
                    jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,
                        StringComparison.InvariantCultureIgnoreCase);
         }
+
     }
 }
