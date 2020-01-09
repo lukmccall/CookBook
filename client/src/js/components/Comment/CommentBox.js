@@ -11,9 +11,9 @@ export default class CommentBox extends React.Component {
         this.state = {
             showComments: false,
             comments: [
-                { id: 1, author: "landiggity", body: "This is my first comment on this forum so don't be a dick" },
-                { id: 2, author: "scarlett-jo", body: "That's a mighty fine comment you've got there my good looking fellow..." },
-                { id: 3, author: "rosco", body: "What is the meaning of all of this 'React' mumbo-jumbo?" }
+                { id: 1, author: "SJ", body: "This is my first comment" },
+                { id: 2, author: "Boss", body: "Supi recipe!" },
+                { id: 3, author: "JohnJohnson", body: "Third comment" }
             ]
         };
     }
