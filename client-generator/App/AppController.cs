@@ -1,9 +1,8 @@
 using System;
-using client_generator.App.Commands;
 using client_generator.App.Windows;
+using client_generator.Generators;
 using logger;
 using logger.LogStrategies;
-using Newtonsoft.Json;
 using Terminal.Gui;
 
 namespace client_generator.App

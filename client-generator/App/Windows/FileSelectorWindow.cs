@@ -10,11 +10,11 @@ namespace client_generator.App.Windows
 
         private FileSelectorReceiver _receiver;
 
-        private Label _currentDirectoryText;
+        private readonly Label _currentDirectoryText;
 
         private string _currentPath = Directory.GetCurrentDirectory();
 
-        private ListView _filesView;
+        private readonly ListView _filesView;
 
         private List<FileSystemEntry> _fileViewSource;
 
@@ -54,7 +54,7 @@ namespace client_generator.App.Windows
             var result = new List<FileSystemEntry>();
             foreach (var filePath in Directory.GetFileSystemEntries(_currentPath))
             {
-                FileAttributes attr = File.GetAttributes(filePath);
+                var attr = File.GetAttributes(filePath);
                 var isDirectory = (attr & FileAttributes.Directory) == FileAttributes.Directory;
                 result.Add(new FileSystemEntry
                 {
@@ -67,36 +67,37 @@ namespace client_generator.App.Windows
             return result;
         }
 
-        private List<FileSystemEntry> SortFilesList(List<FileSystemEntry> files)
+        private static List<FileSystemEntry> SortFilesList(IEnumerable<FileSystemEntry> files)
         {
             return files.OrderBy(x => x.IsDirectory ? 0 : 1).ThenBy(x => x.FileName).ToList();
         }
 
         public override bool ProcessKey(KeyEvent keyEvent)
         {
-            if (keyEvent.Key == Key.Enter)
+            if (keyEvent.Key != Key.Enter)
             {
-                var selectedItem = _fileViewSource[_filesView.SelectedItem];
-                if (selectedItem.IsDirectory)
-                {
-                    _currentPath = selectedItem.GoToFile();
-                    _currentDirectoryText.Text = _currentPath;
-                    _fileViewSource = GetListViewSource();
-                    _filesView.SetSource(_fileViewSource);
-                }
-                else
-                {
-                    _receiver.Invoke(selectedItem);
-                    AppController.GetLogger()
-                        .Info(
-                            $"File {selectedItem.ParentDirectory}{Path.DirectorySeparatorChar}{selectedItem.FileName} was selected.");
-                    _receiver = null;
-                }
-
-                return true;
+                return _filesView.ProcessKey(keyEvent);
             }
 
-            return _filesView.ProcessKey(keyEvent);
+            var selectedItem = _fileViewSource[_filesView.SelectedItem];
+            if (selectedItem.IsDirectory)
+            {
+                _currentPath = selectedItem.GoToFile();
+                _currentDirectoryText.Text = _currentPath;
+                _fileViewSource = GetListViewSource();
+                _filesView.SetSource(_fileViewSource);
+            }
+
+            else
+            {
+                _receiver.Invoke(selectedItem);
+                AppController.GetLogger()
+                    .Info(
+                        $"File {selectedItem.ParentDirectory}{Path.DirectorySeparatorChar}{selectedItem.FileName} was selected.");
+                _receiver = null;
+            }
+
+            return true;
         }
 
     }

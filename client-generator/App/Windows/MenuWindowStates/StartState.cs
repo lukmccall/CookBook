@@ -1,8 +1,7 @@
 using client_generator.App.Commands;
-using client_generator.App.Windows;
 using Terminal.Gui;
 
-namespace client_generator.App
+namespace client_generator.App.Windows.MenuWindowStates
 {
     class StartState : IMenuWindowState
     {

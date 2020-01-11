@@ -1,5 +1,5 @@
-using System.Threading;
 using client_generator.App.Commands;
+using client_generator.App.Windows.MenuWindowStates;
 using Terminal.Gui;
 
 namespace client_generator.App.Windows
@@ -20,7 +20,6 @@ namespace client_generator.App.Windows
             ChangeState(new StartState(_selectFileCommand, _exitCommand));
         }
 
-
         void FileWasSelected(FileSystemEntry file)
         {
             ChangeState(new FileWasSelectedState(file, _selectFileCommand, _exitCommand));
@@ -36,7 +35,8 @@ namespace client_generator.App.Windows
             newState.SetWindow(this);
             _state = newState;
             _state.DisplayMenu();
+            LayoutSubviews();
+            FocusFirst();
         }
-
     }
 }

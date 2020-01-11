@@ -17,7 +17,8 @@ namespace client_generator.App.Commands
 
         private readonly Action<Exception> _onError;
 
-        public DeserializationCommand(FileSystemEntry file, JsonSerializerSettings deserializationSettings, Action<OpenApiModel> onDeserialization,
+        public DeserializationCommand(FileSystemEntry file, JsonSerializerSettings deserializationSettings,
+            Action<OpenApiModel> onDeserialization,
             Action<Exception> onError)
         {
             _file = file;

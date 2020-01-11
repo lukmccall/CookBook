@@ -1,11 +1,10 @@
 using System;
 using client_generator.App.Commands;
-using client_generator.App.Windows;
 using client_generator.Models;
 using Newtonsoft.Json;
 using Terminal.Gui;
 
-namespace client_generator.App
+namespace client_generator.App.Windows.MenuWindowStates
 {
     class FileWasSelectedState : IMenuWindowState
     {
@@ -15,11 +14,11 @@ namespace client_generator.App
         private readonly ICommand _exitCommand;
 
         private readonly ICommand _deserializationCommand;
-        
+
         private readonly ICommand _editJsonDeserializationSettings;
-    
+
         private readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings();
-        
+
         private MenuWindow _window;
 
         private readonly FileSystemEntry _file;
@@ -30,7 +29,8 @@ namespace client_generator.App
             _exitCommand = exitCommand;
             _selectFileCommand = selectFileCommand;
 
-            _deserializationCommand = new DeserializationCommand(file, _jsonSerializerSettings, OnDeserialization, OnError);
+            _deserializationCommand =
+                new DeserializationCommand(file, _jsonSerializerSettings, OnDeserialization, OnError);
             _editJsonDeserializationSettings = new EditJsonDeserializationSettingsCommand(_jsonSerializerSettings);
         }
 
@@ -43,28 +43,27 @@ namespace client_generator.App
         {
             var fileLabel = new Label(1, 1, $"Selected file: {_file.FileName}");
 
-            var checkButton = new Button("Deserialize current file.")
+            var checkButton = new Button("Deserialize current file")
                 {X = Pos.Center(), Y = Pos.Percent(20), Clicked = _deserializationCommand.Execute};
-            var changeSettings = new Button("Change deserialization settings.")
+            var changeSettings = new Button("Change deserialization settings")
                 {X = Pos.Center(), Y = Pos.Bottom(checkButton), Clicked = _editJsonDeserializationSettings.Execute};
-            var changeFile = new Button("Change file.")
+            var changeFile = new Button("Change file")
                 {X = Pos.Center(), Y = Pos.Bottom(changeSettings), Clicked = _selectFileCommand.Execute};
             var exitButton = new Button("Exit")
                 {X = Pos.Center(), Y = Pos.Bottom(changeFile), Clicked = _exitCommand.Execute};
 
-
             _window.Add(fileLabel, checkButton, changeSettings, changeFile, exitButton);
         }
 
-        private void OnError(Exception obj)
+        private void OnError(Exception exception)
         {
-            
-            MessageBox.ErrorQuery(_window.Frame.Width, 8, "Deserialization failed", obj.Message, "Ok");
+            AppController.GetLogger().Error(exception.Message);
+            MessageBox.ErrorQuery(_window.Frame.Width, 8, "Deserialization failed", exception.Message, "Ok");
         }
 
-        private void OnDeserialization(OpenApiModel obj)
+        private void OnDeserialization(OpenApiModel openApiModel)
         {
-            
+            _window.ChangeState(new OpenApiModeWasGeneratedState(openApiModel, _exitCommand));
         }
 
     }

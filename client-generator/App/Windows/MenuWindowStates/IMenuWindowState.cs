@@ -1,6 +1,4 @@
-using client_generator.App.Windows;
-
-namespace client_generator.App
+namespace client_generator.App.Windows.MenuWindowStates
 {
     public interface IMenuWindowState
     {

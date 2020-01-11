@@ -63,7 +63,7 @@ namespace client_generator.Generators
 
             typeFile.Write("export { " + exports + " };");
 
-            var mainFile = new TsFile("main");
+            var mainFile = new TsFile("client");
 
             relatedSchemas = functions.Select(x => x.Value.RelatedSchemas)
                 .SelectMany(x => x)
@@ -174,7 +174,7 @@ namespace client_generator.Generators
             return null;
         }
 
-        void ParseSchema(ISchema schema)
+        private void ParseSchema(ISchema schema)
         {
             if (schema.GetSchemaType() == SchemaType.Object && !GeneratorContext.TypeExists(schema.GetName()))
             {
