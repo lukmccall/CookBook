@@ -5,7 +5,7 @@ namespace client_generator.App.Commands
     public class SelectFileCommand : ICommand
     {
 
-        private FileSelectorReceiver _fileSelectorReceiver;
+        private readonly FileSelectorReceiver _fileSelectorReceiver;
 
         public SelectFileCommand(FileSelectorReceiver fileSelectorReceiver)
         {
@@ -18,8 +18,6 @@ namespace client_generator.App.Commands
             var changeToFileSelector = new ChangeWindowCommand(new FileSelectorWindow(file =>
             {
                 _fileSelectorReceiver.Invoke(file);
-                _fileSelectorReceiver = null;
-
                 changeToPriviesWindow.Execute();
             }));
 

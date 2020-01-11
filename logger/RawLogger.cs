@@ -7,7 +7,7 @@ namespace logger
 
         protected override void WriteMessage(string message)
         {
-            base.WriteMessage($"{DateTime.Now:yyyy-MM-dd hh:mm:ss} {LogLevel} {message}");
+            base.WriteMessage($"{DateTime.Now:yyyy-MM-dd hh:mm:ss} [{LogLevel}] {message}");
         }
 
     }

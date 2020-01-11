@@ -1,13 +1,16 @@
 using System;
+using client_generator.App.Commands;
+using client_generator.App.Windows;
 using logger;
 using logger.LogStrategies;
+using Newtonsoft.Json;
 using Terminal.Gui;
 
 namespace client_generator.App
 {
     public class AppController
     {
-        
+
         private static readonly AppController AppControllerInstance = new AppController();
 
         private readonly ILogger _logger = new LoggerFacade<RawLogger>(new LoggerSettings
@@ -15,9 +18,9 @@ namespace client_generator.App
             LogLevel = LogLevel.Debug | LogLevel.Info | LogLevel.Warn | LogLevel.Error | LogLevel.Fatal,
             DefaultLogStrategy = new FileLogStrategy("logs.log")
         });
-        
+
         private Window _currentWindow;
-        
+
         private Toplevel _toplevel;
 
         private AppController()
@@ -36,6 +39,7 @@ namespace client_generator.App
 
         public void InitApp<T>() where T : Window, new()
         {
+            _logger.Info("Initialization...");
             Application.Init();
             _toplevel = new Toplevel
             {
@@ -44,11 +48,11 @@ namespace client_generator.App
                 Width = Dim.Fill(),
                 Height = Dim.Fill()
             };
-            
+
             _currentWindow = new T();
-            
             _toplevel.Add(_currentWindow);
 
+            _logger.Info("Star up...");
             Application.Run(_toplevel);
         }
 
@@ -56,7 +60,9 @@ namespace client_generator.App
         {
             if (_toplevel == null)
             {
-                throw new InvalidOperationException("Couldn't change window. TopLevel view doesn't exist.");
+                var errorMessage = "Couldn't change window. TopLevel view doesn't exist.";
+                _logger.Fatal(errorMessage);
+                throw new InvalidOperationException(errorMessage);
             }
 
             _toplevel.RemoveAll();
@@ -64,12 +70,12 @@ namespace client_generator.App
             _currentWindow = newWindow;
             _toplevel.LayoutSubviews();
             _toplevel.FocusFirst();
-            
         }
 
         public void ExitApp()
         {
             Application.RequestStop();
+            _logger.Info("App stop correctly.");
         }
 
         public Window GetCurrentWindow()

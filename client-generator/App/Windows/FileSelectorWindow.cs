@@ -87,6 +87,9 @@ namespace client_generator.App.Windows
                 else
                 {
                     _receiver.Invoke(selectedItem);
+                    AppController.GetLogger()
+                        .Info(
+                            $"File {selectedItem.ParentDirectory}{Path.DirectorySeparatorChar}{selectedItem.FileName} was selected.");
                     _receiver = null;
                 }
 

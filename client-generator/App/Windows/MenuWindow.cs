@@ -10,12 +10,11 @@ namespace client_generator.App.Windows
         private readonly ICommand _exitCommand = new ExitAppCommand();
 
         private readonly ICommand _selectFileCommand;
-        
+
 
         private IMenuWindowState _state;
 
-        public MenuWindow() : base(new Rect(0, 0, Application.Top.Frame.Width, Application.Top.Frame.Height),
-            "Code Generator - Menu")
+        public MenuWindow() : base("Code Generator - Menu")
         {
             _selectFileCommand = new SelectFileCommand(FileWasSelected);
             ChangeState(new StartState(_selectFileCommand, _exitCommand));
@@ -24,7 +23,7 @@ namespace client_generator.App.Windows
 
         void FileWasSelected(FileSystemEntry file)
         {
-            ChangeState(new FileWasSelectedState(_exitCommand, file));
+            ChangeState(new FileWasSelectedState(file, _selectFileCommand, _exitCommand));
         }
 
         public void ChangeState(IMenuWindowState newState)

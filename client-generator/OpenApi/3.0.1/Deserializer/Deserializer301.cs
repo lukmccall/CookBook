@@ -199,7 +199,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
             foreach (var (url, pathItem) in pathItems)
             {
                 var path = $"#/paths/{url}";
-                HashSet<IParameter> parameters = new HashSet<IParameter>();
+                var parameters = new HashSet<IParameter>();
 
                 if (pathItem.Parameters != null)
                 {
