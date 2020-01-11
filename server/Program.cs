@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using CookBook.Domain;
+using logger;
+using logger.LogStrategies;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +12,21 @@ namespace CookBook
     public class Program
     {
 
+        void TEST(LoggerFacade<DiagnosticLogger> logger)
+        {
+            logger.Error("dsadsadasdasd");
+        }
+
         public static async Task Main(string[] args)
         {
+            var logger = new LoggerFacade<DiagnosticLogger>(new LoggerSettings
+            {
+                LogLevel = LogLevel.Info | LogLevel.Debug | LogLevel.Warn | LogLevel.Error | LogLevel.Fatal,
+                DefaultLogStrategy = new ConsoleLogStrategy()
+            });
+            
+            new Program().TEST(logger);
+            
             var host = CreateHostBuilder(args).Build();
 
             using (var serviceScope = host.Services.CreateScope())

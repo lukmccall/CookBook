@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\logger\logger.csproj" />
   </ItemGroup>
 
   <ItemGroup>
