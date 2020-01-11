@@ -1,3 +1,5 @@
+using System;
+
 namespace logger
 {
     public class RawLogger : AbstractLogger
@@ -5,7 +7,7 @@ namespace logger
 
         protected override void WriteMessage(string message)
         {
-            base.WriteMessage($"{LogLevel} {message}");
+            base.WriteMessage($"{DateTime.Now:yyyy-MM-dd hh:mm:ss} {LogLevel} {message}");
         }
 
     }

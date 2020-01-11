@@ -2,7 +2,7 @@ using System.IO;
 
 namespace logger.LogStrategies
 {
-    class FileLogStrategy : ILogStrategy
+    public class FileLogStrategy : ILogStrategy
     {
 
         private readonly string _path;

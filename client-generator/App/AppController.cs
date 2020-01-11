@@ -1,13 +1,21 @@
 using System;
+using logger;
+using logger.LogStrategies;
 using Terminal.Gui;
 
 namespace client_generator.App
 {
     public class AppController
     {
+        
+        private static readonly AppController AppControllerInstance = new AppController();
 
-        private static readonly AppController _appController = new AppController();
-
+        private readonly ILogger _logger = new LoggerFacade<RawLogger>(new LoggerSettings
+        {
+            LogLevel = LogLevel.Debug | LogLevel.Info | LogLevel.Warn | LogLevel.Error | LogLevel.Fatal,
+            DefaultLogStrategy = new FileLogStrategy("logs.log")
+        });
+        
         private Window _currentWindow;
         
         private Toplevel _toplevel;
@@ -18,7 +26,12 @@ namespace client_generator.App
 
         public static AppController Instance()
         {
-            return _appController;
+            return AppControllerInstance;
+        }
+
+        public static ILogger GetLogger()
+        {
+            return AppControllerInstance._logger;
         }
 
         public void InitApp<T>() where T : Window, new()
