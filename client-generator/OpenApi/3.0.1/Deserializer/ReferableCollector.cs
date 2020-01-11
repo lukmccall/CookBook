@@ -1,43 +1,41 @@
 using System.Collections.Generic;
 using client_generator.Deserializer.Helpers.Collectors;
 using client_generator.Deserializer.Helpers.References;
-
+    
 namespace client_generator.OpenApi._3._0._1.Deserializer
 {
     public class ReferableCollector : IReferenceCollector
     {
+        
 
-        private readonly Dictionary<string, string> _missingReferences;
+        private HashSet<(string @ref, string path)> _missingReferences =
+            new HashSet<(string @ref, string path)>();
 
-        private readonly ReferencesRegister _register;
+        private readonly ReferencesRegister _register = new ReferencesRegister();
 
-        public ReferableCollector()
-        {
-            _missingReferences = new Dictionary<string, string>();
-            _register = new ReferencesRegister();
-        }
-
-        public void Visit(string reference, IReferable<object> obj)
+        public void Visit(string path, IReferable<object> obj)
         {
             if (obj.GetObject() != null)
             {
-                _register.Register(reference, obj.GetObject());
+                _register.Register(path, obj.GetObject());
                 return;
             }
 
-            _missingReferences.Add(reference, obj.GetRef());
+            _missingReferences.Add((obj.GetRef(), path));
         }
 
         public bool Validate()
         {
-            foreach (var (key, @ref) in _missingReferences)
+            var newMissingReferences = new HashSet<(string @ref, string path)>();
+            foreach (var missingReference in _missingReferences)
             {
-                if (_register.Exists(@ref))
+                if (!_register.Exists(missingReference.@ref))
                 {
-                    _missingReferences.Remove(key);
+                    newMissingReferences.Add(missingReference);
                 }
             }
 
+            _missingReferences = newMissingReferences;
             return _missingReferences.Count == 0;
         }
 

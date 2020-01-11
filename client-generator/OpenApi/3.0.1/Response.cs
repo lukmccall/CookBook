@@ -32,7 +32,7 @@ namespace client_generator.OpenApi._3._0._1
             {
                 foreach (var (key, content) in Content)
                 {
-                    content.Accept($"{path}/contetn/{key}", collector);
+                    content.Accept($"{path}/content/{key}", collector);
                 }
             }
         }

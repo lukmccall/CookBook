@@ -27,7 +27,7 @@ namespace client_generator.OpenApi._3._0._1
 
         public bool Deprecated { get; set; }
 
-        public Dictionary<string, IEnumerable<string>> Security { get; set; }
+        public IEnumerable<Dictionary<string, IEnumerable<string>>> Security { get; set; }
 
 //        public Object Servers { get; set; } // currently not supported
 
@@ -53,6 +53,7 @@ namespace client_generator.OpenApi._3._0._1
                 foreach (var (key, response) in Responses)
                 {
                     collector.Visit($"{path}/responses/{key}", response);
+                    response.GetObject()?.Accept($"{path}/responses/{key}", collector);
                 }
             }
         }

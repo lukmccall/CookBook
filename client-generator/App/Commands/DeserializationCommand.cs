@@ -29,12 +29,17 @@ namespace client_generator.App.Commands
 
         public void Execute()
         {
-            
+            try
+            {
                 var path = Path.Join(_file.ParentDirectory, _file.FileName);
                 var openApiModel = VersionedDeserializers.Instance().DeserializeFile(path, _deserializationSettings);
-                
+
                 _onDeserialization(openApiModel);
-            
+            }
+            catch (Exception e)
+            {
+                _onError(e);
+            }
         }
 
     }

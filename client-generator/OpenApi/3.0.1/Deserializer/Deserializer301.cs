@@ -19,7 +19,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
     [OpenApiDeserializer(Version = "3.0.1")]
     public class Deserializer301 : Deserializer<OpenApiFile>
     {
-        
+
         protected override IList<JsonConverter> GetConverters()
         {
             var converters = new List<JsonConverter>
@@ -28,7 +28,8 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                 new ReferableConverter<Schema>(),
                 new ReferableConverter<Request>(),
                 new ReferableConverter<Response>(),
-                new ReferableConverter<Header>()
+                new ReferableConverter<Header>(),
+                new ReferableConverter<SecurityScheme>()
             };
             converters.AddRange(base.GetConverters());
             return converters;
@@ -48,6 +49,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
             }
 
             MapSchemes(openApiBuilder, collector.GetObjectOfType<Schema>());
+            MapSecuritySchema(openApiBuilder, collector.GetObjectOfType<SecurityScheme>());
             MapHeaders(openApiBuilder, collector.GetObjectOfType<Header>());
             MapRequestBodies(openApiBuilder, collector.GetObjectOfType<Request>());
             MapParameters(openApiBuilder, collector.GetObjectOfType<Parameter>());
@@ -69,6 +71,23 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
             }
 
             openApiBuilder.AttachScheme(buildManager.GetResult());
+        }
+
+        private void MapSecuritySchema(OpenApiModel.OpenApiModelBuilder openApiBuilder,
+            Dictionary<string, SecurityScheme> securitySchemes)
+        {
+            foreach (var (key, scheme) in securitySchemes)
+            {
+                var name = key.Split("/").Last();
+                if (scheme.In != "header" || scheme.Type != "apiKey")
+                {
+                    continue;
+                }
+
+                var parameter = new Models.Parameters.Parameter(scheme.Name, ParameterType.Header,
+                    new SimpleSchema(SchemaType.String), true, false, false);
+                openApiBuilder.AttachSecuritySchema(name, parameter);
+            }
         }
 
         private void MapHeaders(OpenApiModel.OpenApiModelBuilder openApiModelBuilder,
@@ -218,6 +237,18 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                 foreach (var (type, operation) in operationMap)
                 {
                     var endpointParameters = new HashSet<IParameter>(parameters);
+
+                    if (operation.Security != null)
+                    {
+                        foreach (var securityDictionary in operation.Security)
+                        {
+                            foreach (var key in securityDictionary.Keys)
+                            {
+                                var securityParameter = openApiModelBuilder.GetSecurityParameterForName(key);
+                                endpointParameters.Add(securityParameter);
+                            }
+                        }
+                    }
 
                     if (operation.Parameters != null)
                     {

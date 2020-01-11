@@ -45,7 +45,6 @@ using System.Collections.Generic;
             
             #line default
             #line hidden
-            this.Write(" ");
             #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
 
     if (!_isRequired)

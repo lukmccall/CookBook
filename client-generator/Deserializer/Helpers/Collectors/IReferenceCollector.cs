@@ -6,7 +6,7 @@ namespace client_generator.Deserializer.Helpers.Collectors
     public interface IReferenceCollector
     {
 
-        void Visit(string reference, IReferable<object> obj);
+        void Visit(string path, IReferable<object> obj);
 
         bool Validate();
 

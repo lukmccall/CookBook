@@ -19,7 +19,7 @@ namespace client_generator.OpenApi._3._0._1
 
         public Dictionary<string, IReferable<Header>> Headers { get; set; }
 
-//        public Dictionary<string, IReferable<>> SecuritySchemes { get; set; } // currently not supported
+        public Dictionary<string, IReferable<SecurityScheme>> SecuritySchemes { get; set; } 
 
 //        public Dictionary<string, IReferable<>> Links { get; set; } // currently not supported
 
@@ -68,6 +68,14 @@ namespace client_generator.OpenApi._3._0._1
                 foreach (var (key, value) in Headers)
                 {
                     referenceCollector.Visit($"{path}/requestBodies/{key}", value);
+                }
+            }
+
+            if (SecuritySchemes != null)
+            {
+                foreach (var (key, value) in SecuritySchemes)
+                {
+                    referenceCollector.Visit($"{path}/securitySchemas/{key}", value);
                 }
             }
         }

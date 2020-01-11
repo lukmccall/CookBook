@@ -22,11 +22,12 @@ namespace client_generator.Models
             Schemas = schemas;
         }
 
-
         public class OpenApiModelBuilder
         {
 
             private readonly Dictionary<string, ISchema> _schemas = new Dictionary<string, ISchema>();
+            
+            private readonly Dictionary<string, IParameter> _securitySchemas = new Dictionary<string, IParameter>();
 
             private readonly Dictionary<string, IHeader> _headers = new Dictionary<string, IHeader>();
 
@@ -77,6 +78,12 @@ namespace client_generator.Models
                 _parameters.Add(path, parameter);
                 return this;
             }
+            
+            public OpenApiModelBuilder AttachSecuritySchema(string name, IParameter securitySchema)
+            {
+                _securitySchemas.Add(name, securitySchema);
+                return this;
+            }
 
             public OpenApiModelBuilder AttachEndpoint(IEndpoint endpoint)
             {
@@ -107,6 +114,11 @@ namespace client_generator.Models
             public IParameter GetParameterForPath(string path)
             {
                 return _parameters[path];
+            }
+
+            public IParameter GetSecurityParameterForName(string name)
+            {
+                return _securitySchemas[name];
             }
 
             public OpenApiModel Create()
