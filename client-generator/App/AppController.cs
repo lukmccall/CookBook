@@ -1,6 +1,4 @@
 using System;
-using client_generator.App.Windows;
-using client_generator.Generators;
 using logger;
 using logger.LogStrategies;
 using Terminal.Gui;

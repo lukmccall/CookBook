@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using client_generator.Deserializer;
+using client_generator.Deserializer.Attributes;
 using client_generator.Deserializer.Helpers.Builders;
 using client_generator.Deserializer.Helpers.JsonConverters;
 using client_generator.Models;
@@ -12,17 +13,13 @@ using client_generator.Models.Responses;
 using client_generator.Models.Schemas;
 using client_generator.OpenApi._3._0._1.Builders;
 using Newtonsoft.Json;
-using JsonException = System.Text.Json.JsonException;
 
 namespace client_generator.OpenApi._3._0._1.Deserializer
 {
+    [OpenApiDeserializer(Version = "3.0.1")]
     public class Deserializer301 : Deserializer<OpenApiFile>
     {
-
-        public Deserializer301(JsonSerializerSettings settings) : base(settings)
-        {
-        }
-
+        
         protected override IList<JsonConverter> GetConverters()
         {
             var converters = new List<JsonConverter>

@@ -4,14 +4,13 @@ using Newtonsoft.Json;
 
 namespace client_generator.Deserializer
 {
-    public abstract class Deserializer<T>
+    public abstract class Deserializer<T> : IDeserializer
     {
 
-        private readonly JsonSerializerSettings _settings;
+        private JsonSerializerSettings _settings = new JsonSerializerSettings();
 
-        protected Deserializer(JsonSerializerSettings settings)
+        protected Deserializer()
         {
-            _settings = settings;
         }
 
         protected virtual IList<JsonConverter> GetConverters()
@@ -21,11 +20,16 @@ namespace client_generator.Deserializer
 
         protected abstract OpenApiModel Convert(T versionedModel);
 
-        public virtual OpenApiModel Deserialize(string json)
+        public OpenApiModel Deserialize(string json)
         {
             _settings.Converters = GetConverters();
             var versionedModel = JsonConvert.DeserializeObject<T>(json, _settings);
             return Convert(versionedModel);
+        }
+
+        public void SetSettings(JsonSerializerSettings settings)
+        {
+            _settings = settings;
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using client_generator.App;
 using client_generator.App.Windows;
+using client_generator.Deserializer;
 
 namespace client_generator
 {
@@ -8,12 +9,7 @@ namespace client_generator
 
         private static void Main()
         {
-            // var jsonString = File.ReadAllText("/Users/lukasz/studies/cis/CookBook/client-generator/openapi.json");
-            // var openApiFile = new Deserializer301(new JsonSerializerSettings()).Deserialize(jsonString);
-            //
-            // var generator = new Generator();
-            // generator.Generate(openApiFile);
-
+            VersionedDeserializers.RegisterFromAssembly(typeof(Program).Assembly);
             AppController.Instance().InitApp<MenuWindow>();
         }
 

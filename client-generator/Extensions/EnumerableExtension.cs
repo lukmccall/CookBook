@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace client_generator.Extensions
 {
-    public static class EnumerableExtensions
+    public static class EnumerableExtension
     {
 
         public static IEnumerable<T> Add<T>(this IEnumerable<T> e, T value)

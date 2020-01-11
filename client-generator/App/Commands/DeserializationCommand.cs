@@ -1,7 +1,7 @@
 using System;
 using System.IO;
+using client_generator.Deserializer;
 using client_generator.Models;
-using client_generator.OpenApi._3._0._1.Deserializer;
 using Newtonsoft.Json;
 
 namespace client_generator.App.Commands
@@ -29,17 +29,12 @@ namespace client_generator.App.Commands
 
         public void Execute()
         {
-            try
-            {
-                var jsonString = File.ReadAllText(Path.Join(_file.ParentDirectory, _file.FileName));
-                var openApiModel = new Deserializer301(_deserializationSettings).Deserialize(jsonString);
-
+            
+                var path = Path.Join(_file.ParentDirectory, _file.FileName);
+                var openApiModel = VersionedDeserializers.Instance().DeserializeFile(path, _deserializationSettings);
+                
                 _onDeserialization(openApiModel);
-            }
-            catch (Exception e)
-            {
-                _onError(e);
-            }
+            
         }
 
     }
