@@ -1,19 +1,23 @@
-
 using System;
 
-public class RepositoryException : Exception
+namespace CookBook.ExternalApi
 {
-    public RepositoryException()
+    public class RepositoryException : Exception
     {
-    }
 
-    public RepositoryException(string message)
-        : base(message)
-    {
-    }
+        public RepositoryException()
+        {
+        }
 
-    public RepositoryException(string message, Exception inner)
-        : base(message, inner)
-    {
+        public RepositoryException(string message)
+            : base(message)
+        {
+        }
+
+        public RepositoryException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+
     }
 }

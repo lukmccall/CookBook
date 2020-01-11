@@ -6,6 +6,7 @@ namespace CookBook.API.Responses.AuthController
 {
     public class AuthFailedResponse
     {
+
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
         public bool Success { get; set; }
@@ -13,5 +14,6 @@ namespace CookBook.API.Responses.AuthController
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
         public IEnumerable<string> Errors { get; set; }
+
     }
 }

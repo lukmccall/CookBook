@@ -1,7 +1,5 @@
-using System;
 using System.Threading.Tasks;
-using CookBook.Attributes;
-using CookBook.Models;
+using CookBook.Domain;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,10 +9,11 @@ namespace CookBook
 {
     public class Program
     {
+
         public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            
+
             using (var serviceScope = host.Services.CreateScope())
             {
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
@@ -40,5 +39,6 @@ namespace CookBook
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }
+
     }
 }

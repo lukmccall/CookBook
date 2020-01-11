@@ -5,8 +5,9 @@ using Newtonsoft.Json;
 
 namespace CookBook.Services
 {
-    class CacheService : ICacheService
+    internal class CacheService : ICacheService
     {
+
         private readonly IDistributedCache _cache;
 
         public CacheService(IDistributedCache cache)
@@ -37,5 +38,6 @@ namespace CookBook.Services
                 AbsoluteExpirationRelativeToNow = timeTimeLive
             });
         }
+
     }
 }

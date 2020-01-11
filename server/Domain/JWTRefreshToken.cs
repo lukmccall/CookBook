@@ -2,10 +2,11 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CookBook.Models
+namespace CookBook.Domain
 {
     public class JwtRefreshToken
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Token { get; set; }
@@ -24,5 +25,6 @@ namespace CookBook.Models
 
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; }
+
     }
 }

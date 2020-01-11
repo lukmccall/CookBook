@@ -4,10 +4,14 @@ namespace CookBook.ExternalApi
 {
     public interface IWidgetRepository
     {
-        Task<string> IngredientsById(long id, bool? defaultCss);
-        Task<string> EquipmentbyId(long id, bool? defaultCss);
-        Task<string> PriceBreakdownbyId(long id, bool? defaultCss);
-        Task<string> NutrionbyId(long id, bool? defaultCss);
-    }
 
+        Task<Widget> IngredientsById(long id, bool? defaultCss);
+
+        Task<Widget> EquipmentById(long id, bool? defaultCss);
+
+        Task<Widget> PriceBreakdownById(long id, bool? defaultCss);
+
+        Task<Widget> NutrionById(long id, bool? defaultCss);
+
+    }
 }

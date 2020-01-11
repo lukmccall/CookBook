@@ -19,7 +19,9 @@ namespace CookBook.Controllers
     [ProducesResponseType(typeof(ValidationFailedResponse), StatusCodes.Status422UnprocessableEntity)]
     public class AuthController : Controller
     {
+
         private readonly IAuthService _authService;
+
         private readonly IMapper _mapper;
 
         public AuthController(IAuthService authService, IMapper mapper)
@@ -80,5 +82,6 @@ namespace CookBook.Controllers
 
             return BadRequest(_mapper.Map<AuthFailedResponse>(authResponse));
         }
+
     }
 }

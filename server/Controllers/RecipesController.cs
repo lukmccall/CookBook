@@ -1,82 +1,63 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using CookBook.ExternalApi;
-using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 using CookBook.API;
+using CookBook.API.Requests.RecipesController;
+using CookBook.API.Responses.RecipesController;
+using CookBook.ExternalApi;
 using CookBook.ExternalApi.Models;
-using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CookBook.Controllers
 {
     [ApiController]
-    public class RecipesController : Controller
+    [Consumes("application/json")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public class RecipesController : BaseExternalApiController
     {
+
         private readonly IRecipeRepository _recipeRepo;
 
-        public RecipesController(IRecipeRepository recipeRepo)
+        public RecipesController(IRecipeRepository recipeRepo, IMapper mapper) : base(mapper)
         {
             _recipeRepo = recipeRepo;
         }
 
         [HttpGet(Urls.Recipe.PriceBreakdown)]
+        [ProducesResponseType(typeof(RecipesPriceBreakdownResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetRecipePriceBreakdown(long id)
         {
-            try
-            {
-                var model = await _recipeRepo.GetRecipePriceBreakdown(id);
-                return Ok(model);
-            }
-            catch (Exception e)
-            {
-                return new FailRequest(e.GetType(), e.Message);
-            }
+            return await WrapExternalRepositoryCall<RecipePriceBreakdown, RecipesPriceBreakdownResponse>(() =>
+                _recipeRepo.GetRecipePriceBreakdown(id));
         }
 
-        [HttpGet]
-        [Route(Urls.Recipe.RecipeIngredients)]
-        [ProducesResponseType(typeof(RecipeIngredients), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(FailRequest), StatusCodes.Status404NotFound)]
+        [HttpGet(Urls.Recipe.RecipeIngredients)]
+        [ProducesResponseType(typeof(RecipeIngredientsResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetRecipeIngredients(long id)
         {
-            try
-            {
-                var model = await _recipeRepo.GetRecipeIngredientsById(id);
-                return Ok(model);
-            }
-            catch (Exception e)
-            {
-                return new FailRequest(e.GetType(), e.Message);
-            }
+            return await WrapExternalRepositoryCall<RecipeIngredients, RecipeIngredientsResponse>(() =>
+                _recipeRepo.GetRecipeIngredientsById(id));
         }
 
-        [HttpPost]
-        [Route(Urls.Recipe.SearchByIngredients)]
-        public async Task<IActionResult> SearchByIngredients([FromBody] IngredientsQuery list)
+        [HttpPost(Urls.Recipe.SearchByIngredients)]
+        [ProducesResponseType(typeof(IEnumerable<RecipeResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> SearchByIngredients([FromBody] IngredientsRequest list)
         {
-            try
-            {
-                var model = await _recipeRepo.FindRecipeByIngredients(list);
-                return Ok(model);
-            }
-            catch (Exception e)
-            {
-                return new FailRequest(e.GetType(), e.Message);
-            }
+            return await WrapExternalRepositoryCall<IList<Recipe>, IEnumerable<RecipeResponse>>(() =>
+                _recipeRepo.FindRecipeByIngredients(Mapper.Map<IngredientsQuery>(list)));
         }
 
-        [HttpGet]
-        [Route(Urls.Recipe.RecipeInstructions)]
-        public async Task<IActionResult> RecipeInstructions(long id, bool? stepBreakdown = null)
+        [HttpGet(Urls.Recipe.RecipeInstructions)]
+        [ProducesResponseType(typeof(IEnumerable<RecipeInstructionResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> RecipeInstructions(long id, [FromQuery] bool? stepBreakdown = null)
         {
-            try
-            {
-                var model = await _recipeRepo.GetAnalyzedRecipeInstructions(id, stepBreakdown);
-                return Ok(model);
-            }
-            catch (Exception e)
-            {
-                return new FailRequest(e.GetType(), e.Message);
-            }
+            return await WrapExternalRepositoryCall<IList<RecipeInstruction>, IEnumerable<RecipeInstructionResponse>>(
+                () => _recipeRepo.GetAnalyzedRecipeInstructions(id, stepBreakdown));
         }
+
     }
 }

@@ -6,6 +6,7 @@ namespace CookBook.Installers
 {
     public class MvcInstaller : IInstaller
     {
+
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddCors(options =>
@@ -16,5 +17,6 @@ namespace CookBook.Installers
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
+
     }
 }

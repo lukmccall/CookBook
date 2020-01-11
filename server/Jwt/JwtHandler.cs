@@ -1,18 +1,16 @@
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CookBook.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace CookBook.Jwt
 {
     public class JwtHandler : AuthorizationHandler<JwtRequirement>
     {
-        private readonly IJwtManager _jwtManager;
+
         private readonly IHttpContextAccessor _httpContextAccessor;
+
+        private readonly IJwtManager _jwtManager;
 
         public JwtHandler(IJwtManager jwtManager, IHttpContextAccessor httpContextAccessor)
         {
@@ -23,7 +21,7 @@ namespace CookBook.Jwt
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context,
             JwtRequirement requirement)
         {
-            if (await _jwtManager.CheckIfUserUsedVActiveTokenAsync(context.User))
+            if (await _jwtManager.CheckIfUserUsedActiveTokenAsync(context.User))
             {
                 context.Fail();
                 _httpContextAccessor.HttpContext.Response.StatusCode = 401;
@@ -33,5 +31,6 @@ namespace CookBook.Jwt
                 context.Succeed(requirement);
             }
         }
+
     }
 }

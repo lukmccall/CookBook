@@ -7,6 +7,7 @@ namespace CookBook.Middleware
 {
     public class AdminInjectMiddleware
     {
+
         private readonly RequestDelegate _next;
 
         public AdminInjectMiddleware(RequestDelegate next)
@@ -24,5 +25,6 @@ namespace CookBook.Middleware
             httpContext.Request.Headers["Authorization"] = "bearer " + response.Token;
             await _next(httpContext);
         }
+
     }
 }

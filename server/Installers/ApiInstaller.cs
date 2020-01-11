@@ -6,6 +6,7 @@ namespace CookBook.Installers
 {
     public class ApiInstaller : IInstaller
     {
+
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             var apiOptions = new ApiOptions();
@@ -13,5 +14,6 @@ namespace CookBook.Installers
 
             services.AddSingleton(apiOptions);
         }
+
     }
 }

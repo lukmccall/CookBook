@@ -8,6 +8,7 @@ namespace CookBook.Extensions
 {
     public static class InstallerExtension
     {
+
         public static void InstallServicesFromAssembly(this IServiceCollection services, IConfiguration configuration)
         {
             var installers = typeof(Startup).Assembly.ExportedTypes
@@ -18,5 +19,6 @@ namespace CookBook.Extensions
 
             installers.ForEach(installer => installer.InstallServices(services, configuration));
         }
+
     }
 }

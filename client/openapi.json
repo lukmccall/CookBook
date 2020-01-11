@@ -212,8 +212,31 @@
           }
         ],
         "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Server Error"
+          },
+          "500": {
+            "description": "Server Error"
+          },
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipesPriceBreakdownResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -236,42 +259,28 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Success",
+          "404": {
+            "description": "Not Found",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecipeIngredients"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RecipeIngredients"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RecipeIngredients"
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "503": {
+            "description": "Server Error"
+          },
+          "500": {
+            "description": "Server Error"
+          },
+          "200": {
+            "description": "Success",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/FailRequest"
-                }
-              },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FailRequest"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FailRequest"
+                  "$ref": "#/components/schemas/RecipeIngredientsResponse"
                 }
               }
             }
@@ -289,24 +298,40 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/IngredientsQuery"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IngredientsQuery"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/IngredientsQuery"
+                "$ref": "#/components/schemas/IngredientsRequest"
               }
             }
           }
         },
         "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Server Error"
+          },
+          "500": {
+            "description": "Server Error"
+          },
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecipeResponse"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -336,61 +361,99 @@
           }
         ],
         "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Server Error"
+          },
+          "500": {
+            "description": "Server Error"
+          },
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecipeInstructionResponse"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/api/v1/users/me": {
+    "/api/v1/users/me/get": {
       "get": {
         "tags": [
           "User"
         ],
-        "operationId": "me",
+        "operationId": "get",
         "responses": {
           "200": {
             "description": "Success"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "User"
-        ],
-        "operationId": "me2",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCurrentUserRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCurrentUserRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCurrentUserRequest"
-              }
-            }
           }
         },
-        "responses": {
-          "200": {
-            "description": "Success"
+        "security": [
+          {
+            "Bearer": []
           }
-        }
+        ]
       }
     },
-    "/api/v1/user/me/change-password": {
+    "/api/v1/users/me/update": {
       "patch": {
         "tags": [
           "User"
         ],
-        "operationId": "change-password",
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCurrentUserRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCurrentUserRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCurrentUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/user/me/changePassword": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "changePassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -414,7 +477,12 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/recipeVisualization/{id}": {
@@ -443,7 +511,50 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Server Error"
+          },
+          "500": {
+            "description": "Server Error"
           }
         }
       }
@@ -474,7 +585,50 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Server Error"
+          },
+          "500": {
+            "description": "Server Error"
           }
         }
       }
@@ -505,7 +659,50 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Server Error"
+          },
+          "500": {
+            "description": "Server Error"
           }
         }
       }
@@ -536,7 +733,50 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WidgetResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Server Error"
+          },
+          "500": {
+            "description": "Server Error"
           }
         }
       }
@@ -688,7 +928,43 @@
           }
         }
       },
-      "Metric": {
+      "ProblemDetails": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "readOnly": true,
+            "nullable": true,
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "MetricResponse": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -702,7 +978,7 @@
           }
         }
       },
-      "Us": {
+      "UsResponse": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -716,24 +992,24 @@
           }
         }
       },
-      "Amount": {
+      "AmountResponse": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
           "metric": {
-            "$ref": "#/components/schemas/Metric"
+            "$ref": "#/components/schemas/MetricResponse"
           },
           "us": {
-            "$ref": "#/components/schemas/Us"
+            "$ref": "#/components/schemas/UsResponse"
           }
         }
       },
-      "Ingredients": {
+      "IngredientsResponse": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "amout": {
-            "$ref": "#/components/schemas/Amount"
+          "amount": {
+            "$ref": "#/components/schemas/AmountResponse"
           },
           "image": {
             "type": "string",
@@ -745,7 +1021,7 @@
           }
         }
       },
-      "RecipeIngredients": {
+      "RecipesPriceBreakdownResponse": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -753,26 +1029,47 @@
             "type": "array",
             "nullable": true,
             "items": {
-              "$ref": "#/components/schemas/Ingredients"
+              "$ref": "#/components/schemas/IngredientsResponse"
+            }
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCostPerServing": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "RecipeIngredientsResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ingredients": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/IngredientsResponse"
             }
           }
         }
       },
-      "FailRequest": {
-        "type": "object",
-        "additionalProperties": false
-      },
-      "IngredientsQuery": {
+      "IngredientsRequest": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "number": {
-            "type": "integer",
-            "format": "int32",
+          "ignorePantry": {
+            "type": "boolean",
             "nullable": true
           },
           "limitLicense": {
             "type": "boolean",
+            "nullable": true
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "ranking": {
@@ -780,15 +1077,217 @@
             "format": "int32",
             "nullable": true
           },
-          "ignorePantry": {
-            "type": "boolean",
-            "nullable": true
-          },
           "ingredients": {
             "type": "array",
             "nullable": true,
             "items": {
               "type": "string"
+            }
+          }
+        }
+      },
+      "Ingredient": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "aisle": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "float"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "metaInformation": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "original": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalString": {
+            "type": "string",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitLong": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitShort": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "RecipeResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageType": {
+            "type": "string",
+            "nullable": true
+          },
+          "likes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "missedIngredientCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "missedIngredients": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Ingredient"
+            }
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "unusedIngredients": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Ingredient"
+            }
+          },
+          "usedIngredientCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "usedIngredients": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Ingredient"
+            }
+          }
+        }
+      },
+      "TemperatureResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "number": {
+            "type": "number",
+            "format": "float"
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "EquipmentResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "temperature": {
+            "$ref": "#/components/schemas/TemperatureResponse"
+          }
+        }
+      },
+      "PhotoResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "StepInstructionReponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "equipment": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/EquipmentResponse"
+            }
+          },
+          "ingredients": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/PhotoResponse"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "step": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "RecipeInstructionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/StepInstructionReponse"
             }
           }
         }
@@ -833,6 +1332,19 @@
           },
           "newPassword": {
             "type": "string"
+          }
+        }
+      },
+      "WidgetResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "defaultCss": {
+            "type": "boolean"
           }
         }
       }

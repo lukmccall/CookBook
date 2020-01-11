@@ -8,9 +8,10 @@ namespace CookBook.API.Requests.AuthController
     [Mappable(To = typeof(LogoutData))]
     public class LogoutRequest
     {
-        
+
         [Required]
         [JsonProperty(Required = Required.DisallowNull)]
         public string Token { get; set; }
+
     }
 }

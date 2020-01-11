@@ -5,6 +5,7 @@ namespace CookBook.API.Validators.AuthController
 {
     public class LoginValidator : AbstractValidator<LoginRequest>
     {
+
         public LoginValidator()
         {
             RuleFor(request => request.Email)
@@ -14,5 +15,6 @@ namespace CookBook.API.Validators.AuthController
             RuleFor(request => request.Password)
                 .NotEmpty();
         }
+
     }
 }
