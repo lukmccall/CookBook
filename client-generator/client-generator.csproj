@@ -70,4 +70,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\logger\logger.csproj" />
+    </ItemGroup>
+
 </Project>
