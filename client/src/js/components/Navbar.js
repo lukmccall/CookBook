@@ -48,7 +48,7 @@ export default class Navbar extends Component {
             </Link>
           </li>
           <li>
-            <Link to="/projects" onClick={this.closeNavbar}>
+            <Link to="/project" onClick={this.closeNavbar}>
               PROJECT
             </Link>
           </li>
