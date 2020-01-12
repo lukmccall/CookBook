@@ -6,6 +6,7 @@ using CookBook.API.Responses;
 using CookBook.API.Responses.AuthController;
 using CookBook.Domain.AuthController;
 using CookBook.Services;
+using logger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,13 +25,16 @@ namespace CookBook.Controllers
 
         private readonly IMapper _mapper;
 
-        public AuthController(IAuthService authService, IMapper mapper)
+        private readonly ILogger _logger;
+
+        public AuthController(IAuthService authService, IMapper mapper, ILogger logger)
         {
             _authService = authService;
             _mapper = mapper;
+            _logger = logger;
         }
 
-        [HttpPost(Urls.Auth.Register, Name =  "chuj")]
+        [HttpPost(Urls.Auth.Register)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             var registerData = _mapper.Map<RegisterData>(request);
@@ -40,6 +44,7 @@ namespace CookBook.Controllers
                 return Ok(_mapper.Map<AuthSuccessResponse>(authResponse));
             }
 
+            _logger.Error($"Register failed - {request.Email}");
             return BadRequest(_mapper.Map<AuthFailedResponse>(authResponse));
         }
 
@@ -53,6 +58,7 @@ namespace CookBook.Controllers
                 return Ok(_mapper.Map<AuthSuccessResponse>(authResponse));
             }
 
+            _logger.Error($"Login failed - {request.Email}");
             return BadRequest(_mapper.Map<AuthFailedResponse>(authResponse));
         }
 

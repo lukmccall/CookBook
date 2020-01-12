@@ -3,6 +3,7 @@ using AutoMapper;
 using CookBook.API;
 using CookBook.API.Responses.WidgetController;
 using CookBook.ExternalApi;
+using logger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,7 @@ namespace CookBook.Controllers
 
         private readonly IWidgetRepository _widgetRepo;
 
-        public WidgetsController(IWidgetRepository widgetRepo, IMapper mapper) : base(mapper)
+        public WidgetsController(IWidgetRepository widgetRepo, IMapper mapper, ILogger logger) : base(mapper, logger)
         {
             _widgetRepo = widgetRepo;
         }
