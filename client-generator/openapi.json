@@ -7,9 +7,7 @@
   "paths": {
     "/api/v1/auth/register": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "operationId": "register",
         "requestBody": {
           "content": {
@@ -56,9 +54,7 @@
     },
     "/api/v1/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "operationId": "login",
         "requestBody": {
           "content": {
@@ -105,9 +101,7 @@
     },
     "/api/v1/auth/logout": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "operationId": "logout",
         "requestBody": {
           "content": {
@@ -147,9 +141,7 @@
     },
     "/api/v1/auth/refresh": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "operationId": "refresh",
         "requestBody": {
           "content": {
@@ -196,10 +188,8 @@
     },
     "/recipePriceBreakdown/{id}": {
       "get": {
-        "tags": [
-          "Recipes"
-        ],
-        "operationId": "recipePriceBreakdown",
+        "tags": ["Recipes"],
+        "operationId": "getRecipePriceBreakdown",
         "parameters": [
           {
             "name": "id",
@@ -243,10 +233,8 @@
     },
     "/recipeIngredients/{id}": {
       "get": {
-        "tags": [
-          "Recipes"
-        ],
-        "operationId": "recipeIngredients",
+        "tags": ["Recipes"],
+        "operationId": "getRecipeIngredients",
         "parameters": [
           {
             "name": "id",
@@ -290,9 +278,7 @@
     },
     "/searchByIngredients": {
       "post": {
-        "tags": [
-          "Recipes"
-        ],
+        "tags": ["Recipes"],
         "operationId": "searchByIngredients",
         "requestBody": {
           "content": {
@@ -328,7 +314,8 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/RecipeResponse"
-                  }
+                  },
+                  "nullable": true
                 }
               }
             }
@@ -338,9 +325,7 @@
     },
     "/recipeInstructions/{id}": {
       "get": {
-        "tags": [
-          "Recipes"
-        ],
+        "tags": ["Recipes"],
         "operationId": "recipeInstructions",
         "parameters": [
           {
@@ -356,7 +341,8 @@
             "name": "stepBreakdown",
             "in": "query",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             }
           }
         ],
@@ -385,7 +371,8 @@
                   "type": "array",
                   "items": {
                     "$ref": "#/components/schemas/RecipeInstructionResponse"
-                  }
+                  },
+                  "nullable": true
                 }
               }
             }
@@ -395,10 +382,8 @@
     },
     "/api/v1/users/me/get": {
       "get": {
-        "tags": [
-          "User"
-        ],
-        "operationId": "get",
+        "tags": ["User"],
+        "operationId": "geCurrentUser",
         "responses": {
           "200": {
             "description": "Success"
@@ -413,10 +398,8 @@
     },
     "/api/v1/users/me/update": {
       "patch": {
-        "tags": [
-          "User"
-        ],
-        "operationId": "update",
+        "tags": ["User"],
+        "operationId": "updateCurrentUser",
         "requestBody": {
           "content": {
             "application/json": {
@@ -450,10 +433,8 @@
     },
     "/api/v1/user/me/changePassword": {
       "patch": {
-        "tags": [
-          "User"
-        ],
-        "operationId": "changePassword",
+        "tags": ["User"],
+        "operationId": "changeCurrentUserPassword",
         "requestBody": {
           "content": {
             "application/json": {
@@ -487,9 +468,7 @@
     },
     "/recipeVisualization/{id}": {
       "get": {
-        "tags": [
-          "Widgets"
-        ],
+        "tags": ["Widgets"],
         "operationId": "recipeVisualization",
         "parameters": [
           {
@@ -505,7 +484,8 @@
             "name": "defaultCss",
             "in": "query",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             }
           }
         ],
@@ -561,9 +541,7 @@
     },
     "/equipmentVisualization/{id}": {
       "get": {
-        "tags": [
-          "Widgets"
-        ],
+        "tags": ["Widgets"],
         "operationId": "equipmentVisualization",
         "parameters": [
           {
@@ -579,7 +557,8 @@
             "name": "defaultCss",
             "in": "query",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             }
           }
         ],
@@ -635,9 +614,7 @@
     },
     "/priceBreakdownVisualization/{id}": {
       "get": {
-        "tags": [
-          "Widgets"
-        ],
+        "tags": ["Widgets"],
         "operationId": "priceBreakdownVisualization",
         "parameters": [
           {
@@ -653,7 +630,8 @@
             "name": "defaultCss",
             "in": "query",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             }
           }
         ],
@@ -709,9 +687,7 @@
     },
     "/nutrionVisualization/{id}": {
       "get": {
-        "tags": [
-          "Widgets"
-        ],
+        "tags": ["Widgets"],
         "operationId": "nutrionVisualization",
         "parameters": [
           {
@@ -727,7 +703,8 @@
             "name": "defaultCss",
             "in": "query",
             "schema": {
-              "type": "boolean"
+              "type": "boolean",
+              "nullable": true
             }
           }
         ],
@@ -785,13 +762,8 @@
   "components": {
     "schemas": {
       "RegisterRequest": {
+        "required": ["email", "password", "userName"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "email",
-          "password",
-          "userName"
-        ],
         "properties": {
           "email": {
             "type": "string",
@@ -803,16 +775,12 @@
           "password": {
             "type": "string"
           }
-        }
+        },
+        "nullable": true
       },
       "AuthSuccessResponse": {
+        "required": ["refreshToken", "success", "token"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "refreshToken",
-          "success",
-          "token"
-        ],
         "properties": {
           "token": {
             "type": "string"
@@ -823,15 +791,12 @@
           "success": {
             "type": "boolean"
           }
-        }
+        },
+        "nullable": true
       },
       "AuthFailedResponse": {
+        "required": ["errors", "success"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "errors",
-          "success"
-        ],
         "properties": {
           "success": {
             "type": "boolean"
@@ -839,18 +804,16 @@
           "errors": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
-        }
+        },
+        "nullable": true
       },
       "FiledErrors": {
+        "required": ["field", "messages"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "field",
-          "messages"
-        ],
         "properties": {
           "field": {
             "type": "string"
@@ -858,18 +821,16 @@
           "messages": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
-        }
+        },
+        "nullable": true
       },
       "ValidationFailedResponse": {
+        "required": ["errors", "status"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "errors",
-          "status"
-        ],
         "properties": {
           "status": {
             "type": "boolean",
@@ -881,15 +842,12 @@
               "$ref": "#/components/schemas/FiledErrors"
             }
           }
-        }
+        },
+        "nullable": true
       },
       "LoginRequest": {
+        "required": ["email", "password"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "email",
-          "password"
-        ],
         "properties": {
           "email": {
             "type": "string",
@@ -898,27 +856,22 @@
           "password": {
             "type": "string"
           }
-        }
+        },
+        "nullable": true
       },
       "LogoutRequest": {
+        "required": ["token"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "token"
-        ],
         "properties": {
           "token": {
             "type": "string"
           }
-        }
+        },
+        "nullable": true
       },
       "RefreshRequest": {
+        "required": ["refreshToken", "token"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "refreshToken",
-          "token"
-        ],
         "properties": {
           "token": {
             "type": "string"
@@ -926,11 +879,15 @@
           "refreshToken": {
             "type": "string"
           }
-        }
+        },
+        "nullable": true
+      },
+      "Object": {
+        "type": "object",
+        "nullable": true
       },
       "ProblemDetails": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "type": {
             "type": "string",
@@ -955,18 +912,20 @@
           },
           "extensions": {
             "type": "object",
-            "readOnly": true,
-            "nullable": true,
             "additionalProperties": {
-              "type": "object",
-              "additionalProperties": false
-            }
+              "$ref": "#/components/schemas/Object"
+            },
+            "nullable": true,
+            "readOnly": true
           }
-        }
+        },
+        "additionalProperties": {
+          "$ref": "#/components/schemas/Object"
+        },
+        "nullable": true
       },
       "MetricResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "unit": {
             "type": "string",
@@ -976,11 +935,11 @@
             "type": "number",
             "format": "float"
           }
-        }
+        },
+        "nullable": true
       },
       "UsResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "unit": {
             "type": "string",
@@ -990,11 +949,11 @@
             "type": "number",
             "format": "float"
           }
-        }
+        },
+        "nullable": true
       },
       "AmountResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "metric": {
             "$ref": "#/components/schemas/MetricResponse"
@@ -1002,11 +961,11 @@
           "us": {
             "$ref": "#/components/schemas/UsResponse"
           }
-        }
+        },
+        "nullable": true
       },
       "IngredientsResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "amount": {
             "$ref": "#/components/schemas/AmountResponse"
@@ -1019,18 +978,18 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "RecipesPriceBreakdownResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "ingredients": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/IngredientsResponse"
-            }
+            },
+            "nullable": true
           },
           "totalCost": {
             "type": "number",
@@ -1040,55 +999,38 @@
             "type": "number",
             "format": "double"
           }
-        }
+        },
+        "nullable": true
       },
       "RecipeIngredientsResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "ingredients": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/IngredientsResponse"
-            }
+            },
+            "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "IngredientsRequest": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
-          "ignorePantry": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "limitLicense": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "ranking": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "ingredients": {
             "type": "array",
-            "nullable": true,
             "items": {
-              "type": "string"
-            }
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "Ingredient": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "aisle": {
             "type": "string",
@@ -1108,10 +1050,11 @@
           },
           "metaInformation": {
             "type": "array",
-            "nullable": true,
             "items": {
-              "type": "string"
-            }
+              "type": "string",
+              "nullable": true
+            },
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -1141,11 +1084,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "RecipeResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "id": {
             "type": "integer",
@@ -1169,10 +1112,10 @@
           },
           "missedIngredients": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/Ingredient"
-            }
+            },
+            "nullable": true
           },
           "title": {
             "type": "string",
@@ -1180,10 +1123,10 @@
           },
           "unusedIngredients": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/Ingredient"
-            }
+            },
+            "nullable": true
           },
           "usedIngredientCount": {
             "type": "integer",
@@ -1191,16 +1134,16 @@
           },
           "usedIngredients": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/Ingredient"
-            }
+            },
+            "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "TemperatureResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "number": {
             "type": "number",
@@ -1210,11 +1153,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "EquipmentResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "id": {
             "type": "integer",
@@ -1227,11 +1170,11 @@
           "temperature": {
             "$ref": "#/components/schemas/TemperatureResponse"
           }
-        }
+        },
+        "nullable": true
       },
       "PhotoResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "id": {
             "type": "integer",
@@ -1245,25 +1188,25 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "StepInstructionReponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "equipment": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/EquipmentResponse"
-            }
+            },
+            "nullable": true
           },
           "ingredients": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/PhotoResponse"
-            }
+            },
+            "nullable": true
           },
           "number": {
             "type": "integer",
@@ -1273,11 +1216,11 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "RecipeInstructionResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "name": {
             "type": "string",
@@ -1285,16 +1228,16 @@
           },
           "steps": {
             "type": "array",
-            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/StepInstructionReponse"
-            }
+            },
+            "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "UpdateCurrentUserRequest": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "userName": {
             "type": "string",
@@ -1317,15 +1260,12 @@
             "type": "string",
             "nullable": true
           }
-        }
+        },
+        "nullable": true
       },
       "ChangeCurrentUserPasswordRequest": {
+        "required": ["newPassword", "oldPassword"],
         "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "newPassword",
-          "oldPassword"
-        ],
         "properties": {
           "oldPassword": {
             "type": "string"
@@ -1333,11 +1273,11 @@
           "newPassword": {
             "type": "string"
           }
-        }
+        },
+        "nullable": true
       },
       "WidgetResponse": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "code": {
             "type": "string",
@@ -1346,7 +1286,8 @@
           "defaultCss": {
             "type": "boolean"
           }
-        }
+        },
+        "nullable": true
       }
     },
     "securitySchemes": {

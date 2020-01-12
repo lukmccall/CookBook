@@ -1,23 +1,22 @@
 <#@ template language="C#"         #>
 <#@ import namespace="System.Linq" #>
-<#@         import namespace="Models" #>
-> {  
+<#@ import namespace="Models" #>
+class <#= _name #> {
 <#
     foreach (var (name, type) in _properties)
     {
-#>
-    <#= name #><#
-        if (quiredProperties.Contains(name))
+#>    <#= name #><#
+        if (_requiredProperties.Contains(name))
         {
 #>?<#
         } #>: <#= type.GetName() #>;
 <#
-    } #>
+    }
     
-<#
-    if (_pro        perties.Any())
+    if (_properties.Any())
     {
 #>
+
     static fromResponse(data?: any): <#= _name #> {
         const _data = typeof data === 'object' ? data : {};
         const _response = new <#= _name #>();
@@ -25,7 +24,7 @@
 <#
         foreach (var (name, type) in _properties)
         {
-            if (ty.GetSchemaType() != SchemaType.Array)
+            if (type.GetSchemaType() != SchemaType.Array)
             {
 #>
         _response["<#= name #>"] = _data["<#= name #>"];

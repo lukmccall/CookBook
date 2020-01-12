@@ -30,7 +30,7 @@ namespace CookBook.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost(Urls.Auth.Register)]
+        [HttpPost(Urls.Auth.Register, Name =  "chuj")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             var registerData = _mapper.Map<RegisterData>(request);

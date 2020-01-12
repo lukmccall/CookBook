@@ -9,18 +9,6 @@ namespace client_generator.Templates.Endpoints
 {
     using System;
     #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
-using System.Text;
-    #line default
-    #line hidden
-    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
-using System.Collections.Generic;
-    #line default
-    #line hidden
-    #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
-using System.Linq;
-    #line default
-    #line hidden
-    #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 using client_generator.Extensions;
     #line default
     #line hidden
@@ -42,34 +30,34 @@ using client_generator.Extensions;
             
             this.Write("async ");
             
-            #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_functionName));
             
             #line default
             #line hidden
             this.Write("(");
             
-            #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(string.Join(", ", _signature)));
             
             #line default
             #line hidden
             this.Write("): Promise<");
             
-            #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_returnTypes.StrJoin(" | ")));
             
             #line default
             #line hidden
             this.Write("> {\n    let _url = this.baseUrl + \"");
             
-            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_url));
             
             #line default
             #line hidden
             this.Write("?\";\n    let _headers: {[key: string]: string} = {} ; \n");
-            #line 9 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
     foreach (var code in _parameterParsingCodes)
     {
@@ -81,13 +69,13 @@ using client_generator.Extensions;
             #line hidden
             this.Write("   \n    ");
             
-            #line 15 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 12 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(line));
             
             #line default
             #line hidden
             this.Write(" ");
-            #line 15 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 12 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
         }
     }
@@ -96,7 +84,7 @@ using client_generator.Extensions;
             #line default
             #line hidden
             this.Write(" \n    _url = _url.replace(/[?&]$/, \"\");\n\n    let _options = {\n");
-            #line 22 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
     if (_haveBody)
     {
@@ -105,7 +93,7 @@ using client_generator.Extensions;
             #line default
             #line hidden
             this.Write("        body: _body,\n");
-            #line 27 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 24 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
     }
 
@@ -114,13 +102,13 @@ using client_generator.Extensions;
             #line hidden
             this.Write("        method: \"");
             
-            #line 30 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 27 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_type.ToString().ToUpper()));
             
             #line default
             #line hidden
             this.Write("\",\n        headers: {\n            \"Content-Type\": \"application/json\",\n            \"Accept\": \"application/json\",\n            ..._headers\n        }\n    };\n\n    let _response = await fetch(_url, _options);\n\n");
-            #line 40 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 37 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
     foreach (var (status, response) in _responses)
     {
@@ -130,13 +118,13 @@ using client_generator.Extensions;
             #line hidden
             this.Write("    if (_response.status === ");
             
-            #line 44 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 41 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(status));
             
             #line default
             #line hidden
             this.Write(") {\n");
-            #line 45 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 42 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
         foreach (var line in response.Split("\n"))
         {
@@ -146,13 +134,13 @@ using client_generator.Extensions;
             #line hidden
             this.Write("        ");
             
-            #line 49 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 46 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(line));
             
             #line default
             #line hidden
             this.Write(" \n");
-            #line 50 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 47 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
         }
         if (status.WasSuccessful())
@@ -163,13 +151,13 @@ using client_generator.Extensions;
             #line hidden
             this.Write("        return _data");
             
-            #line 55 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 52 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(status));
             
             #line default
             #line hidden
             this.Write("; \n");
-            #line 56 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 53 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
         }
         else
@@ -180,13 +168,13 @@ using client_generator.Extensions;
             #line hidden
             this.Write("        throw _data");
             
-            #line 61 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 58 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(status));
             
             #line default
             #line hidden
             this.Write(";\n");
-            #line 62 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 59 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
         }
 
@@ -194,7 +182,7 @@ using client_generator.Extensions;
             #line default
             #line hidden
             this.Write("    }\n");
-            #line 66 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
+            #line 63 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Endpoints/FunctionEndpointTemplate.tt"
 
     }
 

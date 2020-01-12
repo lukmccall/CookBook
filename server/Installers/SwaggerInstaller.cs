@@ -1,7 +1,9 @@
-﻿using CookBook.Swagger;
+﻿using CookBook.Extensions;
+using CookBook.Swagger;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace CookBook.Installers
 {
@@ -17,6 +19,9 @@ namespace CookBook.Installers
                     Title = "server",
                     Version = "v1"
                 });
+                
+                x.CustomOperationIds(apiDesc => 
+                    apiDesc.TryGetMethodInfo(out var methodInfo) ? methodInfo.Name.ToLowerFirstChar() : null);
 
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

@@ -1,4 +1,4 @@
-<#@ template languag        e="C#" #>
+<#@ template languae="C#" #>
 <#@ import namespace="client_generator.Models" #>
 <#@ import namespace="client_generator.Models.Parameters" #>
 <#
