@@ -49,6 +49,7 @@ namespace CookBook.Controllers
                 return NotFound();
             }
 
+            user.UserName = updatedUser.UserName ?? user.UserSurname;
             user.Age = updatedUser.Age ?? user.Age;
             user.UserSurname = updatedUser.UserSurname ?? user.UserSurname;
             user.Description = updatedUser.Description ?? user.Description;

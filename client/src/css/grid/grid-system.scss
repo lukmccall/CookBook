@@ -49,7 +49,6 @@ $half-gutter-width: $gutter-width * 0.5;
 
 @for $i from 1 through $grid-columns {
   .col-offset-#{$i} {
-    flex: 0 0 auto;
     margin-left: 100% / $grid-columns * $i;
   }
 }
