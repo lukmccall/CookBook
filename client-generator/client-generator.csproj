@@ -41,6 +41,14 @@
         <Generator>TextTemplatingFilePreprocessor</Generator>
         <LastGenOutput>ClientTemplate.cs</LastGenOutput>
       </None>
+      <None Update="Templates\Requests\RequestSignatureTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>RequestSignatureTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Requests\RequestParserTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>RequestParserTemplate.cs</LastGenOutput>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -67,6 +75,12 @@
       </Compile>
       <Compile Update="Templates\Clients\ClientTemplate.cs">
         <DependentUpon>ClientTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Requests\RequestSignatureTemplate.cs">
+        <DependentUpon>RequestSignatureTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Requests\RequestParserTemplate.cs">
+        <DependentUpon>RequestParserTemplate.tt</DependentUpon>
       </Compile>
     </ItemGroup>
 

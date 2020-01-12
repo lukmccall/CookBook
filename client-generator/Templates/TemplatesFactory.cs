@@ -6,6 +6,7 @@ using client_generator.Models.Schemas;
 using client_generator.Templates.Clients;
 using client_generator.Templates.Endpoints;
 using client_generator.Templates.Parameters;
+using client_generator.Templates.Requests;
 using client_generator.Templates.Responses;
 using client_generator.Templates.Schemes;
 
@@ -23,6 +24,8 @@ namespace client_generator.Templates
         private readonly IEndpointTemplateFactory _endpointTemplateFactory = new EndpointTemplateFactory();
 
         private readonly IClientTemplateFactory _clientTemplateFactory = new ClientTemplateFactory();
+
+        private readonly IRequestTemplateFactory _requestTemplateFactory = new RequestTemplateFactory();
 
         public ITemplate CreateClassSchemaTemplate(string name, Dictionary<string, ISchema> properties,
             IEnumerable<string> requiredProperties)
@@ -60,6 +63,11 @@ namespace client_generator.Templates
             IEnumerable<string> imports)
         {
             return _clientTemplateFactory.CreateClientTemplate(baseUrl, functions, imports);
+        }
+
+        public (ITemplate signature, ITemplate parser) CreateRequestTemplate(string schemaName, bool isRequired)
+        {
+            return _requestTemplateFactory.CreateRequestTemplate(schemaName, isRequired);
         }
 
     }

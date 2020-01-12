@@ -14,6 +14,13 @@ namespace client_generator.Generators
 
         protected readonly IGeneratorContext GeneratorContext = new GeneratorContext();
 
+        protected GeneratorSettings GeneratorSettings;
+
+        public void SetSettings(GeneratorSettings generatorSettings)
+        {
+            GeneratorSettings = generatorSettings;
+        }
+
         public void Generate(OpenApiModel openApiModel)
         {
             ParseSchemas(openApiModel.Schemas);
@@ -37,10 +44,9 @@ namespace client_generator.Generators
             }
         }
 
-
         public void CreateFiles(Dictionary<string, Type> types, Dictionary<string, Function> functions)
         {
-            var typeFile = new TsFile("types");
+            var typeFile = new TsFile(GeneratorSettings.TypesFileName);
 
             var relatedSchemas = types.Select(x => x.Value.RelatedSchemas)
                 .SelectMany(x => x)
@@ -63,7 +69,7 @@ namespace client_generator.Generators
 
             typeFile.Write("export { " + exports + " };");
 
-            var mainFile = new TsFile("client");
+            var mainFile = new TsFile(GeneratorSettings.ClientFileName);
 
             relatedSchemas = functions.Select(x => x.Value.RelatedSchemas)
                 .SelectMany(x => x)
@@ -72,7 +78,7 @@ namespace client_generator.Generators
             imports = GetImportsString(mainFile, relatedSchemas).ToList();
 
             var template = GeneratorContext.GetTemplateFactory()
-                .CreateClientTemplate("adres", functions.Select(x => x.Value.Code), imports);
+                .CreateClientTemplate(GeneratorSettings.ServerUrl, functions.Select(x => x.Value.Code), imports);
 
             mainFile.Write(template.TransformText());
 
@@ -80,13 +86,13 @@ namespace client_generator.Generators
             mainFile.ToSystemFile();
         }
 
-        public IEnumerable<string> GetImportsString(TsFile fromFile, IEnumerable<ISchema> schemas)
+        private IEnumerable<string> GetImportsString(TsFile fromFile, IEnumerable<ISchema> schemas)
         {
-            if (fromFile.FileName == "types")
+            if (fromFile.FileName == GeneratorSettings.TypesFileName ||
+                GeneratorSettings.SchemePlace == SchemeGeneratePlace.WithCode)
             {
                 return new List<string>();
             }
-
 
             return new List<string>
             {
@@ -117,7 +123,6 @@ namespace client_generator.Generators
                 relatedSchemas.AddNew(GetRelatedImportableSchema(parameter.GetSchema()));
             }
 
-            // todo: refactor this 
             var hasBody = false;
             if (endpoint.GetRequestBody() != null)
             {
@@ -125,8 +130,9 @@ namespace client_generator.Generators
                 var body = endpoint.GetRequestBody();
                 var schema = body.GetSchemaForType("application/json"); // todo: handle other types
 
-                var req = body.IsRequired() ? "" : " | undefined";
-                parameters.Add($"body: {schema.GetName()}{req}", "let _body = JSON.stringify(body);\n");
+                var requestTemplates = GeneratorContext.GetTemplateFactory()
+                    .CreateRequestTemplate(schema.GetName(), body.IsRequired());
+                parameters.Add(requestTemplates.signature.TransformText(), requestTemplates.parser.TransformText());
                 relatedSchemas.AddNew(GetRelatedImportableSchema(schema));
             }
 
