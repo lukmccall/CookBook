@@ -3,9 +3,9 @@ namespace client_generator.Templates.Parameters
     public partial class ParameterSignatureTemplate : ITemplate
     {
 
-        private readonly string _name;
-
         private readonly bool _isRequired;
+
+        private readonly string _name;
 
         private readonly string _type;
 

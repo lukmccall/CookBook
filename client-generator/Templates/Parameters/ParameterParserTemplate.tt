@@ -1,8 +1,6 @@
-<#@ template language="C#" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="client_generator.Models.Parameters" #>
+<#@ template languag        e="C#" #>
 <#@ import namespace="client_generator.Models" #>
+<#@ import namespace="client_generator.Models.Parameters" #>
 <#
     if (_isRequired)
     {
@@ -89,5 +87,7 @@ _headers["<#= _name #>"] = <#= _name #>;
 throw new Error("`<#= _name #>` cound't be empty." );
 <#+
     }
+
+/*_T4‌CodeEnd_*/
 
 #>

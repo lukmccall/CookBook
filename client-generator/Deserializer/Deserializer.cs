@@ -9,17 +9,6 @@ namespace client_generator.Deserializer
 
         private JsonSerializerSettings _settings = new JsonSerializerSettings();
 
-        protected Deserializer()
-        {
-        }
-
-        protected virtual IList<JsonConverter> GetConverters()
-        {
-            return new List<JsonConverter>();
-        }
-
-        protected abstract OpenApiModel Convert(T versionedModel);
-
         public OpenApiModel Deserialize(string json)
         {
             _settings.Converters = GetConverters();
@@ -31,6 +20,13 @@ namespace client_generator.Deserializer
         {
             _settings = settings;
         }
+
+        protected virtual IList<JsonConverter> GetConverters()
+        {
+            return new List<JsonConverter>();
+        }
+
+        protected abstract OpenApiModel Convert(T versionedModel);
 
     }
 }

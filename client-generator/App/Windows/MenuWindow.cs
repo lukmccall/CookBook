@@ -20,7 +20,7 @@ namespace client_generator.App.Windows
             ChangeState(new StartState(_selectFileCommand, _exitCommand));
         }
 
-        void FileWasSelected(FileSystemEntry file)
+        private void FileWasSelected(FileSystemEntry file)
         {
             ChangeState(new FileWasSelectedState(file, _selectFileCommand, _exitCommand));
         }
@@ -38,5 +38,6 @@ namespace client_generator.App.Windows
             LayoutSubviews();
             FocusFirst();
         }
+
     }
 }

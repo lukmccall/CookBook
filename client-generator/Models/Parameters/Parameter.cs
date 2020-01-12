@@ -3,18 +3,18 @@ using client_generator.Models.Schemas;
 
 namespace client_generator.Models.Parameters
 {
-    class Parameter : IParameter
+    internal class Parameter : IParameter
     {
 
-        private readonly ParameterType _parameterType;
-
-        private readonly string _name;
-
-        private readonly bool _isRequired;
+        private readonly bool _allowEmptyValue;
 
         private readonly bool _isDeprecated;
 
-        private readonly bool _allowEmptyValue;
+        private readonly bool _isRequired;
+
+        private readonly string _name;
+
+        private readonly ParameterType _parameterType;
 
         private readonly ISchema _schema;
 

@@ -6,7 +6,6 @@ using client_generator.Models;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Generators;
 using client_generator.Models.Schemas;
-using Type = client_generator.Models.Generators.Type;
 
 namespace client_generator.Generators
 {
@@ -24,7 +23,7 @@ namespace client_generator.Generators
                 {SchemeGeneratePlace.AllSeparated, new AllSeparatedFileStrategy(GeneratorContext, GeneratorSettings)}
             };
         }
-        
+
         protected override void ParseSchemas(IEnumerable<ISchema> schemas)
         {
             foreach (var schema in schemas)

@@ -20,12 +20,13 @@ namespace client_generator.Generators.FilesStrategies
             Settings = settings;
         }
 
+        public abstract List<string> CreateFiles(Dictionary<string, Type> types,
+            Dictionary<string, Function> functions);
+
         public void SetFilter(Action<TsFile> fileFilter)
         {
             FileFilter = fileFilter;
         }
-
-        public abstract List<string> CreateFiles(Dictionary<string, Type> types, Dictionary<string, Function> functions);
 
     }
 }

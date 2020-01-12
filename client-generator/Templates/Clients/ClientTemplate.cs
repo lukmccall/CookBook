@@ -8,14 +8,6 @@
 namespace client_generator.Templates.Clients
 {
     using System;
-    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
-using System.Text;
-    #line default
-    #line hidden
-    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
-using System.Collections.Generic;
-    #line default
-    #line hidden
     
     /// <summary>
     /// Class to produce the template output
@@ -32,7 +24,7 @@ using System.Collections.Generic;
         public virtual string TransformText()
         {
             
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
+            #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
 
     foreach (var line in _imports)
     {
@@ -41,13 +33,13 @@ using System.Collections.Generic;
             #line default
             #line hidden
             
-            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
+            #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(line));
             
             #line default
             #line hidden
             this.Write("\n");
-            #line 9 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
+            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
 
     }
 
@@ -56,13 +48,13 @@ using System.Collections.Generic;
             #line hidden
             this.Write("export class Client {\n    baseUrl = \"");
             
-            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
+            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_baseUrl));
             
             #line default
             #line hidden
             this.Write("\";\n\n");
-            #line 15 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
+            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
 
     foreach (var function in _functions)
     {
@@ -74,13 +66,13 @@ using System.Collections.Generic;
             #line hidden
             this.Write("    ");
             
-            #line 21 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
+            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(line));
             
             #line default
             #line hidden
             this.Write("\n");
-            #line 22 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
+            #line 20 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
 
         }
 
@@ -88,7 +80,7 @@ using System.Collections.Generic;
             #line default
             #line hidden
             this.Write("\n");
-            #line 26 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
+            #line 24 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Clients/ClientTemplate.tt"
 
     }
 

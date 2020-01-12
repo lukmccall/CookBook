@@ -2,9 +2,9 @@ using System.IO;
 
 namespace client_generator.App
 {
-    class BackFileEntry : FileSystemEntry
+    internal class BackFileEntry : FileSystemEntry
     {
-        
+
         public BackFileEntry(string currentPath)
         {
             IsDirectory = true;

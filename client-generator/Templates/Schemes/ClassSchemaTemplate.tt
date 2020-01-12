@@ -1,13 +1,13 @@
-<#@ template language="C#" #>
+<#@ template language="C#"         #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="client_generator.Models" #>
-class <#= _name #> {  
+<#@         import namespace="Models" #>
+> {  
 <#
     foreach (var (name, type) in _properties)
     {
 #>
     <#= name #><#
-        if (!_requiredProperties.Contains(name))
+        if (quiredProperties.Contains(name))
         {
 #>?<#
         } #>: <#= type.GetName() #>;
@@ -15,7 +15,7 @@ class <#= _name #> {
     } #>
     
 <#
-    if (_properties.Any())
+    if (_pro        perties.Any())
     {
 #>
     static fromResponse(data?: any): <#= _name #> {
@@ -25,7 +25,7 @@ class <#= _name #> {
 <#
         foreach (var (name, type) in _properties)
         {
-            if (type.GetSchemaType() != SchemaType.Array)
+            if (ty.GetSchemaType() != SchemaType.Array)
             {
 #>
         _response["<#= name #>"] = _data["<#= name #>"];

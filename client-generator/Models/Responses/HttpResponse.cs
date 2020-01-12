@@ -1,17 +1,14 @@
 using System.Collections.Generic;
-using client_generator.Extensions;
-using client_generator.Generators;
-using client_generator.Models.Requests;
 using client_generator.Models.Schemas;
 
 namespace client_generator.Models.Responses
 {
-    class HttpResponse : IHttpResponse
+    internal class HttpResponse : IHttpResponse
     {
 
-        private readonly int _status;
-
         private readonly IResponse _response;
+
+        private readonly int _status;
 
         public HttpResponse(int status, IResponse response)
         {

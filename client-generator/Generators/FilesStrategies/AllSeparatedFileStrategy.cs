@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using client_generator.Models;
 using client_generator.Models.Generators;
 using client_generator.Models.Schemas;
-using SchemaType = client_generator.Models.SchemaType;
-using Type = client_generator.Models.Generators.Type;
 
 namespace client_generator.Generators.FilesStrategies
 {
-    class AllSeparatedFileStrategy : ContextDependedFileStrategy
+    internal class AllSeparatedFileStrategy : ContextDependedFileStrategy
     {
 
         public AllSeparatedFileStrategy(IGeneratorContext context, GeneratorSettings settings) : base(context, settings)

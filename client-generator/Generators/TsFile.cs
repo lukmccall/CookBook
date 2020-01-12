@@ -7,14 +7,14 @@ namespace client_generator.Generators
     public class TsFile
     {
 
-        public string FileName { get; }
-
-        private StringBuilder _stringBuilder = new StringBuilder();
+        private readonly StringBuilder _stringBuilder = new StringBuilder();
 
         public TsFile(string fileName)
         {
             FileName = fileName;
         }
+
+        public string FileName { get; }
 
         public void Write(string content)
         {

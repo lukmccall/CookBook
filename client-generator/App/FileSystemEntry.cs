@@ -25,5 +25,6 @@ namespace client_generator.App
         {
             return Path.Combine(ParentDirectory, FileName);
         }
+
     }
 }

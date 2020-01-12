@@ -3,12 +3,12 @@ using Terminal.Gui;
 
 namespace client_generator.App.Windows.MenuWindowStates
 {
-    class StartState : IMenuWindowState
+    internal class StartState : IMenuWindowState
     {
 
-        private readonly ICommand _selectFileCommand;
-
         private readonly ICommand _exitCommand;
+
+        private readonly ICommand _selectFileCommand;
 
         private MenuWindow _window;
 

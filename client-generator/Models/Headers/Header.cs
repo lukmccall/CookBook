@@ -5,11 +5,11 @@ namespace client_generator.Models.Headers
     public class Header : IHeader
     {
 
-        private readonly bool _isRequired;
+        private readonly bool _allowEmptyValue;
 
         private readonly bool _isDeprecated;
 
-        private readonly bool _allowEmptyValue;
+        private readonly bool _isRequired;
 
         private readonly string _name;
 

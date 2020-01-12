@@ -9,19 +9,11 @@ namespace client_generator.Templates.Parameters
 {
     using System;
     #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
-using System.Text;
+using client_generator.Models;
     #line default
     #line hidden
     #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
-using System.Collections.Generic;
-    #line default
-    #line hidden
-    #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 using client_generator.Models.Parameters;
-    #line default
-    #line hidden
-    #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
-using client_generator.Models;
     #line default
     #line hidden
     
@@ -40,7 +32,7 @@ using client_generator.Models;
         public virtual string TransformText()
         {
             
-            #line 6 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
     if (_isRequired)
     {
@@ -50,27 +42,27 @@ using client_generator.Models;
             #line hidden
             this.Write("if (");
             
-            #line 10 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(" === undefined || ");
             
-            #line 10 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(" === null) {\n    throw new Error(\"`");
             
-            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 9 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write("` is required.\" );\n}\n");
-            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
     }
     if (!_allowEmptyValue)
@@ -84,20 +76,20 @@ using client_generator.Models;
             #line hidden
             this.Write("if (");
             
-            #line 21 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(" === \"\") {\n    ");
-            #line 22 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 20 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 EmptyError(); 
             
             #line default
             #line hidden
             this.Write("}\n");
-            #line 25 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 23 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 break;
             case SchemaType.Array:
@@ -107,27 +99,27 @@ using client_generator.Models;
             #line hidden
             this.Write("if (!Array.isArray(");
             
-            #line 29 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 27 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(" || !");
             
-            #line 29 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 27 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(".length) {\n    ");
-            #line 30 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 28 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 EmptyError(); 
             
             #line default
             #line hidden
             this.Write("}\n");
-            #line 33 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 31 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 break;
             case SchemaType.Object:
@@ -137,20 +129,20 @@ using client_generator.Models;
             #line hidden
             this.Write("if (Object.entries(");
             
-            #line 37 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 35 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(").length === 0) {\n    ");
-            #line 38 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 36 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 EmptyError(); 
             
             #line default
             #line hidden
             this.Write("}\n");
-            #line 41 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 39 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 break;
         }
@@ -163,20 +155,20 @@ using client_generator.Models;
             #line hidden
             this.Write("if (");
             
-            #line 48 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 46 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(" !== undefined) {\n    ");
-            #line 49 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 47 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
         GenerateParsingCode(); 
             
             #line default
             #line hidden
             this.Write("}\n");
-            #line 52 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 50 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
     }
     else
@@ -185,7 +177,7 @@ using client_generator.Models;
             
             #line default
             #line hidden
-            #line 57 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+            #line 55 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
     }
 
@@ -194,7 +186,7 @@ using client_generator.Models;
             #line hidden
             return this.GenerationEnvironment.ToString();
         }
-        #line 59 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 57 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
 
     private void GenerateParsingCode()
@@ -208,20 +200,20 @@ using client_generator.Models;
         #line hidden
         this.Write("_url = _url.replace(\"{");
         
-        #line 67 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 65 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
         this.Write(this.ToStringHelper.ToStringWithCulture(_name));
         
         #line default
         #line hidden
         this.Write("}\", encodeURIComponent(\"\" +  ");
         
-        #line 67 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 65 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
         this.Write(this.ToStringHelper.ToStringWithCulture(_name));
         
         #line default
         #line hidden
         this.Write("));\n");
-        #line 68 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 66 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 break;
             case ParameterType.Query:
@@ -231,20 +223,20 @@ using client_generator.Models;
         #line hidden
         this.Write("_url += \"");
         
-        #line 72 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 70 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
         this.Write(this.ToStringHelper.ToStringWithCulture(_name));
         
         #line default
         #line hidden
         this.Write("=\" + encodeURIComponent(\"\" + ");
         
-        #line 72 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 70 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
         this.Write(this.ToStringHelper.ToStringWithCulture(_name));
         
         #line default
         #line hidden
         this.Write(") + \"&\"; \n");
-        #line 73 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 71 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 break;
             case ParameterType.Header:
@@ -254,20 +246,20 @@ using client_generator.Models;
         #line hidden
         this.Write("_headers[\"");
         
-        #line 77 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 75 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
         this.Write(this.ToStringHelper.ToStringWithCulture(_name));
         
         #line default
         #line hidden
         this.Write("\"] = ");
         
-        #line 77 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 75 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
         this.Write(this.ToStringHelper.ToStringWithCulture(_name));
         
         #line default
         #line hidden
         this.Write("; \n");
-        #line 78 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 76 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
                 break;
         }
@@ -277,7 +269,7 @@ using client_generator.Models;
         
         #line default
         #line hidden
-        #line 84 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 82 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
 
     private void EmptyError()
@@ -288,15 +280,17 @@ using client_generator.Models;
         #line hidden
         this.Write("throw new Error(\"`");
         
-        #line 89 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 87 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
         this.Write(this.ToStringHelper.ToStringWithCulture(_name));
         
         #line default
         #line hidden
         this.Write("` cound't be empty.\" );\n");
-        #line 90 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
+        #line 88 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterParserTemplate.tt"
 
     }
+
+/*_T4‌CodeEnd_*/
 
 
         

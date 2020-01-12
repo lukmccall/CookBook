@@ -21,11 +21,11 @@ namespace client_generator.App
 
         private Toplevel _toplevel;
 
-        public GeneratorTemplate Generator { get; } = new Generator();
-
         private AppController()
         {
         }
+
+        public GeneratorTemplate Generator { get; } = new Generator();
 
         public static AppController Instance()
         {

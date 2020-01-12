@@ -12,32 +12,32 @@ namespace client_generator.Models
     public class OpenApiModel
     {
 
-        public IEnumerable<IEndpoint> Endpoints { get; }
-
-        public IEnumerable<ISchema> Schemas { get; }
-
         public OpenApiModel(IEnumerable<IEndpoint> endpoints, IEnumerable<ISchema> schemas)
         {
             Endpoints = endpoints;
             Schemas = schemas;
         }
 
+        public IEnumerable<IEndpoint> Endpoints { get; }
+
+        public IEnumerable<ISchema> Schemas { get; }
+
         public class OpenApiModelBuilder
         {
 
-            private readonly Dictionary<string, ISchema> _schemas = new Dictionary<string, ISchema>();
-            
-            private readonly Dictionary<string, IParameter> _securitySchemas = new Dictionary<string, IParameter>();
+            private readonly List<IEndpoint> _endpoints = new List<IEndpoint>();
 
             private readonly Dictionary<string, IHeader> _headers = new Dictionary<string, IHeader>();
+
+            private readonly Dictionary<string, IParameter> _parameters = new Dictionary<string, IParameter>();
 
             private readonly Dictionary<string, IRequestBody> _requestBodies = new Dictionary<string, IRequestBody>();
 
             private readonly Dictionary<string, IResponse> _responses = new Dictionary<string, IResponse>();
 
-            private readonly Dictionary<string, IParameter> _parameters = new Dictionary<string, IParameter>();
+            private readonly Dictionary<string, ISchema> _schemas = new Dictionary<string, ISchema>();
 
-            private readonly List<IEndpoint> _endpoints = new List<IEndpoint>();
+            private readonly Dictionary<string, IParameter> _securitySchemas = new Dictionary<string, IParameter>();
 
             public OpenApiModelBuilder AttachScheme(string path, ISchema schema)
             {
@@ -78,7 +78,7 @@ namespace client_generator.Models
                 _parameters.Add(path, parameter);
                 return this;
             }
-            
+
             public OpenApiModelBuilder AttachSecuritySchema(string name, IParameter securitySchema)
             {
                 _securitySchemas.Add(name, securitySchema);

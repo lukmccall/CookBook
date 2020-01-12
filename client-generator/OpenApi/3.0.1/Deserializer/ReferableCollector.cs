@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using client_generator.Deserializer.Helpers.Collectors;
 using client_generator.Deserializer.Helpers.References;
-    
+
 namespace client_generator.OpenApi._3._0._1.Deserializer
 {
     public class ReferableCollector : IReferenceCollector
     {
-        
+
+        private readonly ReferencesRegister _register = new ReferencesRegister();
+
 
         private HashSet<(string @ref, string path)> _missingReferences =
             new HashSet<(string @ref, string path)>();
-
-        private readonly ReferencesRegister _register = new ReferencesRegister();
 
         public void Visit(string path, IReferable<object> obj)
         {

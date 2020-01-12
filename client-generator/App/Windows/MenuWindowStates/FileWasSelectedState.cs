@@ -6,22 +6,22 @@ using Terminal.Gui;
 
 namespace client_generator.App.Windows.MenuWindowStates
 {
-    class FileWasSelectedState : IMenuWindowState
+    internal class FileWasSelectedState : IMenuWindowState
     {
-
-        private readonly ICommand _selectFileCommand;
-
-        private readonly ICommand _exitCommand;
 
         private readonly ICommand _deserializationCommand;
 
         private readonly ICommand _editJsonDeserializationSettings;
 
-        private readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings();
-
-        private MenuWindow _window;
+        private readonly ICommand _exitCommand;
 
         private readonly FileSystemEntry _file;
+
+        private readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings();
+
+        private readonly ICommand _selectFileCommand;
+
+        private MenuWindow _window;
 
         public FileWasSelectedState(FileSystemEntry file, ICommand selectFileCommand, ICommand exitCommand)
         {

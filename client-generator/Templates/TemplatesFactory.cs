@@ -15,17 +15,17 @@ namespace client_generator.Templates
     public class TemplatesFactory : ITemplateFactory
     {
 
-        private readonly IClassSchemaTemplateFactory _schemaTemplateFactory = new ClassSchemaTemplateFactory();
-
-        private readonly IParameterTemplateFactory _parameterTemplateFactory = new ParameterTemplateFactory();
-
-        private readonly IResponseTemplateFactory _responseTemplateFactory = new ResponseTemplateFactory();
+        private readonly IClientTemplateFactory _clientTemplateFactory = new ClientTemplateFactory();
 
         private readonly IEndpointTemplateFactory _endpointTemplateFactory = new EndpointTemplateFactory();
 
-        private readonly IClientTemplateFactory _clientTemplateFactory = new ClientTemplateFactory();
+        private readonly IParameterTemplateFactory _parameterTemplateFactory = new ParameterTemplateFactory();
 
         private readonly IRequestTemplateFactory _requestTemplateFactory = new RequestTemplateFactory();
+
+        private readonly IResponseTemplateFactory _responseTemplateFactory = new ResponseTemplateFactory();
+
+        private readonly IClassSchemaTemplateFactory _schemaTemplateFactory = new ClassSchemaTemplateFactory();
 
         public ITemplate CreateClassSchemaTemplate(string name, Dictionary<string, ISchema> properties,
             IEnumerable<string> requiredProperties)

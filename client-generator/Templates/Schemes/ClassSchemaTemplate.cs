@@ -13,7 +13,7 @@ using System.Linq;
     #line default
     #line hidden
     #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-using client_generator.Models;
+using Models;
     #line default
     #line hidden
     
@@ -32,14 +32,7 @@ using client_generator.Models;
         public virtual string TransformText()
         {
             
-            this.Write("class ");
-            
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
-            
-            #line default
-            #line hidden
-            this.Write(" {  \n");
+            this.Write("> {  \n");
             #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
     foreach (var (name, type) in _properties)
@@ -57,7 +50,7 @@ using client_generator.Models;
             #line hidden
             #line 9 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
-        if (!_requiredProperties.Contains(name))
+        if (quiredProperties.Contains(name))
         {
 
             
@@ -87,7 +80,7 @@ using client_generator.Models;
             this.Write("    \n");
             #line 17 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
-    if (_properties.Any())
+    if (_pro        perties.Any())
     {
 
             
@@ -112,7 +105,7 @@ using client_generator.Models;
 
         foreach (var (name, type) in _properties)
         {
-            if (type.GetSchemaType() != SchemaType.Array)
+            if (ty.GetSchemaType() != SchemaType.Array)
             {
 
             

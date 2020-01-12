@@ -8,14 +8,6 @@
 namespace client_generator.Templates.Requests
 {
     using System;
-    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestSignatureTemplate.tt"
-using System.Text;
-    #line default
-    #line hidden
-    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestSignatureTemplate.tt"
-using System.Collections.Generic;
-    #line default
-    #line hidden
     
     /// <summary>
     /// Class to produce the template output
@@ -34,12 +26,12 @@ using System.Collections.Generic;
             
             this.Write("body: ");
             
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestSignatureTemplate.tt"
+            #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestSignatureTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_schemaName));
             
             #line default
             #line hidden
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestSignatureTemplate.tt"
+            #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestSignatureTemplate.tt"
 
     if (!_IsRequired)
     {
@@ -48,7 +40,7 @@ using System.Collections.Generic;
             #line default
             #line hidden
             this.Write(" | undefined ");
-            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestSignatureTemplate.tt"
+            #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestSignatureTemplate.tt"
 
     } 
             

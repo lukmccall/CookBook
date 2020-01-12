@@ -10,9 +10,9 @@ namespace client_generator.Generators
     public class GeneratorContext : IGeneratorContext
     {
 
-        private readonly Dictionary<string, Type> _types = new Dictionary<string, Type>();
-
         private readonly Dictionary<string, Function> _functions = new Dictionary<string, Function>();
+
+        private readonly Dictionary<string, Type> _types = new Dictionary<string, Type>();
 
         public bool TypeExists(string typeName)
         {

@@ -1,6 +1,6 @@
 namespace client_generator.Templates.Requests
 {
-    class RequestTemplateFactory : IRequestTemplateFactory
+    internal class RequestTemplateFactory : IRequestTemplateFactory
     {
 
         public (ITemplate signature, ITemplate parser) CreateRequestTemplate(string schemaName, bool isRequired)

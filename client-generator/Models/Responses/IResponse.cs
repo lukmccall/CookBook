@@ -5,6 +5,7 @@ namespace client_generator.Models.Responses
 {
     public interface IResponse
     {
+
         IEnumerable<string> GetResponseType();
 
         ISchema GetSchemaForType(string type);

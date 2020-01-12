@@ -195,7 +195,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
                 {
                     {"query", ParameterType.Query},
                     {"header", ParameterType.Header},
-                    {"path", ParameterType.Path},
+                    {"path", ParameterType.Path}
                 };
 
                 if (!map.ContainsKey(parameterTypeString))

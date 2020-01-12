@@ -8,15 +8,15 @@ namespace client_generator.App.Windows
     public sealed class FileSelectorWindow : Window
     {
 
-        private FileSelectorReceiver _receiver;
-
         private readonly Label _currentDirectoryText;
-
-        private string _currentPath = Directory.GetCurrentDirectory();
 
         private readonly ListView _filesView;
 
+        private string _currentPath = Directory.GetCurrentDirectory();
+
         private List<FileSystemEntry> _fileViewSource;
+
+        private FileSelectorReceiver _receiver;
 
         public FileSelectorWindow(FileSelectorReceiver receiver) : base(
             "Code Generator - Select File")
@@ -26,7 +26,7 @@ namespace client_generator.App.Windows
             var currentDirectoryLabel = new Label(1, 1, "Current directory:");
             _currentDirectoryText = new Label(1, 2, _currentPath);
 
-            var listViewHolder = new View()
+            var listViewHolder = new View
             {
                 Y = Pos.Bottom(_currentDirectoryText) + 1,
                 X = 1,

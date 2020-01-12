@@ -1,9 +1,8 @@
-using client_generator.Generators;
 using client_generator.Models.Schemas;
 
 namespace client_generator.Models.Parameters
 {
-    public interface IParameter 
+    public interface IParameter
     {
 
         ParameterType GetParameterType();

@@ -21,7 +21,7 @@ namespace client_generator.Deserializer.Attributes
         public bool MoveNext()
         {
             var nexIndex = FindNextIndex();
-            
+
             if (_allTypes.Length > nexIndex)
             {
                 _index = nexIndex;
@@ -29,19 +29,6 @@ namespace client_generator.Deserializer.Attributes
             }
 
             return false;
-        }
-
-        private int FindNextIndex()
-        {
-            for (var i = _index + 1; i < _allTypes.Length; i++)
-            {
-                if (_allTypes[i].GetCustomAttributes(typeof(OpenApiDeserializer)).Any())
-                {
-                    return i;
-                }
-            }
-
-            return _allTypes.Length;
         }
 
         public void Reset()
@@ -56,6 +43,19 @@ namespace client_generator.Deserializer.Attributes
 
         public void Dispose()
         {
+        }
+
+        private int FindNextIndex()
+        {
+            for (var i = _index + 1; i < _allTypes.Length; i++)
+            {
+                if (_allTypes[i].GetCustomAttributes(typeof(OpenApiDeserializer)).Any())
+                {
+                    return i;
+                }
+            }
+
+            return _allTypes.Length;
         }
 
     }

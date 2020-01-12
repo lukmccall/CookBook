@@ -8,14 +8,6 @@
 namespace client_generator.Templates.Requests
 {
     using System;
-    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestParserTemplate.tt"
-using System.Text;
-    #line default
-    #line hidden
-    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Requests/RequestParserTemplate.tt"
-using System.Collections.Generic;
-    #line default
-    #line hidden
     
     /// <summary>
     /// Class to produce the template output

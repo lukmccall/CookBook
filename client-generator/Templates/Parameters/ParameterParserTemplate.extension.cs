@@ -6,17 +6,18 @@ namespace client_generator.Templates.Parameters
     public partial class ParameterParserTemplate : ITemplate
     {
 
-        private readonly string _name;
+        private readonly bool _allowEmptyValue;
 
         private readonly bool _isRequired;
 
-        private readonly bool _allowEmptyValue;
+        private readonly string _name;
 
         private readonly SchemaType _schemaType;
 
         private readonly ParameterType _type;
 
-        public ParameterParserTemplate(string name, bool isRequired, bool allowEmptyValue, SchemaType schemaType, ParameterType type)
+        public ParameterParserTemplate(string name, bool isRequired, bool allowEmptyValue, SchemaType schemaType,
+            ParameterType type)
         {
             _name = name;
             _isRequired = isRequired;

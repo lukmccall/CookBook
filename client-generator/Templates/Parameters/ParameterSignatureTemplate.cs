@@ -8,14 +8,6 @@
 namespace client_generator.Templates.Parameters
 {
     using System;
-    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
-using System.Text;
-    #line default
-    #line hidden
-    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
-using System.Collections.Generic;
-    #line default
-    #line hidden
     
     /// <summary>
     /// Class to produce the template output
@@ -33,19 +25,19 @@ using System.Collections.Generic;
         {
             
             
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
+            #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_name));
             
             #line default
             #line hidden
             this.Write(": ");
             
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
+            #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_type));
             
             #line default
             #line hidden
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
+            #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
 
     if (!_isRequired)
     {
@@ -54,7 +46,7 @@ using System.Collections.Generic;
             #line default
             #line hidden
             this.Write("| undefined");
-            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
+            #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Parameters/ParameterSignatureTemplate.tt"
 
     } 
             

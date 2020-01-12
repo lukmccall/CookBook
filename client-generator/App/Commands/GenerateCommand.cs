@@ -3,14 +3,14 @@ using client_generator.Models;
 
 namespace client_generator.App.Commands
 {
-    class GenerateCommand : ICommand
+    internal class GenerateCommand : ICommand
     {
 
-        private readonly OpenApiModel _openApiModel;
-        
+        private readonly Action<Exception> _onError;
+
         private readonly Action _onSuccess;
 
-        private readonly Action<Exception> _onError;
+        private readonly OpenApiModel _openApiModel;
 
         public GenerateCommand(OpenApiModel openApiModel, Action onSuccess,
             Action<Exception> onError)

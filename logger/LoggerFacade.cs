@@ -25,16 +25,17 @@ namespace logger
                 {
                     strategy = settings.OverridenLogStrategies[level];
                 }
-                    
+
                 var logger = new T().Init(level, strategy);
 
                 if (loggerChain.Count > 0)
                 {
                     loggerChain.Last().SetNextLogger(logger);
                 }
+
                 loggerChain.Add(logger);
             }
-            
+
             _logger = loggerChain.First() ?? new T().Init(LogLevel.None, null);
         }
 
@@ -42,7 +43,7 @@ namespace logger
         {
             _logger.LogMessage(LogLevel.Debug, message);
         }
-        
+
         public void Info(string message)
         {
             _logger.LogMessage(LogLevel.Info, message);
@@ -52,16 +53,16 @@ namespace logger
         {
             _logger.LogMessage(LogLevel.Warn, message);
         }
-        
+
         public void Error(string message)
         {
             _logger.LogMessage(LogLevel.Error, message);
         }
-        
+
         public void Fatal(string message)
         {
             _logger.LogMessage(LogLevel.Fatal, message);
         }
-        
+
     }
 }

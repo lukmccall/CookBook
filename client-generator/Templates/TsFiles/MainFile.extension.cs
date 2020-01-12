@@ -7,9 +7,9 @@ namespace client_generator.Templates.TsFiles
 
         private readonly string _content;
 
-        private readonly string _imports;
-
         private readonly string _exports;
+
+        private readonly string _imports;
 
         public MainFile(string baseUrl, string content, string imports, string exports)
         {

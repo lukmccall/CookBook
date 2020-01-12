@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using client_generator.Generators;
 using client_generator.Models.Parameters;
 using client_generator.Models.Requests;
 using client_generator.Models.Responses;

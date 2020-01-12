@@ -5,6 +5,5 @@ namespace client_generator.Templates.Responses
 
         ITemplate CreateResponseParserTemplate(int status, string type);
 
-
     }
 }

@@ -1,9 +1,7 @@
 <#@ template language="C#" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="client_generator.Extensions" #>
-async <#= _functionName #>(<#= string.Join(", ", _signature) #>): Promise<<#= _returnTypes.StrJoin(" | ") #>> {
+<#@ im
+ort namespace="client_generator.Extensions" #>
+onName             #>(<#= string.Join(", ", _signature) #>): Promise<<#= _returnTypes.StrJoin(" | ") #>> {
     let _url = this.baseUrl + "<#= _url #>?";
     let _headers: {[key: string]: string} = {} ; 
 <#

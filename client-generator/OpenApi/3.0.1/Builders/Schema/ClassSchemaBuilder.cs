@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using client_generator.Deserializer.Helpers.Builders;
-using client_generator.Models;
 using client_generator.Models.Schemas;
 
 namespace client_generator.OpenApi._3._0._1.Builders.Schema
@@ -15,11 +14,11 @@ namespace client_generator.OpenApi._3._0._1.Builders.Schema
 
         private readonly Dictionary<string, ISchema> _properties = new Dictionary<string, ISchema>();
 
+        private readonly IEnumerable<string> _requiredProperties;
+
         private readonly Dictionary<string, ISchema> _schemata;
 
         private List<KeyValuePair<string, string>> _propertiesToParse;
-
-        private readonly IEnumerable<string> _requiredProperties;
 
         public ClassSchemaBuilder(string name, string path, IEnumerable<string> requiredProperties, _1.Schema model,
             Dictionary<string, ISchema> schemata)

@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using client_generator.Generators;
 using client_generator.Models.Parameters;
 using client_generator.Models.Requests;
 using client_generator.Models.Responses;
-using client_generator.Templates.Endpoints;
 
 namespace client_generator.Models.Endpoints
 {
@@ -12,15 +10,15 @@ namespace client_generator.Models.Endpoints
 
         private readonly string _operationId;
 
-        private readonly string _path;
-
-        private readonly EndpointType _type;
-
         private readonly HashSet<IParameter> _parameters;
+
+        private readonly string _path;
 
         private readonly IRequestBody _requestBody;
 
         private readonly IEnumerable<IHttpResponse> _responses;
+
+        private readonly EndpointType _type;
 
         private bool _needsToBeGenerated = true;
 

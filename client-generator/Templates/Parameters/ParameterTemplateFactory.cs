@@ -13,7 +13,7 @@ namespace client_generator.Templates.Parameters
             ParameterType parameterType)
         {
             return (new ParameterSignatureTemplate(name, type, isRequired),
-                new ParameterParserTemplate(name, isRequired, allowEmptyValue, schemaType,parameterType));
+                new ParameterParserTemplate(name, isRequired, allowEmptyValue, schemaType, parameterType));
         }
 
     }

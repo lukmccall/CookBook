@@ -5,7 +5,7 @@ using client_generator.Models.Generators;
 
 namespace client_generator.Generators
 {
-    class MinimisingGenerator : Generator
+    internal class MinimisingGenerator : Generator
     {
 
         protected override void CreateFiles(Dictionary<string, Type> types, Dictionary<string, Function> functions)

@@ -6,12 +6,12 @@ using Newtonsoft.Json;
 
 namespace client_generator.App.Commands
 {
-    class DeserializationCommand : ICommand
+    internal class DeserializationCommand : ICommand
     {
 
-        private readonly FileSystemEntry _file;
-
         private readonly JsonSerializerSettings _deserializationSettings;
+
+        private readonly FileSystemEntry _file;
 
         private readonly Action<OpenApiModel> _onDeserialization;
 

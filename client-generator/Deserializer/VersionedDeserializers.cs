@@ -13,10 +13,10 @@ namespace client_generator.Deserializer
     public class VersionedDeserializers
     {
 
+        private static readonly VersionedDeserializers VersionedDeserializersInstance = new VersionedDeserializers();
+
         private readonly Dictionary<string, IDeserializer>
             _deserializers = new Dictionary<string, IDeserializer>();
-
-        private static readonly VersionedDeserializers VersionedDeserializersInstance = new VersionedDeserializers();
 
         private VersionedDeserializers()
         {
@@ -77,7 +77,7 @@ namespace client_generator.Deserializer
             {
                 throw new InvalidDataException("Couldn't parse version.");
             }
-            
+
             var deserializer = _deserializers.GetValueOrDefault(versionGetter.Version, null);
             if (deserializer == null)
             {

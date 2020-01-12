@@ -6,7 +6,7 @@ using client_generator.Models.Schemas;
 
 namespace client_generator.Generators.FilesStrategies
 {
-    class SeparateFileStrategy : ContextDependedFileStrategy
+    internal class SeparateFileStrategy : ContextDependedFileStrategy
     {
 
         public SeparateFileStrategy(IGeneratorContext context, GeneratorSettings settings) : base(context, settings)

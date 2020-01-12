@@ -7,17 +7,17 @@ namespace client_generator.App.Windows
     public class GeneratorSettingsWindow : Window
     {
 
-        private readonly GeneratorSettings _settings;
+        private readonly TextField _clientFileName;
 
         private readonly Action _onDone;
 
+        private readonly RadioGroup _schemaPlace;
+
         private readonly TextField _serverUrl;
 
-        private readonly TextField _clientFileName;
+        private readonly GeneratorSettings _settings;
 
         private readonly TextField _typesFileName;
-
-        private readonly RadioGroup _schemaPlace;
 
         public GeneratorSettingsWindow(Action onDone, GeneratorSettings settings) : base(
             "Code Generator - Generator Settings")

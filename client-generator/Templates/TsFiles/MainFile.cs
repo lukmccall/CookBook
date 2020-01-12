@@ -8,14 +8,6 @@
 namespace client_generator.Templates.TsFiles
 {
     using System;
-    #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
-using System.Text;
-    #line default
-    #line hidden
-    #line 3 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
-using System.Collections.Generic;
-    #line default
-    #line hidden
     
     /// <summary>
     /// Class to produce the template output
@@ -33,20 +25,20 @@ using System.Collections.Generic;
         {
             
             
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            #line 2 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_imports));
             
             #line default
             #line hidden
             this.Write("\n\nclass Client {\n    baseUrl = \"");
             
-            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            #line 5 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_baseUrl));
             
             #line default
             #line hidden
             this.Write("\";\n    \n");
-            #line 9 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            #line 7 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
 
     foreach (var line in _content.Split("\n"))
     {
@@ -56,13 +48,13 @@ using System.Collections.Generic;
             #line hidden
             this.Write("    ");
             
-            #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(line));
             
             #line default
             #line hidden
             this.Write("\n");
-            #line 14 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            #line 12 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
 
     }
 
@@ -71,7 +63,7 @@ using System.Collections.Generic;
             #line hidden
             this.Write("}\n\n");
             
-            #line 19 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
+            #line 17 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/TsFiles/MainFile.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_exports));
             
             #line default

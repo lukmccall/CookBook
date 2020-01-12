@@ -5,14 +5,14 @@ using Terminal.Gui;
 
 namespace client_generator.App.Windows.MenuWindowStates
 {
-    class OpenApiModeWasCreatedState : IMenuWindowState
+    internal class OpenApiModeWasCreatedState : IMenuWindowState
     {
+
+        private readonly ICommand _editSettingCommand;
 
         private readonly ICommand _exitCommand;
 
         private readonly ICommand _generateCommand;
-
-        private readonly ICommand _editSettingCommand;
 
         private MenuWindow _window;
 

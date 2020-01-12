@@ -17,7 +17,7 @@ namespace client_generator.Models.Endpoints
 
         Patch,
 
-        Trace,
+        Trace
 
     }
 }

@@ -19,7 +19,7 @@ namespace client_generator.OpenApi._3._0._1
 
         public Dictionary<string, IReferable<Header>> Headers { get; set; }
 
-        public Dictionary<string, IReferable<SecurityScheme>> SecuritySchemes { get; set; } 
+        public Dictionary<string, IReferable<SecurityScheme>> SecuritySchemes { get; set; }
 
 //        public Dictionary<string, IReferable<>> Links { get; set; } // currently not supported
 
