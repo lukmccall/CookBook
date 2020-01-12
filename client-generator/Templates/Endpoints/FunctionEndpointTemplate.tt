@@ -69,5 +69,5 @@ async <#= _functionName #>(<#= string.Join(", ", _signature) #>): Promise<<#= _r
         throw new Error("An unexpected server error occurred.");
     }
 
-    return null;
+    return Promise.resolve(null as any);
 }

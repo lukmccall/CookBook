@@ -1,9 +1,10 @@
 import React from 'react';
 import { validateEmail } from '../utils';
-import { ApiClient, AuthControllerWrapper } from '../api';
+import { ApiClient, AuthControllerWrapper, TokenToAuth } from '../api';
 import { connect } from 'react-redux';
-import { userLogged } from '../actions/auth';
+import { userLogged, getUserData } from '../actions/auth';
 import ErrorList from './ErrorList';
+import { withRouter } from 'react-router-dom';
 
 class RegisterBox extends React.Component {
   constructor(props) {
@@ -80,7 +81,8 @@ class RegisterBox extends React.Component {
         });
 
         this.props.userLogged(user);
-        console.log(user);
+        this.props.getUserData(TokenToAuth(user.token));
+        this.props.history.push('/');
 
         // TODO: redirect
       },
@@ -148,9 +150,18 @@ class RegisterBox extends React.Component {
 
               {this.state.password && (
                 <div className="password-state">
-                  <div className={'pwd pwd-weak ' + (pwdWeak ? 'show-login-register-form-panel' : '')}></div>
-                  <div className={'pwd pwd-medium ' + (pwdMedium ? 'show-login-register-form-panel' : '')}></div>
-                  <div className={'pwd pwd-strong ' + (pwdStrong ? 'show-login-register-form-panel' : '')}></div>
+                  <div
+                    className={
+                      'pwd pwd-weak ' + (pwdWeak ? 'show-login-register-form-panel' : '')
+                    }></div>
+                  <div
+                    className={
+                      'pwd pwd-medium ' + (pwdMedium ? 'show-login-register-form-panel' : '')
+                    }></div>
+                  <div
+                    className={
+                      'pwd pwd-strong ' + (pwdStrong ? 'show-login-register-form-panel' : '')
+                    }></div>
                 </div>
               )}
             </div>
@@ -171,6 +182,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = { userLogged };
+const mapDispatchToProps = { userLogged, getUserData };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterBox);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterBox));

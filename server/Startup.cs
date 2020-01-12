@@ -47,7 +47,7 @@ namespace CookBook
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMiddleware<AdminInjectMiddleware>();
+                // app.UseMiddleware<AdminInjectMiddleware>(); always logged 
             }
 
             app.UseHttpsRedirection();

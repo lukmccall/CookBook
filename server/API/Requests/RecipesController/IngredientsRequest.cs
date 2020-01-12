@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using CookBook.Attributes;
 using CookBook.ExternalApi;
 
@@ -8,14 +9,15 @@ namespace CookBook.API.Requests.RecipesController
     public class IngredientsRequest
     {
 
-        public bool? IgnorePantry = null;
+        public bool? IgnorePantry { get; set; }
 
-        public bool? LimitLicense = null;
+        public bool? LimitLicense { get; set; }
 
-        public int? Number = null;
+        public int? Number { get; set; }
 
-        public int? Ranking = null;
+        public int? Ranking { get; set; }
 
+        [Required]
         public IEnumerable<string> Ingredients { get; set; }
 
     }

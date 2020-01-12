@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../../css/navbar.scss';
+import '../../css/Navbar.scss';
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   state = {
     isOpen: false,
   };
@@ -48,7 +49,7 @@ export default class Navbar extends Component {
             </Link>
           </li>
           <li>
-            <Link to="/projects" onClick={this.closeNavbar}>
+            <Link to="/project" onClick={this.closeNavbar}>
               PROJECT
             </Link>
           </li>
@@ -58,13 +59,33 @@ export default class Navbar extends Component {
             </Link>
           </li>
         </ul>
-        <div className="navbar-signIn">
-          <Link to="/signIn">
-            <span className="signIn-text">Sign in</span>
-            <i className="fas fa-sign-in-alt"></i>
-          </Link>
-        </div>
+        {this.props.logged === undefined ? (
+          <div className="navbar-signIn">
+            <Link to="/signIn">
+              <span className="signIn-text">Sign in</span>
+              <i className="fas fa-sign-in-alt"></i>
+            </Link>
+          </div>
+        ) : (
+          <div className="navbar-signIn">
+            <Link to="/profile">
+              <span className="signIn-text">
+                {this.props.user === undefined ? 'Zalogowany' : this.props.user.userName}
+              </span>
+            </Link>
+          </div>
+        )}
       </nav>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state.auth,
+  };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

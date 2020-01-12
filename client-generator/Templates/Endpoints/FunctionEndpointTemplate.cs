@@ -189,7 +189,7 @@ using client_generator.Extensions;
             
             #line default
             #line hidden
-            this.Write("\n    // handling undefinded response\n    if (_response.status !== 200 && _response.status !== 204) {\n        throw new Error(\"An unexpected server error occurred.\");\n    }\n\n    return null;\n}");
+            this.Write("\n    // handling undefinded response\n    if (_response.status !== 200 && _response.status !== 204) {\n        throw new Error(\"An unexpected server error occurred.\");\n    }\n\n    return Promise.resolve(null as any);\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

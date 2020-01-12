@@ -12,38 +12,53 @@ class <#= _name #> {
         } #>: <#= type.GetName() #>;
 <#
     }
-    
+
     if (_properties.Any())
     {
 #>
 
-    static fromResponse(data?: any): <#= _name #> {
-        const _data = typeof data === 'object' ? data : {};
-        const _response = new <#= _name #>();
-        
+    constructor(data: any) {
 <#
         foreach (var (name, type) in _properties)
         {
             if (type.GetSchemaType() != SchemaType.Array)
             {
 #>
-        _response["<#= name #>"] = _data["<#= name #>"];
+        this.<#= name #> = data["<#= name #>"];
 <#
             }
             else
             {
 #>
-        if (Array.isArray(_data["<#= name #>"])) {
-            _response["<#= name #>"] = [] as any;
-            for (let _item of _data["<#= name #>"]) {
-                _response["<#= name #>"].push(_item);
+        this.<#= name #> = [] as any;
+        if (Array.isArray(data["<#= name #>"])) {
+            for (let _item of data["<#= name #>"]) {
+<#
+                if (!_requiredProperties.Contains(name))
+                {
+#>
+                this.<#= name #>.push(_item);
+<#
+                }
+                else
+                {
+#>
+                this.<#= name #>!!.push(_item);
+<#
+                }
+#>
+                
             }
         }
 <#
             }
         }
 #>
+    }
 
+    static fromResponse(data?: any): <#= _name #> {
+        const _data = typeof data === 'object' ? data : {};
+        const _response = new <#= _name #>(_data);        
         return _response;
     }
 <#

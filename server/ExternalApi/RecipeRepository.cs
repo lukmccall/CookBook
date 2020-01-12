@@ -45,7 +45,7 @@ namespace CookBook.ExternalApi
                 await GetStringAsync(_apiOptions.Server + "/recipes/findByIngredients?"
                                                         + QueryParam(ingredientsConcat, "ingredients")
                                                         + QueryParam(list.LimitLicense, "limitLicense")
-                                                        + QueryParam(list.Number, "number")
+                                                        + QueryParam(list.Number ?? 25, "number")
                                                         + QueryParam(list.Ranking, "ranking")
                                                         + QueryParam(list.IgnorePantry, "ignorePantry")
                                                         + _apiOptions.ApiKey);

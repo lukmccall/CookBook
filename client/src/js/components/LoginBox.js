@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { userLogged } from '../actions/auth';
-import { ApiClient, AuthControllerWrapper } from '../api';
+import { userLogged, getUserData } from '../actions/auth';
+import { ApiClient, AuthControllerWrapper, TokenToAuth } from '../api';
 import ErrorList from './ErrorList';
 import { validateEmail } from '../utils';
+import { withRouter } from 'react-router-dom';
 
 class LoginBox extends React.Component {
   constructor(props) {
@@ -52,8 +53,8 @@ class LoginBox extends React.Component {
           errors: [],
         });
         this.props.userLogged(user);
-        console.log(user);
-        // TODO: redirect
+        this.props.getUserData(TokenToAuth(user.token));
+        this.props.history.push('/');
       },
       errors => this.setState({ errors })
     );
@@ -109,6 +110,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = { userLogged };
+const mapDispatchToProps = { userLogged, getUserData };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginBox);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginBox));

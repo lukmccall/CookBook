@@ -1,4 +1,4 @@
-import { ValidationFailedResponse, AuthFailedResponse } from './client';
+import { ValidationFailedResponse, AuthFailedResponse } from './types';
 
 export const AuthControllerWrapper = (task, callback, errorCallback) => {
   task()
@@ -12,4 +12,8 @@ export const AuthControllerWrapper = (task, callback, errorCallback) => {
         errorCallback(['Unknown error.']);
       }
     });
+};
+
+export const TokenToAuth = token => {
+  return `bearer ${token}`;
 };

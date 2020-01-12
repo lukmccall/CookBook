@@ -385,8 +385,35 @@
         "tags": ["User"],
         "operationId": "geCurrentUser",
         "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -406,20 +433,30 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateCurrentUserRequest"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCurrentUserRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCurrentUserRequest"
-              }
             }
           }
         },
         "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "200": {
             "description": "Success"
           }
@@ -441,20 +478,30 @@
               "schema": {
                 "$ref": "#/components/schemas/ChangeCurrentUserPasswordRequest"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChangeCurrentUserPasswordRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChangeCurrentUserPasswordRequest"
-              }
             }
           }
         },
         "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "200": {
             "description": "Success"
           }
@@ -1016,15 +1063,33 @@
         "nullable": true
       },
       "IngredientsRequest": {
+        "required": ["ingredients"],
         "type": "object",
         "properties": {
+          "ignorePantry": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "limitLicense": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ranking": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "ingredients": {
             "type": "array",
             "items": {
               "type": "string",
               "nullable": true
-            },
-            "nullable": true
+            }
           }
         },
         "nullable": true
@@ -1231,6 +1296,36 @@
             "items": {
               "$ref": "#/components/schemas/StepInstructionReponse"
             },
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "userSurname": {
+            "type": "string",
+            "nullable": true
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
             "nullable": true
           }
         },

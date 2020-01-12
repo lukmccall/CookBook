@@ -81,29 +81,15 @@ using Models;
             #line 13 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
     }
-    
+
     if (_properties.Any())
     {
 
             
             #line default
             #line hidden
-            this.Write("\n    static fromResponse(data?: any): ");
-            
-            #line 20 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
-            
-            #line default
-            #line hidden
-            this.Write(" {\n        const _data = typeof data === 'object' ? data : {};\n        const _response = new ");
-            
-            #line 22 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
-            
-            #line default
-            #line hidden
-            this.Write("();\n        \n");
-            #line 24 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write("\n    constructor(data: any) {\n");
+            #line 21 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
         foreach (var (name, type) in _properties)
         {
@@ -113,22 +99,22 @@ using Models;
             
             #line default
             #line hidden
-            this.Write("        _response[\"");
+            this.Write("        this.");
             
-            #line 30 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 27 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
-            this.Write("\"] = _data[\"");
+            this.Write(" = data[\"");
             
-            #line 30 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 27 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
             this.Write("\"];\n");
-            #line 31 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line 28 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
             }
             else
@@ -137,36 +123,70 @@ using Models;
             
             #line default
             #line hidden
-            this.Write("        if (Array.isArray(_data[\"");
+            this.Write("        this.");
             
+            #line 33 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write(" = [] as any;\n        if (Array.isArray(data[\"");
+            
+            #line 34 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write("\"])) {\n            for (let _item of data[\"");
+            
+            #line 35 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            
+            #line default
+            #line hidden
+            this.Write("\"]) {\n");
             #line 36 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+                if (!_requiredProperties.Contains(name))
+                {
+
+            
+            #line default
+            #line hidden
+            this.Write("                this.");
+            
+            #line 40 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
-            this.Write("\"])) {\n            _response[\"");
+            this.Write(".push(_item);\n");
+            #line 41 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+                }
+                else
+                {
+
             
-            #line 37 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            #line default
+            #line hidden
+            this.Write("                this.");
+            
+            #line 46 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
-            this.Write("\"] = [] as any;\n            for (let _item of _data[\"");
-            
-            #line 38 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(name));
-            
-            #line default
-            #line hidden
-            this.Write("\"]) {\n                _response[\"");
-            
-            #line 39 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(name));
+            this.Write("!!.push(_item);\n");
+            #line 47 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+
+                }
+
             
             #line default
             #line hidden
-            this.Write("\"].push(_item);\n            }\n        }\n");
-            #line 42 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write("                \n            }\n        }\n");
+            #line 53 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
             }
         }
@@ -174,8 +194,22 @@ using Models;
             
             #line default
             #line hidden
-            this.Write("\n        return _response;\n    }\n");
-            #line 49 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write("    }\n\n    static fromResponse(data?: any): ");
+            
+            #line 59 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
+            
+            #line default
+            #line hidden
+            this.Write(" {\n        const _data = typeof data === 'object' ? data : {};\n        const _response = new ");
+            
+            #line 61 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_name));
+            
+            #line default
+            #line hidden
+            this.Write("(_data);        \n        return _response;\n    }\n");
+            #line 64 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Schemes/ClassSchemaTemplate.tt"
 
     }
 
