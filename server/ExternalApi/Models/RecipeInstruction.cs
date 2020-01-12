@@ -4,7 +4,7 @@ using CookBook.Attributes;
 
 namespace CookBook.ExternalApi.Models
 {
-    [Mappable(To = typeof(RecipesPriceBreakdownResponse))]
+    [Mappable(To = typeof(RecipeInstructionResponse))]
     public class RecipeInstruction
     {
 
