@@ -39,7 +39,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async login(body: LoginRequest | undefined ): Promise<AuthSuccessResponse> {
@@ -79,7 +79,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async logout(body: LogoutRequest | undefined ): Promise<void> {
@@ -115,7 +115,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async refresh(body: RefreshRequest | undefined ): Promise<AuthSuccessResponse> {
@@ -155,7 +155,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async getRecipePriceBreakdown(id: number): Promise<RecipesPriceBreakdownResponse> {
@@ -194,7 +194,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async getRecipeIngredients(id: number): Promise<RecipeIngredientsResponse> {
@@ -233,7 +233,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async searchByIngredients(body: IngredientsRequest | undefined ): Promise<Array<RecipeResponse>> {
@@ -272,7 +272,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async recipeInstructions(id: number, stepBreakdown: boolean| undefined): Promise<Array<RecipeInstructionResponse>> {
@@ -318,7 +318,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async geCurrentUser(Authorization: string): Promise<void> {
@@ -352,7 +352,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async updateCurrentUser(Authorization: string, body: UpdateCurrentUserRequest | undefined ): Promise<void> {
@@ -388,7 +388,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async changeCurrentUserPassword(Authorization: string, body: ChangeCurrentUserPasswordRequest | undefined ): Promise<void> {
@@ -424,7 +424,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async recipeVisualization(id: number, defaultCss: boolean| undefined): Promise<WidgetResponse> {
@@ -467,7 +467,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async equipmentVisualization(id: number, defaultCss: boolean| undefined): Promise<WidgetResponse> {
@@ -510,7 +510,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async priceBreakdownVisualization(id: number, defaultCss: boolean| undefined): Promise<WidgetResponse> {
@@ -553,7 +553,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
     async nutrionVisualization(id: number, defaultCss: boolean| undefined): Promise<WidgetResponse> {
@@ -596,7 +596,7 @@ export class Client {
             throw new Error("An unexpected server error occurred.");
         }
     
-        return null;
+        return Promise.resolve(null as any);
     }
 
 }
