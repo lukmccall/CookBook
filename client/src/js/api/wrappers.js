@@ -13,3 +13,7 @@ export const AuthControllerWrapper = (task, callback, errorCallback) => {
       }
     });
 };
+
+export const TokenToAuth = token => {
+  return `bearer ${token}`;
+};

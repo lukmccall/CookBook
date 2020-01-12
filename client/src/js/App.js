@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Contact from './components/Contact';
-import SignIn from './components/SignIn';
-import About from './components/About';
-import Project from './components/Project';
+import { BrowserRouter as Router } from 'react-router-dom';
+import SubPages from './SubPages';
 
 export class App extends Component {
   render() {
@@ -13,13 +9,7 @@ export class App extends Component {
       <Router>
         <div className="main">
           <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/project" component={Project} />
-            <Route exact path="/signIn" component={SignIn} />
-          </Switch>
+          <SubPages />
         </div>
       </Router>
     );

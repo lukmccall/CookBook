@@ -12,12 +12,13 @@ import {
   IngredientsRequest,
   RecipeResponse,
   RecipeInstructionResponse,
+  UserResponse,
   UpdateCurrentUserRequest,
   ChangeCurrentUserPasswordRequest,
   WidgetResponse,
 } from './types';
 export class Client {
-  baseUrl = 'https://localhost:5001';
+  baseUrl = 'http://localhost:5000';
 
   async register(body: RegisterRequest | undefined): Promise<AuthSuccessResponse> {
     let _url = this.baseUrl + '/api/v1/auth/register?';
@@ -341,7 +342,7 @@ export class Client {
     return Promise.resolve(null as any);
   }
 
-  async geCurrentUser(Authorization: string): Promise<void> {
+  async geCurrentUser(Authorization: string): Promise<UserResponse> {
     let _url = this.baseUrl + '/api/v1/users/me/get?';
     let _headers: { [key: string]: string } = {};
 
@@ -365,6 +366,19 @@ export class Client {
     };
 
     let _response = await fetch(_url, _options);
+
+    if (_response.status === 400) {
+      let _data400 = ProblemDetails.fromResponse(await _response.json());
+      throw _data400;
+    }
+    if (_response.status === 404) {
+      let _data404 = ProblemDetails.fromResponse(await _response.json());
+      throw _data404;
+    }
+    if (_response.status === 200) {
+      let _data200 = UserResponse.fromResponse(await _response.json());
+      return _data200;
+    }
 
     // handling undefinded response
     if (_response.status !== 200 && _response.status !== 204) {
@@ -404,6 +418,15 @@ export class Client {
 
     let _response = await fetch(_url, _options);
 
+    if (_response.status === 400) {
+      let _data400 = ProblemDetails.fromResponse(await _response.json());
+      throw _data400;
+    }
+    if (_response.status === 404) {
+      let _data404 = ProblemDetails.fromResponse(await _response.json());
+      throw _data404;
+    }
+
     // handling undefinded response
     if (_response.status !== 200 && _response.status !== 204) {
       throw new Error('An unexpected server error occurred.');
@@ -441,6 +464,15 @@ export class Client {
     };
 
     let _response = await fetch(_url, _options);
+
+    if (_response.status === 400) {
+      let _data400 = ProblemDetails.fromResponse(await _response.json());
+      throw _data400;
+    }
+    if (_response.status === 404) {
+      let _data404 = ProblemDetails.fromResponse(await _response.json());
+      throw _data404;
+    }
 
     // handling undefinded response
     if (_response.status !== 200 && _response.status !== 204) {

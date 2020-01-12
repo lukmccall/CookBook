@@ -1,9 +1,12 @@
 using System.Threading.Tasks;
+using AutoMapper;
 using CookBook.API;
 using CookBook.API.Requests.AuthController;
 using CookBook.API.Requests.UserController;
+using CookBook.API.Responses.UserController;
 using CookBook.Domain;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,24 +14,33 @@ namespace CookBook.Controllers
 {
     [ApiController]
     [Authorize(Policy = "JWTToken")]
+    [Consumes("application/json")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public class UserController : Controller
     {
 
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserController(UserManager<ApplicationUser> userManager)
+        private readonly IMapper _mapper;
+
+        public UserController(UserManager<ApplicationUser> userManager, IMapper mapper)
         {
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         [HttpGet(Urls.User.GetCurrentUser)]
+        [ProducesResponseType(typeof(UserResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GeCurrentUser()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            return Ok(user);
+            return Ok(_mapper.Map<UserResponse>(user));
         }
 
         [HttpPatch(Urls.User.UpdateCurrentUser)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateCurrentUser([FromBody] UpdateCurrentUserRequest updatedUser)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -52,6 +64,7 @@ namespace CookBook.Controllers
         }
 
         [HttpPatch(Urls.User.ChangeCurrentUserPassword)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> ChangeCurrentUserPassword(
             [FromBody] ChangeCurrentUserPasswordRequest passwordRequest)
         {

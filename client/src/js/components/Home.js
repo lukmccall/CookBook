@@ -10,14 +10,14 @@ import '../../css/home.scss';
 export default class Home extends Component {
   state = {
     tags: [],
-    pageIndex: 2,
+    pageIndex: -1,
     recipe: {},
     recipes: [],
   };
 
   handleSubmit = async tags => {
+    this.handleIndex(2);
     ApiClient.searchByIngredients({ ingredients: tags }).then(recipes => {
-      console.log(recipes);
       this.setState({
         tags: tags,
         pageIndex: 0,
@@ -37,9 +37,9 @@ export default class Home extends Component {
     });
   };
 
-  handleIndex = index => {
+  handleIndex = pageIndex => {
     this.setState({
-      pageIndex: index,
+      pageIndex: pageIndex,
     });
   };
 
@@ -57,29 +57,40 @@ export default class Home extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <InputTag handleSubmit={this.handleSubmit} />
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <React.Fragment>
+              <InputTag handleSubmit={this.handleSubmit} />
 
-        {this.state.pageIndex === 0 ? (
-          <RecipeList recipes={this.state.recipes} handleRecipeDetails={this.handleRecipeDetails} />
-        ) : (
-          ''
-        )}
+              {this.state.pageIndex === 0 ? (
+                <RecipeList
+                  recipes={this.state.recipes}
+                  handleRecipeDetails={this.handleRecipeDetails}
+                />
+              ) : (
+                ''
+              )}
 
-        {this.state.pageIndex === 1 ? (
-          <RecipeDetails
-            recipe={this.state.recipe}
-            handleIndex={this.handleIndex}
-            loadSteps={this.loadSteps}
-            loadEquipment={this.loadEquipment}
-            loadIngridients={this.loadIngridients}
-          />
-        ) : (
-          ''
-        )}
+              {this.state.pageIndex === 1 ? (
+                <RecipeDetails
+                  recipe={this.state.recipe}
+                  handleIndex={this.handleIndex}
+                  loadSteps={this.loadSteps}
+                  loadEquipment={this.loadEquipment}
+                  loadIngridients={this.loadIngridients}
+                />
+              ) : (
+                ''
+              )}
 
-        <ScrollButton />
-      </React.Fragment>
+              {this.state.pageIndex === 2 ? <h2>Loading...</h2> : ''}
+
+              <ScrollButton />
+            </React.Fragment>
+          </div>
+        </div>
+      </div>
     );
   }
 }

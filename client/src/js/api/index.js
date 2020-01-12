@@ -1,5 +1,5 @@
 import { Client } from './client';
-import { AuthControllerWrapper } from './wrappers';
+import { AuthControllerWrapper, TokenToAuth } from './wrappers';
 
 export const ApiClient = new Client();
-export { AuthControllerWrapper };
+export { AuthControllerWrapper, TokenToAuth };

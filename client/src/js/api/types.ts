@@ -174,6 +174,30 @@ class PhotoResponse {
   }
 }
 
+class UserResponse {
+  userSurname: string;
+  age: number;
+  description: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
+
+  constructor(data: any) {
+    this.userSurname = data['userSurname'];
+    this.age = data['age'];
+    this.description = data['description'];
+    this.userName = data['userName'];
+    this.email = data['email'];
+    this.phoneNumber = data['phoneNumber'];
+  }
+
+  static fromResponse(data?: any): UserResponse {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new UserResponse(_data);
+    return _response;
+  }
+}
+
 class UpdateCurrentUserRequest {
   userName: string;
   userSurname: string;
@@ -323,13 +347,21 @@ class IngredientsResponse {
 }
 
 class IngredientsRequest {
-  ingredients: Array<string>;
+  ignorePantry: boolean;
+  limitLicense: boolean;
+  number: number;
+  ranking: number;
+  ingredients?: Array<string>;
 
   constructor(data: any) {
+    this.ignorePantry = data['ignorePantry'];
+    this.limitLicense = data['limitLicense'];
+    this.number = data['number'];
+    this.ranking = data['ranking'];
     this.ingredients = [] as any;
     if (Array.isArray(data['ingredients'])) {
       for (let _item of data['ingredients']) {
-        this.ingredients.push(_item);
+        this.ingredients!!.push(_item);
       }
     }
   }
@@ -556,6 +588,7 @@ export {
   UsResponse,
   TemperatureResponse,
   PhotoResponse,
+  UserResponse,
   UpdateCurrentUserRequest,
   ChangeCurrentUserPasswordRequest,
   WidgetResponse,
