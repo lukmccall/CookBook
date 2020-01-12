@@ -17,6 +17,8 @@ namespace client_generator.App.Windows
 
         private readonly TextField _typesFileName;
 
+        private readonly RadioGroup _schemaPlace;
+
         public GeneratorSettingsWindow(Action onDone, GeneratorSettings settings) : base(
             "Code Generator - Generator Settings")
         {
@@ -45,6 +47,18 @@ namespace client_generator.App.Windows
                 Y = Pos.Bottom(typesFileLabel)
             };
 
+            var g1Label = new Label(1, 11, "Types location:");
+            var g1Holder = new View
+            {
+                Y = Pos.Bottom(g1Label),
+                X = 1,
+                Width = Dim.Fill(1),
+                Height = 4
+            };
+            _schemaPlace = new RadioGroup(new[] {"WithCode", "SeparatedFile", "AllSeparated"},
+                (int) _settings.SchemePlace);
+            g1Holder.Add(_schemaPlace);
+
             var exitButton = new Button("Ok")
             {
                 X = Pos.Center(),
@@ -55,6 +69,7 @@ namespace client_generator.App.Windows
             Add(urlLabel, _serverUrl,
                 clientFileLabel, _clientFileName,
                 typesFileLabel, _typesFileName,
+                g1Label, g1Holder,
                 exitButton);
         }
 
@@ -63,7 +78,7 @@ namespace client_generator.App.Windows
             _settings.ServerUrl = _serverUrl.Text.ToString() ?? "";
             _settings.ClientFileName = _clientFileName.Text.ToString() ?? "client";
             _settings.TypesFileName = _typesFileName.Text.ToString() ?? "types";
-
+            _settings.SchemePlace = (SchemeGeneratePlace) _schemaPlace.Selected;
             _onDone.Invoke();
         }
 

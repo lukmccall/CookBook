@@ -63,7 +63,7 @@ namespace client_generator.App.Windows.MenuWindowStates
 
         private void OnDeserialization(OpenApiModel openApiModel)
         {
-            _window.ChangeState(new OpenApiModeWasGeneratedState(openApiModel, _exitCommand));
+            _window.ChangeState(new OpenApiModeWasCreatedState(openApiModel, _exitCommand));
         }
 
     }

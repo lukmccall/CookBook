@@ -11,11 +11,11 @@ namespace client_generator.Generators
 
         protected readonly IGeneratorContext GeneratorContext = new GeneratorContext();
 
-        protected GeneratorSettings GeneratorSettings = new GeneratorSettings();
+        protected readonly GeneratorSettings GeneratorSettings = new GeneratorSettings();
 
-        public void SetSettings(GeneratorSettings generatorSettings)
+        public GeneratorSettings GetSettings()
         {
-            GeneratorSettings = generatorSettings;
+            return GeneratorSettings;
         }
 
         public void Generate(OpenApiModel openApiModel)

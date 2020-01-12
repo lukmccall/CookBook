@@ -4,7 +4,7 @@ namespace client_generator.App
 {
     class BackFileEntry : FileSystemEntry
     {
-
+        
         public BackFileEntry(string currentPath)
         {
             IsDirectory = true;

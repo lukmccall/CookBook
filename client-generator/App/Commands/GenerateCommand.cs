@@ -1,5 +1,4 @@
 using System;
-using client_generator.Generators;
 using client_generator.Models;
 
 namespace client_generator.App.Commands
@@ -8,12 +7,13 @@ namespace client_generator.App.Commands
     {
 
         private readonly OpenApiModel _openApiModel;
-
+        
         private readonly Action _onSuccess;
 
         private readonly Action<Exception> _onError;
 
-        public GenerateCommand(OpenApiModel openApiModel, Action onSuccess, Action<Exception> onError)
+        public GenerateCommand(OpenApiModel openApiModel, Action onSuccess,
+            Action<Exception> onError)
         {
             _openApiModel = openApiModel;
             _onSuccess = onSuccess;
@@ -22,10 +22,10 @@ namespace client_generator.App.Commands
 
         public void Execute()
         {
-            var generator = new Generator();
             try
             {
-                generator.Generate(_openApiModel);
+                AppController.GetLogger().Info("Generate client.");
+                AppController.Instance().Generator.Generate(_openApiModel);
                 _onSuccess.Invoke();
             }
             catch (Exception e)

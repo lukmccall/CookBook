@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using client_generator.Models.Generators;
 using client_generator.Models.Schemas;

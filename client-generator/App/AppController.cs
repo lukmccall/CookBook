@@ -1,4 +1,5 @@
 using System;
+using client_generator.Generators;
 using logger;
 using logger.LogStrategies;
 using Terminal.Gui;
@@ -19,6 +20,8 @@ namespace client_generator.App
         private Window _currentWindow;
 
         private Toplevel _toplevel;
+
+        public GeneratorTemplate Generator { get; } = new Generator();
 
         private AppController()
         {

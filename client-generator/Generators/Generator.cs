@@ -24,7 +24,7 @@ namespace client_generator.Generators
                 {SchemeGeneratePlace.AllSeparated, new AllSeparatedFileStrategy(GeneratorContext, GeneratorSettings)}
             };
         }
-
+        
         protected override void ParseSchemas(IEnumerable<ISchema> schemas)
         {
             foreach (var schema in schemas)
