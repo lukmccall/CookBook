@@ -1,0 +1,27 @@
+<#@ template language="C#" #>
+<#
+    foreach (var line in _imports)
+    {
+#>
+<#= line #>
+<#
+    }
+#>
+export class Client {
+    baseUrl = "<#= _baseUrl #>";
+
+<#
+    foreach (var function in _functions)
+    {
+        foreach (var line in function.Split("\n"))
+        {
+#>
+    <#= line #>
+<#
+        }
+#>
+
+<#
+    }
+#>
+}

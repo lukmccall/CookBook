@@ -1,0 +1,6 @@
+<#@ template language="C#" #>
+body: <#= _schemaName #><#
+    if (!_IsRequired)
+    {
+#> | undefined <#
+    } #>

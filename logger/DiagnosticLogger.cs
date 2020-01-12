@@ -9,7 +9,7 @@ namespace logger
         protected override void WriteMessage(string message)
         {
             var (methodName, className) = GetCallerDiagnosticInfo();
-            base.WriteMessage($"{DateTime.Now:yyyy-MM-dd hh:mm:ss} {LogLevel} {className} {methodName}: {message}");
+            base.WriteMessage($"{DateTime.Now:yyyy-MM-dd hh:mm:ss} [{LogLevel}] {className} {methodName}: {message}");
         }
 
         private (string metodName, string className) GetCallerDiagnosticInfo()
@@ -26,7 +26,7 @@ namespace logger
                 {
                     var className = classType.Name;
                     var methodName = frame.GetMethod()?.Name ?? "";
-                    
+
                     return (methodName, className);
                 }
             }

@@ -1,0 +1,91 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <RootNamespace>client_generator</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+      <PackageReference Include="System.CodeDom" Version="4.7.0" />
+      <PackageReference Include="Terminal.Gui" Version="0.24.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Templates\Schemes\ClassSchemaTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ClassSchemaTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Endpoints\FunctionEndpointTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>FunctionEndpointTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Parameters\ParameterParserTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ParameterParserTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\TsFiles\MainFile.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>MainFile.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Parameters\ParameterSignatureTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ParameterSignatureTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Responses\ResponseParserTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ResponseParserTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Clients\ClientTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>ClientTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Requests\RequestSignatureTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>RequestSignatureTemplate.cs</LastGenOutput>
+      </None>
+      <None Update="Templates\Requests\RequestParserTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>RequestParserTemplate.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Templates\Schemes\ClassSchemaTemplate.cs">
+        <DependentUpon>ClassSchemaTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Endpoints\FunctionEnpointTemplate.cs">
+        <DependentUpon>FunctionEnpointTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Endpoints\FunctionEndpointTemplate.cs">
+        <DependentUpon>FunctionEndpointTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Parameters\ParameterParserTemplate.cs">
+        <DependentUpon>ParameterParserTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\TsFiles\MainFile.cs">
+        <DependentUpon>MainFile.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Parameters\ParameterSignatureTemplate.cs">
+        <DependentUpon>ParameterSignatureTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Responses\ResponseParserTemplate.cs">
+        <DependentUpon>ResponseParserTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Clients\ClientTemplate.cs">
+        <DependentUpon>ClientTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Requests\RequestSignatureTemplate.cs">
+        <DependentUpon>RequestSignatureTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Templates\Requests\RequestParserTemplate.cs">
+        <DependentUpon>RequestParserTemplate.tt</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\logger\logger.csproj" />
+    </ItemGroup>
+
+</Project>

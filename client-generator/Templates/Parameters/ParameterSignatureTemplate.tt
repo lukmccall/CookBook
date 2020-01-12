@@ -1,0 +1,6 @@
+<#@ template language="C#" #>
+<#= _name #>: <#= _type #><#
+    if (!_isRequired)
+    {
+#>| undefined<#
+    } #>

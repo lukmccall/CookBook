@@ -1,0 +1,16 @@
+<#@ template language="C#" #>
+<#
+    if (_type.Contains("Array"))
+    {
+#>
+let _data<#= _status #> = [] as any;
+for (let _item of await _response.json()) {
+    _data<#= _status #>.push(_item);
+}<#
+    }
+    else
+    {
+#>
+let _data<#= _status #> = <#= _type #>.fromResponse(await _response.json());<#
+    }
+#>

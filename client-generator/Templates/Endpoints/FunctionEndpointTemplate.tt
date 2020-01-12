@@ -1,0 +1,74 @@
+<#@ template language="C#" #>
+<#@ im
+ort namespace="client_generator.Extensions" #>
+onName             #>(<#= string.Join(", ", _signature) #>): Promise<<#= _returnTypes.StrJoin(" | ") #>> {
+    let _url = this.baseUrl + "<#= _url #>?";
+    let _headers: {[key: string]: string} = {} ; 
+<#
+    foreach (var code in _parameterParsingCodes)
+    {
+        foreach (var line in code.Split("\n"))
+        {
+#>   
+    <#= line #> <#
+        }
+    }
+#> 
+    _url = _url.replace(/[?&]$/, "");
+
+    let _options = {
+<#
+    if (_haveBody)
+    {
+#>
+        body: _body,
+<#
+    }
+#>
+        method: "<#= _type.ToString().ToUpper() #>",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            ..._headers
+        }
+    };
+
+    let _response = await fetch(_url, _options);
+
+<#
+    foreach (var (status, response) in _responses)
+    {
+#>
+    if (_response.status === <#= status #>) {
+<#
+        foreach (var line in response.Split("\n"))
+        {
+#>
+        <#= line #> 
+<#
+        }
+        if (status.WasSuccessful())
+        {
+#>
+        return _data<#= status #>; 
+<#
+        }
+        else
+        {
+#>
+        throw _data<#= status #>;
+<#
+        }
+#>
+    }
+<#
+    }
+#>
+
+    // handling undefinded response
+    if (_response.status !== 200 && _response.status !== 204) {
+        throw new Error("An unexpected server error occurred.");
+    }
+
+    return null;
+}

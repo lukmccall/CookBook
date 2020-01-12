@@ -5,19 +5,19 @@ namespace logger
     public abstract class AbstractLogger
     {
 
-        protected LogLevel LogLevel { get; private set; }
+        private ILogStrategy _logStrategy;
 
         private AbstractLogger _nextLogger;
 
-        private ILogStrategy _logStrategy;
+        protected LogLevel LogLevel { get; private set; }
 
         public AbstractLogger Init(LogLevel logLevel, ILogStrategy logStrategy)
         {
-            this.LogLevel = logLevel;
+            LogLevel = logLevel;
             _logStrategy = logStrategy;
             return this;
         }
-        
+
         protected virtual void WriteMessage(string message)
         {
             _logStrategy.WriteMessage(message);

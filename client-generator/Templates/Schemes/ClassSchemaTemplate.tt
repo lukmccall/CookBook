@@ -1,0 +1,53 @@
+<#@ template language="C#"         #>
+<#@ import namespace="System.Linq" #>
+<#@         import namespace="Models" #>
+> {  
+<#
+    foreach (var (name, type) in _properties)
+    {
+#>
+    <#= name #><#
+        if (quiredProperties.Contains(name))
+        {
+#>?<#
+        } #>: <#= type.GetName() #>;
+<#
+    } #>
+    
+<#
+    if (_pro        perties.Any())
+    {
+#>
+    static fromResponse(data?: any): <#= _name #> {
+        const _data = typeof data === 'object' ? data : {};
+        const _response = new <#= _name #>();
+        
+<#
+        foreach (var (name, type) in _properties)
+        {
+            if (ty.GetSchemaType() != SchemaType.Array)
+            {
+#>
+        _response["<#= name #>"] = _data["<#= name #>"];
+<#
+            }
+            else
+            {
+#>
+        if (Array.isArray(_data["<#= name #>"])) {
+            _response["<#= name #>"] = [] as any;
+            for (let _item of _data["<#= name #>"]) {
+                _response["<#= name #>"].push(_item);
+            }
+        }
+<#
+            }
+        }
+#>
+
+        return _response;
+    }
+<#
+    }
+#>
+}

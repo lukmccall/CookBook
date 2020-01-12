@@ -1,0 +1,2 @@
+<#@ template language="C#" #>
+let _body = JSON.stringify(body);
