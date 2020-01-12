@@ -20,7 +20,8 @@ namespace client_generator.Generators
             FileStrategies = new Dictionary<SchemeGeneratePlace, IGeneratorFileStrategy>
             {
                 {SchemeGeneratePlace.SeparatedFile, new SeparateFileStrategy(GeneratorContext, GeneratorSettings)},
-                {SchemeGeneratePlace.WithCode, new SingleFileStrategy(GeneratorContext, GeneratorSettings)}
+                {SchemeGeneratePlace.WithCode, new SingleFileStrategy(GeneratorContext, GeneratorSettings)},
+                {SchemeGeneratePlace.AllSeparated, new AllSeparatedFileStrategy(GeneratorContext, GeneratorSettings)}
             };
         }
 
