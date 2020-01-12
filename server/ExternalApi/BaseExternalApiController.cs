@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using logger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,12 @@ namespace CookBook.ExternalApi
 
         protected readonly IMapper Mapper;
 
-        protected BaseExternalApiController(IMapper mapper)
+        private readonly ILogger _logger;
+
+        protected BaseExternalApiController(IMapper mapper, ILogger logger)
         {
             Mapper = mapper;
+            _logger = logger;
         }
 
         protected async Task<IActionResult> WrapExternalRepositoryCall<T, TMapType>(Func<Task<T>> call)
@@ -27,12 +31,14 @@ namespace CookBook.ExternalApi
             {
                 return NotFound();
             }
-            catch (WebserviceException)
+            catch (WebserviceException e)
             {
+                _logger.Fatal($"Error occurred while connecting with external API. {e.Message}");
                 return StatusCode(StatusCodes.Status503ServiceUnavailable);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _logger.Fatal($"Error occurred while connecting with external API. {e.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CookBook.API.Responses;
+using logger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -10,6 +11,13 @@ namespace CookBook.API.Validators
 {
     public class ValidatorFilter : IAsyncActionFilter
     {
+
+        private readonly ILogger _logger;
+
+        public ValidatorFilter(ILogger logger)
+        {
+            _logger = logger;
+        }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -35,6 +43,7 @@ namespace CookBook.API.Validators
                     StatusCode = StatusCodes.Status422UnprocessableEntity
                 };
 
+                _logger.Debug("Error occured while processing model.");
                 return;
             }
 

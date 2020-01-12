@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using logger;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.OpenApi.Models;
@@ -10,6 +11,13 @@ namespace CookBook.Swagger
 {
     public class AssignJwtSecurityRequirements : IOperationFilter
     {
+
+        private readonly ILogger _logger;
+
+        public AssignJwtSecurityRequirements(ILogger logger)
+        {
+            _logger = logger;
+        }
 
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
@@ -31,7 +39,7 @@ namespace CookBook.Swagger
             }
             catch (InvalidCastException)
             {
-                // todo: log it 
+                _logger.Fatal($"Couldn't cast to `AuthorizeAttribute`.");
             }
 
             if (!hasAuthFilter && !hasAuthMetadata || allowAnonymous)

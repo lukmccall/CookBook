@@ -6,6 +6,7 @@ using CookBook.API.Requests.RecipesController;
 using CookBook.API.Responses.RecipesController;
 using CookBook.ExternalApi;
 using CookBook.ExternalApi.Models;
+using logger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ namespace CookBook.Controllers
 
         private readonly IRecipeRepository _recipeRepo;
 
-        public RecipesController(IRecipeRepository recipeRepo, IMapper mapper) : base(mapper)
+        public RecipesController(IRecipeRepository recipeRepo, IMapper mapper, ILogger logger) : base(mapper, logger)
         {
             _recipeRepo = recipeRepo;
         }

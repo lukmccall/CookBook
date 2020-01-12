@@ -5,6 +5,7 @@ using CookBook.API.Requests.AuthController;
 using CookBook.API.Requests.UserController;
 using CookBook.API.Responses.UserController;
 using CookBook.Domain;
+using logger;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -25,10 +26,13 @@ namespace CookBook.Controllers
 
         private readonly IMapper _mapper;
 
-        public UserController(UserManager<ApplicationUser> userManager, IMapper mapper)
+        private readonly ILogger _logger;
+
+        public UserController(UserManager<ApplicationUser> userManager, IMapper mapper, ILogger logger)
         {
             _userManager = userManager;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet(Urls.User.GetCurrentUser)]
@@ -58,6 +62,7 @@ namespace CookBook.Controllers
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
+                _logger.Info($"User updated successfully - {user.Email}.");
                 return NoContent();
             }
 
@@ -80,6 +85,7 @@ namespace CookBook.Controllers
 
             if (result.Succeeded)
             {
+                _logger.Info($"Password updated successfully - {user.Email}.");
                 return NoContent();
             }
 
