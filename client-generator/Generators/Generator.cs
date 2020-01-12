@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using client_generator.Extensions;
+using client_generator.Generators.FilesStrategies;
 using client_generator.Models;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Generators;
@@ -9,26 +10,21 @@ using Type = client_generator.Models.Generators.Type;
 
 namespace client_generator.Generators
 {
-    public class Generator
+    public class Generator : GeneratorTemplate
     {
 
-        protected readonly IGeneratorContext GeneratorContext = new GeneratorContext();
+        protected readonly Dictionary<SchemeGeneratePlace, IGeneratorFileStrategy> FileStrategies;
 
-        protected GeneratorSettings GeneratorSettings;
-
-        public void SetSettings(GeneratorSettings generatorSettings)
+        public Generator()
         {
-            GeneratorSettings = generatorSettings;
+            FileStrategies = new Dictionary<SchemeGeneratePlace, IGeneratorFileStrategy>
+            {
+                {SchemeGeneratePlace.SeparatedFile, new SeparateFileStrategy(GeneratorContext, GeneratorSettings)},
+                {SchemeGeneratePlace.WithCode, new SingleFileStrategy(GeneratorContext, GeneratorSettings)}
+            };
         }
 
-        public void Generate(OpenApiModel openApiModel)
-        {
-            ParseSchemas(openApiModel.Schemas);
-            ParseEndpoints(openApiModel.Endpoints);
-            CreateFiles(GeneratorContext.GetTypesToGenerate(), GeneratorContext.GetFunctionsToGenerate());
-        }
-
-        public void ParseSchemas(IEnumerable<ISchema> schemas)
+        protected override void ParseSchemas(IEnumerable<ISchema> schemas)
         {
             foreach (var schema in schemas)
             {
@@ -36,7 +32,7 @@ namespace client_generator.Generators
             }
         }
 
-        public void ParseEndpoints(IEnumerable<IEndpoint> endPoints)
+        protected override void ParseEndpoints(IEnumerable<IEndpoint> endPoints)
         {
             foreach (var endpoint in endPoints)
             {
@@ -44,62 +40,10 @@ namespace client_generator.Generators
             }
         }
 
-        public void CreateFiles(Dictionary<string, Type> types, Dictionary<string, Function> functions)
+        protected override void CreateFiles(Dictionary<string, Type> types, Dictionary<string, Function> functions)
         {
-            var typeFile = new TsFile(GeneratorSettings.TypesFileName);
-
-            var relatedSchemas = types.Select(x => x.Value.RelatedSchemas)
-                .SelectMany(x => x)
-                .Distinct();
-
-            var imports = GetImportsString(typeFile, relatedSchemas).ToList();
-            if (imports.Any())
-            {
-                typeFile.Write(imports);
-                typeFile.Write("");
-            }
-
-            foreach (var (_, type) in types)
-            {
-                typeFile.Write(type.Code);
-                typeFile.Write("");
-            }
-
-            var exports = types.Select(x => x.Key).StrJoin(", ");
-
-            typeFile.Write("export { " + exports + " };");
-
-            var mainFile = new TsFile(GeneratorSettings.ClientFileName);
-
-            relatedSchemas = functions.Select(x => x.Value.RelatedSchemas)
-                .SelectMany(x => x)
-                .Distinct();
-
-            imports = GetImportsString(mainFile, relatedSchemas).ToList();
-
-            var template = GeneratorContext.GetTemplateFactory()
-                .CreateClientTemplate(GeneratorSettings.ServerUrl, functions.Select(x => x.Value.Code), imports);
-
-            mainFile.Write(template.TransformText());
-
-            typeFile.ToSystemFile();
-            mainFile.ToSystemFile();
+            FileStrategies[GeneratorSettings.SchemePlace].CreateFiles(types, functions);
         }
-
-        private IEnumerable<string> GetImportsString(TsFile fromFile, IEnumerable<ISchema> schemas)
-        {
-            if (fromFile.FileName == GeneratorSettings.TypesFileName ||
-                GeneratorSettings.SchemePlace == SchemeGeneratePlace.WithCode)
-            {
-                return new List<string>();
-            }
-
-            return new List<string>
-            {
-                "import { " + schemas.Select(x => x.GetName()).StrJoin(", ") + " } from \"./types\";"
-            };
-        }
-
 
         private void ParseEndpoint(IEndpoint endpoint)
         {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace client_generator.Generators
@@ -28,9 +29,11 @@ namespace client_generator.Generators
             }
         }
 
-        public void ToSystemFile()
+        public string ToSystemFile()
         {
-            System.IO.File.WriteAllText($"{FileName}.ts", _stringBuilder.ToString());
+            var path = Path.Join(Directory.GetCurrentDirectory(), $"{FileName}.ts");
+            File.WriteAllText(path, _stringBuilder.ToString());
+            return path;
         }
 
     }

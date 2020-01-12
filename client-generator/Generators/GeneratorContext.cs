@@ -7,7 +7,7 @@ using Type = client_generator.Models.Generators.Type;
 
 namespace client_generator.Generators
 {
-    class GeneratorContext : IGeneratorContext
+    public class GeneratorContext : IGeneratorContext
     {
 
         private readonly Dictionary<string, Type> _types = new Dictionary<string, Type>();

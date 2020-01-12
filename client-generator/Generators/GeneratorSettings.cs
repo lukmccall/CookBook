@@ -3,7 +3,7 @@ namespace client_generator.Generators
     public class GeneratorSettings
     {
 
-        public SchemeGeneratePlace SchemePlace { get; set; } = SchemeGeneratePlace.SeparatedFile;
+        public SchemeGeneratePlace SchemePlace { get; set; } = SchemeGeneratePlace.WithCode;
 
         public string ServerUrl { get; set; } = "http://localhost";
 

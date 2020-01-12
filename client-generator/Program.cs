@@ -16,9 +16,9 @@ namespace client_generator
             var model = VersionedDeserializers.Instance()
                 .DeserializeFile("/Users/lukasz/studies/cis/CookBook/client-generator/openapi.json",
                     new JsonSerializerSettings());
-            
+
             new Generator().Generate(model);
-            
+
             // AppController.Instance().InitApp<MenuWindow>();
         }
 
