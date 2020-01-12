@@ -4,15 +4,15 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="client_generator.Extensions" #>
 async <#= _functionName #>(<#= string.Join(", ", _signature) #>): Promise<<#= _returnTypes.StrJoin(" | ") #>> {
-    let _url = this.baseUrl + "<#= _url #>";
+    let _url = this.baseUrl + "<#= _url #>?";
+    let _headers: {[key: string]: string} = {} ; 
 <#
     foreach (var code in _parameterParsingCodes)
     {
         foreach (var line in code.Split("\n"))
         {
-#>
-    <#= line #>
-<#
+#>   
+    <#= line #> <#
         }
     }
 #> 
@@ -30,7 +30,8 @@ async <#= _functionName #>(<#= string.Join(", ", _signature) #>): Promise<<#= _r
         method: "<#= _type.ToString().ToUpper() #>",
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Accept": "application/json",
+            ..._headers
         }
     };
 
@@ -41,12 +42,17 @@ async <#= _functionName #>(<#= string.Join(", ", _signature) #>): Promise<<#= _r
     {
 #>
     if (_response.status === <#= status #>) {
-        <#= response #>
 <#
+        foreach (var line in response.Split("\n"))
+        {
+#>
+        <#= line #> 
+<#
+        }
         if (status.WasSuccessful())
         {
 #>
-        return _data<#= status #>;
+        return _data<#= status #>; 
 <#
         }
         else

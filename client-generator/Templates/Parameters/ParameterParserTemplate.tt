@@ -2,6 +2,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="client_generator.Models.Parameters" #>
+<#@ import namespace="client_generator.Models" #>
 <#
     if (_isRequired)
     {
@@ -11,52 +12,82 @@ if (<#= _name #> === undefined || <#= _name #> === null) {
 }
 <#
     }
-
-#>
-
-<#
     if (!_allowEmptyValue)
     {
+        switch (_schemaType)
+        {
+            case SchemaType.String:
 #>
 if (<#= _name #> === "") {
-    throw new Error("`<#= _name #>` cound't be empty." );
+    <#
+                EmptyError(); #>
 }
 <#
-    }
+                break;
+            case SchemaType.Array:
 #>
-
+if (!Array.isArray(<#= _name #> || !<#= _name #>.length) {
+    <#
+                EmptyError(); #>
+}
 <#
+                break;
+            case SchemaType.Object:
+#>
+if (Object.entries(<#= _name #>).length === 0) {
+    <#
+                EmptyError(); #>
+}
+<#
+                break;
+        }
+    }
     if (!_isRequired)
     {
 #>
 if (<#= _name #> !== undefined) {
-<#
-    }
-#>
-<#
-    switch (_type)
-    {
-        case ParameterType.Path:
-#>
-    _url = _url.replace("{<#= _name #>}", encodeURIComponent("" +  <#= _name #>));
-<#
-            break;
-#>
-<#
-        case ParameterType.Query:
-#>
-    _url += "<#= _name #>=" + encodeURIComponent("" + <#= _name #>) + "&"; 
-<#
-            break;
-#>
-<#
-    }
-#>
-<#
-    if (!_isRequired)
-    {
-#>
+    <#
+        GenerateParsingCode(); #>
 }
 <#
     }
+    else
+    {
+        GenerateParsingCode(); #>
+<#
+    }
+#><#+
+
+    private void GenerateParsingCode()
+    {
+        switch (_type)
+        {
+            case ParameterType.Path:
+#>
+_url = _url.replace("{<#= _name #>}", encodeURIComponent("" +  <#= _name #>));
+<#+
+                break;
+            case ParameterType.Query:
+#>
+_url += "<#= _name #>=" + encodeURIComponent("" + <#= _name #>) + "&"; 
+<#+
+                break;
+            case ParameterType.Header:
+#>
+_headers["<#= _name #>"] = <#= _name #>; 
+<#+
+                break;
+        }
+    }
+
+#>
+<#+
+
+    private void EmptyError()
+    {
+#>
+throw new Error("`<#= _name #>` cound't be empty." );
+<#+
+    }
+
 #>

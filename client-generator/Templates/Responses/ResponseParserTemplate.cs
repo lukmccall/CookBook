@@ -32,21 +32,60 @@ using System.Collections.Generic;
         public virtual string TransformText()
         {
             
+            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+
+    if (_type.Contains("Array"))
+    {
+
+            
+            #line default
+            #line hidden
             this.Write("let _data");
             
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+            #line 8 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_status));
+            
+            #line default
+            #line hidden
+            this.Write(" = [] as any;\nfor (let _item of await _response.json()) {\n    _data");
+            
+            #line 10 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_status));
+            
+            #line default
+            #line hidden
+            this.Write(".push(_item);\n}");
+            #line 11 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+
+    }
+    else
+    {
+
+            
+            #line default
+            #line hidden
+            this.Write("let _data");
+            
+            #line 16 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_status));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 4 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+            #line 16 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_type));
             
             #line default
             #line hidden
             this.Write(".fromResponse(await _response.json());");
+            #line 16 "/Users/lukasz/studies/cis/CookBook/client-generator/Templates/Responses/ResponseParserTemplate.tt"
+
+    }
+
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }

@@ -105,8 +105,13 @@ namespace client_generator.Generators
             foreach (var parameter in endpoint.GetParameters())
             {
                 var parameterTemplates = GeneratorContext.GetTemplateFactory().CreateParameterTemplate(
-                    parameter.GetName(), parameter.GetSchema().GetName(),
-                    parameter.IsRequired(), parameter.AllowEmptyValue(), parameter.GetParameterType());
+                    parameter.GetName(),
+                    parameter.GetSchema().GetName(),
+                    parameter.IsRequired(),
+                    parameter.AllowEmptyValue(),
+                    parameter.GetSchema().GetSchemaType(),
+                    parameter.GetParameterType()
+                );
 
                 parameters.Add(parameterTemplates.signature.TransformText(), parameterTemplates.parser.TransformText());
                 relatedSchemas.AddNew(GetRelatedImportableSchema(parameter.GetSchema()));
@@ -154,7 +159,7 @@ namespace client_generator.Generators
             GeneratorContext.AddFunction(endpoint.GetId(), endPointTemplate.TransformText(), relatedSchemas);
         }
 
-        private ISchema GetRelatedImportableSchema(ISchema schema)
+        private static ISchema GetRelatedImportableSchema(ISchema schema)
         {
             if (schema == null)
             {
@@ -166,12 +171,9 @@ namespace client_generator.Generators
                 return schema;
             }
 
-            if (schema.GetSchemaType() == SchemaType.Array)
-            {
-                return GetRelatedImportableSchema(schema.GetRelatedSchemes().First());
-            }
-
-            return null;
+            return schema.GetSchemaType() == SchemaType.Array
+                ? GetRelatedImportableSchema(schema.GetRelatedSchemes().First())
+                : null;
         }
 
         private void ParseSchema(ISchema schema)

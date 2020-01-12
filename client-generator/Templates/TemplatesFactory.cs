@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using client_generator.Models;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Parameters;
 using client_generator.Models.Schemas;
@@ -32,10 +33,12 @@ namespace client_generator.Templates
 
         public (ITemplate signature, ITemplate parser) CreateParameterTemplate(string name, string type,
             bool isRequired,
-            bool allowEmptyValue, ParameterType parameterType)
+            bool allowEmptyValue,
+            SchemaType schemaType,
+            ParameterType parameterType)
         {
             return _parameterTemplateFactory.CreateParameterTemplate(name, type, isRequired, allowEmptyValue,
-                parameterType);
+                schemaType, parameterType);
         }
 
         public ITemplate CreateResponseParserTemplate(int status, string type)
@@ -53,7 +56,8 @@ namespace client_generator.Templates
                 responses);
         }
 
-        public ITemplate CreateClientTemplate(string baseUrl, IEnumerable<string> functions, IEnumerable<string> imports)
+        public ITemplate CreateClientTemplate(string baseUrl, IEnumerable<string> functions,
+            IEnumerable<string> imports)
         {
             return _clientTemplateFactory.CreateClientTemplate(baseUrl, functions, imports);
         }

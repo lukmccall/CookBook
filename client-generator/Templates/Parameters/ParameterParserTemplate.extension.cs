@@ -1,3 +1,4 @@
+using client_generator.Models;
 using client_generator.Models.Parameters;
 
 namespace client_generator.Templates.Parameters
@@ -11,13 +12,16 @@ namespace client_generator.Templates.Parameters
 
         private readonly bool _allowEmptyValue;
 
+        private readonly SchemaType _schemaType;
+
         private readonly ParameterType _type;
 
-        public ParameterParserTemplate(string name, bool isRequired, bool allowEmptyValue, ParameterType type)
+        public ParameterParserTemplate(string name, bool isRequired, bool allowEmptyValue, SchemaType schemaType, ParameterType type)
         {
             _name = name;
             _isRequired = isRequired;
             _allowEmptyValue = allowEmptyValue;
+            _schemaType = schemaType;
             _type = type;
         }
 
