@@ -51,11 +51,10 @@ namespace client_generator.OpenApi._3._0._1.Builders.Schema
 
         public void Parse()
         {
-            var newProperiesToParse = new List<KeyValuePair<string, string>>();
+            var newPropertiesToParse = new List<KeyValuePair<string, string>>();
             foreach (var (key, @ref) in _propertiesToParse)
             {
-                ISchema schema;
-                if (@ref != null && _schemata.TryGetValue(@ref, out schema))
+                if (@ref != null && _schemata.TryGetValue(@ref, out var schema))
                 {
                     _properties.Add(key, schema);
                 }
@@ -65,11 +64,11 @@ namespace client_generator.OpenApi._3._0._1.Builders.Schema
                 }
                 else
                 {
-                    newProperiesToParse.Add(new KeyValuePair<string, string>(key, @ref));
+                    newPropertiesToParse.Add(new KeyValuePair<string, string>(key, @ref));
                 }
             }
 
-            _propertiesToParse = newProperiesToParse;
+            _propertiesToParse = newPropertiesToParse;
         }
 
     }
