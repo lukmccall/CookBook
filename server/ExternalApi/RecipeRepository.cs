@@ -12,10 +12,12 @@ namespace CookBook.ExternalApi
     {
 
         private readonly ApiOptions _apiOptions;
+        private readonly HttpClient _httpClient;
 
-        public RecipeRepository(ApiOptions apiOptions)
+        public RecipeRepository(ApiOptions apiOptions, HttpClient httpClient)
         {
             _apiOptions = apiOptions;
+            _httpClient = httpClient;
         }
 
         public async Task<RecipePriceBreakdown> GetRecipePriceBreakdown(long id)
@@ -65,14 +67,14 @@ namespace CookBook.ExternalApi
             return instruction;
         }
 
-        private static async Task<string> GetStringAsync(string url)
+        private async Task<string> GetStringAsync(string url)
         {
             // todo: use flyweight to get httpClient instance
-            using var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync(url);
+
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                return await httpClient.GetStringAsync(url);
+                return await _httpClient.GetStringAsync(url);
             }
 
             if (response.StatusCode == HttpStatusCode.NotFound)
