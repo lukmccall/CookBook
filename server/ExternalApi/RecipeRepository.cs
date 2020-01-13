@@ -13,7 +13,7 @@ namespace CookBook.ExternalApi
 
         private readonly ApiOptions _apiOptions;
 
-        public RecipeRepository(ApiOptions apiOptions)
+        public RecipeRepository(ApiOptions apiOptions, HttpClient client)
         {
             _apiOptions = apiOptions;
         }

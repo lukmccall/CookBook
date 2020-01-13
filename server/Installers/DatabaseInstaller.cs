@@ -28,8 +28,8 @@ namespace CookBook.Installers
                 })
                 .AddEntityFrameworkStores<DatabaseContext>();
 
-            services.AddSingleton<IRecipeRepository, RecipeRepository>();
-            services.AddSingleton<IWidgetRepository, WidgetRepository>();
+            services.AddScoped<IRecipeRepository, RecipeRepository>();
+            services.AddScoped<IWidgetRepository, WidgetRepository>();
         }
 
     }
