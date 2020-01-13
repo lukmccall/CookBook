@@ -20,7 +20,7 @@ namespace client_generator.App.Windows.MenuWindowStates
         {
             _exitCommand = exitCommand;
 
-            _editSettingCommand = new EditGeneratorSettingsCommand(AppController.Instance().Generator.GetSettings());
+            _editSettingCommand = new EditGeneratorSettingsCommand(AppController.Instance(), AppController.Instance().Generator.GetSettings());
 
             _generateCommand = new GenerateCommand(openApiModel, OnSuccess, OnError);
         }

@@ -6,7 +6,7 @@ using Terminal.Gui;
 
 namespace client_generator.App
 {
-    public class AppController
+    public class AppController : IAppController
     {
 
         private static readonly AppController AppControllerInstance = new AppController();

@@ -2,7 +2,7 @@ using System.IO;
 
 namespace client_generator.App
 {
-    internal class BackFileEntry : FileSystemEntry
+    public class BackFileEntry : FileSystemEntry
     {
 
         public BackFileEntry(string currentPath)
