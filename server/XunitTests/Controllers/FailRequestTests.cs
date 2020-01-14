@@ -7,11 +7,6 @@ using Xunit;
 
 public class FailRequestsTests
 {
-    public FailRequestsTests()
-    {
-
-    }
-
     [Fact]
     public void ExecuteResultAsync()
     {
