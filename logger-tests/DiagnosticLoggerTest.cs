@@ -5,8 +5,14 @@ using Xunit;
 
 namespace logger_tests
 {
-    public class RawLoggerTest
+    public class DiagnosticLoggerTest
     {
+
+        private static bool ValidateLog(string log)
+        {
+            return log.Contains("ShouldChainCorrectly") &&
+                   log.Contains("DiagnosticLoggerTest");
+        }
 
         [Fact]
         public void ShouldChainCorrectly()
@@ -15,9 +21,9 @@ namespace logger_tests
             var logStrategy = new Mock<ILogStrategy>();
             logStrategy.Setup(x => x.WriteMessage(It.IsAny<string>())).Verifiable();
 
-            var debugLogger = new RawLogger().Init(LogLevel.Debug, logStrategy.Object);
-            var infoLogger = new RawLogger().Init(LogLevel.Info, logStrategy.Object);
-            var fatalLogger = new RawLogger().Init(LogLevel.Fatal, logStrategy.Object);
+            var debugLogger = new DiagnosticLogger().Init(LogLevel.Debug, logStrategy.Object);
+            var infoLogger = new DiagnosticLogger().Init(LogLevel.Info, logStrategy.Object);
+            var fatalLogger = new DiagnosticLogger().Init(LogLevel.Fatal, logStrategy.Object);
 
             debugLogger.SetNextLogger(infoLogger);
             infoLogger.SetNextLogger(fatalLogger);
@@ -29,9 +35,12 @@ namespace logger_tests
 
             // Assert
             logStrategy.Verify(x => x.WriteMessage(It.IsAny<string>()), Times.Exactly(3));
-            logStrategy.Verify(x => x.WriteMessage(It.Is<string>(s => s.Contains($"{LogLevel.Debug}"))), Times.Once);
-            logStrategy.Verify(x => x.WriteMessage(It.Is<string>(s => s.Contains($"{LogLevel.Info}"))), Times.Once);
-            logStrategy.Verify(x => x.WriteMessage(It.Is<string>(s => s.Contains($"{LogLevel.Fatal}"))), Times.Once);
+            logStrategy.Verify(
+                x => x.WriteMessage(It.Is<string>(s => s.Contains($"{LogLevel.Debug}") && ValidateLog(s))), Times.Once);
+            logStrategy.Verify(
+                x => x.WriteMessage(It.Is<string>(s => s.Contains($"{LogLevel.Info}") && ValidateLog(s))), Times.Once);
+            logStrategy.Verify(
+                x => x.WriteMessage(It.Is<string>(s => s.Contains($"{LogLevel.Fatal}") && ValidateLog(s))), Times.Once);
         }
 
         [Fact]
@@ -40,7 +49,7 @@ namespace logger_tests
             // Arrange
             var logStrategy = new Mock<ILogStrategy>();
             logStrategy.Setup(x => x.WriteMessage(It.IsAny<string>())).Verifiable();
-            var infoLogger = new RawLogger().Init(LogLevel.Info, logStrategy.Object);
+            var infoLogger = new DiagnosticLogger().Init(LogLevel.Info, logStrategy.Object);
 
             // Act
             infoLogger.LogMessage(LogLevel.Fatal, "info");
