@@ -89,7 +89,7 @@ namespace client_generator.Deserializer
             return deserializer.Deserialize(jsonString);
         }
 
-        public void Register(string version, IDeserializer deserializer)
+        private void Register(string version, IDeserializer deserializer)
         {
             _deserializers.Add(version, deserializer);
         }

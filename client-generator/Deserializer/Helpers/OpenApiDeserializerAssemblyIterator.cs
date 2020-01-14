@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using client_generator.Deserializer.Attributes;
 
-namespace client_generator.Deserializer.Attributes
+namespace client_generator.Deserializer.Helpers
 {
     public class OpenApiDeserializerAssemblyIterator : IEnumerator<Type>
     {
@@ -15,7 +16,7 @@ namespace client_generator.Deserializer.Attributes
 
         public OpenApiDeserializerAssemblyIterator(Type[] allTypes)
         {
-            _allTypes = allTypes;
+            _allTypes = allTypes ?? new Type[0];
         }
 
         public bool MoveNext()

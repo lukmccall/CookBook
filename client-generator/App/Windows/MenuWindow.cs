@@ -7,7 +7,7 @@ namespace client_generator.App.Windows
     public class MenuWindow : Window
     {
 
-        private readonly ICommand _exitCommand = new ExitAppCommand();
+        private readonly ICommand _exitCommand = new ExitAppCommand(AppController.Instance());
 
         private readonly ICommand _selectFileCommand;
 
@@ -16,7 +16,7 @@ namespace client_generator.App.Windows
 
         public MenuWindow() : base("Code Generator - Menu")
         {
-            _selectFileCommand = new SelectFileCommand(FileWasSelected);
+            _selectFileCommand = new SelectFileCommand(AppController.Instance(), FileWasSelected);
             ChangeState(new StartState(_selectFileCommand, _exitCommand));
         }
 

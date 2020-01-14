@@ -1,5 +1,6 @@
 using client_generator.Models;
 using client_generator.Models.Parameters;
+using client_generator.Models.Schemas;
 
 namespace client_generator.Templates.Parameters
 {

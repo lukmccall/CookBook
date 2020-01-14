@@ -3,13 +3,14 @@ using client_generator.Models;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Generators;
 using client_generator.Models.Schemas;
+using client_generator.Templates;
 
 namespace client_generator.Generators
 {
     public abstract class GeneratorTemplate
     {
 
-        protected readonly IGeneratorContext GeneratorContext = new GeneratorContext();
+        protected IGeneratorContext GeneratorContext = new GeneratorContext(new TemplatesFactory());
 
         protected readonly GeneratorSettings GeneratorSettings = new GeneratorSettings();
 

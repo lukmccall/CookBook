@@ -1,6 +1,7 @@
 <#@ template language="C#"         #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="Models" #>
+<#@ import namespace="client_generator.Models.Schemas" #>
 class <#= _name #> {
 <#
     foreach (var (name, type) in _properties)

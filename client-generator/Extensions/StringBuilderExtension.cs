@@ -3,7 +3,7 @@ using System.Text;
 
 namespace client_generator.Extensions
 {
-    public static class StringBuilderExtensions
+    public static class StringBuilderExtension
     {
 
         public static StringBuilder AppendLines(this StringBuilder stringBuilder, IEnumerable<string> lines)

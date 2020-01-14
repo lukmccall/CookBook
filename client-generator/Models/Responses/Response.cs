@@ -3,7 +3,7 @@ using client_generator.Models.Schemas;
 
 namespace client_generator.Models.Responses
 {
-    internal class Response : IResponse
+    public class Response : IResponse
     {
 
         private readonly Dictionary<string, ISchema> _schemasMap;

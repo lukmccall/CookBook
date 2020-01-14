@@ -3,7 +3,7 @@ using client_generator.Models.Schemas;
 
 namespace client_generator.Models.Responses
 {
-    internal class HttpResponse : IHttpResponse
+    public class HttpResponse : IHttpResponse
     {
 
         private readonly IResponse _response;

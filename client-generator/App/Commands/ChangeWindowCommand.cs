@@ -5,16 +5,19 @@ namespace client_generator.App.Commands
     public class ChangeWindowCommand : ICommand
     {
 
+        private readonly IAppController _appController;
+
         private readonly Window _windowToChange;
 
-        public ChangeWindowCommand(Window windowToChange)
+        public ChangeWindowCommand(IAppController appController, Window windowToChange)
         {
+            _appController = appController;
             _windowToChange = windowToChange;
         }
 
         public void Execute()
         {
-            AppController.Instance().ChangeWindow(_windowToChange);
+            _appController.ChangeWindow(_windowToChange);
         }
 
     }

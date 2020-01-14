@@ -16,7 +16,6 @@ namespace client_generator.Generators
 
         ITemplateFactory GetTemplateFactory();
 
-
         public Dictionary<string, Type> GetTypesToGenerate();
 
         public Dictionary<string, Function> GetFunctionsToGenerate();

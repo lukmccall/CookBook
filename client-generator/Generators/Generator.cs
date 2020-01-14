@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using client_generator.Extensions;
 using client_generator.Generators.FilesStrategies;
-using client_generator.Models;
 using client_generator.Models.Endpoints;
 using client_generator.Models.Generators;
 using client_generator.Models.Schemas;

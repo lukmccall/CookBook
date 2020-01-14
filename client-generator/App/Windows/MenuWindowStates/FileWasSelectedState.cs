@@ -31,7 +31,8 @@ namespace client_generator.App.Windows.MenuWindowStates
 
             _deserializationCommand =
                 new DeserializationCommand(file, _jsonSerializerSettings, OnDeserialization, OnError);
-            _editJsonDeserializationSettings = new EditJsonDeserializationSettingsCommand(_jsonSerializerSettings);
+            _editJsonDeserializationSettings =
+                new EditJsonDeserializationSettingsCommand(AppController.Instance(), _jsonSerializerSettings);
         }
 
         public void SetWindow(MenuWindow window)
