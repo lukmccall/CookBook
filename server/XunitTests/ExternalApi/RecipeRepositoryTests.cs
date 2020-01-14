@@ -23,13 +23,11 @@ namespace CookBook.XunitTests.ExternalApi
             _handlerMock = new Mock<HttpClientHandler>();
             _handlerMock
                .Protected()
-               // Setup the PROTECTED method to mock
                .Setup<Task<HttpResponseMessage>>(
                   "SendAsync",
                   ItExpr.IsAny<HttpRequestMessage>(),
                   ItExpr.IsAny<CancellationToken>()
                )
-               // prepare the expected response of the mocked http call
                .ReturnsAsync(new HttpResponseMessage()
                {
                    StatusCode = HttpStatusCode.OK
@@ -49,18 +47,16 @@ namespace CookBook.XunitTests.ExternalApi
             var subjectUnderTest = new RecipeRepository(_options, httpClient);
             var result = subjectUnderTest.GetRecipePriceBreakdown(12);
 
-            // ASSERT
-            result.Should().NotBeNull(); // this is fluent assertions here...
+            result.Should().NotBeNull();
 
-            // also check the 'http' call was like we expected it
             var expectedUri = new Uri("https://serverTest.com/recipes/12/priceBreakdownWidget.json?123");
 
             _handlerMock.Protected().Verify(
                "SendAsync",
-               Times.Exactly(2), // we expected a single external request
+               Times.Exactly(2),
                ItExpr.Is<HttpRequestMessage>(req =>
-                  req.Method == HttpMethod.Get  // we expected a GET request
-                  && req.RequestUri == expectedUri // to this uri
+                  req.Method == HttpMethod.Get
+                  && req.RequestUri == expectedUri
                ),
                ItExpr.IsAny<CancellationToken>()
             );
@@ -79,10 +75,10 @@ namespace CookBook.XunitTests.ExternalApi
 
             _handlerMock.Protected().Verify(
                "SendAsync",
-               Times.Exactly(2), // we expected a single external request
+               Times.Exactly(2),
                ItExpr.Is<HttpRequestMessage>(req =>
-                  req.Method == HttpMethod.Get  // we expected a GET request
-                  && req.RequestUri == expectedUri // to this uri
+                  req.Method == HttpMethod.Get
+                  && req.RequestUri == expectedUri
                ),
                ItExpr.IsAny<CancellationToken>()
             );
@@ -110,10 +106,10 @@ namespace CookBook.XunitTests.ExternalApi
 
             _handlerMock.Protected().Verify(
                "SendAsync",
-               Times.Exactly(2), // we expected a single external request
+               Times.Exactly(2),
                ItExpr.Is<HttpRequestMessage>(req =>
-                  req.Method == HttpMethod.Get  // we expected a GET request
-                  && req.RequestUri == expectedUri // to this uri
+                  req.Method == HttpMethod.Get
+                  && req.RequestUri == expectedUri
                ),
                ItExpr.IsAny<CancellationToken>()
             );
@@ -133,10 +129,10 @@ namespace CookBook.XunitTests.ExternalApi
 
             _handlerMock.Protected().Verify(
                "SendAsync",
-               Times.Exactly(2), // we expected a single external request
+               Times.Exactly(2),
                ItExpr.Is<HttpRequestMessage>(req =>
-                  req.Method == HttpMethod.Get  // we expected a GET request
-                  && req.RequestUri == expectedUri // to this uri
+                  req.Method == HttpMethod.Get
+                  && req.RequestUri == expectedUri
                ),
                ItExpr.IsAny<CancellationToken>()
             );
