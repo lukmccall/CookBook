@@ -12,6 +12,7 @@ namespace CookBook.ExternalApi
     {
 
         private readonly ApiOptions _apiOptions;
+
         private readonly HttpClient _httpClient;
 
         public RecipeRepository(ApiOptions apiOptions, HttpClient httpClient)
@@ -43,14 +44,14 @@ namespace CookBook.ExternalApi
         public async Task<IList<Recipe>> FindRecipeByIngredients(IngredientsQuery list)
         {
             var ingredientsConcat = string.Join(",+", list.Ingredients);
-            var recipesJson =
-                await GetStringAsync(_apiOptions.Server + "/recipes/findByIngredients?"
-                                                        + QueryParam(ingredientsConcat, "ingredients")
-                                                        + QueryParam(list.LimitLicense, "limitLicense")
-                                                        + QueryParam(list.Number ?? 25, "number")
-                                                        + QueryParam(list.Ranking, "ranking")
-                                                        + QueryParam(list.IgnorePantry, "ignorePantry")
-                                                        + _apiOptions.ApiKey);
+            var url = _apiOptions.Server + "/recipes/findByIngredients?"
+                                         + QueryParam(ingredientsConcat, "ingredients")
+                                         + QueryParam(list.LimitLicense, "limitLicense")
+                                         + QueryParam(list.Number ?? 25, "number")
+                                         + QueryParam(list.Ranking, "ranking")
+                                         + QueryParam(list.IgnorePantry, "ignorePantry")
+                                         + _apiOptions.ApiKey;
+            var recipesJson = await GetStringAsync(url);
 
             return JsonConvert.DeserializeObject<IList<Recipe>>(recipesJson);
         }

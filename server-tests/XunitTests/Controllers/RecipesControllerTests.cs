@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
+using CookBook.API.Requests.RecipesController;
 using CookBook.API.Responses.RecipesController;
 using CookBook.AutoMapperProfiles;
 using CookBook.Controllers;
@@ -21,6 +23,11 @@ namespace server_tests.XunitTests.Controllers
 
         private ApiOptions _options;
 
+        private ILogger _logger = new LoggerFacade<RawLogger>(new LoggerSettings
+        {
+            LogLevel = LogLevel.Info
+        });
+
         public RecipesControllerTests()
         {
             _mapper = new Mapper(new MapperConfiguration(mc => mc.AddProfile(new Mappable())).CreateMapper()
@@ -34,11 +41,8 @@ namespace server_tests.XunitTests.Controllers
         public async Task GetRecipePriceBreakdown_OkResult()
         {
             RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
-            var logger = new LoggerFacade<RawLogger>(new LoggerSettings
-            {
-                LogLevel = LogLevel.Debug
-            });
-            var controller = new RecipesController(recipe, _mapper, logger);
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
             var result = await controller.GetRecipePriceBreakdown(12);
 
             result.Should().NotBeNull();
@@ -54,11 +58,8 @@ namespace server_tests.XunitTests.Controllers
         public async Task GetRecipePriceBreakdown_NotFound()
         {
             RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
-            var logger = new LoggerFacade<RawLogger>(new logger.LoggerSettings
-            {
-                LogLevel = LogLevel.Debug
-            });
-            var controller = new RecipesController(recipe, _mapper, logger);
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
             var result = await controller.GetRecipePriceBreakdown(-2);
 
             result.Should().NotBeNull();
@@ -70,16 +71,100 @@ namespace server_tests.XunitTests.Controllers
         public async Task GetRecipePriceBreakdown_NotFound2()
         {
             RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
-            var logger = new LoggerFacade<RawLogger>(new logger.LoggerSettings
-            {
-                LogLevel = LogLevel.Debug
-            });
-            var controller = new RecipesController(recipe, _mapper, logger);
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
             var result = await controller.GetRecipePriceBreakdown(0);
 
             result.Should().NotBeNull();
             var notFoundResult = result.Should().BeOfType<NotFoundResult>().Subject;
             Assert.True(notFoundResult.StatusCode.Equals(404));
+        }
+
+        [Fact]
+        public async Task GetRecipeIngredients_OkResult()
+        {
+            RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
+            var result = await controller.GetRecipeIngredients(12);
+
+            result.Should().NotBeNull();
+            var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+            Assert.True(okResult.StatusCode.Equals(200));
+            var model = okResult.Value.Should().BeAssignableTo<RecipeIngredientsResponse>().Subject;
+            model.Ingredients.Should().HaveCount(4);
+        }
+
+        [Fact]
+        public async Task GetRecipeIngredients_NotFound()
+        {
+            RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
+            var result = await controller.GetRecipeIngredients(-2);
+
+            result.Should().NotBeNull();
+            var notFoundResult = result.Should().BeOfType<NotFoundResult>().Subject;
+            Assert.True(notFoundResult.StatusCode.Equals(404));
+        }
+
+        [Fact]
+        public async Task GetRecipeIngredients_NotFound2()
+        {
+            RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
+            var result = await controller.GetRecipeIngredients(0);
+
+            result.Should().NotBeNull();
+            var notFoundResult = result.Should().BeOfType<NotFoundResult>().Subject;
+            Assert.True(notFoundResult.StatusCode.Equals(404));
+        }
+
+        [Fact]
+        public async Task SearchByIngredients_OkResult()
+        {
+            RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
+            IngredientsRequest ingredients = new IngredientsRequest()
+            {
+                Ingredients = new List<string>
+                {
+                    "eggs", "milk", "sugar"
+                }
+            };
+
+            var result = await controller.SearchByIngredients(ingredients);
+
+            result.Should().NotBeNull();
+            var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+            Assert.True(okResult.StatusCode.Equals(200));
+        }
+
+        [Fact]
+        public async Task RecipeInstructions_OkResult()
+        {
+            RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
+            var result = await controller.RecipeInstructions(1, false);
+
+            result.Should().NotBeNull();
+            var okResult = result.Should().BeOfType<StatusCodeResult>().Subject;
+        }
+
+        [Fact]
+        public async Task RecipeInstructions_OkResult2()
+        {
+            RecipeRepository recipe = new RecipeRepository(_options, new HttpClient());
+
+            var controller = new RecipesController(recipe, _mapper, _logger);
+            var result = await controller.RecipeInstructions(0);
+
+            result.Should().NotBeNull();
+            var okObject = result.Should().BeOfType<OkObjectResult>().Subject;
+            Assert.True(okObject.StatusCode.Equals(200));
         }
 
     }
