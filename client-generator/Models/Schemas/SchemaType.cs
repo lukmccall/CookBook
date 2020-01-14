@@ -1,4 +1,4 @@
-namespace client_generator.Models
+namespace client_generator.Models.Schemas
 {
     public enum SchemaType
     {

@@ -10,9 +10,16 @@ namespace client_generator.Generators
     public class GeneratorContext : IGeneratorContext
     {
 
+        private readonly ITemplateFactory _templateFactory;
+
         private readonly Dictionary<string, Function> _functions = new Dictionary<string, Function>();
 
         private readonly Dictionary<string, Type> _types = new Dictionary<string, Type>();
+
+        public GeneratorContext(ITemplateFactory templateFactory)
+        {
+            _templateFactory = templateFactory;
+        }
 
         public bool TypeExists(string typeName)
         {
@@ -49,7 +56,7 @@ namespace client_generator.Generators
 
         public ITemplateFactory GetTemplateFactory()
         {
-            return new TemplatesFactory();
+            return _templateFactory;
         }
 
         public Dictionary<string, Type> GetTypesToGenerate()

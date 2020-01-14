@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using client_generator.Models.Schemas;
 using client_generator.Templates;
 
-namespace client_generator.Models
+namespace client_generator.Models.Schemas
 {
-    internal class SimpleSchema : ISchema
+    public class SimpleSchema : ISchema
     {
 
         private static readonly Dictionary<SchemaType, string> TypeToName = new Dictionary<SchemaType, string>

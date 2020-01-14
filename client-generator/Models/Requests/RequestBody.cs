@@ -3,7 +3,7 @@ using client_generator.Models.Schemas;
 
 namespace client_generator.Models.Requests
 {
-    internal class RequestBody : IRequestBody
+    public class RequestBody : IRequestBody
     {
 
         private readonly bool _isRequired;

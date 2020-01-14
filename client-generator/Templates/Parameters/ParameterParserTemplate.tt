@@ -1,6 +1,7 @@
 <#@ template languae="C#" #>
 <#@ import namespace="client_generator.Models" #>
 <#@ import namespace="client_generator.Models.Parameters" #>
+<#@ import namespace="client_generator.Models.Schemas" #>
 <#
     if (_isRequired)
     {
