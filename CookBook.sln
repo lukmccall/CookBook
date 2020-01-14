@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client-generator-tests", "c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logger-tests", "logger-tests\logger-tests.csproj", "{A8D85FB4-A793-4FC0-BDA6-4A44CF4A258C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server-tests", "server-tests\server-tests.csproj", "{B4351DCE-6051-4CCB-8DFF-AB14FBA63375}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +39,9 @@ Global
 		{A8D85FB4-A793-4FC0-BDA6-4A44CF4A258C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8D85FB4-A793-4FC0-BDA6-4A44CF4A258C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8D85FB4-A793-4FC0-BDA6-4A44CF4A258C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4351DCE-6051-4CCB-8DFF-AB14FBA63375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4351DCE-6051-4CCB-8DFF-AB14FBA63375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4351DCE-6051-4CCB-8DFF-AB14FBA63375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4351DCE-6051-4CCB-8DFF-AB14FBA63375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
