@@ -151,7 +151,7 @@ namespace server_tests.XunitTests.Controllers
             var result = await controller.RecipeInstructions(1, false);
 
             result.Should().NotBeNull();
-            var okResult = result.Should().BeOfType<StatusCodeResult>().Subject;
+            var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
         }
 
         [Fact]
