@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../../css/Navbar.scss';
+import '../../css/navbar.scss';
 
 class Navbar extends Component {
   state = {
@@ -67,14 +67,14 @@ class Navbar extends Component {
             </Link>
           </div>
         ) : (
-          <div className="navbar-signIn">
-            <Link to="/profile">
-              <span className="signIn-text">
-                {this.props.user === undefined ? 'Zalogowany' : this.props.user.userName}
-              </span>
-            </Link>
-          </div>
-        )}
+            <div className="navbar-signIn">
+              <Link to="/profile">
+                <span className="signIn-text">
+                  {this.props.user === undefined ? 'Zalogowany' : this.props.user.userName}
+                </span>
+              </Link>
+            </div>
+          )}
       </nav>
     );
   }
