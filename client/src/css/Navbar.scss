@@ -1,7 +1,7 @@
 .navbar-logo {
   padding: 10px;
   .navbar-title {
-  padding-left: 10px;
+    padding-left: 10px;
   }
 }
 
@@ -11,14 +11,14 @@
   padding: 10px;
   display: none;
   cursor: pointer;
-  
+
   a {
-  text-decoration: none;
-  color: white;
+    text-decoration: none;
+    color: white;
   }
 
   .signIn-text {
-  padding-right: 5px;
+    padding-right: 5px;
   }
 }
 
@@ -36,8 +36,8 @@
   padding-right: 5px;
   padding: 10px;
   a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
   }
 }
 
@@ -59,22 +59,21 @@ ul {
   margin: 0;
 
   li a {
-  background: #42424242;
-  display: block;
-  color: #fff;
-  padding: 10px;
-  text-decoration: none;
-  transition: all 0.5s ease;
-  font-size: 14px;
-  font-weight: bold;
+    background: #42424242;
+    display: block;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    font-size: 14px;
+    font-weight: bold;
   }
 
   li a:hover {
-  background: #35353535;
-  color: orange;
-  padding-left: 10px;
+    background: #35353535;
+    color: orange;
+    padding-left: 10px;
   }
-
 }
 
 .navbar-show {
@@ -108,9 +107,9 @@ ul {
     margin: 16px 0;
 
     li a:hover {
-    background: none;
-    color: orange;
-    padding-left: none;
+      background: none;
+      color: orange;
+      padding-left: none;
     }
   }
   nav ul a {

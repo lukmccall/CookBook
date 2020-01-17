@@ -7,8 +7,8 @@ namespace client_generator.App
 
         public BackFileEntry(string currentPath)
         {
-            IsDirectory = true;
             FileName = "..";
+            IsDirectory = true;
             ParentDirectory = Directory.GetParent(currentPath)?.FullName ?? currentPath;
         }
 
