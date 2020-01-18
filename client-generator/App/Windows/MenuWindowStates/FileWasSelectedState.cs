@@ -11,33 +11,40 @@ namespace client_generator.App.Windows.MenuWindowStates
 
         private readonly ICommand _deserializationCommand;
 
-        private readonly ICommand _editJsonDeserializationSettings;
+        private ICommand _editJsonDeserializationSettings;
 
         private readonly ICommand _exitCommand;
 
         private readonly FileSystemEntry _file;
 
-        private readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings();
+        private readonly ICommandsProvider _commandsProvider;
 
-        private readonly ICommand _selectFileCommand;
+        private readonly JsonSerializerSettings
+            _jsonSerializerSettings = new JsonSerializerSettings(); // set up default settings
+
+        private ICommand _selectFileCommand;
 
         private MenuWindow _window;
 
-        public FileWasSelectedState(FileSystemEntry file, ICommand selectFileCommand, ICommand exitCommand)
+        public FileWasSelectedState(FileSystemEntry file, ICommandsProvider commandsProvider)
         {
             _file = file;
-            _exitCommand = exitCommand;
-            _selectFileCommand = selectFileCommand;
+            _commandsProvider = commandsProvider;
+            _exitCommand = commandsProvider.ExitCommand();
 
             _deserializationCommand =
-                new DeserializationCommand(file, _jsonSerializerSettings, OnDeserialization, OnError);
-            _editJsonDeserializationSettings =
-                new EditJsonDeserializationSettingsCommand(AppController.Instance(), _jsonSerializerSettings);
+                commandsProvider.DeserializationCommand(file, _jsonSerializerSettings, OnDeserialization, OnError);
         }
 
         public void SetWindow(MenuWindow window)
         {
             _window = window;
+
+            _selectFileCommand =
+                _commandsProvider.ShowPopupWindowCommand(new FileSelectorWindow(), _window.FileWasSelected, _window);
+
+            _editJsonDeserializationSettings = _commandsProvider.ShowPopupWindowCommand(
+                new JsonSettingsWindow(_jsonSerializerSettings), null, _window);
         }
 
         public void DisplayMenu()
@@ -64,7 +71,7 @@ namespace client_generator.App.Windows.MenuWindowStates
 
         private void OnDeserialization(OpenApiModel openApiModel)
         {
-            _window.ChangeState(new OpenApiModeWasCreatedState(openApiModel, _exitCommand));
+            _window.ChangeState(new OpenApiModeWasCreatedState(openApiModel, _commandsProvider));
         }
 
     }

@@ -13,7 +13,7 @@ namespace client_generator.Generators
 
         protected readonly Dictionary<SchemeGeneratePlace, IGeneratorFileStrategy> FileStrategies;
 
-        public Generator()
+        public Generator(IGeneratorContext context) : base(context)
         {
             FileStrategies = new Dictionary<SchemeGeneratePlace, IGeneratorFileStrategy>
             {

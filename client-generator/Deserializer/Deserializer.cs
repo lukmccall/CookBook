@@ -7,7 +7,7 @@ namespace client_generator.Deserializer
     public abstract class Deserializer<T> : IDeserializer
     {
 
-        private JsonSerializerSettings _settings = new JsonSerializerSettings();
+        private JsonSerializerSettings _settings = new JsonSerializerSettings(); // default options
 
         public OpenApiModel Deserialize(string json)
         {

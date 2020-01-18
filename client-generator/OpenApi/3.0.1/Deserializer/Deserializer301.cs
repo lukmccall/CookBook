@@ -39,7 +39,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
         {
             var openApiBuilder = new OpenApiModel.OpenApiModelBuilder();
 
-            var collector = new ReferableCollector();
+            var collector = new ReferableCollector(new ReferencesRegister());
             versionedModel.Accept("#", collector);
             collector.Validate();
 

@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using client_generator.App.Windows.MenuWindowStates;
 using Terminal.Gui;
 
 namespace client_generator.App.Windows
 {
-    public sealed class FileSelectorWindow : Window
+    public sealed class FileSelectorWindow : PopupWindow
     {
 
         private readonly Label _currentDirectoryText;
@@ -16,13 +18,8 @@ namespace client_generator.App.Windows
 
         private List<FileSystemEntry> _fileViewSource;
 
-        private FileSelectorReceiver _receiver;
-
-        public FileSelectorWindow(FileSelectorReceiver receiver) : base(
-            "Code Generator - Select File")
+        public FileSelectorWindow() : base("Code Generator - Select File")
         {
-            _receiver = receiver;
-
             var currentDirectoryLabel = new Label(1, 1, "Current directory:");
             _currentDirectoryText = new Label(1, 2, _currentPath);
 
@@ -90,11 +87,11 @@ namespace client_generator.App.Windows
 
             else
             {
-                _receiver.Invoke(selectedItem);
                 AppController.GetLogger()
                     .Info(
                         $"File {selectedItem.ParentDirectory}{Path.DirectorySeparatorChar}{selectedItem.FileName} was selected.");
-                _receiver = null;
+
+                OnExit?.Invoke(selectedItem);
             }
 
             return true;

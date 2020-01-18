@@ -1,5 +1,6 @@
 using System;
 using client_generator.App.Commands;
+using client_generator.Generators;
 using client_generator.Models;
 using Terminal.Gui;
 
@@ -8,26 +9,34 @@ namespace client_generator.App.Windows.MenuWindowStates
     internal class OpenApiModeWasCreatedState : IMenuWindowState
     {
 
-        private readonly ICommand _editSettingCommand;
+        private readonly ICommandsProvider _commandsProvider;
+
+        private ICommand _editSettingCommand;
 
         private readonly ICommand _exitCommand;
 
         private readonly ICommand _generateCommand;
 
+        private readonly GeneratorSettings _generatorSettings = new GeneratorSettings(); // set up default settings
+
         private MenuWindow _window;
 
-        public OpenApiModeWasCreatedState(OpenApiModel openApiModel, ICommand exitCommand)
+        public OpenApiModeWasCreatedState(OpenApiModel openApiModel,
+            ICommandsProvider commandsProvider)
         {
-            _exitCommand = exitCommand;
+            _commandsProvider = commandsProvider;
+            _exitCommand = commandsProvider.ExitCommand();
 
-            _editSettingCommand = new EditGeneratorSettingsCommand(AppController.Instance(), AppController.Instance().Generator.GetSettings());
-
-            _generateCommand = new GenerateCommand(openApiModel, OnSuccess, OnError);
+            _generateCommand = commandsProvider.GeneratorCommand(openApiModel, OnSuccess, OnError);
         }
 
         public void SetWindow(MenuWindow window)
         {
             _window = window;
+
+            _editSettingCommand =
+                _commandsProvider.ShowPopupWindowCommand(new GeneratorSettingsWindow(_generatorSettings), null,
+                    _window);
         }
 
         public void DisplayMenu()

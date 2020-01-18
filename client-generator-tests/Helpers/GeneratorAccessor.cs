@@ -10,10 +10,9 @@ namespace client_generator_tests.Helpers
     public class GeneratorAccessor : Generator
     {
 
-        public GeneratorAccessor(ITemplateFactory templateFactory)
+        public GeneratorAccessor(ITemplateFactory templateFactory) : base(new GeneratorContext(templateFactory))
         {
             GeneratorSettings.SchemePlace = SchemeGeneratePlace.WithCode;
-            GeneratorContext = new GeneratorContext(templateFactory);
         }
 
         public void AccessParseSchemas(IEnumerable<ISchema> schemas)
