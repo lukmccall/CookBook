@@ -44,6 +44,7 @@
     <Folder Include="Data\" />
     <Folder Include="Domain\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Static" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Domain\Test.cs" />

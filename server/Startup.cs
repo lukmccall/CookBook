@@ -1,4 +1,4 @@
-using AutoMapper;
+using System.IO;
 using CookBook.API.Validators;
 using CookBook.Extensions;
 using CookBook.Middleware;
@@ -6,9 +6,11 @@ using CookBook.Options;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace CookBook
@@ -35,8 +37,6 @@ namespace CookBook
                     });
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.InstallServicesFromAssembly(Configuration);
-
-            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +47,7 @@ namespace CookBook
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                // app.UseMiddleware<AdminInjectMiddleware>(); always logged 
+                app.UseMiddleware<AdminInjectMiddleware>(); // always logged 
             }
 
             app.UseHttpsRedirection();
@@ -56,7 +56,28 @@ namespace CookBook
 
             app.UseAuthorization();
 
+            var cachePeriod = env.IsDevelopment() ? "600" : "604800";
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Static")),
+                RequestPath = "/static",
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={cachePeriod}");
+                }
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Static")),
+                RequestPath = new PathString("/static")
+            });
+
+
             var swaggerOptions = new SwaggerOptions();
+
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
 
             app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JsonRoute; });
@@ -65,7 +86,6 @@ namespace CookBook
             {
                 option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
             });
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 

@@ -31,6 +31,8 @@ namespace CookBook.API
 
             public const string ChangeCurrentUserPassword = Base + "/user/me/changePassword";
 
+            public const string ChangePicture = Base + "/user/changePicture";
+
         }
 
         public static class Recipe

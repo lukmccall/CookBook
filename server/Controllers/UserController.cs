@@ -1,8 +1,11 @@
+using System;
+using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using CookBook.API;
 using CookBook.API.Requests.AuthController;
 using CookBook.API.Requests.UserController;
+using CookBook.API.Responses;
 using CookBook.API.Responses.UserController;
 using CookBook.Domain;
 using logger;
@@ -90,6 +93,25 @@ namespace CookBook.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost(Urls.User.ChangePicture)]
+        [Consumes("multipart/form-data")]
+        [ProducesResponseType(typeof(ValidationFailedResponse), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public async Task<IActionResult> ChangePicture(IFormFile picture)
+        {
+            var pathToStaticFolder = Path.Combine(Directory.GetCurrentDirectory(), "Static");
+            var extension = Path.GetExtension(picture.FileName);
+            var newName =
+                $"{GeCurrentUser().Id}_{DateTime.Now:yyyy-M-d_HH:mm}{Guid.NewGuid().ToString().Substring(0, 8)}{extension}";
+
+            await using var file = System.IO.File.Open(Path.Combine(pathToStaticFolder, newName), FileMode.CreateNew);
+            await picture.CopyToAsync(file);
+
+            var url = $"/static/{newName}";
+
+            return Ok(url);
         }
 
     }
