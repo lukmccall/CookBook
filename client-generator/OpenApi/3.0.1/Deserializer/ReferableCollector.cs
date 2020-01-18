@@ -7,11 +7,16 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
     public class ReferableCollector : IReferenceCollector
     {
 
-        private readonly ReferencesRegister _register = new ReferencesRegister();
+        private readonly ReferencesRegister _register;
 
 
         private HashSet<(string @ref, string path)> _missingReferences =
             new HashSet<(string @ref, string path)>();
+
+        public ReferableCollector(ReferencesRegister referencesRegister)
+        {
+            _register = referencesRegister;
+        }
 
         public void Visit(string path, IReferable<object> obj)
         {

@@ -1,15 +1,14 @@
 using System;
+using client_generator.App.Windows.MenuWindowStates;
 using client_generator.Generators;
 using Terminal.Gui;
 
 namespace client_generator.App.Windows
 {
-    public class GeneratorSettingsWindow : Window
+    public class GeneratorSettingsWindow : PopupWindow
     {
 
         private readonly TextField _clientFileName;
-
-        private readonly Action _onDone;
 
         private readonly RadioGroup _schemaPlace;
 
@@ -19,11 +18,10 @@ namespace client_generator.App.Windows
 
         private readonly TextField _typesFileName;
 
-        public GeneratorSettingsWindow(Action onDone, GeneratorSettings settings) : base(
+        public GeneratorSettingsWindow(GeneratorSettings settings) : base(
             "Code Generator - Generator Settings")
         {
             _settings = settings;
-            _onDone = onDone;
 
             var urlLabel = new Label(1, 2, "Server url:");
             _serverUrl = new TextField(_settings.ServerUrl)
@@ -79,7 +77,8 @@ namespace client_generator.App.Windows
             _settings.ClientFileName = _clientFileName.Text.ToString() ?? "client";
             _settings.TypesFileName = _typesFileName.Text.ToString() ?? "types";
             _settings.SchemePlace = (SchemeGeneratePlace) _schemaPlace.Selected;
-            _onDone.Invoke();
+
+            OnExit?.Invoke(null);
         }
 
     }

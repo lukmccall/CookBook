@@ -5,12 +5,7 @@ namespace client_generator.OpenApi._3._0._1.Deserializer
     public class ReferencesRegister
     {
 
-        private readonly Dictionary<string, object> _objectRegister;
-
-        public ReferencesRegister()
-        {
-            _objectRegister = new Dictionary<string, object>();
-        }
+        private readonly Dictionary<string, object> _objectRegister = new Dictionary<string, object>();
 
         public void Register(string reference, object obj)
         {

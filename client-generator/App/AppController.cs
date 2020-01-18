@@ -1,7 +1,6 @@
 using System;
 using client_generator.Generators;
 using logger;
-using logger.LogStrategies;
 using Terminal.Gui;
 
 namespace client_generator.App
@@ -11,11 +10,7 @@ namespace client_generator.App
 
         private static readonly AppController AppControllerInstance = new AppController();
 
-        private readonly ILogger _logger = new LoggerFacade<RawLogger>(new LoggerSettings
-        {
-            LogLevel = LogLevel.Debug | LogLevel.Info | LogLevel.Warn | LogLevel.Error | LogLevel.Fatal,
-            DefaultLogStrategy = new FileLogStrategy("logs.log")
-        });
+        private ILogger _logger;
 
         private Window _currentWindow;
 
@@ -25,7 +20,7 @@ namespace client_generator.App
         {
         }
 
-        public GeneratorTemplate Generator { get; } = new Generator();
+        public GeneratorTemplate Generator { get; private set; }
 
         public static AppController Instance()
         {
@@ -37,10 +32,12 @@ namespace client_generator.App
             return AppControllerInstance._logger;
         }
 
-        public void InitApp<T>() where T : Window, new()
+        public void StartWindow(Window window, GeneratorTemplate generator, ILogger logger)
         {
-            _logger.Info("Initialization...");
-            Application.Init();
+            _logger = logger;
+            Generator = generator;
+
+            _logger.Info("Initialization gui...");
             _toplevel = new Toplevel
             {
                 X = 0,
@@ -49,7 +46,7 @@ namespace client_generator.App
                 Height = Dim.Fill()
             };
 
-            _currentWindow = new T();
+            _currentWindow = window;
             _toplevel.Add(_currentWindow);
 
             _logger.Info("Star up...");

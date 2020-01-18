@@ -7,22 +7,25 @@ namespace client_generator.App.Windows
     public class MenuWindow : Window
     {
 
-        private readonly ICommand _exitCommand = new ExitAppCommand(AppController.Instance());
-
-        private readonly ICommand _selectFileCommand;
+        private readonly ICommandsProvider _commandsProvider;
 
 
         private IMenuWindowState _state;
 
-        public MenuWindow() : base("Code Generator - Menu")
+        public MenuWindow(ICommandsProvider commandsProvider) : base("Code Generator - Menu")
         {
-            _selectFileCommand = new SelectFileCommand(AppController.Instance(), FileWasSelected);
-            ChangeState(new StartState(_selectFileCommand, _exitCommand));
+            _commandsProvider = commandsProvider;
+
+
+            ChangeState(new StartState(commandsProvider));
         }
 
-        private void FileWasSelected(FileSystemEntry file)
+        public void FileWasSelected(object obj)
         {
-            ChangeState(new FileWasSelectedState(file, _selectFileCommand, _exitCommand));
+            if (obj is FileSystemEntry file)
+            {
+                ChangeState(new FileWasSelectedState(file, _commandsProvider));
+            }
         }
 
         public void ChangeState(IMenuWindowState newState)

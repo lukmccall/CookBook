@@ -6,21 +6,27 @@ namespace client_generator.App.Windows.MenuWindowStates
     internal class StartState : IMenuWindowState
     {
 
+        private readonly ICommandsProvider _commandsProvider;
+
         private readonly ICommand _exitCommand;
 
-        private readonly ICommand _selectFileCommand;
+        private ICommand _selectFileCommand;
 
         private MenuWindow _window;
 
-        public StartState(ICommand selectFileCommand, ICommand exitCommand)
+        public StartState(ICommandsProvider commandsProvider)
         {
-            _selectFileCommand = selectFileCommand;
-            _exitCommand = exitCommand;
+            _commandsProvider = commandsProvider;
+
+            _exitCommand = commandsProvider.ExitCommand();
         }
 
         public void SetWindow(MenuWindow window)
         {
             _window = window;
+
+            _selectFileCommand =
+                _commandsProvider.ShowPopupWindowCommand(new FileSelectorWindow(), _window.FileWasSelected, _window);
         }
 
         public void DisplayMenu()

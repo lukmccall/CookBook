@@ -10,9 +10,14 @@ namespace client_generator.Generators
     public abstract class GeneratorTemplate
     {
 
-        protected IGeneratorContext GeneratorContext = new GeneratorContext(new TemplatesFactory());
+        protected readonly IGeneratorContext GeneratorContext;
 
-        protected readonly GeneratorSettings GeneratorSettings = new GeneratorSettings();
+        protected readonly GeneratorSettings GeneratorSettings = new GeneratorSettings(); // set up default options
+
+        protected GeneratorTemplate(IGeneratorContext context)
+        {
+            GeneratorContext = context;
+        }
 
         public GeneratorSettings GetSettings()
         {

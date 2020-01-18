@@ -8,6 +8,10 @@ namespace client_generator.Generators
     internal class MinimisingGenerator : Generator
     {
 
+        public MinimisingGenerator(IGeneratorContext context) : base(context)
+        {
+        }
+
         protected override void CreateFiles(Dictionary<string, Type> types, Dictionary<string, Function> functions)
         {
             var generatedFiles = FileStrategies[GeneratorSettings.SchemePlace].CreateFiles(types, functions);

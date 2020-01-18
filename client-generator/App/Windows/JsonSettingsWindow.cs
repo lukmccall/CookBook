@@ -1,10 +1,10 @@
-using System;
+using client_generator.App.Windows.MenuWindowStates;
 using Newtonsoft.Json;
 using Terminal.Gui;
 
 namespace client_generator.App.Windows
 {
-    public class JsonSettingsWindow : Window
+    public class JsonSettingsWindow : PopupWindow
     {
 
         private readonly RadioGroup _constructorHandlingOptions;
@@ -15,12 +15,10 @@ namespace client_generator.App.Windows
 
         private readonly RadioGroup _nullValueHandlingOptions;
 
-        private readonly Action _onDone;
 
-        public JsonSettingsWindow(Action onDone, JsonSerializerSettings jsonSerializerSettings) : base(
+        public JsonSettingsWindow(JsonSerializerSettings jsonSerializerSettings) : base(
             "Code Generator - Deserialization settings")
         {
-            _onDone = onDone;
             _jsonSerializerSettings = jsonSerializerSettings;
 
             var g1Label = new Label(1, 1, "NullValueHandling:");
@@ -74,7 +72,7 @@ namespace client_generator.App.Windows
             _jsonSerializerSettings.MissingMemberHandling =
                 (MissingMemberHandling) _missingMemberHandlingOptions.Selected;
 
-            _onDone.Invoke();
+            OnExit?.Invoke(null);
         }
 
     }
