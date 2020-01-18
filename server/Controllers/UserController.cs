@@ -99,8 +99,15 @@ namespace CookBook.Controllers
         [Consumes("multipart/form-data")]
         [ProducesResponseType(typeof(ValidationFailedResponse), StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> ChangePicture(IFormFile picture)
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             var pathToStaticFolder = Path.Combine(Directory.GetCurrentDirectory(), "Static");
             var extension = Path.GetExtension(picture.FileName);
             var newName =
@@ -109,7 +116,9 @@ namespace CookBook.Controllers
             await using var file = System.IO.File.Open(Path.Combine(pathToStaticFolder, newName), FileMode.CreateNew);
             await picture.CopyToAsync(file);
 
+
             var url = $"/static/{newName}";
+            user.PhotoUrl = url;
 
             return Ok(url);
         }

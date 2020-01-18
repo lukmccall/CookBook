@@ -14,5 +14,7 @@ namespace CookBook.Domain
 
         public string Description { get; set; }
 
+        public string PhotoUrl { get; set; }
+
     }
 }
