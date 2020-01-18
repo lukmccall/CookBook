@@ -13,6 +13,8 @@ namespace CookBook.ExternalApi
 
         public int? Ranking { get; set; }
 
+        public int Page { get; set; } = 1;
+
         public IEnumerable<string> Ingredients { get; set; }
 
     }

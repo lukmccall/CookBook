@@ -44,16 +44,21 @@ namespace CookBook.ExternalApi
         public async Task<IList<Recipe>> FindRecipeByIngredients(IngredientsQuery list)
         {
             var ingredientsConcat = string.Join(",+", list.Ingredients);
+
+            var page = list.Page > 0 ? list.Page : 1;
+
             var url = _apiOptions.Server + "/recipes/findByIngredients?"
                                          + QueryParam(ingredientsConcat, "ingredients")
                                          + QueryParam(list.LimitLicense, "limitLicense")
-                                         + QueryParam(list.Number ?? 25, "number")
+                                         + QueryParam(100, "number")
                                          + QueryParam(list.Ranking, "ranking")
                                          + QueryParam(list.IgnorePantry, "ignorePantry")
                                          + _apiOptions.ApiKey;
             var recipesJson = await GetStringAsync(url);
 
-            return JsonConvert.DeserializeObject<IList<Recipe>>(recipesJson);
+            var recipes = JsonConvert.DeserializeObject<List<Recipe>>(recipesJson);
+
+            return recipes.GetRange(page - 1, list.Number ?? 10);
         }
 
         public async Task<IList<RecipeInstruction>> GetAnalyzedRecipeInstructions(long id, bool? stepBreakdown)

@@ -17,6 +17,8 @@ namespace CookBook.API.Requests.RecipesController
 
         public int? Ranking { get; set; }
 
+        public int Page { get; set; } = 1;
+
         [Required]
         public IEnumerable<string> Ingredients { get; set; }
 
