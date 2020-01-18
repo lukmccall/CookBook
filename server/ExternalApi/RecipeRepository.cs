@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CookBook.ExternalApi.Models;
 using CookBook.Options;
+using CookBook.Services;
 using Newtonsoft.Json;
 
 namespace CookBook.ExternalApi
@@ -15,10 +17,13 @@ namespace CookBook.ExternalApi
 
         private readonly HttpClient _httpClient;
 
-        public RecipeRepository(ApiOptions apiOptions, HttpClient httpClient)
+        private readonly ICacheService _cacheService;
+
+        public RecipeRepository(ApiOptions apiOptions, HttpClient httpClient, ICacheService cacheService)
         {
             _apiOptions = apiOptions;
             _httpClient = httpClient;
+            _cacheService = cacheService;
         }
 
         public async Task<RecipePriceBreakdown> GetRecipePriceBreakdown(long id)
@@ -46,7 +51,7 @@ namespace CookBook.ExternalApi
             var ingredientsConcat = string.Join(",+", list.Ingredients);
 
             var page = list.Page > 0 ? list.Page : 1;
-
+            
             var url = _apiOptions.Server + "/recipes/findByIngredients?"
                                          + QueryParam(ingredientsConcat, "ingredients")
                                          + QueryParam(list.LimitLicense, "limitLicense")
@@ -54,9 +59,19 @@ namespace CookBook.ExternalApi
                                          + QueryParam(list.Ranking, "ranking")
                                          + QueryParam(list.IgnorePantry, "ignorePantry")
                                          + _apiOptions.ApiKey;
-            var recipesJson = await GetStringAsync(url);
+            string recipesJson;
+            if (await _cacheService.HasKeyAsync(url))
+            {
+                recipesJson = await _cacheService.GetKeyAsync(url);
+            }
+            else
+            {
+                recipesJson = await GetStringAsync(url);
+            }
 
             var recipes = JsonConvert.DeserializeObject<List<Recipe>>(recipesJson);
+
+            await _cacheService.PutStringAsync(url, TimeSpan.FromMinutes(30), recipesJson);
 
             return recipes.GetRange(page - 1, list.Number ?? 10);
         }
