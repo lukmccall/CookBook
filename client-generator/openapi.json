@@ -7,7 +7,9 @@
   "paths": {
     "/api/v1/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "operationId": "register",
         "requestBody": {
           "content": {
@@ -54,7 +56,9 @@
     },
     "/api/v1/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "operationId": "login",
         "requestBody": {
           "content": {
@@ -101,7 +105,9 @@
     },
     "/api/v1/auth/logout": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "operationId": "logout",
         "requestBody": {
           "content": {
@@ -141,7 +147,9 @@
     },
     "/api/v1/auth/refresh": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "operationId": "refresh",
         "requestBody": {
           "content": {
@@ -186,9 +194,181 @@
         }
       }
     },
+    "/api/v1/comment/get/{id}": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "operationId": "getComments",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentsResponse"
+                  },
+                  "nullable": true
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentsResponse"
+                  },
+                  "nullable": true
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentsResponse"
+                  },
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/comment/add/{id}": {
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "operationId": "addComment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentsResponse"
+                  },
+                  "nullable": true
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentsResponse"
+                  },
+                  "nullable": true
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentsResponse"
+                  },
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Client Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/recipePriceBreakdown/{id}": {
       "get": {
-        "tags": ["Recipes"],
+        "tags": [
+          "Recipes"
+        ],
         "operationId": "getRecipePriceBreakdown",
         "parameters": [
           {
@@ -233,7 +413,9 @@
     },
     "/recipeIngredients/{id}": {
       "get": {
-        "tags": ["Recipes"],
+        "tags": [
+          "Recipes"
+        ],
         "operationId": "getRecipeIngredients",
         "parameters": [
           {
@@ -278,7 +460,9 @@
     },
     "/searchByIngredients": {
       "post": {
-        "tags": ["Recipes"],
+        "tags": [
+          "Recipes"
+        ],
         "operationId": "searchByIngredients",
         "requestBody": {
           "content": {
@@ -325,7 +509,9 @@
     },
     "/recipeInstructions/{id}": {
       "get": {
-        "tags": ["Recipes"],
+        "tags": [
+          "Recipes"
+        ],
         "operationId": "recipeInstructions",
         "parameters": [
           {
@@ -382,7 +568,9 @@
     },
     "/api/v1/users/me/get": {
       "get": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "operationId": "geCurrentUser",
         "responses": {
           "400": {
@@ -425,7 +613,9 @@
     },
     "/api/v1/users/me/update": {
       "patch": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "operationId": "updateCurrentUser",
         "requestBody": {
           "content": {
@@ -470,7 +660,9 @@
     },
     "/api/v1/user/me/changePassword": {
       "patch": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "operationId": "changeCurrentUserPassword",
         "requestBody": {
           "content": {
@@ -513,9 +705,103 @@
         ]
       }
     },
+    "/api/v1/user/changePicture": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "changePicture",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "picture": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "picture": {
+                  "style": "form"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "picture": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "picture": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Client Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationFailedResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/recipeVisualization/{id}": {
       "get": {
-        "tags": ["Widgets"],
+        "tags": [
+          "Widgets"
+        ],
         "operationId": "recipeVisualization",
         "parameters": [
           {
@@ -588,7 +874,9 @@
     },
     "/equipmentVisualization/{id}": {
       "get": {
-        "tags": ["Widgets"],
+        "tags": [
+          "Widgets"
+        ],
         "operationId": "equipmentVisualization",
         "parameters": [
           {
@@ -661,7 +949,9 @@
     },
     "/priceBreakdownVisualization/{id}": {
       "get": {
-        "tags": ["Widgets"],
+        "tags": [
+          "Widgets"
+        ],
         "operationId": "priceBreakdownVisualization",
         "parameters": [
           {
@@ -734,7 +1024,9 @@
     },
     "/nutrionVisualization/{id}": {
       "get": {
-        "tags": ["Widgets"],
+        "tags": [
+          "Widgets"
+        ],
         "operationId": "nutrionVisualization",
         "parameters": [
           {
@@ -809,7 +1101,11 @@
   "components": {
     "schemas": {
       "RegisterRequest": {
-        "required": ["email", "password", "userName"],
+        "required": [
+          "email",
+          "password",
+          "userName"
+        ],
         "type": "object",
         "properties": {
           "email": {
@@ -826,7 +1122,11 @@
         "nullable": true
       },
       "AuthSuccessResponse": {
-        "required": ["refreshToken", "success", "token"],
+        "required": [
+          "refreshToken",
+          "success",
+          "token"
+        ],
         "type": "object",
         "properties": {
           "token": {
@@ -842,7 +1142,10 @@
         "nullable": true
       },
       "AuthFailedResponse": {
-        "required": ["errors", "success"],
+        "required": [
+          "errors",
+          "success"
+        ],
         "type": "object",
         "properties": {
           "success": {
@@ -859,7 +1162,10 @@
         "nullable": true
       },
       "FiledErrors": {
-        "required": ["field", "messages"],
+        "required": [
+          "field",
+          "messages"
+        ],
         "type": "object",
         "properties": {
           "field": {
@@ -876,7 +1182,10 @@
         "nullable": true
       },
       "ValidationFailedResponse": {
-        "required": ["errors", "status"],
+        "required": [
+          "errors",
+          "status"
+        ],
         "type": "object",
         "properties": {
           "status": {
@@ -893,7 +1202,10 @@
         "nullable": true
       },
       "LoginRequest": {
-        "required": ["email", "password"],
+        "required": [
+          "email",
+          "password"
+        ],
         "type": "object",
         "properties": {
           "email": {
@@ -907,7 +1219,9 @@
         "nullable": true
       },
       "LogoutRequest": {
-        "required": ["token"],
+        "required": [
+          "token"
+        ],
         "type": "object",
         "properties": {
           "token": {
@@ -917,7 +1231,10 @@
         "nullable": true
       },
       "RefreshRequest": {
-        "required": ["refreshToken", "token"],
+        "required": [
+          "refreshToken",
+          "token"
+        ],
         "type": "object",
         "properties": {
           "token": {
@@ -925,6 +1242,71 @@
           },
           "refreshToken": {
             "type": "string"
+          }
+        },
+        "nullable": true
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "userSurname": {
+            "type": "string",
+            "nullable": true
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "photoUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "CommentsResponse": {
+        "type": "object",
+        "properties": {
+          "recipeId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserResponse"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          },
+          "creationTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "nullable": true
+      },
+      "CommentRequest": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string",
+            "nullable": true
           }
         },
         "nullable": true
@@ -1063,7 +1445,9 @@
         "nullable": true
       },
       "IngredientsRequest": {
-        "required": ["ingredients"],
+        "required": [
+          "ingredients"
+        ],
         "type": "object",
         "properties": {
           "ignorePantry": {
@@ -1083,6 +1467,10 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
           },
           "ingredients": {
             "type": "array",
@@ -1301,36 +1689,6 @@
         },
         "nullable": true
       },
-      "UserResponse": {
-        "type": "object",
-        "properties": {
-          "userSurname": {
-            "type": "string",
-            "nullable": true
-          },
-          "age": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "nullable": true
-      },
       "UpdateCurrentUserRequest": {
         "type": "object",
         "properties": {
@@ -1359,7 +1717,10 @@
         "nullable": true
       },
       "ChangeCurrentUserPasswordRequest": {
-        "required": ["newPassword", "oldPassword"],
+        "required": [
+          "newPassword",
+          "oldPassword"
+        ],
         "type": "object",
         "properties": {
           "oldPassword": {

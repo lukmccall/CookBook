@@ -84,6 +84,46 @@ class RefreshRequest {
   }
 }
 
+class UserResponse {
+  userSurname: string;
+  age: number;
+  description: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
+  photoUrl: string;
+
+  constructor(data: any) {
+    this.userSurname = data['userSurname'];
+    this.age = data['age'];
+    this.description = data['description'];
+    this.userName = data['userName'];
+    this.email = data['email'];
+    this.phoneNumber = data['phoneNumber'];
+    this.photoUrl = data['photoUrl'];
+  }
+
+  static fromResponse(data?: any): UserResponse {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new UserResponse(_data);
+    return _response;
+  }
+}
+
+class CommentRequest {
+  body: string;
+
+  constructor(data: any) {
+    this.body = data['body'];
+  }
+
+  static fromResponse(data?: any): CommentRequest {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new CommentRequest(_data);
+    return _response;
+  }
+}
+
 class ProblemDetails {
   type: string;
   title: string;
@@ -174,30 +214,6 @@ class PhotoResponse {
   }
 }
 
-class UserResponse {
-  userSurname: string;
-  age: number;
-  description: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-
-  constructor(data: any) {
-    this.userSurname = data['userSurname'];
-    this.age = data['age'];
-    this.description = data['description'];
-    this.userName = data['userName'];
-    this.email = data['email'];
-    this.phoneNumber = data['phoneNumber'];
-  }
-
-  static fromResponse(data?: any): UserResponse {
-    const _data = typeof data === 'object' ? data : {};
-    const _response = new UserResponse(_data);
-    return _response;
-  }
-}
-
 class UpdateCurrentUserRequest {
   userName: string;
   userSurname: string;
@@ -248,6 +264,40 @@ class WidgetResponse {
   static fromResponse(data?: any): WidgetResponse {
     const _data = typeof data === 'object' ? data : {};
     const _response = new WidgetResponse(_data);
+    return _response;
+  }
+}
+
+class schema {
+  picture: string;
+
+  constructor(data: any) {
+    this.picture = data['picture'];
+  }
+
+  static fromResponse(data?: any): schema {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new schema(_data);
+    return _response;
+  }
+}
+
+class CommentsResponse {
+  recipeId: number;
+  body: string;
+  creationTime: string;
+  user: UserResponse;
+
+  constructor(data: any) {
+    this.recipeId = data['recipeId'];
+    this.body = data['body'];
+    this.creationTime = data['creationTime'];
+    this.user = data['user'];
+  }
+
+  static fromResponse(data?: any): CommentsResponse {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new CommentsResponse(_data);
     return _response;
   }
 }
@@ -351,6 +401,7 @@ class IngredientsRequest {
   limitLicense: boolean;
   number: number;
   ranking: number;
+  page: number;
   ingredients?: Array<string>;
 
   constructor(data: any) {
@@ -358,6 +409,7 @@ class IngredientsRequest {
     this.limitLicense = data['limitLicense'];
     this.number = data['number'];
     this.ranking = data['ranking'];
+    this.page = data['page'];
     this.ingredients = [] as any;
     if (Array.isArray(data['ingredients'])) {
       for (let _item of data['ingredients']) {
@@ -583,15 +635,18 @@ export {
   LoginRequest,
   LogoutRequest,
   RefreshRequest,
+  UserResponse,
+  CommentRequest,
   ProblemDetails,
   MetricResponse,
   UsResponse,
   TemperatureResponse,
   PhotoResponse,
-  UserResponse,
   UpdateCurrentUserRequest,
   ChangeCurrentUserPasswordRequest,
   WidgetResponse,
+  schema,
+  CommentsResponse,
   AmountResponse,
   EquipmentResponse,
   AuthFailedResponse,

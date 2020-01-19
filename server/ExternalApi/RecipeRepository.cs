@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CookBook.Extensions;
 using CookBook.ExternalApi.Models;
 using CookBook.Options;
 using CookBook.Services;
@@ -51,6 +53,7 @@ namespace CookBook.ExternalApi
             var ingredientsConcat = string.Join(",+", list.Ingredients);
 
             var page = list.Page > 0 ? list.Page : 1;
+            var count = list.Number ?? 10;
             
             var url = _apiOptions.Server + "/recipes/findByIngredients?"
                                          + QueryParam(ingredientsConcat, "ingredients")
@@ -69,11 +72,12 @@ namespace CookBook.ExternalApi
                 recipesJson = await GetStringAsync(url);
             }
 
-            var recipes = JsonConvert.DeserializeObject<List<Recipe>>(recipesJson);
+            var recipes = JsonConvert.DeserializeObject<List<Recipe>>(recipesJson)
+                .ObjectDistinct(x => x.Id).ToList();
 
             await _cacheService.PutStringAsync(url, TimeSpan.FromMinutes(30), recipesJson);
 
-            return recipes.GetRange(page - 1, list.Number ?? 10);
+            return recipes.Skip((page - 1) * count).Take(count).ToList();
         }
 
         public async Task<IList<RecipeInstruction>> GetAnalyzedRecipeInstructions(long id, bool? stepBreakdown)
