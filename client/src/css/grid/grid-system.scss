@@ -16,14 +16,19 @@ $half-gutter-width: $gutter-width * 0.5;
   padding-left: $outer-margin;
 }
 
+@media only screen and (min-width: $max-width) {
+  .row {
+    margin-right: $gutter-compensation;
+    margin-left: $gutter-compensation;
+  }
+}
+
 .row {
   box-sizing: border-box;
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-right: $gutter-compensation;
-  margin-left: $gutter-compensation;
 }
 
 .col {

@@ -84,6 +84,34 @@ class RefreshRequest {
   }
 }
 
+class UserNameResponse {
+  userName: string;
+
+  constructor(data: any) {
+    this.userName = data['userName'];
+  }
+
+  static fromResponse(data?: any): UserNameResponse {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new UserNameResponse(_data);
+    return _response;
+  }
+}
+
+class CommentRequest {
+  body: string;
+
+  constructor(data: any) {
+    this.body = data['body'];
+  }
+
+  static fromResponse(data?: any): CommentRequest {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new CommentRequest(_data);
+    return _response;
+  }
+}
+
 class ProblemDetails {
   type: string;
   title: string;
@@ -181,6 +209,7 @@ class UserResponse {
   userName: string;
   email: string;
   phoneNumber: string;
+  photoUrl: string;
 
   constructor(data: any) {
     this.userSurname = data['userSurname'];
@@ -189,6 +218,7 @@ class UserResponse {
     this.userName = data['userName'];
     this.email = data['email'];
     this.phoneNumber = data['phoneNumber'];
+    this.photoUrl = data['photoUrl'];
   }
 
   static fromResponse(data?: any): UserResponse {
@@ -248,6 +278,42 @@ class WidgetResponse {
   static fromResponse(data?: any): WidgetResponse {
     const _data = typeof data === 'object' ? data : {};
     const _response = new WidgetResponse(_data);
+    return _response;
+  }
+}
+
+class schema {
+  picture: string;
+
+  constructor(data: any) {
+    this.picture = data['picture'];
+  }
+
+  static fromResponse(data?: any): schema {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new schema(_data);
+    return _response;
+  }
+}
+
+class CommentsResponse {
+  id: number;
+  recipeId: number;
+  body: string;
+  creationTime: string;
+  user: UserNameResponse;
+
+  constructor(data: any) {
+    this.id = data['id'];
+    this.recipeId = data['recipeId'];
+    this.body = data['body'];
+    this.creationTime = data['creationTime'];
+    this.user = data['user'];
+  }
+
+  static fromResponse(data?: any): CommentsResponse {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new CommentsResponse(_data);
     return _response;
   }
 }
@@ -351,6 +417,7 @@ class IngredientsRequest {
   limitLicense: boolean;
   number: number;
   ranking: number;
+  page: number;
   ingredients?: Array<string>;
 
   constructor(data: any) {
@@ -358,6 +425,7 @@ class IngredientsRequest {
     this.limitLicense = data['limitLicense'];
     this.number = data['number'];
     this.ranking = data['ranking'];
+    this.page = data['page'];
     this.ingredients = [] as any;
     if (Array.isArray(data['ingredients'])) {
       for (let _item of data['ingredients']) {
@@ -583,6 +651,8 @@ export {
   LoginRequest,
   LogoutRequest,
   RefreshRequest,
+  UserNameResponse,
+  CommentRequest,
   ProblemDetails,
   MetricResponse,
   UsResponse,
@@ -592,6 +662,8 @@ export {
   UpdateCurrentUserRequest,
   ChangeCurrentUserPasswordRequest,
   WidgetResponse,
+  schema,
+  CommentsResponse,
   AmountResponse,
   EquipmentResponse,
   AuthFailedResponse,

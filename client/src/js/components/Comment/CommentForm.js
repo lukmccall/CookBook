@@ -5,8 +5,6 @@ export default class CommentForm extends React.Component {
     return (
       <form className="comment-form" onSubmit={this._handleSubmit.bind(this)}>
         <div className="comment-form-fields">
-          <input placeholder="Name" required ref={input => (this._author = input)}></input>
-          <br />
           <textarea
             placeholder="Comment"
             rows="4"
@@ -22,8 +20,8 @@ export default class CommentForm extends React.Component {
 
   _handleSubmit(event) {
     event.preventDefault(); // prevents page from reloading on submit
-    let author = this._author;
     let body = this._body;
-    this.props.addComment(author.value, body.value);
+    this.props.addComment(body.value);
+    this._body.value = '';
   }
 }

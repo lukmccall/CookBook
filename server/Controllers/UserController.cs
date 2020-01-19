@@ -1,8 +1,11 @@
+using System;
+using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using CookBook.API;
 using CookBook.API.Requests.AuthController;
 using CookBook.API.Requests.UserController;
+using CookBook.API.Responses;
 using CookBook.API.Responses.UserController;
 using CookBook.Domain;
 using logger;
@@ -87,6 +90,42 @@ namespace CookBook.Controllers
             {
                 _logger.Info($"Password updated successfully - {user.Email}.");
                 return NoContent();
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPost(Urls.User.ChangePicture)]
+        [Consumes("multipart/form-data")]
+        [ProducesResponseType(typeof(ValidationFailedResponse), StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ChangePicture(IFormFile picture)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var pathToStaticFolder = Path.Combine(Directory.GetCurrentDirectory(), "Static");
+            var extension = Path.GetExtension(picture.FileName);
+            var newName =
+                $"{user.Id}_{DateTime.Now:yyyy-M-d_HH:mm}{Guid.NewGuid().ToString().Substring(0, 8)}{extension}";
+
+            await using var file = System.IO.File.Open(Path.Combine(pathToStaticFolder, newName), FileMode.CreateNew);
+            await picture.CopyToAsync(file);
+            
+            var url = $"/static/{newName}";
+            user.PhotoUrl = url;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                _logger.Info($"Avatar updated successfully - {user.Email}.");
+                return Ok(url);
             }
 
             return BadRequest();

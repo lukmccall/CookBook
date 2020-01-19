@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CookBook.Extensions;
 using CookBook.ExternalApi.Models;
 using CookBook.Options;
+using CookBook.Services;
 using Newtonsoft.Json;
 
 namespace CookBook.ExternalApi
@@ -15,10 +19,13 @@ namespace CookBook.ExternalApi
 
         private readonly HttpClient _httpClient;
 
-        public RecipeRepository(ApiOptions apiOptions, HttpClient httpClient)
+        private readonly ICacheService _cacheService;
+
+        public RecipeRepository(ApiOptions apiOptions, HttpClient httpClient, ICacheService cacheService)
         {
             _apiOptions = apiOptions;
             _httpClient = httpClient;
+            _cacheService = cacheService;
         }
 
         public async Task<RecipePriceBreakdown> GetRecipePriceBreakdown(long id)
@@ -44,16 +51,32 @@ namespace CookBook.ExternalApi
         public async Task<IList<Recipe>> FindRecipeByIngredients(IngredientsQuery list)
         {
             var ingredientsConcat = string.Join(",+", list.Ingredients);
+
+            var page = list.Page > 0 ? list.Page : 1;
+            var count = list.Number ?? 10;
+            
             var url = _apiOptions.Server + "/recipes/findByIngredients?"
                                          + QueryParam(ingredientsConcat, "ingredients")
                                          + QueryParam(list.LimitLicense, "limitLicense")
-                                         + QueryParam(list.Number ?? 25, "number")
+                                         + QueryParam(100, "number")
                                          + QueryParam(list.Ranking, "ranking")
                                          + QueryParam(list.IgnorePantry, "ignorePantry")
                                          + _apiOptions.ApiKey;
-            var recipesJson = await GetStringAsync(url);
+            string recipesJson;
+            if (await _cacheService.HasKeyAsync(url))
+            {
+                recipesJson = await _cacheService.GetKeyAsync(url);
+            }
+            else
+            {
+                recipesJson = await GetStringAsync(url);
+            }
+            var recipes = JsonConvert.DeserializeObject<List<Recipe>>(recipesJson)
+                .ObjectDistinct(x => x.Id).ToList();
 
-            return JsonConvert.DeserializeObject<IList<Recipe>>(recipesJson);
+            await _cacheService.PutStringAsync(url, TimeSpan.FromMinutes(30), recipesJson);
+
+            return recipes.Skip((page - 1) * count).Take(count).ToList();
         }
 
         public async Task<IList<RecipeInstruction>> GetAnalyzedRecipeInstructions(long id, bool? stepBreakdown)

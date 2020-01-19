@@ -13,17 +13,61 @@ export default class Home extends Component {
     pageIndex: -1,
     recipe: {},
     recipes: [],
+    nextPage: 1,
+    nextLoadIsPossible: false,
+  };
+
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleScroll);
+  };
+
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.handleScroll);
+  };
+
+  handleScroll = () => {
+    if (this.state.nextLoadIsPossible && this.getScrollPercent() > 0.8) {
+      this.setState({
+        nextLoadIsPossible: false,
+      });
+
+      this.loadNextPage();
+    }
+  };
+
+  getScrollPercent = () => {
+    var h = document.documentElement,
+      b = document.body,
+      st = 'scrollTop',
+      sh = 'scrollHeight';
+    return (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight);
   };
 
   handleSubmit = async tags => {
     this.handleIndex(2);
-    ApiClient.searchByIngredients({ ingredients: tags }).then(recipes => {
-      this.setState({
-        tags: tags,
-        pageIndex: 0,
-        recipes: recipes,
-      });
-    });
+    ApiClient.searchByIngredients({ ingredients: tags, page: 1 })
+      .then(recipes => {
+        this.setState({
+          tags: tags,
+          pageIndex: 0,
+          recipes: recipes,
+          nextPage: 2,
+          nextLoadIsPossible: true,
+        });
+      })
+      .catch(e => {});
+  };
+
+  loadNextPage = async () => {
+    ApiClient.searchByIngredients({ ingredients: this.state.tags, page: this.state.nextPage })
+      .then(recipes => {
+        this.setState({
+          recipes: [...this.state.recipes, ...recipes],
+          nextPage: this.state.nextPage + 1,
+          nextLoadIsPossible: recipes.length > 0,
+        });
+      })
+      .catch(e => {});
   };
 
   handleRecipeDetails = id => {
@@ -55,6 +99,10 @@ export default class Home extends Component {
     return (await ApiClient.equipmentVisualization(id, true)).code;
   };
 
+  loadComments = async id => {
+    return await ApiClient.getComments(id);
+  };
+
   render() {
     return (
       <div className="container">
@@ -79,6 +127,7 @@ export default class Home extends Component {
                   loadSteps={this.loadSteps}
                   loadEquipment={this.loadEquipment}
                   loadIngridients={this.loadIngridients}
+                  loadComments={this.loadComments}
                 />
               ) : (
                 ''

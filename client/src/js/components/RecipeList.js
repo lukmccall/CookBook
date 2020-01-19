@@ -4,7 +4,6 @@ import '../../css/recipeList.scss';
 
 export default class RecipeList extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="recipes-list-head">
         <div className="recipe-list-row">

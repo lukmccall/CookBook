@@ -27,10 +27,14 @@ class Navbar extends Component {
           <div className="navbar-btn" onClick={this.handleClick}>
             <i className="fas fa-caret-square-down"></i>
           </div>
+
           <div className="navbar-logo">
-            <i className="fas fa-utensils"></i>
-            <span className="navbar-title">CookBook</span>
+            <Link to="/">
+              <i className="fas fa-utensils"></i>
+              <span className="navbar-title">CookBook</span>
+            </Link>
           </div>
+
           <div className="navbar-btn">
             <Link to="/signIn" onClick={this.closeNavbar}>
               <i className="fas fa-sign-in-alt"></i>
@@ -67,14 +71,14 @@ class Navbar extends Component {
             </Link>
           </div>
         ) : (
-            <div className="navbar-signIn">
-              <Link to="/profile">
-                <span className="signIn-text">
-                  {this.props.user === undefined ? 'Zalogowany' : this.props.user.userName}
-                </span>
-              </Link>
-            </div>
-          )}
+          <div className="navbar-signIn">
+            <Link to="/profile">
+              <span className="signIn-text">
+                {this.props.user === undefined ? 'Zalogowany' : this.props.user.userName}
+              </span>
+            </Link>
+          </div>
+        )}
       </nav>
     );
   }

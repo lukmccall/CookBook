@@ -3,11 +3,11 @@ namespace CookBook.API
     public static class Urls
     {
 
-        public const string Root = "api";
+        private const string Root = "api";
 
-        public const string Version = "v1";
+        private const string Version = "v1";
 
-        public const string Base = Root + "/" + Version;
+        private const string Base = Root + "/" + Version;
 
         public static class Auth
         {
@@ -30,6 +30,17 @@ namespace CookBook.API
             public const string UpdateCurrentUser = Base + "/users/me/update";
 
             public const string ChangeCurrentUserPassword = Base + "/user/me/changePassword";
+
+            public const string ChangePicture = Base + "/user/changePicture";
+
+        }
+
+        public static class Comments
+        {
+
+            public const string GetComments = Base + "/comment/get/{id}";
+
+            public const string AddComment = Base + "/comment/add/{id}";
 
         }
 

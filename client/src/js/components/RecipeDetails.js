@@ -45,7 +45,7 @@ export default class RecipeDetails extends Component {
               <div className="recipe-details-image-block">
                 <img src={image} alt="recipe" width="80%" />
                 <div className="recipe-details-title">{title}</div>
-                <CommentBox />
+                <CommentBox loadComments={this.props.loadComments} id={this.props.recipe.id} />
               </div>
             </div>
             <div className="recipe-details-right-side side">
