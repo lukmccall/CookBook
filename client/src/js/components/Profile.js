@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ApiClient, TokenToAuth } from '../api';
+import { ApiClient, TokenToAuth, GetStaticUrl } from '../api';
 import { getUserData, logout } from '../actions/auth';
 import { Redirect } from 'react-router-dom';
 import ErrorList from './ErrorList';
@@ -15,9 +15,16 @@ class Profile extends Component {
     description: '',
     phoneNumber: '',
     errors: [],
+    photoUrl: '',
   };
 
+  photoInput = React.createRef();
+
   componentDidMount() {
+    this.updateUserData();
+  }
+
+  updateUserData = () => {
     if (this.props.user) {
       this.setState({
         userName: this.props.user.userName || this.state.userName,
@@ -25,9 +32,10 @@ class Profile extends Component {
         age: this.props.user.age || this.state.age,
         description: this.props.user.description || this.state.description,
         phoneNumber: this.props.user.phoneNumber || this.state.phoneNumber,
+        photoUrl: this.props.user.photoUrl || this.state.photoUrl,
       });
     }
-  }
+  };
 
   logout = () => {
     this.props.logout(this.props.logged.token);
@@ -69,20 +77,58 @@ class Profile extends Component {
         request[key] = value;
       }
     }
-    console.log(request);
-    if (this.state.userName)
+    if (this.state.userName) {
       ApiClient.updateCurrentUser(TokenToAuth(this.props.logged.token), request)
         .then(data => {
+          this.props.getUserData(TokenToAuth(this.props.logged.token));
           this.setState({
             errors: [],
+            needToBeUpdated: true,
           });
-          this.props.getUserData(TokenToAuth(this.props.logged.token));
         })
         .catch(() => {
           this.setState({
             errors: ['Invalide data'],
           });
         });
+    }
+  };
+
+  uploadPhoto = event => {
+    event.preventDefault();
+    const photoList = this.photoInput?.current?.files;
+    if (!photoList && photoList.length > 0) {
+      this.setState({
+        errors: ['Photo is required'],
+      });
+      return;
+    }
+
+    let formData = new FormData();
+
+    formData.append('picture', photoList[0]);
+    fetch(`${ApiClient.baseUrl}/api/v1/user/changePicture`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Authorization: TokenToAuth(this.props.logged.token),
+      },
+    })
+      .then(async data => {
+        this.setState({
+          errors: [],
+        });
+        this.props.getUserData(TokenToAuth(this.props.logged.token));
+        const photoUrl = await data.text();
+        this.setState({
+          photoUrl: photoUrl.replace(/"/g, ''),
+        });
+      })
+      .catch(() => {
+        this.setState({
+          errors: ['Invalide photo'],
+        });
+      });
   };
 
   main = () => {
@@ -98,7 +144,28 @@ class Profile extends Component {
         </div>
 
         <div className="row profile-form-row">
-          <div className="col-8 col-offset-2">
+          <div className="col-sm-3 col-12">
+            <img
+              className="profile-image"
+              src={GetStaticUrl(
+                this.state.photoUrl !== '' ? this.state.photoUrl : '/static/defaultAvatar.jpg'
+              )}
+              alt="avatar"
+            />
+            <form encType="multipart/form-data" onSubmit={this.uploadPhoto}>
+              <input
+                type="file"
+                id="avatar"
+                name="avatar"
+                accept="image/png, image/jpeg"
+                ref={this.photoInput}
+              />
+              <button className="profile-button" type="submit">
+                Save photo
+              </button>
+            </form>
+          </div>
+          <div className="col-sm-9 col-12">
             <form onSubmit={this.onSubmit}>
               {this.state.errors.length > 0 && <ErrorList errors={this.state.errors} />}
 

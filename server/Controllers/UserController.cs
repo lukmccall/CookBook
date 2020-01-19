@@ -100,6 +100,7 @@ namespace CookBook.Controllers
         [ProducesResponseType(typeof(ValidationFailedResponse), StatusCodes.Status422UnprocessableEntity)]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ChangePicture(IFormFile picture)
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -111,16 +112,23 @@ namespace CookBook.Controllers
             var pathToStaticFolder = Path.Combine(Directory.GetCurrentDirectory(), "Static");
             var extension = Path.GetExtension(picture.FileName);
             var newName =
-                $"{GeCurrentUser().Id}_{DateTime.Now:yyyy-M-d_HH:mm}{Guid.NewGuid().ToString().Substring(0, 8)}{extension}";
+                $"{user.Id}_{DateTime.Now:yyyy-M-d_HH:mm}{Guid.NewGuid().ToString().Substring(0, 8)}{extension}";
 
             await using var file = System.IO.File.Open(Path.Combine(pathToStaticFolder, newName), FileMode.CreateNew);
             await picture.CopyToAsync(file);
-
-
+            
             var url = $"/static/{newName}";
             user.PhotoUrl = url;
 
-            return Ok(url);
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                _logger.Info($"Avatar updated successfully - {user.Email}.");
+                return Ok(url);
+            }
+
+            return BadRequest();
         }
 
     }
