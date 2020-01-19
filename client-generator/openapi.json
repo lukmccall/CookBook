@@ -1246,34 +1246,10 @@
         },
         "nullable": true
       },
-      "UserResponse": {
+      "UserNameResponse": {
         "type": "object",
         "properties": {
-          "userSurname": {
-            "type": "string",
-            "nullable": true
-          },
-          "age": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
           "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "photoUrl": {
             "type": "string",
             "nullable": true
           }
@@ -1283,12 +1259,16 @@
       "CommentsResponse": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "recipeId": {
             "type": "integer",
             "format": "int64"
           },
           "user": {
-            "$ref": "#/components/schemas/UserResponse"
+            "$ref": "#/components/schemas/UserNameResponse"
           },
           "body": {
             "type": "string",
@@ -1684,6 +1664,40 @@
             "items": {
               "$ref": "#/components/schemas/StepInstructionReponse"
             },
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "userSurname": {
+            "type": "string",
+            "nullable": true
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "photoUrl": {
+            "type": "string",
             "nullable": true
           }
         },

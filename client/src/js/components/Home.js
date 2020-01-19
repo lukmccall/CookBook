@@ -55,7 +55,7 @@ export default class Home extends Component {
           nextLoadIsPossible: true,
         });
       })
-      .catch(e => alert("Couldn't connect with server."));
+      .catch(e => {});
   };
 
   loadNextPage = async () => {
@@ -67,7 +67,7 @@ export default class Home extends Component {
           nextLoadIsPossible: recipes.length > 0,
         });
       })
-      .catch(e => alert("Couldn't connect with server."));
+      .catch(e => {});
   };
 
   handleRecipeDetails = id => {
@@ -100,7 +100,7 @@ export default class Home extends Component {
   };
 
   loadComments = async id => {
-    return await ApiClient.loadComments(id);
+    return await ApiClient.getComments(id);
   };
 
   render() {

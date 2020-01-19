@@ -1,22 +1,32 @@
 import React from 'react';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
+import { ApiClient, TokenToAuth } from '../../api';
+import { connect } from 'react-redux';
 
 import '../../../css/comments.scss';
 
-export default class CommentBox extends React.Component {
+class CommentBox extends React.Component {
   constructor() {
     super();
 
     this.state = {
       showComments: false,
-      comments: [
-        { id: 1, author: 'SJ', body: 'This is my first comment' },
-        { id: 2, author: 'Boss', body: 'Supi recipe!' },
-        { id: 3, author: 'JohnJohnson', body: 'Third comment' },
-      ],
+      comments: [],
     };
   }
+
+  componentDidMount() {
+    this.loadComments();
+  }
+
+  loadComments = () => {
+    this.props.loadComments(this.props.id).then(comments => {
+      this.setState({
+        comments,
+      });
+    });
+  };
 
   render() {
     const comments = this._getComments();
@@ -31,10 +41,16 @@ export default class CommentBox extends React.Component {
     return (
       <div className="comment-box">
         <h2>Join the Discussion!</h2>
-        <CommentForm addComment={this._addComment.bind(this)} />
+        {this.props.logged ? (
+          <CommentForm addComment={this._addComment.bind(this)} />
+        ) : (
+          <div style={{ marginBottom: 20 }}>You need to be logged to add comments.</div>
+        )}
+
         <button id="comment-reveal" onClick={this._handleClick.bind(this)}>
           {buttonText}
         </button>
+
         <h3>Comments</h3>
         <h4 className="comment-count">{this._getCommentsTitle(comments.length)}</h4>
         {commentNodes}
@@ -42,14 +58,15 @@ export default class CommentBox extends React.Component {
     );
   }
 
-  _addComment(author, body) {
-    const comment = {
-      id: this.state.comments.length + 1,
-      author,
+  _addComment = body => {
+    ApiClient.addComment(TokenToAuth(this.props.logged.token), this.props.id, {
       body,
-    };
-    this.setState({ comments: this.state.comments.concat([comment]) }); // *new array references help React stay fast, so concat works better than push here.
-  }
+    })
+      .then(() => {
+        this.loadComments();
+      })
+      .catch(e => {});
+  };
 
   _handleClick() {
     this.setState({
@@ -59,7 +76,7 @@ export default class CommentBox extends React.Component {
 
   _getComments() {
     return this.state.comments.map(comment => {
-      return <Comment author={comment.author} body={comment.body} key={comment.id} />;
+      return <Comment author={comment.user.userName} body={comment.body} key={comment.id} />;
     });
   }
 
@@ -73,3 +90,13 @@ export default class CommentBox extends React.Component {
     }
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state.auth,
+  };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentBox);

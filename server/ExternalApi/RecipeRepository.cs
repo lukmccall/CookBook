@@ -71,7 +71,6 @@ namespace CookBook.ExternalApi
             {
                 recipesJson = await GetStringAsync(url);
             }
-
             var recipes = JsonConvert.DeserializeObject<List<Recipe>>(recipesJson)
                 .ObjectDistinct(x => x.Id).ToList();
 

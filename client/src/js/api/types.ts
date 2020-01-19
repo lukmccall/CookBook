@@ -84,28 +84,16 @@ class RefreshRequest {
   }
 }
 
-class UserResponse {
-  userSurname: string;
-  age: number;
-  description: string;
+class UserNameResponse {
   userName: string;
-  email: string;
-  phoneNumber: string;
-  photoUrl: string;
 
   constructor(data: any) {
-    this.userSurname = data['userSurname'];
-    this.age = data['age'];
-    this.description = data['description'];
     this.userName = data['userName'];
-    this.email = data['email'];
-    this.phoneNumber = data['phoneNumber'];
-    this.photoUrl = data['photoUrl'];
   }
 
-  static fromResponse(data?: any): UserResponse {
+  static fromResponse(data?: any): UserNameResponse {
     const _data = typeof data === 'object' ? data : {};
-    const _response = new UserResponse(_data);
+    const _response = new UserNameResponse(_data);
     return _response;
   }
 }
@@ -214,6 +202,32 @@ class PhotoResponse {
   }
 }
 
+class UserResponse {
+  userSurname: string;
+  age: number;
+  description: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
+  photoUrl: string;
+
+  constructor(data: any) {
+    this.userSurname = data['userSurname'];
+    this.age = data['age'];
+    this.description = data['description'];
+    this.userName = data['userName'];
+    this.email = data['email'];
+    this.phoneNumber = data['phoneNumber'];
+    this.photoUrl = data['photoUrl'];
+  }
+
+  static fromResponse(data?: any): UserResponse {
+    const _data = typeof data === 'object' ? data : {};
+    const _response = new UserResponse(_data);
+    return _response;
+  }
+}
+
 class UpdateCurrentUserRequest {
   userName: string;
   userSurname: string;
@@ -283,12 +297,14 @@ class schema {
 }
 
 class CommentsResponse {
+  id: number;
   recipeId: number;
   body: string;
   creationTime: string;
-  user: UserResponse;
+  user: UserNameResponse;
 
   constructor(data: any) {
+    this.id = data['id'];
     this.recipeId = data['recipeId'];
     this.body = data['body'];
     this.creationTime = data['creationTime'];
@@ -635,13 +651,14 @@ export {
   LoginRequest,
   LogoutRequest,
   RefreshRequest,
-  UserResponse,
+  UserNameResponse,
   CommentRequest,
   ProblemDetails,
   MetricResponse,
   UsResponse,
   TemperatureResponse,
   PhotoResponse,
+  UserResponse,
   UpdateCurrentUserRequest,
   ChangeCurrentUserPasswordRequest,
   WidgetResponse,

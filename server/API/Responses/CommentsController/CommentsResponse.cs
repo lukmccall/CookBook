@@ -1,14 +1,15 @@
 using System;
-using CookBook.API.Responses.UserController;
 
 namespace CookBook.API.Responses.CommentsController
 {
     public class CommentsResponse
     {
 
+        public int Id { get; set; }
+
         public long RecipeId { get; set; }
 
-        public UserResponse User { get; set; }
+        public UserNameResponse User { get; set; }
 
         public string Body { get; set; }
 
