@@ -19,7 +19,7 @@ namespace CookBook.Services
 
         public async Task<IEnumerable<Comment>> GetAllCommentsAsync(long id)
         {
-            return await _dbContext.Comments.Where(x => x.RecipeId == id).ToListAsync();
+            return await _dbContext.Comments.Where(x => x.RecipeId == id).Include(b => b.User).ToListAsync();
         }
 
         public async Task<bool> AddCommentAsync(long id, ApplicationUser user, string body)

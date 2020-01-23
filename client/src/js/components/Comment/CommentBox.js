@@ -76,7 +76,7 @@ class CommentBox extends React.Component {
 
   _getComments() {
     return this.state.comments.map(comment => {
-      return <Comment author={comment.user.userName} body={comment.body} key={comment.id} />;
+      return <Comment author={comment?.user?.userName} body={comment.body} key={comment.id} />;
     });
   }
 
