@@ -1,0 +1,217 @@
+@startuml
+
+skinparam linetype ortho
+
+package logger <<Frame>> {
+  class ILogger
+}
+note bottom of logger: Własna implementacja loggera
+
+package gui.cs <<Frame>> {
+  class Window
+  class TopLevel
+}
+note bottom of gui.cs: Zewnętrzna biblioteka
+
+interface IAppController {
+    +void ChangeWindow(Window newWindow)
+    +void ExitApp()
+    +Window GetCurrentWindow()
+}
+
+class AppController <<singleton>> {
+    -_generator : GeneratorTemplate
+    +void StartWindow(Window, GeneratorTemplate, ILogger)
+    +{static} ILogger GetLogger()
+    +{static} AppController Instance()
+}
+
+interface ICommand {
+    +void Execute()
+}
+note top: Na diagramie przedstawiono jedynie niektóre z komend
+
+class ChangeWindowCommand {
+    -_windowToChange : Window
+    -_appController : IAppController
+}
+
+class ExitAppCommand {
+    -_appController : IAppController
+}
+
+class GenerateCommand {
+    -_onError : Action<Exception>
+    -_onSuccess : Action
+    -_controller : AppController
+    -_logger : ILogger
+    -_openApiModel : OpenApiModel
+}
+
+interface ICommandsProvider {
+    +ICommand ExitCommand()
+    +ICommand DeserializationCommand()
+    +ICommand ShowPopupWindowCommand()
+    +ICommand GeneratorCommand()
+}
+
+class CommandsProvider {
+
+}
+
+class DeserializationCommand {
+    -_onDeserialization : Action<OpenApiModel>
+    -_onError : Action<Exception> 
+    -_deserializationSettings : JsonSerializerSettings
+}
+
+interface IMenuWindowState {
+    +void SetWindow(MenuWindow window);
+    +void DisplayMenu();
+}
+note bottom: Nie wszystkie stany zostały zawarte na diagramie
+
+class MenuWindow {
+    -_commandsProvider : ICommandsProvider
+    -_state : IMenuWindowState
+    +void ChangeState(IMenuWindowState)
+}
+
+class StartState {
+
+}
+
+class FileWasSelectedState {
+
+}
+
+interface IGeneratorContext {
+    ~bool TypeExists(string typeName)
+    ~void AddType(string typeName, string code, IEnumerable<ISchema> relatedSchemas)
+    ~void AddFunction(string name, string body, IEnumerable<ISchema> relatedSchemas)
+    ~ITemplateFactory GetTemplateFactory()
+    +Dictionary<string, Type> GetTypesToGenerate()
+    +Dictionary<string, Function> GetFunctionsToGenerate()
+}
+
+class GeneratorContext {
+    -_templateFactory : ITemplateFactory
+    -_functions : Dictionary<string, Function>
+    -_types : Dictionary<string, Type>
+}
+
+class GeneratorTemplate <<abstract>> {
+    +GeneratorSettings GetSettings()
+    +void Generate(OpenApiModel)
+    #void ParseSchemas(IEnumerable<ISchema>)
+    #void ParseEndpoints(IEnumerable<IEndpoint>)
+    #void CreateFiles(Dictionary<string, Type>, Dictionary<string, Function>))
+}
+
+class Generator {
+    +{static} ISchema GetRelatedImportableSchema(ISchema)
+    -void ParseSchema(ISchema)
+    -void ParseEndpoint(IEndpoint)
+    #<<override>> void ParseSchemas(IEnumerable<ISchema>)
+    #<<override>> void ParseEndpoints(IEnumerable<IEndpoint>)
+    #<<override>> void CreateFiles(Dictionary<string, Type>, Dictionary<string, Function>))
+}
+
+class MinifyGenerator {
+    #<<override>> void CreateFiles(Dictionary<string, Type>, Dictionary<string, Function>))
+}
+
+interface ITemplate {
+    +string TransformText()
+}
+note bottom: Nie wszystkie templaty zostały zawarte na diagramie
+
+class ClientTemplate { 
+
+}
+
+class RequestTemplate {
+     
+}
+
+class ITemplateFactory  {
+    +ITemplate CreateClientTemplate(string baseUrl, IEnumerable<string> functions, IEnumerable<string> imports)
+    +ITemplate CreateRequestTemplate(string schemaName, bool isRequired)
+
+}
+
+class TemplateFactory {
+
+}
+
+class OpenApiModel {
+    +IEnumerable<IEndpoint> Endpoints()
+    +IEnumerable<ISchema> Schemas()
+}
+
+interface IDeserializer {
+    +OpenApiModel Deserialize(string json)
+    +void SetSettings(JsonSerializerSettings settings)
+}
+
+class Deserializer<T> <<abstract>> {
+    -_settings : JsonSerializerSettings
+    +void SetSettings(JsonSerializerSettings settings)
+    #IList<JsonConverter> GetConverters()
+}
+
+class Deserializer301 {
+    #<<override>> IList<JsonConverter> GetConverters()
+    -void MapSchemes(OpenApiModel.OpenApiModelBuilder openApiBuilder, Dictionary<string, Schema> versionedSchemes)
+    -void MapSecuritySchema(OpenApiModel.OpenApiModelBuilder openApiBuilder, Dictionary<string, SecurityScheme> securitySchemes)
+    -void MapHeaders(OpenApiModel.OpenApiModelBuilder openApiModelBuilder, Dictionary<string, Header> versionedHeaders)
+    -void MapRequestBodies(OpenApiModel.OpenApiModelBuilder openApiModelBuilder, Dictionary<string, Request> versionedBodies)
+    -void MapResponses(OpenApiModel.OpenApiModelBuilder openApiModelBuilder, Dictionary<string, Response> versionedResponses)
+    -void MapParameters(OpenApiModel.OpenApiModelBuilder openApiModelBuilder, Dictionary<string, Parameter> versionedParameters)
+    -void MapEndpoints(OpenApiModel.OpenApiModelBuilder openApiModelBuilder, Dictionary<string, PathItem> pathItems)
+    -{static} Dictionary<EndpointType, Operation> GetOperationMap(PathItem pathItem)
+}
+note bottom : Deserializatory są tworzone dla każdej wersji OpenApi
+
+class VersionedDeserializers <<singleton>> { 
+    -_deserializers : Dictionary<string, IDeserializer>
+    +{static} void RegisterFromAssembly(Assembly assembly)
+    +OpenApiModel DeserializeFile(string path, JsonSerializerSettings settings)
+    -void Register(string version, IDeserializer deserializer)
+}
+
+ICommand <|.. (ChangeWindowCommand, ExitAppCommand)
+ICommand <|.. GenerateCommand
+ICommand <|.. DeserializationCommand
+ICommandsProvider <|.. CommandsProvider
+CommandsProvider o- "*" ICommand
+IAppController <|.down. AppController
+
+AppController o-- (Window, TopLevel)
+AppController o-- ILogger
+AppController o-- GeneratorTemplate
+Window <|-- MenuWindow
+MenuWindow "1" o- "1" ICommandsProvider
+MenuWindow o-- IMenuWindowState
+IMenuWindowState <|.. (StartState, FileWasSelectedState)
+IGeneratorContext <|.. GeneratorContext
+GeneratorTemplate o-- IGeneratorContext
+GeneratorTemplate <|-- Generator
+Generator <|-- MinifyGenerator
+
+ITemplate <|.. (ClientTemplate, RequestTemplate)
+ITemplateFactory <|.. TemplateFactory
+TemplateFactory "1" o- "*" ITemplate
+
+GeneratorContext "1" o- "1" ITemplateFactory
+
+IDeserializer <|.. Deserializer
+OpenApiModel -- IDeserializer
+Deserializer <|-- Deserializer301 : T jest OpenApiFile
+
+DeserializationCommand -- OpenApiModel
+VersionedDeserializers "1" <|- "*" IDeserializer
+DeserializationCommand -- VersionedDeserializers
+
+GeneratorTemplate -- OpenApiModel
+@enduml

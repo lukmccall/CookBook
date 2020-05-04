@@ -1,0 +1,68 @@
+@startuml
+
+skinparam linetype ortho
+
+enum LogLevel {
+  None
+  Debug
+  Info
+  Warn
+  Error
+  Fatal
+}
+
+class DiagnosticInfo {
+  +functionName : String
+  +className : String
+}
+
+class AbstractLogger <<abstract>> {
+  -_logStrategy : ILogStrategy
+  -_nextLogge : AbstractLogger
+  #logLevel : LogLevel
+  +AbstractLogger Init()
+  +void LogMessage()
+  +void SetNextLogger()
+  +void WriteMessage()
+}
+
+class DiagnosticLogger {
+  -DiagnosticInfo GetCallerDiagnosticInfo()
+}
+
+interface ILogger {
+  +void Debug()
+  +void Error()
+  +void Fatal()
+  +void Info()
+  +void Warn()
+}
+
+interface ILogStrategy {
+  +void WriteMessage()
+}
+
+class FileLogStrategy {
+  -_path : String
+} 
+
+class LoggerFacade<T extend AbstractLogger> {
+
+}
+
+class RawLogger {
+
+}
+
+AbstractLogger <|- (DiagnosticLogger, RawLogger) 
+AbstractLogger o-down- AbstractLogger 
+DiagnosticLogger --- DiagnosticInfo
+
+ILogStrategy <|.. FileLogStrategy
+ILogStrategy <|.. ConsoleLogStrategy
+
+AbstractLogger "1" o-down- "1" ILogStrategy
+
+ILogger <|.. LoggerFacade
+LoggerFacade --- AbstractLogger
+@enduml
