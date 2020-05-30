@@ -1,0 +1,80 @@
+@startuml Generator
+
+skinparam linetype ortho
+
+namespace Deserializer {
+    class OpenApiModel 
+}
+
+namespace Generator {
+
+interface IGeneratorContext {
+    ~TypeExists(String) : bool
+    ~AddType(String, String, IEnumerable<ISchema>)
+    ~AddFunction(String, String, IEnumerable<ISchema>)
+    ~GetTemplateFactory() : ITemplateFactory
+    +GetTypesToGenerate() : Dictionary<String, Type>
+    +GetFunctionsToGenerate() : Dictionary<String, Function>
+}
+
+class GeneratorContext {
+    -_templateFactory : ITemplateFactory
+    -_functions : Dictionary<String, Function>
+    -_types : Dictionary<String, Type>
+}
+
+class GeneratorTemplate <<abstract>> {
+    +GetSettings() GeneratorSettings
+    +Generate(OpenApiModel)
+    #ParseSchemas(IEnumerable<ISchema>)
+    #ParseEndpoints(IEnumerable<IEndpoint>)
+    #CreateFiles(Dictionary<String, Type>, Dictionary<String, Function>)
+}
+
+class Generator {
+    +{static} GetRelatedImportableSchema(ISchema) : ISchema
+    -ParseSchema(ISchema)
+    -ParseEndpoint(IEndpoint)
+    #<<override>> ParseSchemas(IEnumerable<ISchema>)
+    #<<override>> ParseEndpoints(IEnumerable<IEndpoint>)
+    #<<override>> CreateFiles(Dictionary<String, Type>, Dictionary<String, Function>)
+}
+
+class MinifyGenerator {
+    #<<override>> CreateFiles(Dictionary<String, Type>, Dictionary<String, Function>)
+}
+
+interface ITemplate {
+    +TransformText() : String
+}
+
+class ClientTemplate 
+
+class RequestTemplate
+
+class ITemplateFactory  {
+    +CreateClientTemplate(String, IEnumerable<String>, IEnumerable<String>) : ITemplate
+    +CreateRequestTemplate(String schemaName, bool isRequired) : ITemplate
+}
+
+class TemplateFactory
+
+IGeneratorContext <|.. GeneratorContext
+GeneratorTemplate o-l--IGeneratorContext 
+GeneratorTemplate <|-- Generator
+Generator <|-- MinifyGenerator
+
+ITemplate <|... ClientTemplate
+ITemplate <|... RequestTemplate
+
+ITemplateFactory <|.. TemplateFactory
+TemplateFactory "1" o--- "*" ITemplate
+
+GeneratorContext "1" o--- "1" ITemplateFactory
+
+GeneratorTemplate -r-- Deserializer.OpenApiModel : Generuje na podstawie >
+
+}
+
+
+@enduml

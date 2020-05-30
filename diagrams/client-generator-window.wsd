@@ -1,0 +1,106 @@
+@startuml ClientGenerator
+
+skinparam linetype ortho
+
+namespace Logger {
+  class ILogger
+}
+
+namespace Gui {
+  class Window
+}
+note bottom of Gui: Zewnętrzna biblioteka gui.cs
+
+namespace Generator {
+    class GeneratorTemplate
+}
+
+namespace Deserializer {
+    class VersionedDeserializers <<singleton>>
+}
+
+namespace ClientGenerator {
+
+interface IAppController {
+    +ChangeWindow(Window)
+    +ExitApp()
+    +GetCurrentWindow() : Window
+    +GetLogger() : ILogger
+    +GetGenerator(): GeneratorTemplate
+}
+
+class AppController <<singleton>> {
+    +StartWindow(Window, GeneratorTemplate, ILogger)
+    +{static} Instance() : AppController
+}
+
+interface ICommand {
+    +Execute()
+}
+
+class DeserializationCommand {
+    -_onDeserialization : Action<OpenApiModel>
+    -_onError : Action<Exception> 
+    -_deserializationSettings : JsonSerializerSettings
+}
+
+class ExitAppCommand {
+    -_appController : IAppController
+}
+
+class GenerateCommand {
+    -_onError : Action<Exception>
+    -_onSuccess : Action
+    -_controller : AppController
+    -_logger : ILogger
+    -_openApiModel : OpenApiModel
+}
+
+interface ICommandsProvider {
+    +ExitCommand() : ICommand
+    +DeserializationCommand() : ICommand
+    +ShowPopupWindowCommand() : ICommand
+    +GeneratorCommand() : ICommand
+}
+
+class CommandsProvider 
+
+interface IMenuWindowState {
+    +void SetWindow(MenuWindow window);
+    +void DisplayMenu();
+}
+note left of IMenuWindowState
+    Na diagramie nie zostały ukazane
+    wszystkie stany okna
+endnote
+class StartState 
+
+class FileWasSelectedState 
+
+class MenuWindow {
+    +ChangeState(IMenuWindowState)
+}
+
+DeserializationCommand --- Deserializer.VersionedDeserializers : Deleguje do >
+
+ICommand <|.r.. ExitAppCommand
+ICommand <|.l.. GenerateCommand
+ICommand <|.d.. DeserializationCommand
+ICommandsProvider <|.. CommandsProvider
+CommandsProvider "1" o-- "*" ICommand
+
+AppController o-- Gui.Window
+AppController o-- Logger.ILogger
+AppController o-- Generator.GeneratorTemplate
+
+Gui.Window <|-- MenuWindow
+MenuWindow "1" o- "1" ICommandsProvider
+MenuWindow o-u-- IMenuWindowState : Jest w stanie > 
+
+IMenuWindowState <|.. StartState
+IMenuWindowState <|.. FileWasSelectedState
+IAppController <|... AppController
+
+}
+
+@enduml

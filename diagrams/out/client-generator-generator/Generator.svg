@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   inkscape:export-ydpi="240"
+   inkscape:export-xdpi="240"
+   inkscape:export-filename="/Users/lukasz/studies/CookBook/diagrams/out/client-generator-generator/Generator.png"
+   sodipodi:docname="Generator.svg"
+   id="svg294"
+   zoomAndPan="magnify"
+   width="1148px"
+   viewBox="0 0 1148 1121"
+   version="1.1"
+   style="width:1148px;height:1121px;"
+   preserveAspectRatio="none"
+   height="1121px"
+   contentStyleType="text/css"
+   contentScriptType="application/ecmascript">
+  <metadata
+     id="metadata298">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="svg294"
+     inkscape:window-maximized="1"
+     inkscape:window-y="23"
+     inkscape:window-x="0"
+     inkscape:cy="560.5"
+     inkscape:cx="574"
+     inkscape:zoom="0.65156794"
+     showgrid="false"
+     id="namedview296"
+     inkscape:window-height="1004"
+     inkscape:window-width="1792"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <defs
+     id="defs19">
+    <filter
+       y="-1"
+       x="-1"
+       width="300%"
+       id="f58rz2jmh4cn4"
+       height="300%">
+      <feGaussianBlur
+         id="feGaussianBlur10"
+         stdDeviation="2.0"
+         result="blurOut" />
+      <feColorMatrix
+         id="feColorMatrix12"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"
+         type="matrix"
+         result="blurOut2"
+         in="blurOut" />
+      <feOffset
+         id="feOffset14"
+         result="blurOut3"
+         in="blurOut2"
+         dy="4.0"
+         dx="4.0" />
+      <feBlend
+         id="feBlend16"
+         mode="normal"
+         in2="blurOut3"
+         in="SourceGraphic" />
+    </filter>
+  </defs>
+  <polygon
+     fill="#ffffff"
+     filter="url(#f58rz2jmh4cn4)"
+     points="1075,85.4883 1126,85.4883 1126,162 976,162 976,63 1068,63 "
+     style="stroke:#000000;stroke-width:1.5"
+     id="polygon21" />
+  <line
+     style="stroke:#000000;stroke-width:1.5"
+     x1="976"
+     x2="1075"
+     y1="85.488297"
+     y2="85.488297"
+     id="line23" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="14px"
+     font-weight="bold"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="86"
+     x="980"
+     y="78.535202"
+     id="text25">Deserializer</text>
+  <polygon
+     fill="#ffffff"
+     filter="url(#f58rz2jmh4cn4)"
+     points="105,46.4883 817,46.4883 817,1109 22,1109 22,24 98,24 "
+     style="stroke:#000000;stroke-width:1.5"
+     id="polygon27" />
+  <line
+     style="stroke:#000000;stroke-width:1.5"
+     x1="22"
+     x2="105"
+     y1="46.4883"
+     y2="46.4883"
+     id="line29" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="14px"
+     font-weight="bold"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="70"
+     x="26"
+     y="39.535198"
+     id="text31">Generator</text>
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="48"
+     id="Deserializer.OpenApiModel"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="117"
+     x="992.5"
+     y="98" />
+  <circle
+     cx="1007.5"
+     cy="114"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse34"
+     r="11" />
+  <path
+     d="m 1009.9731,120.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path36" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="85"
+     x="1021.5"
+     y="118.5352"
+     id="text38">OpenApiModel</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="993.5"
+     x2="1108.5"
+     y1="130"
+     y2="130"
+     id="line40" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="993.5"
+     x2="1108.5"
+     y1="138"
+     y2="138"
+     id="line42" />
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="125.7305"
+     id="Generator.IGeneratorContext"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="334"
+     x="38"
+     y="59" />
+  <circle
+     cx="148.25"
+     cy="75"
+     fill="#b4a7e5"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse45"
+     r="11" />
+  <path
+     d="m 144.6777,71.2651 v -2.1582 h 7.3794 v 2.1582 h -2.4653 v 8.0767 h 2.4653 V 81.5 h -7.3794 v -2.1582 h 2.4654 v -8.0767 z"
+     id="path47" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     font-style="italic"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="105"
+     x="168.75"
+     y="79.535202"
+     id="text49">IGeneratorContext</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="39"
+     x2="371"
+     y1="91"
+     y2="91"
+     id="line51" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="39"
+     x2="371"
+     y1="99"
+     y2="99"
+     id="line53" />
+  <polygon
+     fill="#4177af"
+     points="53,112 49,106 45,112 "
+     style="stroke:#1963a0;stroke-width:1"
+     id="polygon55" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="131"
+     x="58"
+     y="113.6348"
+     id="text57">TypeExists(String) : bool</text>
+  <polygon
+     fill="#4177af"
+     points="53,124.9551 49,118.9551 45,124.9551 "
+     style="stroke:#1963a0;stroke-width:1"
+     id="polygon59" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="260"
+     x="58"
+     y="126.5898"
+     id="text61">AddType(String, String, IEnumerable&lt;ISchema&gt;)</text>
+  <polygon
+     fill="#4177af"
+     points="53,137.9102 49,131.9102 45,137.9102 "
+     style="stroke:#1963a0;stroke-width:1"
+     id="polygon63" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="281"
+     x="58"
+     y="139.54491"
+     id="text65">AddFunction(String, String, IEnumerable&lt;ISchema&gt;)</text>
+  <polygon
+     fill="#4177af"
+     points="53,150.8652 49,144.8652 45,150.8652 "
+     style="stroke:#1963a0;stroke-width:1"
+     id="polygon67" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="216"
+     x="58"
+     y="152.5"
+     id="text69">GetTemplateFactory() : ITemplateFactory</text>
+  <circle
+     cx="49"
+     cy="161.8203"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse71"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="266"
+     x="58"
+     y="165.45509"
+     id="text73">GetTypesToGenerate() : Dictionary&lt;String, Type&gt;</text>
+  <circle
+     cx="49"
+     cy="174.77541"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse75"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="308"
+     x="58"
+     y="178.4102"
+     id="text77">GetFunctionsToGenerate() : Dictionary&lt;String, Function&gt;</text>
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="86.865196"
+     id="Generator.GeneratorContext"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="250"
+     x="62"
+     y="265.5" />
+  <circle
+     cx="131.75"
+     cy="281.5"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse80"
+     r="11" />
+  <path
+     d="m 134.2231,287.6431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path82" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="102"
+     x="152.25"
+     y="286.03519"
+     id="text84">GeneratorContext</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="63"
+     x2="311"
+     y1="297.5"
+     y2="297.5"
+     id="line86" />
+  <rect
+     fill="none"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="70"
+     y="305.5"
+     id="rect88" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="193"
+     x="82"
+     y="312.1348"
+     id="text90">_templateFactory : ITemplateFactory</text>
+  <rect
+     fill="none"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="70"
+     y="318.45511"
+     id="rect92" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="224"
+     x="82"
+     y="325.08981"
+     id="text94">_functions : Dictionary&lt;String, Function&gt;</text>
+  <rect
+     fill="none"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="70"
+     y="331.41019"
+     id="rect96" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="181"
+     x="82"
+     y="338.04489"
+     id="text98">_types : Dictionary&lt;String, Type&gt;</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="63"
+     x2="311"
+     y1="344.3652"
+     y2="344.3652"
+     id="line100" />
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="119.041"
+     id="Generator.GeneratorTemplate"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="394"
+     x="407"
+     y="62.5" />
+  <circle
+     cx="543.25"
+     cy="81.632797"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse103"
+     r="11" />
+  <path
+     d="m 545.7231,87.7759 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1495 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2697 0.5935,-0.2698 1.2243,-0.8509 z"
+     id="path105" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     font-style="italic"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="59"
+     x="590.75"
+     y="79.101601"
+     id="text107">«abstract»</text>
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="113"
+     x="563.75"
+     y="93.234398"
+     id="text109">GeneratorTemplate</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="408"
+     x2="800"
+     y1="100.7656"
+     y2="100.7656"
+     id="line111" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="408"
+     x2="800"
+     y1="108.7656"
+     y2="108.7656"
+     id="line113" />
+  <circle
+     cx="418"
+     cy="119.7656"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse115"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="169"
+     x="427"
+     y="123.4004"
+     id="text117">GetSettings() GeneratorSettings</text>
+  <circle
+     cx="418"
+     cy="132.7207"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse119"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="135"
+     x="427"
+     y="136.3555"
+     id="text121">Generate(OpenApiModel)</text>
+  <polygon
+     fill="#ffff44"
+     points="418,148.6758 414,144.6758 418,140.6758 422,144.6758 "
+     style="stroke:#b38d22;stroke-width:1"
+     id="polygon123" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="212"
+     x="427"
+     y="149.3105"
+     id="text125">ParseSchemas(IEnumerable&lt;ISchema&gt;)</text>
+  <polygon
+     fill="#ffff44"
+     points="418,161.6309 414,157.6309 418,153.6309 422,157.6309 "
+     style="stroke:#b38d22;stroke-width:1"
+     id="polygon127" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="226"
+     x="427"
+     y="162.26559"
+     id="text129">ParseEndpoints(IEnumerable&lt;IEndpoint&gt;)</text>
+  <polygon
+     fill="#ffff44"
+     points="418,174.5859 414,170.5859 418,166.5859 422,170.5859 "
+     style="stroke:#b38d22;stroke-width:1"
+     id="polygon131" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="368"
+     x="427"
+     y="175.2207"
+     id="text133">CreateFiles(Dictionary&lt;String, Type&gt;, Dictionary&lt;String, Function&gt;)</text>
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="125.7305"
+     id="Generator.Generator"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="454"
+     x="347"
+     y="246" />
+  <circle
+     cx="540.75"
+     cy="262"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse136"
+     r="11" />
+  <path
+     d="m 543.2231,268.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path138" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="58"
+     x="561.25"
+     y="266.53519"
+     id="text140">Generator</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="348"
+     x2="800"
+     y1="278"
+     y2="278"
+     id="line142" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="348"
+     x2="800"
+     y1="286"
+     y2="286"
+     id="line144" />
+  <circle
+     cx="358"
+     cy="297"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse146"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     text-decoration="underline"
+     textLength="261"
+     x="367"
+     y="300.6348"
+     id="text148"
+     style="text-decoration: underline;text-decoration-line: underline">GetRelatedImportableSchema(ISchema) : ISchema</text>
+  <rect
+     fill="#f24d5c"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="355"
+     y="306.95511"
+     id="rect150" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="122"
+     x="367"
+     y="313.58981"
+     id="text152">ParseSchema(ISchema)</text>
+  <rect
+     fill="#f24d5c"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="355"
+     y="319.91019"
+     id="rect154" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="136"
+     x="367"
+     y="326.54489"
+     id="text156">ParseEndpoint(IEndpoint)</text>
+  <polygon
+     fill="#ffff44"
+     points="358,338.8652 354,334.8652 358,330.8652 362,334.8652 "
+     style="stroke:#b38d22;stroke-width:1"
+     id="polygon158" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="272"
+     x="367"
+     y="339.5"
+     id="text160">«override» ParseSchemas(IEnumerable&lt;ISchema&gt;)</text>
+  <polygon
+     fill="#ffff44"
+     points="358,351.8203 354,347.8203 358,343.8203 362,347.8203 "
+     style="stroke:#b38d22;stroke-width:1"
+     id="polygon162" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="286"
+     x="367"
+     y="352.45511"
+     id="text164">«override» ParseEndpoints(IEnumerable&lt;IEndpoint&gt;)</text>
+  <polygon
+     fill="#ffff44"
+     points="358,364.7754 354,360.7754 358,356.7754 362,360.7754 "
+     style="stroke:#b38d22;stroke-width:1"
+     id="polygon166" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="428"
+     x="367"
+     y="365.41019"
+     id="text168">«override» CreateFiles(Dictionary&lt;String, Type&gt;, Dictionary&lt;String, Function&gt;)</text>
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="60.955101"
+     id="Generator.MinifyGenerator"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="454"
+     x="347"
+     y="433" />
+  <circle
+     cx="524.25"
+     cy="449"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse171"
+     r="11" />
+  <path
+     d="m 526.7231,455.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path173" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="91"
+     x="544.75"
+     y="453.53519"
+     id="text175">MinifyGenerator</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="348"
+     x2="800"
+     y1="465"
+     y2="465"
+     id="line177" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="348"
+     x2="800"
+     y1="473"
+     y2="473"
+     id="line179" />
+  <polygon
+     fill="#ffff44"
+     points="358,487 354,483 358,479 362,483 "
+     style="stroke:#b38d22;stroke-width:1"
+     id="polygon181" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="428"
+     x="367"
+     y="487.6348"
+     id="text183">«override» CreateFiles(Dictionary&lt;String, Type&gt;, Dictionary&lt;String, Function&gt;)</text>
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="60.955101"
+     id="Generator.ITemplate"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="156"
+     x="203"
+     y="861" />
+  <circle
+     cx="247.75"
+     cy="877"
+     fill="#b4a7e5"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse186"
+     r="11" />
+  <path
+     d="m 244.1777,873.2651 v -2.1582 h 7.3794 v 2.1582 h -2.4653 v 8.0767 h 2.4653 V 883.5 h -7.3794 v -2.1582 h 2.4654 v -8.0767 z"
+     id="path188" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     font-style="italic"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="58"
+     x="268.25"
+     y="881.53522"
+     id="text190">ITemplate</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="204"
+     x2="358"
+     y1="893"
+     y2="893"
+     id="line192" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="204"
+     x2="358"
+     y1="901"
+     y2="901"
+     id="line194" />
+  <circle
+     cx="214"
+     cy="912"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse196"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="130"
+     x="223"
+     y="915.63483"
+     id="text198">TransformText() : String</text>
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="48"
+     id="Generator.ClientTemplate"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="119"
+     x="155.5"
+     y="1045" />
+  <circle
+     cx="170.5"
+     cy="1061"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse201"
+     r="11" />
+  <path
+     d="m 172.9731,1067.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path203" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="87"
+     x="184.5"
+     y="1065.5352"
+     id="text205">ClientTemplate</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="156.5"
+     x2="273.5"
+     y1="1077"
+     y2="1077"
+     id="line207" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="156.5"
+     x2="273.5"
+     y1="1085"
+     y2="1085"
+     id="line209" />
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="48"
+     id="Generator.RequestTemplate"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="134"
+     x="310"
+     y="1045" />
+  <circle
+     cx="325"
+     cy="1061"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse212"
+     r="11" />
+  <path
+     d="m 327.4731,1067.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path214" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="102"
+     x="339"
+     y="1065.5352"
+     id="text216">RequestTemplate</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="311"
+     x2="443"
+     y1="1077"
+     y2="1077"
+     id="line218" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="311"
+     x2="443"
+     y1="1085"
+     y2="1085"
+     id="line220" />
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="73.910202"
+     id="Generator.ITemplateFactory"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="486"
+     x="38"
+     y="555" />
+  <circle
+     cx="227.25"
+     cy="571"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse223"
+     r="11" />
+  <path
+     d="m 229.7231,577.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path225" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="99"
+     x="247.75"
+     y="575.53522"
+     id="text227">ITemplateFactory</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="39"
+     x2="523"
+     y1="587"
+     y2="587"
+     id="line229" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="39"
+     x2="523"
+     y1="595"
+     y2="595"
+     id="line231" />
+  <circle
+     cx="49"
+     cy="606"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse233"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="460"
+     x="58"
+     y="609.63483"
+     id="text235">CreateClientTemplate(String, IEnumerable&lt;String&gt;, IEnumerable&lt;String&gt;) : ITemplate</text>
+  <circle
+     cx="49"
+     cy="618.95508"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse237"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="392"
+     x="58"
+     y="622.58978"
+     id="text239">CreateRequestTemplate(String schemaName, bool isRequired) : ITemplate</text>
+  <rect
+     fill="#fefece"
+     filter="url(#f58rz2jmh4cn4)"
+     height="48"
+     id="Generator.TemplateFactory"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="128"
+     x="217"
+     y="690" />
+  <circle
+     cx="232"
+     cy="706"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse242"
+     r="11" />
+  <path
+     d="m 234.4731,712.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path244" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="96"
+     x="246"
+     y="710.53522"
+     id="text246">TemplateFactory</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="218"
+     x2="344"
+     y1="722"
+     y2="722"
+     id="line248" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="218"
+     x2="344"
+     y1="730"
+     y2="730"
+     id="line250" />
+  <path
+     d="m 187,205.05 c 0,0 0,60.33 0,60.33"
+     fill="none"
+     id="Generator.IGeneratorContext&lt;-Generator.GeneratorContext"
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7" />
+  <polygon
+     fill="none"
+     points="194,205.05 180,205.05 187,185.05 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon253" />
+  <path
+     d="m 372.19,122 c 0,0 21.53,0 21.53,0"
+     fill="none"
+     id="Generator.IGeneratorContext-&gt;Generator.GeneratorTemplate"
+     style="stroke:#a80036;stroke-width:1" />
+  <polygon
+     fill="#ffffff"
+     points="394.72,122 400.72,126 406.72,122 400.72,118 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon256" />
+  <path
+     d="m 604,201.68 c 0,0 0,44.01 0,44.01"
+     fill="none"
+     id="Generator.GeneratorTemplate&lt;-Generator.Generator"
+     style="stroke:#a80036;stroke-width:1" />
+  <polygon
+     fill="none"
+     points="611,201.68 597,201.68 604,181.68 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon259" />
+  <path
+     d="m 574,392.29 c 0,0 0,40.37 0,40.37"
+     fill="none"
+     id="Generator.Generator&lt;-Generator.MinifyGenerator"
+     style="stroke:#a80036;stroke-width:1" />
+  <polygon
+     fill="none"
+     points="581,392.29 567,392.29 574,372.29 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon262" />
+  <path
+     d="m 238.75,942.01 c 0,0 0,102.85 0,102.85"
+     fill="none"
+     id="Generator.ITemplate&lt;-Generator.ClientTemplate"
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7" />
+  <polygon
+     fill="none"
+     points="245.75,942.01 231.75,942.01 238.75,922.01 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon265" />
+  <path
+     d="m 334.5,942.01 c 0,0 0,102.85 0,102.85"
+     fill="none"
+     id="Generator.ITemplate&lt;-Generator.RequestTemplate"
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7" />
+  <polygon
+     fill="none"
+     points="341.5,942.01 327.5,942.01 334.5,922.01 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon268" />
+  <path
+     d="m 281,649.27 c 0,0 0,40.39 0,40.39"
+     fill="none"
+     id="Generator.ITemplateFactory&lt;-Generator.TemplateFactory"
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7" />
+  <polygon
+     fill="none"
+     points="288,649.27 274,649.27 281,629.27 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon271" />
+  <path
+     d="m 281,751.31 c 0,0 0,109.64 0,109.64"
+     fill="none"
+     id="Generator.TemplateFactory&lt;-Generator.ITemplate"
+     style="stroke:#a80036;stroke-width:1" />
+  <polygon
+     fill="#ffffff"
+     points="281,750.31 285,744.31 281,738.31 277,744.31 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon274" />
+  <text
+     transform="translate(-4)"
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="8"
+     x="272.02499"
+     y="758.66992"
+     id="text276">1</text>
+  <text
+     transform="translate(-4,4)"
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="6"
+     x="274.34381"
+     y="850.23383"
+     id="text278">*</text>
+  <path
+     d="m 187,365.6 c 0,0 0,189.08 0,189.08"
+     fill="none"
+     id="Generator.GeneratorContext&lt;-Generator.ITemplateFactory"
+     style="stroke:#a80036;stroke-width:1" />
+  <polygon
+     fill="#ffffff"
+     points="187,364.6 191,358.6 187,352.6 183,358.6 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon281" />
+  <text
+     transform="translate(-4)"
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="8"
+     x="178.3875"
+     y="373.0271"
+     id="text283">1</text>
+  <text
+     transform="translate(12)"
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="8"
+     x="161.54379"
+     y="544.30048"
+     id="text285">1</text>
+  <path
+     d="m 801.04,122 c 69.28,0 142,0 191.02,0"
+     fill="none"
+     id="Generator.GeneratorTemplate-Deserializer.OpenApiModel"
+     style="stroke:#a80036;stroke-width:1" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="142"
+     x="819.04999"
+     y="135.56841"
+     id="text288">Generuje na podstawie</text>
+  <polygon
+     fill="#000000"
+     points="964.05,135.1553 964.05,129.1553 970.05,132.1553 "
+     style="stroke:#000000;stroke-width:1"
+     id="polygon290" />
+</svg>

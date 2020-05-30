@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   sodipodi:docname="Logger.svg"
+   id="svg909"
+   zoomAndPan="magnify"
+   width="844px"
+   viewBox="0 0 844 877"
+   version="1.1"
+   style="width:844px;height:877px;"
+   preserveAspectRatio="none"
+   height="877px"
+   contentStyleType="text/css"
+   contentScriptType="application/ecmascript">
+  <metadata
+     id="metadata913">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="svg909"
+     inkscape:window-maximized="1"
+     inkscape:window-y="23"
+     inkscape:window-x="0"
+     inkscape:cy="492.49457"
+     inkscape:cx="444.48145"
+     inkscape:zoom="1.1852303"
+     showgrid="false"
+     id="namedview911"
+     inkscape:window-height="1004"
+     inkscape:window-width="1792"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <defs
+     id="defs670">
+    <filter
+       y="-1"
+       x="-1"
+       width="300%"
+       id="fey4la147wjif"
+       height="300%">
+      <feGaussianBlur
+         id="feGaussianBlur661"
+         stdDeviation="2.0"
+         result="blurOut" />
+      <feColorMatrix
+         id="feColorMatrix663"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"
+         type="matrix"
+         result="blurOut2"
+         in="blurOut" />
+      <feOffset
+         id="feOffset665"
+         result="blurOut3"
+         in="blurOut2"
+         dy="4.0"
+         dx="4.0" />
+      <feBlend
+         id="feBlend667"
+         mode="normal"
+         in2="blurOut3"
+         in="SourceGraphic" />
+    </filter>
+  </defs>
+  <polygon
+     fill="#ffffff"
+     filter="url(#fey4la147wjif)"
+     points="84,46.4883 822,46.4883 822,865 22,865 22,24 77,24 "
+     style="stroke:#000000;stroke-width:1.5"
+     id="polygon672" />
+  <line
+     style="stroke:#000000;stroke-width:1.5"
+     x1="22"
+     x2="84"
+     y1="46.4883"
+     y2="46.4883"
+     id="line674" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="14px"
+     font-weight="bold"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="49"
+     x="26"
+     y="39.535198"
+     id="text676">Logger</text>
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="125.7305"
+     id="Logger.LogLevel"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="81"
+     x="540.5"
+     y="465" />
+  <circle
+     cx="555.5"
+     cy="481"
+     fill="#eb937f"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse679"
+     r="11" />
+  <path
+     d="m 559.1143,487.5 h -7.7198 v -12.3931 h 7.7198 v 2.1582 h -5.271 v 2.6729 h 4.7729 v 2.1582 h -4.7729 v 3.2456 h 5.271 z"
+     id="path681" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="49"
+     x="569.5"
+     y="485.53519"
+     id="text683">LogLevel</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="541.5"
+     x2="620.5"
+     y1="497"
+     y2="497"
+     id="line685" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="28"
+     x="546.5"
+     y="511.6348"
+     id="text687">None</text>
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="35"
+     x="546.5"
+     y="524.58978"
+     id="text689">Debug</text>
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="21"
+     x="546.5"
+     y="537.54492"
+     id="text691">Info</text>
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="27"
+     x="546.5"
+     y="550.5"
+     id="text693">Warn</text>
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="28"
+     x="546.5"
+     y="563.45508"
+     id="text695">Error</text>
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="25"
+     x="546.5"
+     y="576.41022"
+     id="text697">Fatal</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="541.5"
+     x2="620.5"
+     y1="582.73053"
+     y2="582.73053"
+     id="line699" />
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="73.910202"
+     id="Logger.DiagnosticInfo"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="142"
+     x="57"
+     y="775" />
+  <circle
+     cx="85.5"
+     cy="791"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse702"
+     r="11" />
+  <path
+     d="m 87.9731,797.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path704" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="80"
+     x="102.5"
+     y="795.53522"
+     id="text706">DiagnosticInfo</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="58"
+     x2="198"
+     y1="807"
+     y2="807"
+     id="line708" />
+  <circle
+     cx="68"
+     cy="818"
+     fill="none"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse710"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="116"
+     x="77"
+     y="821.63483"
+     id="text712">functionName : String</text>
+  <circle
+     cx="68"
+     cy="830.95508"
+     fill="none"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse714"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="98"
+     x="77"
+     y="834.58978"
+     id="text716">className : String</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="58"
+     x2="198"
+     y1="840.91022"
+     y2="840.91022"
+     id="line718" />
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="131.99609"
+     id="Logger.AbstractLogger"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="197"
+     x="290.5"
+     y="462" />
+  <circle
+     cx="341.25"
+     cy="481.13281"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse721"
+     r="11" />
+  <path
+     d="m 343.7231,487.2759 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1495 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2697 0.5935,-0.2698 1.2243,-0.8509 z"
+     id="path723" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     font-style="italic"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="59"
+     x="375.75"
+     y="478.60159"
+     id="text725">«abstract»</text>
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="87"
+     x="361.75"
+     y="492.73441"
+     id="text727">AbstractLogger</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="291.5"
+     x2="486.5"
+     y1="500.26559"
+     y2="500.26559"
+     id="line729" />
+  <rect
+     fill="none"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="298.5"
+     y="508.26559"
+     id="rect731" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="143"
+     x="310.5"
+     y="514.90039"
+     id="text733">_logStrategy : ILogStrategy</text>
+  <rect
+     fill="none"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="298.5"
+     y="521.2207"
+     id="rect735" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="156"
+     x="310.5"
+     y="527.85553"
+     id="text737">_nextLogge : AbstractLogger</text>
+  <polygon
+     fill="none"
+     points="301.5,540.1758 297.5,536.1758 301.5,532.1758 305.5,536.1758 "
+     style="stroke:#b38d22;stroke-width:1"
+     id="polygon739" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="100"
+     x="310.5"
+     y="540.81049"
+     id="text741">logLevel : LogLevel</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="291.5"
+     x2="486.5"
+     y1="547.13092"
+     y2="547.13092"
+     id="line743" />
+  <circle
+     cx="301.5"
+     cy="558.13092"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse745"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="118"
+     x="310.5"
+     y="561.76562"
+     id="text747">Init() : AbstractLogger</text>
+  <circle
+     cx="301.5"
+     cy="571.08588"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse749"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="171"
+     x="310.5"
+     y="574.7207"
+     id="text751">SetNextLogger(AbstractLogger)</text>
+  <circle
+     cx="301.5"
+     cy="584.04102"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse753"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="166"
+     x="310.5"
+     y="587.67578"
+     id="text755">WriteMessage(LogLevel, String)</text>
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="60.955101"
+     id="Logger.DiagnosticLogger"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="217"
+     x="38.5"
+     y="497.5" />
+  <circle
+     cx="93.75"
+     cy="513.5"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse758"
+     r="11" />
+  <path
+     d="m 96.2231,519.6431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path760" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="98"
+     x="114.25"
+     y="518.03522"
+     id="text762">DiagnosticLogger</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="39.5"
+     x2="254.5"
+     y1="529.5"
+     y2="529.5"
+     id="line764" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="39.5"
+     x2="254.5"
+     y1="537.5"
+     y2="537.5"
+     id="line766" />
+  <rect
+     fill="#f24d5c"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="46.5"
+     y="545.5"
+     id="rect768" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="191"
+     x="58.5"
+     y="552.13483"
+     id="text770">GetDiagnosticInfo() : DiagnosticInfo</text>
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="112.7754"
+     id="Logger.ILogger"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="101"
+     x="247.5"
+     y="59" />
+  <circle
+     cx="274.64999"
+     cy="75"
+     fill="#b4a7e5"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse773"
+     r="11" />
+  <path
+     d="m 271.0777,71.2651 v -2.1582 h 7.3794 v 2.1582 h -2.4653 v 8.0767 h 2.4653 V 81.5 h -7.3794 v -2.1582 h 2.4654 v -8.0767 z"
+     id="path775" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     font-style="italic"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="42"
+     x="291.35001"
+     y="79.535202"
+     id="text777">ILogger</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="248.5"
+     x2="347.5"
+     y1="91"
+     y2="91"
+     id="line779" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="248.5"
+     x2="347.5"
+     y1="99"
+     y2="99"
+     id="line781" />
+  <circle
+     cx="258.5"
+     cy="110"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse783"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="75"
+     x="267.5"
+     y="113.6348"
+     id="text785">Debug(String)</text>
+  <circle
+     cx="258.5"
+     cy="122.9551"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse787"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="68"
+     x="267.5"
+     y="126.5898"
+     id="text789">Error(String)</text>
+  <circle
+     cx="258.5"
+     cy="135.9102"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse791"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="65"
+     x="267.5"
+     y="139.54491"
+     id="text793">Fatal(String)</text>
+  <circle
+     cx="258.5"
+     cy="148.8652"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse795"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="61"
+     x="267.5"
+     y="152.5"
+     id="text797">Info(String)</text>
+  <circle
+     cx="258.5"
+     cy="161.8203"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse799"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="67"
+     x="267.5"
+     y="165.45509"
+     id="text801">Warn(String)</text>
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="60.955101"
+     id="Logger.ILogStrategy"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="107"
+     x="348.5"
+     y="654" />
+  <circle
+     cx="366.20001"
+     cy="670"
+     fill="#b4a7e5"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse804"
+     r="11" />
+  <path
+     d="m 362.6277,666.2651 v -2.1582 h 7.3794 v 2.1582 h -2.4653 v 8.0767 h 2.4653 V 676.5 h -7.3794 v -2.1582 h 2.4654 v -8.0767 z"
+     id="path806" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     font-style="italic"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="69"
+     x="380.79999"
+     y="674.53522"
+     id="text808">ILogStrategy</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="349.5"
+     x2="454.5"
+     y1="686"
+     y2="686"
+     id="line810" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="349.5"
+     x2="454.5"
+     y1="694"
+     y2="694"
+     id="line812" />
+  <circle
+     cx="359.5"
+     cy="705"
+     fill="#84be84"
+     style="stroke:#038048;stroke-width:1"
+     id="ellipse814"
+     r="3" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="81"
+     x="368.5"
+     y="708.63483"
+     id="text816">WriteMessage()</text>
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="60.955101"
+     id="Logger.FileLogStrategy"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="117"
+     x="452.5"
+     y="781.5" />
+  <circle
+     cx="467.5"
+     cy="797.5"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse819"
+     r="11" />
+  <path
+     d="m 469.9731,803.6431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path821" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="85"
+     x="481.5"
+     y="802.03522"
+     id="text823">FileLogStrategy</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="453.5"
+     x2="568.5"
+     y1="813.5"
+     y2="813.5"
+     id="line825" />
+  <rect
+     fill="none"
+     height="6"
+     style="stroke:#c82930;stroke-width:1"
+     width="6"
+     x="460.5"
+     y="821.5"
+     id="rect827" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="11px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="71"
+     x="472.5"
+     y="828.13483"
+     id="text829">_path : String</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="453.5"
+     x2="568.5"
+     y1="834.45508"
+     y2="834.45508"
+     id="line831" />
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="48"
+     id="Logger.ConsoleLogStrategy"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="143"
+     x="234.5"
+     y="788" />
+  <circle
+     cx="249.5"
+     cy="804"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse834"
+     r="11" />
+  <path
+     d="m 251.9731,810.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path836" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="111"
+     x="263.5"
+     y="808.53522"
+     id="text838">ConsoleLogStrategy</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="235.5"
+     x2="376.5"
+     y1="820"
+     y2="820"
+     id="line840" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="235.5"
+     x2="376.5"
+     y1="828"
+     y2="828"
+     id="line842" />
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="48"
+     id="Logger.LoggerFacade"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="259"
+     x="168.5"
+     y="293" />
+  <circle
+     cx="183.5"
+     cy="309"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse845"
+     r="11" />
+  <path
+     d="m 185.9731,315.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path847" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="80"
+     x="197.5"
+     y="313.53519"
+     id="text849">LoggerFacade</text>
+  <rect
+     fill="#ffffff"
+     height="16.132799"
+     style="stroke:#000000;stroke-width:1;stroke-dasharray:2, 2"
+     width="145"
+     x="285.5"
+     y="290"
+     id="rect851" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     font-style="italic"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="143"
+     x="286.5"
+     y="302.60159"
+     id="text853">T extend AbstractLogger</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="169.5"
+     x2="426.5"
+     y1="325"
+     y2="325"
+     id="line855" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="169.5"
+     x2="426.5"
+     y1="333"
+     y2="333"
+     id="line857" />
+  <path
+     d="M 462.5,296.5 V 313 l -34.59,4 34.59,4 v 16.1211 h 343 V 306.5 l -10,-10 h -333"
+     fill="#fbfb77"
+     filter="url(#fey4la147wjif)"
+     style="stroke:#a80036;stroke-width:1"
+     id="path859" />
+  <path
+     d="m 795.5,296.5 v 10 h 10 l -10,-10"
+     fill="#fbfb77"
+     style="stroke:#a80036;stroke-width:1"
+     id="path861" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="318"
+     x="468.5"
+     y="314.06839"
+     id="text863">Fasada pozwala równie stworzyć Logger z wybraną</text>
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="294"
+     x="468.5"
+     y="329.37891"
+     id="text865">implementacją podaną jako parametr szablonu</text>
+  <rect
+     fill="#fefece"
+     filter="url(#fey4la147wjif)"
+     height="48"
+     id="Logger.RawLogger"
+     style="stroke:#a80036;stroke-width:1.5"
+     width="95"
+     x="38.5"
+     y="293" />
+  <circle
+     cx="53.5"
+     cy="309"
+     fill="#add1b2"
+     style="stroke:#a80036;stroke-width:1"
+     id="ellipse868"
+     r="11" />
+  <path
+     d="m 55.9731,315.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z"
+     id="path870" />
+  <text
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="12px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="63"
+     x="67.5"
+     y="313.53519"
+     id="text872">RawLogger</text>
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="39.5"
+     x2="132.5"
+     y1="325"
+     y2="325"
+     id="line874" />
+  <line
+     style="stroke:#a80036;stroke-width:1.5"
+     x1="39.5"
+     x2="132.5"
+     y1="333"
+     y2="333"
+     id="line876" />
+  <circle
+     cx="415"
+     cy="812"
+     fill="#000000"
+     style="stroke:none;stroke-width:1"
+     id="ellipse878"
+     r="2" />
+  <path
+     d="m 128,558.66 c 0,52.5 0,159.4 0,216.09"
+     fill="none"
+     id="Logger.DiagnosticLogger-Logger.DiagnosticInfo"
+     style="stroke:#a80036;stroke-width:1" />
+  <path
+     d="m 101.83,341.05 c 0,45.34 0,138.95 0,138.95 0,0 168.34,0 168.34,0"
+     fill="none"
+     id="Logger.RawLogger-&gt;Logger.AbstractLogger"
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7" />
+  <polygon
+     fill="none"
+     points="270.17,487 270.17,473 290.17,480 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon882" />
+  <path
+     d="m 255.61,528 c 0,0 14.71,0 14.71,0"
+     fill="none"
+     id="Logger.DiagnosticLogger-&gt;Logger.AbstractLogger"
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7" />
+  <polygon
+     fill="none"
+     points="270.32,535 270.32,521 290.32,528 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon885" />
+  <path
+     d="m 475,449.68 c 0,0 0,-19.68 0,-19.68 0,0 39,0 39,0 0,0 0,93.59382 0,93.59382 0,0 -42.5,0 -42.5,0 0,0 0,-5.57347 0,-12.58458"
+     fill="none"
+     id="Logger.AbstractLogger&lt;-Logger.AbstractLogger"
+     style="stroke:#a80036;stroke-width:0.649303" />
+  <polygon
+     fill="#ffffff"
+     points="475,449.68 471,455.68 475,461.68 479,455.68 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon888" />
+  <path
+     d="m 487.53,528 c 18.6,0 37.07,0 52.62,0"
+     fill="none"
+     id="Logger.AbstractLogger-Logger.LogLevel"
+     style="stroke:#a80036;stroke-width:1" />
+  <path
+     d="m 377.79,812 c 15.95,0 29.69,0 34.94,0"
+     fill="none"
+     id="Logger.ConsoleLogStrategy-Logger.apoint26"
+     style="stroke:#a80036;stroke-width:1" />
+  <path
+     d="m 417.01,812 c 5.11,0 19.37,0 35.29,0"
+     fill="none"
+     id="Logger.apoint26-Logger.FileLogStrategy"
+     style="stroke:#a80036;stroke-width:1" />
+  <path
+     d="m 415,735.04 c 0,0 0,74.94 0,74.94"
+     fill="none"
+     id="Logger.ILogStrategy&lt;-Logger.apoint26"
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7" />
+  <polygon
+     fill="none"
+     points="422,735.04 408,735.04 415,715.04 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon894" />
+  <path
+     d="m 402,607.37 c 0,0 0,46.43 0,46.43"
+     fill="none"
+     id="Logger.AbstractLogger&lt;-Logger.ILogStrategy"
+     style="stroke:#a80036;stroke-width:1" />
+  <polygon
+     fill="#ffffff"
+     points="402,606.37 406,600.37 402,594.37 398,600.37 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon897" />
+  <text
+     transform="translate(-6,2)"
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="8"
+     x="394.9281"
+     y="614.57239"
+     id="text899">1</text>
+  <text
+     transform="translate(-4,2)"
+     fill="#000000"
+     font-family="sans-serif"
+     font-size="13px"
+     lengthAdjust="spacingAndGlyphs"
+     textLength="8"
+     x="393.125"
+     y="643.05103"
+     id="text901">1</text>
+  <path
+     d="m 298,192.17 c 0,0 0,100.7 0,100.7"
+     fill="none"
+     id="Logger.ILogger&lt;-Logger.LoggerFacade"
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7" />
+  <polygon
+     fill="none"
+     points="305,192.17 291,192.17 298,172.17 "
+     style="stroke:#a80036;stroke-width:1"
+     id="polygon904" />
+  <path
+     d="m 359,341.2 c 0,29.23 0,79.58 0,120.64"
+     fill="none"
+     id="Logger.LoggerFacade-Logger.AbstractLogger"
+     style="stroke:#a80036;stroke-width:1" />
+</svg>

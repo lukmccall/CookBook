@@ -1,6 +1,8 @@
-@startuml
+@startuml Logger
 
 skinparam linetype ortho
+
+namespace Logger {
 
 enum LogLevel {
   None
@@ -20,49 +22,56 @@ class AbstractLogger <<abstract>> {
   -_logStrategy : ILogStrategy
   -_nextLogge : AbstractLogger
   #logLevel : LogLevel
-  +AbstractLogger Init()
-  +void LogMessage()
-  +void SetNextLogger()
-  +void WriteMessage()
+  +Init() : AbstractLogger
+  +SetNextLogger(AbstractLogger)
+  +WriteMessage(LogLevel, String)
 }
 
 class DiagnosticLogger {
-  -DiagnosticInfo GetCallerDiagnosticInfo()
+  -GetDiagnosticInfo() : DiagnosticInfo
 }
 
 interface ILogger {
-  +void Debug()
-  +void Error()
-  +void Fatal()
-  +void Info()
-  +void Warn()
+  +Debug(String)
+  +Error(String)
+  +Fatal(String)
+  +Info(String)
+  +Warn(String)
 }
 
 interface ILogStrategy {
-  +void WriteMessage()
+  +WriteMessage()
 }
 
 class FileLogStrategy {
   -_path : String
 } 
 
-class LoggerFacade<T extend AbstractLogger> {
+class ConsoleLogStrategy 
 
-}
+class LoggerFacade<T extend AbstractLogger> {}
+note right of LoggerFacade 
+  Fasada pozwala równie stworzyć Logger z wybraną 
+  implementacją podaną jako parametr szablonu 
+endnote
 
-class RawLogger {
+class RawLogger {}
 
-}
-
-AbstractLogger <|- (DiagnosticLogger, RawLogger) 
-AbstractLogger o-down- AbstractLogger 
+RawLogger -[hidden]-- DiagnosticLogger
 DiagnosticLogger --- DiagnosticInfo
+AbstractLogger <|.l.. RawLogger
+AbstractLogger <|.l.. DiagnosticLogger
 
-ILogStrategy <|.. FileLogStrategy
-ILogStrategy <|.. ConsoleLogStrategy
+AbstractLogger o- AbstractLogger 
 
-AbstractLogger "1" o-down- "1" ILogStrategy
+AbstractLogger -r-- LogLevel 
 
-ILogger <|.. LoggerFacade
+ConsoleLogStrategy -l- FileLogStrategy
+ILogStrategy <|.d.. (ConsoleLogStrategy, FileLogStrategy) 
+AbstractLogger "1" o-- "1" ILogStrategy
+
+ILogger <|... LoggerFacade
 LoggerFacade --- AbstractLogger
+
+}
 @enduml

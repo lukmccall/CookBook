@@ -1,0 +1,1567 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   contentScriptType="application/ecmascript"
+   contentStyleType="text/css"
+   height="1234px"
+   preserveAspectRatio="none"
+   style="width:1419px;height:1234px;"
+   version="1.1"
+   viewBox="0 0 1419 1234"
+   width="1419px"
+   zoomAndPan="magnify"
+   id="svg2250"
+   sodipodi:docname="ClientGenerator.svg"
+   inkscape:export-filename="/Users/lukasz/studies/CookBook/diagrams/out/client-generator-window/ClientGenerator.png"
+   inkscape:export-xdpi="240"
+   inkscape:export-ydpi="240"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)">
+  <metadata
+     id="metadata2254">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:document-rotation="0"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1792"
+     inkscape:window-height="1004"
+     id="namedview2252"
+     showgrid="false"
+     inkscape:zoom="0.52510271"
+     inkscape:cx="709.1782"
+     inkscape:cy="691.72313"
+     inkscape:window-x="1"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2250" />
+  <defs
+     id="defs1866">
+    <filter
+       height="300%"
+       id="f1c7ygibtol2wo"
+       width="300%"
+       x="-1"
+       y="-1">
+      <feGaussianBlur
+         result="blurOut"
+         stdDeviation="2.0"
+         id="feGaussianBlur1857" />
+      <feColorMatrix
+         in="blurOut"
+         result="blurOut2"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"
+         id="feColorMatrix1859" />
+      <feOffset
+         dx="4.0"
+         dy="4.0"
+         in="blurOut2"
+         result="blurOut3"
+         id="feOffset1861" />
+      <feBlend
+         in="SourceGraphic"
+         in2="blurOut3"
+         mode="normal"
+         id="feBlend1863" />
+    </filter>
+  </defs>
+  <polygon
+     id="polygon1868"
+     style="stroke:#000000;stroke-width:1.5"
+     points="1195,604 1089,604 1089,505 1144,505 1151,527.4883 1195,527.4883 "
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#ffffff"
+     transform="translate(-16)" />
+  <line
+     id="line1870"
+     y2="527.48828"
+     y1="527.48828"
+     x2="1135"
+     x1="1073"
+     style="stroke:#000000;stroke-width:1.5" />
+  <text
+     id="text1872"
+     y="520.53522"
+     x="1093"
+     textLength="49"
+     lengthAdjust="spacingAndGlyphs"
+     font-weight="bold"
+     font-size="14px"
+     font-family="sans-serif"
+     fill="#000000"
+     transform="translate(-16)">Logger</text>
+  <polygon
+     id="polygon1874"
+     style="stroke:#000000;stroke-width:1.5"
+     points="951,519.4883 1057,519.4883 1057,612 914,612 914,497 944,497 "
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#ffffff" />
+  <line
+     id="line1876"
+     y2="519.48828"
+     y1="519.48828"
+     x2="951"
+     x1="914"
+     style="stroke:#000000;stroke-width:1.5" />
+  <text
+     id="text1878"
+     y="512.53522"
+     x="918"
+     textLength="24"
+     lengthAdjust="spacingAndGlyphs"
+     font-weight="bold"
+     font-size="14px"
+     font-family="sans-serif"
+     fill="#000000">Gui</text>
+  <polygon
+     id="polygon1880"
+     style="stroke:#000000;stroke-width:1.5"
+     points="1302,527.4883 1397,527.4883 1397,604 1219,604 1219,505 1295,505 "
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#ffffff" />
+  <line
+     id="line1882"
+     y2="527.48828"
+     y1="527.48828"
+     x2="1302"
+     x1="1219"
+     style="stroke:#000000;stroke-width:1.5" />
+  <text
+     id="text1884"
+     y="520.53522"
+     x="1223"
+     textLength="70"
+     lengthAdjust="spacingAndGlyphs"
+     font-weight="bold"
+     font-size="14px"
+     font-family="sans-serif"
+     fill="#000000">Generator</text>
+  <polygon
+     id="polygon1886"
+     style="stroke:#000000;stroke-width:1.5"
+     points="318,1139.4883 417,1139.4883 417,1222 219,1222 219,1117 311,1117 "
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#ffffff" />
+  <line
+     id="line1888"
+     y2="1139.4883"
+     y1="1139.4883"
+     x2="318"
+     x1="219"
+     style="stroke:#000000;stroke-width:1.5" />
+  <text
+     id="text1890"
+     y="1132.5352"
+     x="223"
+     textLength="86"
+     lengthAdjust="spacingAndGlyphs"
+     font-weight="bold"
+     font-size="14px"
+     font-family="sans-serif"
+     fill="#000000">Deserializer</text>
+  <polygon
+     id="polygon1892"
+     style="stroke:#000000;stroke-width:1.5"
+     points="148,46.4883 882,46.4883 882,1006 22,1006 22,24 141,24 "
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#ffffff" />
+  <line
+     id="line1894"
+     y2="46.4883"
+     y1="46.4883"
+     x2="148"
+     x1="22"
+     style="stroke:#000000;stroke-width:1.5" />
+  <text
+     id="text1896"
+     y="39.535198"
+     x="26"
+     textLength="113"
+     lengthAdjust="spacingAndGlyphs"
+     font-weight="bold"
+     font-size="14px"
+     font-family="sans-serif"
+     fill="#000000">ClientGenerator</text>
+  <rect
+     y="540"
+     x="1089"
+     width="74"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="Logger.ILogger"
+     height="48"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse1899"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="556"
+     cx="1104" />
+  <path
+     id="path1901"
+     d="m 1106.4731,562.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text1903"
+     y="560.53522"
+     x="1134"
+     textLength="42"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000"
+     transform="translate(-16)">ILogger</text>
+  <line
+     id="line1905"
+     y2="572"
+     y1="572"
+     x2="1162"
+     x1="1090"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line1907"
+     y2="580"
+     y1="580"
+     x2="1162"
+     x1="1090"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="540"
+     x="957"
+     width="76"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="Gui.Window"
+     height="48"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse1910"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="556"
+     cx="972" />
+  <path
+     id="path1912"
+     d="m 974.4731,562.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text1914"
+     y="560.53522"
+     x="986"
+     textLength="44"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">Window</text>
+  <line
+     id="line1916"
+     y2="572"
+     y1="572"
+     x2="1032"
+     x1="958"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line1918"
+     y2="580"
+     y1="580"
+     x2="1032"
+     x1="958"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="540"
+     x="1235.5"
+     width="145"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="Generator.GeneratorTemplate"
+     height="48"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse1921"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="556"
+     cx="1250.5" />
+  <path
+     id="path1923"
+     d="m 1252.9731,562.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text1925"
+     y="560.53522"
+     x="1264.5"
+     textLength="113"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">GeneratorTemplate</text>
+  <line
+     id="line1927"
+     y2="572"
+     y1="572"
+     x2="1379.5"
+     x1="1236.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line1929"
+     y2="580"
+     y1="580"
+     x2="1379.5"
+     x1="1236.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="1152"
+     x="235.5"
+     width="165"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="Deserializer.VersionedDeserializers"
+     height="54.265598"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse1932"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="1171.1328"
+     cx="250.5" />
+  <path
+     id="path1934"
+     d="m 252.9731,1177.2759 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1495 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2697 0.5935,-0.2698 1.2243,-0.8509 z" />
+  <text
+     id="text1936"
+     y="1168.6016"
+     x="299.5"
+     textLength="63"
+     lengthAdjust="spacingAndGlyphs"
+     font-style="italic"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">«singleton»</text>
+  <text
+     id="text1938"
+     y="1182.7344"
+     x="264.5"
+     textLength="133"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">VersionedDeserializers</text>
+  <line
+     id="line1940"
+     y2="1190.2656"
+     y1="1190.2656"
+     x2="399.5"
+     x1="236.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line1942"
+     y2="1198.2656"
+     y1="1198.2656"
+     x2="399.5"
+     x1="236.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="59"
+     x="629.5"
+     width="215"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.IAppController"
+     height="112.7754"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse1945"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#b4a7e5"
+     cy="75"
+     cx="691.25" />
+  <path
+     id="path1947"
+     d="m 687.6777,71.2651 v -2.1582 h 7.3794 v 2.1582 h -2.4653 v 8.0767 h 2.4653 V 81.5 h -7.3794 v -2.1582 h 2.4654 v -8.0767 z" />
+  <text
+     id="text1949"
+     y="79.535202"
+     x="711.75"
+     textLength="83"
+     lengthAdjust="spacingAndGlyphs"
+     font-style="italic"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">IAppController</text>
+  <line
+     id="line1951"
+     y2="91"
+     y1="91"
+     x2="843.5"
+     x1="630.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line1953"
+     y2="99"
+     y1="99"
+     x2="843.5"
+     x1="630.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <circle
+     r="3"
+     id="ellipse1955"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="110"
+     cx="640.5" />
+  <text
+     id="text1957"
+     y="113.6348"
+     x="649.5"
+     textLength="131"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">ChangeWindow(Window)</text>
+  <circle
+     r="3"
+     id="ellipse1959"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="122.9551"
+     cx="640.5" />
+  <text
+     id="text1961"
+     y="126.5898"
+     x="649.5"
+     textLength="50"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">ExitApp()</text>
+  <circle
+     r="3"
+     id="ellipse1963"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="135.9102"
+     cx="640.5" />
+  <text
+     id="text1965"
+     y="139.54491"
+     x="649.5"
+     textLength="159"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">GetCurrentWindow() : Window</text>
+  <circle
+     r="3"
+     id="ellipse1967"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="148.8652"
+     cx="640.5" />
+  <text
+     id="text1969"
+     y="152.5"
+     x="649.5"
+     textLength="114"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">GetLogger() : ILogger</text>
+  <circle
+     r="3"
+     id="ellipse1971"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="161.8203"
+     cx="640.5" />
+  <text
+     id="text1973"
+     y="165.45509"
+     x="649.5"
+     textLength="189"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">GetGenerator(): GeneratorTemplate</text>
+  <rect
+     y="352"
+     x="568.5"
+     width="297"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.AppController"
+     height="80.175797"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse1976"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="371.13281"
+     cx="672.75" />
+  <path
+     id="path1978"
+     d="m 675.2231,377.2759 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1495 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2697 0.5935,-0.2698 1.2243,-0.8509 z" />
+  <text
+     id="text1980"
+     y="368.60159"
+     x="701.75"
+     textLength="63"
+     lengthAdjust="spacingAndGlyphs"
+     font-style="italic"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">«singleton»</text>
+  <text
+     id="text1982"
+     y="382.73441"
+     x="693.25"
+     textLength="80"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">AppController</text>
+  <line
+     id="line1984"
+     y2="390.26559"
+     y1="390.26559"
+     x2="864.5"
+     x1="569.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line1986"
+     y2="398.26559"
+     y1="398.26559"
+     x2="864.5"
+     x1="569.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <circle
+     r="3"
+     id="ellipse1988"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="409.26559"
+     cx="579.5" />
+  <text
+     id="text1990"
+     y="412.90039"
+     x="588.5"
+     textLength="271"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">StartWindow(Window, GeneratorTemplate, ILogger)</text>
+  <circle
+     r="3"
+     id="ellipse1992"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="422.2207"
+     cx="579.5" />
+  <text
+     style="text-decoration: underline;text-decoration-line: underline"
+     id="text1994"
+     y="425.8555"
+     x="588.5"
+     textLength="139"
+     text-decoration="underline"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">Instance() : AppController</text>
+  <rect
+     y="693"
+     x="271"
+     width="94"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.ICommand"
+     height="60.955101"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse1997"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#b4a7e5"
+     cy="709"
+     cx="286" />
+  <path
+     id="path1999"
+     d="m 282.4277,705.2651 v -2.1582 h 7.3794 v 2.1582 h -2.4653 v 8.0767 h 2.4653 V 715.5 h -7.3794 v -2.1582 h 2.4654 v -8.0767 z" />
+  <text
+     id="text2001"
+     y="713.53522"
+     x="300"
+     textLength="62"
+     lengthAdjust="spacingAndGlyphs"
+     font-style="italic"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">ICommand</text>
+  <line
+     id="line2003"
+     y2="725"
+     y1="725"
+     x2="364"
+     x1="272"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line2005"
+     y2="733"
+     y1="733"
+     x2="364"
+     x1="272"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <circle
+     r="3"
+     id="ellipse2007"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="744"
+     cx="282" />
+  <text
+     id="text2009"
+     y="747.63483"
+     x="291"
+     textLength="50"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">Execute()</text>
+  <rect
+     y="903"
+     x="179.5"
+     width="277"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.DeserializationCommand"
+     height="86.865196"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2012"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="919"
+     cx="241.75" />
+  <path
+     id="path2014"
+     d="m 244.2231,925.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text2016"
+     y="923.53522"
+     x="262.25"
+     textLength="144"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">DeserializationCommand</text>
+  <line
+     id="line2018"
+     y2="935"
+     y1="935"
+     x2="455.5"
+     x1="180.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     id="rect2020"
+     y="943"
+     x="187.5"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2022"
+     y="949.63483"
+     x="199.5"
+     textLength="240"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_onDeserialization : Action&lt;OpenApiModel&gt;</text>
+  <rect
+     id="rect2024"
+     y="955.95508"
+     x="187.5"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2026"
+     y="962.58978"
+     x="199.5"
+     textLength="163"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_onError : Action&lt;Exception&gt;</text>
+  <rect
+     id="rect2028"
+     y="968.91022"
+     x="187.5"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2030"
+     y="975.54492"
+     x="199.5"
+     textLength="251"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_deserializationSettings : JsonSerializerSettings</text>
+  <line
+     id="line2032"
+     y2="981.86517"
+     y1="981.86517"
+     x2="455.5"
+     x1="180.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="693"
+     x="400"
+     width="196"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.ExitAppCommand"
+     height="60.955101"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2035"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="709"
+     cx="442" />
+  <path
+     id="path2037"
+     d="m 444.4731,715.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text2039"
+     y="713.53522"
+     x="462"
+     textLength="104"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">ExitAppCommand</text>
+  <line
+     id="line2041"
+     y2="725"
+     y1="725"
+     x2="595"
+     x1="401"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     id="rect2043"
+     y="733"
+     x="408"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2045"
+     y="739.63483"
+     x="420"
+     textLength="170"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_appController : IAppController</text>
+  <line
+     id="line2047"
+     y2="745.95508"
+     y1="745.95508"
+     x2="595"
+     x1="401"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="667"
+     x="38.5"
+     width="197"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.GenerateCommand"
+     height="112.7754"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2050"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="683"
+     cx="77.349998" />
+  <path
+     id="path2052"
+     d="m 79.8231,689.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text2054"
+     y="687.53522"
+     x="96.650002"
+     textLength="112"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">GenerateCommand</text>
+  <line
+     id="line2056"
+     y2="699"
+     y1="699"
+     x2="234.5"
+     x1="39.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     id="rect2058"
+     y="707"
+     x="46.5"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2060"
+     y="713.63483"
+     x="58.5"
+     textLength="163"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_onError : Action&lt;Exception&gt;</text>
+  <rect
+     id="rect2062"
+     y="719.95508"
+     x="46.5"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2064"
+     y="726.58978"
+     x="58.5"
+     textLength="107"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_onSuccess : Action</text>
+  <rect
+     id="rect2066"
+     y="732.91022"
+     x="46.5"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2068"
+     y="739.54492"
+     x="58.5"
+     textLength="145"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_controller : AppController</text>
+  <rect
+     id="rect2070"
+     y="745.86517"
+     x="46.5"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2072"
+     y="752.5"
+     x="58.5"
+     textLength="91"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_logger : ILogger</text>
+  <rect
+     id="rect2074"
+     y="758.82031"
+     x="46.5"
+     width="6"
+     style="stroke:#c82930;stroke-width:1"
+     height="6"
+     fill="none" />
+  <text
+     id="text2076"
+     y="765.45508"
+     x="58.5"
+     textLength="171"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">_openApiModel : OpenApiModel</text>
+  <line
+     id="line2078"
+     y2="771.77539"
+     y1="771.77539"
+     x2="234.5"
+     x1="39.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="342"
+     x="38.5"
+     width="259"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.ICommandsProvider"
+     height="99.820297"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2081"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#b4a7e5"
+     cy="358"
+     cx="105.75" />
+  <path
+     id="path2083"
+     d="m 102.1777,354.2651 v -2.1582 h 7.3794 v 2.1582 h -2.4653 v 8.0767 h 2.4653 V 364.5 h -7.3794 v -2.1582 h 2.4654 v -8.0767 z" />
+  <text
+     id="text2085"
+     y="362.53519"
+     x="126.25"
+     textLength="116"
+     lengthAdjust="spacingAndGlyphs"
+     font-style="italic"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">ICommandsProvider</text>
+  <line
+     id="line2087"
+     y2="374"
+     y1="374"
+     x2="296.5"
+     x1="39.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line2089"
+     y2="382"
+     y1="382"
+     x2="296.5"
+     x1="39.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <circle
+     r="3"
+     id="ellipse2091"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="393"
+     cx="49.5" />
+  <text
+     id="text2093"
+     y="396.6348"
+     x="58.5"
+     textLength="150"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">ExitCommand() : ICommand</text>
+  <circle
+     r="3"
+     id="ellipse2095"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="405.95511"
+     cx="49.5" />
+  <text
+     id="text2097"
+     y="409.58981"
+     x="58.5"
+     textLength="209"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">DeserializationCommand() : ICommand</text>
+  <circle
+     r="3"
+     id="ellipse2099"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="418.91019"
+     cx="49.5" />
+  <text
+     id="text2101"
+     y="422.54489"
+     x="58.5"
+     textLength="233"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">ShowPopupWindowCommand() : ICommand</text>
+  <circle
+     r="3"
+     id="ellipse2103"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="431.8652"
+     cx="49.5" />
+  <text
+     id="text2105"
+     y="435.5"
+     x="58.5"
+     textLength="184"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">GeneratorCommand() : ICommand</text>
+  <rect
+     y="540"
+     x="189.5"
+     width="145"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.CommandsProvider"
+     height="48"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2108"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="556"
+     cx="204.5" />
+  <path
+     id="path2110"
+     d="m 206.9731,562.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text2112"
+     y="560.53522"
+     x="218.5"
+     textLength="113"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">CommandsProvider</text>
+  <line
+     id="line2114"
+     y2="572"
+     y1="572"
+     x2="333.5"
+     x1="190.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line2116"
+     y2="580"
+     y1="580"
+     x2="333.5"
+     x1="190.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="78.5"
+     x="356.5"
+     width="233"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.IMenuWindowState"
+     height="73.910202"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2119"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#b4a7e5"
+     cy="94.5"
+     cx="415.75" />
+  <path
+     id="path2121"
+     d="m 412.1777,90.7651 v -2.1582 h 7.3794 v 2.1582 h -2.4653 v 8.0767 h 2.4653 V 101 h -7.3794 v -2.1582 h 2.4654 v -8.0767 z" />
+  <text
+     id="text2123"
+     y="99.035202"
+     x="436.25"
+     textLength="106"
+     lengthAdjust="spacingAndGlyphs"
+     font-style="italic"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">IMenuWindowState</text>
+  <line
+     id="line2125"
+     y2="110.5"
+     y1="110.5"
+     x2="588.5"
+     x1="357.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line2127"
+     y2="118.5"
+     y1="118.5"
+     x2="588.5"
+     x1="357.5"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <circle
+     r="3"
+     id="ellipse2129"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="129.5"
+     cx="367.5" />
+  <text
+     id="text2131"
+     y="133.1348"
+     x="376.5"
+     textLength="207"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">void SetWindow(MenuWindow window)</text>
+  <circle
+     r="3"
+     id="ellipse2133"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="142.45509"
+     cx="367.5" />
+  <text
+     id="text2135"
+     y="146.0898"
+     x="376.5"
+     textLength="105"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">void DisplayMenu();</text>
+  <path
+     id="path2137"
+     style="stroke:#a80036;stroke-width:1"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fbfb77"
+     d="m 89,95 v 40.6211 H 321 V 120 l 35.31,-4 -35.31,-4 v -7 L 311,95 H 89" />
+  <path
+     id="path2139"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#fbfb77"
+     d="m 311,95 v 10 h 10 L 311,95" />
+  <text
+     id="text2141"
+     y="112.5684"
+     x="95"
+     textLength="211"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000">Na diagramie nie zostały ukazane</text>
+  <text
+     id="text2143"
+     y="127.8789"
+     x="95"
+     textLength="135"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000">wszystkie stany okna</text>
+  <rect
+     y="233"
+     x="430"
+     width="86"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.StartState"
+     height="48"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2146"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="249"
+     cx="445" />
+  <path
+     id="path2148"
+     d="m 447.4731,255.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text2150"
+     y="253.5352"
+     x="459"
+     textLength="54"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">StartState</text>
+  <line
+     id="line2152"
+     y2="265"
+     y1="265"
+     x2="515"
+     x1="431"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line2154"
+     y2="273"
+     y1="273"
+     x2="515"
+     x1="431"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="233"
+     x="551"
+     width="150"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.FileWasSelectedState"
+     height="48"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2157"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="249"
+     cx="566" />
+  <path
+     id="path2159"
+     d="m 568.4731,255.1431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text2161"
+     y="253.5352"
+     x="580"
+     textLength="118"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">FileWasSelectedState</text>
+  <line
+     id="line2163"
+     y2="265"
+     y1="265"
+     x2="700"
+     x1="552"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line2165"
+     y2="273"
+     y1="273"
+     x2="700"
+     x1="552"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <rect
+     y="361.5"
+     x="333"
+     width="200"
+     style="stroke:#a80036;stroke-width:1.5"
+     id="ClientGenerator.MenuWindow"
+     height="60.955101"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fefece" />
+  <circle
+     r="11"
+     id="ellipse2168"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#add1b2"
+     cy="377.5"
+     cx="391.25" />
+  <path
+     id="path2170"
+     d="m 393.7231,383.6431 q -0.581,0.2988 -1.2202,0.4482 -0.6391,0.1494 -1.3447,0.1494 -2.5068,0 -3.8267,-1.6518 -1.3198,-1.6519 -1.3198,-4.773 0,-3.1294 1.3198,-4.7812 1.3199,-1.6519 3.8267,-1.6519 0.7056,0 1.353,0.1494 0.6475,0.1494 1.2119,0.4483 v 2.7226 q -0.6308,-0.581 -1.2243,-0.8508 -0.5935,-0.2698 -1.2244,-0.2698 -1.3447,0 -2.0295,1.0667 -0.6848,1.0666 -0.6848,3.1667 0,2.0918 0.6848,3.1585 0.6848,1.0666 2.0295,1.0666 0.6309,0 1.2244,-0.2698 0.5935,-0.2697 1.2243,-0.8508 z" />
+  <text
+     id="text2172"
+     y="382.03519"
+     x="411.75"
+     textLength="75"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="12px"
+     font-family="sans-serif"
+     fill="#000000">MenuWindow</text>
+  <line
+     id="line2174"
+     y2="393.5"
+     y1="393.5"
+     x2="532"
+     x1="334"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <line
+     id="line2176"
+     y2="401.5"
+     y1="401.5"
+     x2="532"
+     x1="334"
+     style="stroke:#a80036;stroke-width:1.5" />
+  <circle
+     r="3"
+     id="ellipse2178"
+     style="stroke:#038048;stroke-width:1"
+     fill="#84be84"
+     cy="412.5"
+     cx="344" />
+  <text
+     id="text2180"
+     y="416.1348"
+     x="353"
+     textLength="174"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="11px"
+     font-family="sans-serif"
+     fill="#000000">ChangeState(IMenuWindowState)</text>
+  <path
+     id="path2182"
+     style="stroke:#a80036;stroke-width:1"
+     filter="url(#f1c7ygibtol2wo)"
+     fill="#fbfb77"
+     d="m 898,711 v 25.3105 h 202 V 721 l -10,-10 H 898" />
+  <path
+     id="path2184"
+     style="stroke:#a80036;stroke-width:1"
+     fill="#fbfb77"
+     d="m 1090,711 v 10 h 10 l -10,-10" />
+  <text
+     id="text2186"
+     y="728.56842"
+     x="904"
+     textLength="181"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000">Zewnętrzna biblioteka gui.cs</text>
+  <path
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+     id="Gui-GMN6"
+     fill="none"
+     d="m 922,612.0558 c 0,0.2298 0,0.4601 0,0.6908 0,0.9226 0,1.8518 0,2.787 0,3.7406 0,7.5762 0,11.4677 0,31.1312 0,65.8287 0,83.9387" />
+  <path
+     style="stroke:#a80036;stroke-width:1"
+     id="ClientGenerator.DeserializationCommand-Deserializer.VersionedDeserializers"
+     fill="none"
+     d="m 318,990.23 c 0,47.49 0,121.85 0,161.59" />
+  <text
+     id="text2190"
+     y="1066.5684"
+     x="319"
+     textLength="75"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000"
+     transform="translate(6,2)">Deleguje do</text>
+  <polygon
+     id="polygon2192"
+     style="stroke:#000000;stroke-width:1"
+     points="352,1075.3105 355,1081.3105 358,1075.3105 "
+     fill="#000000"
+     transform="translate(4,4)" />
+  <path
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+     id="ClientGenerator.ICommand&lt;-ClientGenerator.ExitAppCommand"
+     fill="none"
+     d="m 385.29,724 c 0,0 14.49,0 14.49,0" />
+  <polygon
+     id="polygon2195"
+     style="stroke:#a80036;stroke-width:1"
+     points="385.29,717 385.29,731 365.29,724 "
+     fill="none" />
+  <path
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+     id="ClientGenerator.GenerateCommand-&gt;ClientGenerator.ICommand"
+     fill="none"
+     d="m 235.71,724 c 0,0 15.22,0 15.22,0" />
+  <polygon
+     id="polygon2198"
+     style="stroke:#a80036;stroke-width:1"
+     points="250.93,731 250.93,717 270.93,724 "
+     fill="none" />
+  <path
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+     id="ClientGenerator.ICommand&lt;-ClientGenerator.DeserializationCommand"
+     fill="none"
+     d="m 318,774.04 c 0,0 0,128.9 0,128.9" />
+  <polygon
+     id="polygon2201"
+     style="stroke:#a80036;stroke-width:1"
+     points="325,774.04 311,774.04 318,754.04 "
+     fill="none" />
+  <path
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+     id="ClientGenerator.ICommandsProvider&lt;-ClientGenerator.CommandsProvider"
+     fill="none"
+     d="m 243.5,462.21 c 0,0 0,77.58 0,77.58" />
+  <polygon
+     id="polygon2204"
+     style="stroke:#a80036;stroke-width:1"
+     points="250.5,462.21 236.5,462.21 243.5,442.21 "
+     fill="none" />
+  <path
+     style="stroke:#a80036;stroke-width:1"
+     id="ClientGenerator.CommandsProvider&lt;-ClientGenerator.ICommand"
+     fill="none"
+     d="m 302.75,601.22 c 0,0 0,91.53 0,91.53" />
+  <polygon
+     id="polygon2207"
+     style="stroke:#a80036;stroke-width:1"
+     points="302.75,600.22 306.75,594.22 302.75,588.22 298.75,594.22 "
+     fill="#ffffff" />
+  <text
+     id="text2209"
+     y="608.55798"
+     x="303.70779"
+     textLength="8"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000"
+     transform="translate(-14,2)">1</text>
+  <text
+     id="text2211"
+     y="682.466"
+     x="292.9859"
+     textLength="6"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000"
+     transform="translate(-4)">*</text>
+  <path
+     style="stroke:#a80036;stroke-width:1"
+     id="ClientGenerator.AppController&lt;-Gui.Window"
+     fill="none"
+     d="m 878.77,412 c 0,0 116.23,0 116.23,0 0,0 0,85.06 0,127.92" />
+  <polygon
+     id="polygon2214"
+     style="stroke:#a80036;stroke-width:1"
+     points="877.77,412 871.77,408 865.77,412 871.77,416 "
+     fill="#ffffff" />
+  <path
+     style="stroke:#a80036;stroke-width:1"
+     id="ClientGenerator.AppController&lt;-Logger.ILogger"
+     fill="none"
+     d="m 878.64,392 c 0,0 263.36,0 263.36,0 0,0 0,100.31 0,147.72" />
+  <polygon
+     id="polygon2217"
+     style="stroke:#a80036;stroke-width:1"
+     points="877.64,392 871.64,388 865.64,392 871.64,396 "
+     fill="#ffffff" />
+  <path
+     style="stroke:#a80036;stroke-width:1"
+     id="ClientGenerator.AppController&lt;-Generator.GeneratorTemplate"
+     fill="none"
+     d="m 878.75,372 c 0,0 429.25,0 429.25,0 0,0 0,116.02 0,167.68" />
+  <polygon
+     id="polygon2220"
+     style="stroke:#a80036;stroke-width:1"
+     points="877.75,372 871.75,368 865.75,372 871.75,376 "
+     fill="#ffffff" />
+  <path
+     style="stroke:#a80036;stroke-width:1"
+     id="Gui.Window&lt;-ClientGenerator.MenuWindow"
+     fill="none"
+     d="m 936.99,552 c 0,0 -470.49,0 -470.49,0 0,0 0,-82.66 0,-129.15" />
+  <polygon
+     id="polygon2223"
+     style="stroke:#a80036;stroke-width:1"
+     points="936.99,559 936.99,545 956.99,552 "
+     fill="none" />
+  <path
+     style="stroke:#a80036;stroke-width:1"
+     id="ClientGenerator.MenuWindow&lt;-ClientGenerator.ICommandsProvider"
+     fill="none"
+     d="m 319.81,392 c 0,0 -21.95,0 -21.95,0" />
+  <polygon
+     id="polygon2226"
+     style="stroke:#a80036;stroke-width:1"
+     points="320.81,392 326.81,396 332.81,392 326.81,388 "
+     fill="#ffffff" />
+  <text
+     id="text2228"
+     y="389.03061"
+     x="317.15851"
+     textLength="8"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000">1</text>
+  <text
+     id="text2230"
+     y="389.1489"
+     x="305.59879"
+     textLength="8"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000"
+     transform="translate(-4)">1</text>
+  <path
+     style="stroke:#a80036;stroke-width:1"
+     id="ClientGenerator.IMenuWindowState-&gt;ClientGenerator.MenuWindow"
+     fill="none"
+     d="m 393.25,152.5 c 0,0 0,195.68 0,195.68" />
+  <polygon
+     id="polygon2233"
+     style="stroke:#a80036;stroke-width:1"
+     points="393.25,349.18 389.25,355.18 393.25,361.18 397.25,355.18 "
+     fill="#ffffff" />
+  <polygon
+     id="polygon2235"
+     style="stroke:#000000;stroke-width:1"
+     points="337,259.5 340,253.5 343,259.5 "
+     fill="#000000"
+     transform="translate(4,-10)" />
+  <text
+     id="text2237"
+     y="275.06839"
+     x="302"
+     textLength="79"
+     lengthAdjust="spacingAndGlyphs"
+     font-size="13px"
+     font-family="sans-serif"
+     fill="#000000"
+     transform="translate(2,-12)">Jest w stanie</text>
+  <path
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+     id="ClientGenerator.IMenuWindowState&lt;-ClientGenerator.StartState"
+     fill="none"
+     d="m 473,172.68 c 0,0 0,60.27 0,60.27" />
+  <polygon
+     id="polygon2240"
+     style="stroke:#a80036;stroke-width:1"
+     points="480,172.68 466,172.68 473,152.68 "
+     fill="none" />
+  <path
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+     id="ClientGenerator.IMenuWindowState&lt;-ClientGenerator.FileWasSelectedState"
+     fill="none"
+     d="m 570.25,172.68 c 0,0 0,60.27 0,60.27" />
+  <polygon
+     id="polygon2243"
+     style="stroke:#a80036;stroke-width:1"
+     points="577.25,172.68 563.25,172.68 570.25,152.68 "
+     fill="none" />
+  <path
+     style="stroke:#a80036;stroke-width:1;stroke-dasharray:7, 7"
+     id="ClientGenerator.IAppController&lt;-ClientGenerator.AppController"
+     fill="none"
+     d="m 772.75,192.12 c 0,0 0,159.88 0,159.88" />
+  <polygon
+     id="polygon2246"
+     style="stroke:#a80036;stroke-width:1"
+     points="779.75,192.12 765.75,192.12 772.75,172.12 "
+     fill="none" />
+</svg>

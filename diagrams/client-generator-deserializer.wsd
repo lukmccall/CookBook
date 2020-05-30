@@ -1,0 +1,47 @@
+@startuml Deserializer
+
+skinparam linetype ortho
+
+namespace Deserializer {
+    
+class OpenApiModel {
+    +Endpoints() : IEnumerable<IEndpoint>
+    +Schemas() : IEnumerable<ISchema>
+}
+
+interface IDeserializer {
+    +Deserialize(string): OpenApiModel
+    +SetSettings(JsonSerializerSettings)
+}
+
+class Deserializer<T> <<abstract>> {
+    #GetConverters() : IList<JsonConverter>
+}
+
+class Deserializer301 {
+    -MapSchemes(OpenApiModelBuilder, Dictionary<string, Schema>)
+    -MapSecuritySchema(OpenApiModelBuilder, Dictionary<string, SecurityScheme>)
+    -MapHeaders(OpenApiModelBuilder, Dictionary<string, Header>)
+    -MapRequestBodies(OpenApiModelBuilder, Dictionary<string, Request>)
+    -MapResponses(OpenApiModelBuilder, Dictionary<string, Response>)
+    -MapParameters(OpenApiModelBuilder, Dictionary<string, Parameter>)
+    -MapEndpoints(OpenApiModelBuilder, Dictionary<string, PathItem>)
+    -{static} GetOperationMap(PathItem) : Dictionary<EndpointType, Operation>
+}
+note bottom : Deserializatory są tworzone dla każdej wersji OpenApi
+
+class VersionedDeserializers <<singleton>> { 
+    +{static} RegisterFromAssembly(Assembly)
+    +DeserializeFile(string, JsonSerializerSettings) : OpenApiModel
+    +Register(string, IDeserializer)
+}
+
+
+IDeserializer <|.. Deserializer
+OpenApiModel -r-- IDeserializer : Produkuje <
+Deserializer <|-- Deserializer301
+
+VersionedDeserializers "1" o--- "0..*" IDeserializer 
+
+}
+@enduml
